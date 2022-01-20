@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<?php require("Header.php");?>
 	<div class="d-flex justify-content-center mt-5">
 		<div class="container max-width-55 ">
 			<center>
