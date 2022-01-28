@@ -45,5 +45,6 @@
 	<br><br>
     </div>
 	</div>
+	<?php require("Footer.html");?>
 </body>
 </html>

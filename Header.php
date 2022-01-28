@@ -56,3 +56,6 @@
 
 </body>
 </html>
+<?php
+include("Connect.php");
+?>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-</body>
+
 	<?php require("Header.php");?>
 <div class="d-flex justify-content-center">
     <div class="container  mt-5" style="width:25%">
@@ -36,5 +36,6 @@
         </form>
     </div>
 </div>
-
+	<?php require("Footer.html");?>
+</body>
 </html>
