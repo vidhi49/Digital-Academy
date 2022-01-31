@@ -2,3 +2,12 @@
 {
   max-height: 100px;
 }
+.img-carousel
+{
+    min-width:100%;
+    /* max-height:400px; */
+    height:700px;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
