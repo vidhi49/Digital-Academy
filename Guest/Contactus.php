@@ -15,7 +15,7 @@
 }
 </style>
 <body>
-	<?php require("Header.php");?>
+	<?php require("header.php");?>
 <div class="content">
   <div class="container">
     <div class="row align-items-stretch no-gutters contact-wrap">
@@ -91,7 +91,7 @@
 </div>
 </div>
 </div>
-	<?php require("Footer.html");?>
+	<?php require("footer.html");?>
 </body>
 </html>
 

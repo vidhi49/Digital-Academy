@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<?php require("Header.php");?>
+	<?php require("header.php");?>
 	<div style="background-image: url(https://source.unsplash.com/1500x500/?education,dark)">
 	<div class="container " >
 		<br><br>
@@ -45,6 +45,6 @@
 	<br><br>
     </div>
 	</div>
-	<?php require("Footer.html");?>
+	<?php require("footer.html");?>
 </body>
 </html>

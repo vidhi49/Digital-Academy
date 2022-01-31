@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="jquery-3.1.1.min.js"></script>	
-	<script src="Signup.js"></script>
+	<script src="../js/jquery-3.1.1.min.js"></script>
+	<script src="../js/signup.js"></script>
+	
 	<style>
 		@media screen and (min-width: 992px) {
 			.max-width-55 {
@@ -23,7 +25,15 @@
 </head>
 
 <body>
-	<?php require("Header.php");?>
+	<?php require("header.php");
+	require 'phpmailer/PHPMailer.php';
+	require 'phpmailer/Exception.php';
+	require 'phpmailer/SMTP.php';
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+	use PHPMailer\PHPMailer\SMTP;
+	
+	?>
 	<div class="d-flex justify-content-center mt-5">
 		<div class="container max-width-55 ">
 			<center>
@@ -92,14 +102,38 @@
 		$pwd=$_POST['pwd'];
 		$f=$_FILES['cimg']['name'];
 		$floc=$_FILES['cimg']['tmp_name'];
-		$hash = password_hash($pwd, PASSWORD_DEFAULT) .mysqli_error($con).
+		$hash = password_hash($pwd, PASSWORD_DEFAULT);
 		$date=date("Y-m-d");
-		include("Connect.php");
+		include("../connect.php");
 		$q="insert into register_tbl values(null,'$sname','$address','$email','$cno','$uname','$hash','$f','$date')";
 		$q1="insert into request_tbl values(null,'$uname','$email','$cno','$f','$date','0000-00-00','Pending')";
 			if(mysqli_query($con,$q) && mysqli_query($con,$q1))
 			{
-				move_uploaded_file($floc,"userprofile/".$f);
+				move_uploaded_file($floc,"../certi_img/".$f);
+				$mail = new PHPMailer();
+				$mail->isSMTP();
+				$mail->Host='smtp.gmail.com';
+				$mail->SMTPAuth = "true";
+				$mail->SMTPSecure = "tls";
+				$mail->Port="587";
+				$mail->isHTML(true);
+				$mail->addAttachment("../certi_img/$f");
+				$mail->Body="<h2>Request for approval...</h2>
+				<p>$sname has been requested authorization to use DGskool web app.
+The information provided by [user] is:</p><p>User Name:$uname <br>Email Id : $email<br>Phone No.:$cno</p>
+				";
+				$mail->Username="sem5b.01.tmtbca@gmail.com";
+				$mail->Password = "optical1030";
+				$mail->Subject="Request For Approval...";
+				$mail->setFrom("sem5b.01.tmtbca@gmail.com");
+				$mail->addAddress("sem5b.02.tmtbca@gmail.com");
+				if ($mail->send()){
+				echo "Email sent";	
+				}
+				else{
+					echo "Error";
+				}
+				$mail->smtpClose();
 				echo "<script> alert('Thank You for Registration');</script>";
 				echo"<script>window.location.href='Login.php';</script>";
 			}

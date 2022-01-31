@@ -55,25 +55,20 @@ $(document).ready(function(){
 				return false;
 		}
 		if ($('#uname').val() !=''){
-			var data = "user=" + $('#uname').val();
+			var data = "users=" + $('#uname').val();
 			$.ajax({
 					method: "post",
-					url: "regi.php",
+					url: "regi2.php",
 					data: data,
 					success: function(result)
 					{
-						username = result;
-					}	
+						$("#umessage").html(result);
+						$("#uname").focus();
+						return false;					
+					}
 					
 				});
 		}
-		if( username == "")
-			{
-				alert('Please take Username...');
-				$("#uname").focus();
-				return false;
-		}
-		
 		if ($('#pwd').val() == '' || plen.length < 8  ) {
 			alert('Please Fill Password of atleast 8 characters...');
 				$("#pwd").focus();
@@ -88,8 +83,7 @@ $(document).ready(function(){
 				}
 				else if( $('#pwd').val() != $('#cpwd').val())
 					{
-						alert('Password Must be Matched...');
-						
+						alert('Password Must be Matched...');						
 						$("#cpwd").focus();
 						return false;	
 					}
