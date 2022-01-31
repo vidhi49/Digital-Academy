@@ -38,7 +38,7 @@
                      <a class="nav-link text-light" href="guest_home.php" >Home </a> 
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link text-light" href="Registration.php"> Register </a>
+                    <a class="nav-link text-light" href="SignUp.php"> Register </a>
                 </li> 
 				<li class="nav-item">
                     <a class="nav-link text-light" href="Login.php"> Login </a>
@@ -57,5 +57,5 @@
 </body>
 </html>
 <?php
-include("Connect.php");
+include("../Connect.php");
 ?>
