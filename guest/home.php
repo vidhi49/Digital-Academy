@@ -5,10 +5,9 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="  https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css
-" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <?php require('header.php') ?>
@@ -24,7 +23,7 @@
       </div>
       <div class="carousel-inner ">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="../img/sl1.jpg" class="d-block img-carousel" alt="...">
+          <img src="../img/sl1.jpg" class="d-block img-carousel " alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h4>Digital Academy </h4>
             <p class="fs-5">Expand educational oppertunities with DGSkool.</p>
@@ -38,7 +37,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../img/sl3.jpg" class="d-block img-carousel" alt="...">
+          <img src="../img/sl3.jpg" class="d-block img-carousel " alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h4>Digital Academy</h4>
             <p class="fs-5">Instructions ends in the school room but education ends only with life.</p>
@@ -55,19 +54,32 @@
       </button>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-2 text-center p-5">
-        <i class="bi bi-card-checklist "></i>
-        <p> Addmission Management</p>
+  <div class="container p-5 ">
+    <div class="row m-5">
+      <div class="col-sm-4 text-center"><i class="fa fa-address-book fa-3x" aria-hidden="true"></i>
+        <p class="mt-3"> Admission Management</p>
       </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-2"></div>
+      <div class=" col-sm-4 text-center"><i class="fa fa-users fa-3x" aria-hidden="true"></i>
+        <p class="mt-3">Staff Management</p>
+      </div>
+      <div class="col-sm-4 text-center"><i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
+        <p class="mt-3"> Time-table Management</p>
+      </div>
+    </div>
+    <div class=" row m-5">
+      <div class="col-sm-4 text-center"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
+        </i>
+        <p class="mt-3"> Online Examination</p>
+      </div>
+      <div class="col-sm-4 text-center">
+        <p class="mt-3"></p>
+      </div>
+      <div class="col-sm-4 text-center">
+        <p class="mt-3"></p>
+      </div>
     </div>
   </div>
 </body>
 
 </html>
+<?php require('footer.php');?>

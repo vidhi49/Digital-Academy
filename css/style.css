@@ -4,10 +4,16 @@
 }
 .img-carousel
 {
-    min-width:100%;
-    /* max-height:400px; */
+    width:100%;
+    /* max-width: fit-content;
+    max-height:400px; */
     height:700px;
     background-repeat: no-repeat;
     background-size: contain;
+}
 
+@media only screen and (max-width: 500px) {
+ .img-carousel{
+    height: auto;
+  }
 }
