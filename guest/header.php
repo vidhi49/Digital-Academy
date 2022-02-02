@@ -23,7 +23,7 @@
             <a class="nav-link  " href="home.php">Home</a>
           </li>
           <li class="nav-item m-2">
-            <a class="nav-link " href="signup.php">Register</a>
+            <a class="nav-link " href="inquiry.php">Inquiry</a>
           </li>
           <li class="nav-item m-2">
             <a class="nav-link " href="login.php">Login</a>
