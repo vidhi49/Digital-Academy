@@ -25,12 +25,7 @@
 
 <body>
   <?php require("header.php");
-	require 'phpmailer/PHPMailer.php';
-	require 'phpmailer/Exception.php';
-	require 'phpmailer/SMTP.php';
-	use PHPMailer\PHPMailer\PHPMailer;
-	use PHPMailer\PHPMailer\Exception;
-	use PHPMailer\PHPMailer\SMTP;
+	
 	
 	?>
   <div class="d-flex justify-content-center mt-5">
@@ -81,42 +76,15 @@
 		$address=$_POST['address'];
 		$email=$_POST['email'];
 		$cno=$_POST['cno'];
-		$uname=trim($_POST['uname']);
-		$pwd=$_POST['pwd'];
 		$f=$_FILES['cimg']['name'];
 		$floc=$_FILES['cimg']['tmp_name'];
-		$hash = password_hash($pwd, PASSWORD_DEFAULT);
 		$date=date("Y-m-d");
 		include("../connect.php");
-		$q="insert into register_tbl values(null,'$sname','$address','$email','$cno','$uname','$hash','$f','$date')";
-		$q1="insert into request_tbl values(null,'$uname','$email','$cno','$f','$date','0000-00-00','Pending')";
-			if(mysqli_query($con,$q) && mysqli_query($con,$q1))
+		$q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
+			if(mysqli_query($con,$q))
 			{
 				move_uploaded_file($floc,"../certi_img/".$f);
-				$mail = new PHPMailer();
-				$mail->isSMTP();
-				$mail->Host='smtp.gmail.com';
-				$mail->SMTPAuth = "true";
-				$mail->SMTPSecure = "tls";
-				$mail->Port="587";
-				$mail->isHTML(true);
-				$mail->addAttachment("../certi_img/$f");
-				$mail->Body="<h2>Request for approval...</h2>
-				<p>$sname has been requested authorization to use DGskool web app.
-The information provided by [user] is:</p><p>User Name:$uname <br>Email Id : $email<br>Phone No.:$cno</p>
-				";
-				$mail->Username="sem5b.01.tmtbca@gmail.com";
-				$mail->Password = "optical1030";
-				$mail->Subject="Request For Approval...";
-				$mail->setFrom("sem5b.01.tmtbca@gmail.com");
-				$mail->addAddress("sem5b.02.tmtbca@gmail.com");
-				if ($mail->send()){
-				echo "Email sent";	
-				}
-				else{
-					echo "Error";
-				}
-				$mail->smtpClose();
+				require 'email.php';
 				echo "<script> alert('Thank You for Registration');</script>";
 				echo"<script>window.location.href='Login.php';</script>";
 			}

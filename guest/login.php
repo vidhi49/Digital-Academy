@@ -1,5 +1,7 @@
+<?php
+	session_start();
+?>
 <html>
-
 <head>
     <title> Login </title>
     <meta charset="UTF-8">
@@ -39,3 +41,41 @@
 	<?php require("footer.html");?>
 </body>
 </html>
+
+
+
+<?php
+	if(isset($_REQUEST['login']))
+	{
+		$eid=$_REQUEST['eid'];
+		$pwd=$_REQUEST['pwd'];
+		
+		include('../connect.php');
+		$q="select * from tbl_user where email='$eid' and pwd='$pwd' ";
+		$res=mysqli_query($con,$q);
+		$nor=mysqli_num_rows($res);
+		if($nor>=1)
+		{
+			$r=mysqli_fetch_array($res);
+			$_SESSION['name']=$r[1];
+			
+			if(isset($_REQUEST['rem']))
+			{
+				setcookie("emailid",$eid,time()+30*24*60*60);
+				setcookie("password",$pwd,time()+30*24*60*60);
+			}
+			if($r[10]=='Customer')
+			{
+				header('location:../customer/customer_Home.php');
+			}
+			else{
+				header('location:../admin/admin_home.php');
+			}
+			
+		}
+		else
+		{
+			echo "<center><h1>Either EmailID or Password is Wrong Try Again.</h1></center>";
+		}
+	}
+?>
