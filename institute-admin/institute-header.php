@@ -15,16 +15,16 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-dark ps-5 ">
-    <a class="navbar-brand">
-      <img class='logo ms-1' src='../img/logo1.png' style=" height:100px" />
-    </a>
-    <form class="form-inline">
-      <span class="h-25 pe-3 fs-2 text-light" id="email"><?php echo $_SESSION['email'];?></span>
-      <img class='logo ms-1 p-3 w-50' src='../img/p1.jpg' />
-      <a href="logout.php" class="btn btn-secondary btn-lg m-3" role="button">Logout</a>
-    </form>
-  </nav>
+  <div class="container-fluid bg-dark">
+    <div class="row">
+      <div class="col-sm-6"><img class='logo ms-1' src='../img/logo1.png' style=" height:100px" /></div>
+      <div class="col-sm-6 d-flex justify-content-end align-items-center"><span class="h-25 pe-3 fs-2 text-light"
+          id="email"><?php echo $_SESSION['email'];?></span>
+        <img class='logo ms-1 p-3 w-50' src='../img/p1.jpg' />
+        <a href="logout.php" class="btn btn-secondary" role="button">Logout</a>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
