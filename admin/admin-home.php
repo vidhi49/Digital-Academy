@@ -2,16 +2,19 @@
 include('admin-header.php');
 ?>
 <head>
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
-<!-- <link rel="stylesheet" href="../css/style.css"> -->
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-popup-overlay/2.1.5/jquery.popupoverlay.min.js"> </script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> -->
+
+
+<link rel="stylesheet" href="../css/style.css">
+<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>  -->
+<!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-popup-overlay/2.1.5/jquery.popupoverlay.min.js"> </script> -->
+
+<script src="../js/jquery-3.4.1.min"></script> 
 </head>
-<!-- <script src="../js/jquery-3.4.1.min"></script>  -->
 <?php
 include('../connect.php');
 		$show=false;
@@ -81,7 +84,7 @@ include('../connect.php');
 		<strong>Alert!!</strong> ';
 		echo "$name";
 		echo 'is Already Approved.
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>
@@ -94,7 +97,7 @@ include('../connect.php');
 		<strong>Alert!!</strong>';
 		echo "$name";
 		echo ' is Already Approved You cant not Reject .
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>
@@ -107,7 +110,7 @@ include('../connect.php');
 		<strong>Alert!!</strong> ';
 		echo "$name";
 		echo 'is Already Rejected You Cannot Approved.
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>
@@ -120,7 +123,7 @@ include('../connect.php');
 		<strong>Alert!!</strong> ';
 		echo "$name";
 		echo 'is Already Rejected.
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>
@@ -164,12 +167,7 @@ include('../connect.php');
 			echo "<td>$r[3]</td>";//add
 			echo "<td>$r[4]</td>";//con
 			echo "<td>
-			<a href='#$r[0]' data-rel='popup' data-position-to='window'>
-				<img src='../certi_img/$r[5]' class='img-thumbnail' style='height:100px;width:100px;border:2px solid black'>
-			</a>
-			<div  data-role='popup' id='$r[0]'>
-			<img src='../certi_img/$r[5]' class='img-thumbnail' >
-			</div>
+			
 			</td>";//cert
 			echo "<td>$r[7]</td>";//date
             echo "<td>$r[6]</td>";//status
