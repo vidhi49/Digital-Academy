@@ -46,6 +46,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
 	$('#email, #cno ').on('keyup', function () 
 		{
 			

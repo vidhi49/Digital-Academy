@@ -4,6 +4,7 @@
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<script src="../js/jquery-3.1.1.min"></script>
 <section class="vh-100" style="background-color: #0E0A37;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -64,8 +65,27 @@
     {
         $email=$_POST['email'];
         $pwd=$_POST['pwd'];
-        $_SESSION['email']=$email;
-        header('location:admin-home.php');
+        
+        include("../connect.php");
+        $q="select * from master_admin_tbl where Email = '$email'";
+        
+        $res=mysqli_query($con,$q) or die("Qiery failed q");
+        $nor=mysqli_num_rows($res) or die("<script>alert('Not a Admin');</script>");
+        echo "$nor";
+        if($nor == 1)
+        {
+          while($row=mysqli_fetch_array($res))
+          {
+            if(password_verify($pwd,$row[2]))
+            {
+              $_SESSION['email']=$email;
+              header("location:admin-home.php");
+            }
+            else{
+              echo "<script>alert('Passwrod Does not match');</script>";
+            }
+          }
+        }    
 
     }
 
