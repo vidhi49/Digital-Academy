@@ -1,4 +1,4 @@
-<?php require('../guest/header.php');?>
+<?php require('admin-header.php');?>
 <html>
 
 <head>
@@ -12,12 +12,12 @@
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-sidebar">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-          <!-- <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+           <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none text-dark">
             <p class="fs-5 d-none d-sm-inline" aria-disabled="true">Menu</p>
-          </a> -->
+          </a> 
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item m-1">
-              <a href="#" class="nav-link align-middle px-0 text-dark">
+              <a href="add-admin.php" class="nav-link align-middle px-0 text-dark">
                 <i class="fas fa-user-plus fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline">Add Admin</p>
               </a>
