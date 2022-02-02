@@ -35,7 +35,7 @@
           <label class="form-label">Provide School/College Logo Image :</label>
           <input type='file' id="limg" name="limg" required class="form-control-file" />
         </div>
-        <button type="submit" class="btn btn-primary bg-danger mt-4">Sign in</button>
+        <button type="submit" class="btn btn-primary bg-navy-blue mt-4">Sign in</button>
       </form>
     </div>
     <div class="col-sm-6 d-none d-sm-block">

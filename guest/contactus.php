@@ -1,6 +1,6 @@
 <?php require('header.php');?>
 
-<body class="bg-light">
+<body>
   <div class="container p-3">
     <div class="row align-items-center w-100">
       <div class="col-sm-6">

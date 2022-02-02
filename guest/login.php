@@ -2,44 +2,64 @@
 	session_start();
 ?>
 <html>
+
 <head>
-    <title> Login </title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title> Login </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
+<?php require("header.php");?>
 
 <body>
+  <div class="container">
+    <div class="row g-0  m-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+      <div class="col-md-6 nopadding">
+        <img src="../img/logo3.jpg" alt="login form" class="img-fluid rounded rounded-4 w-100 h-100" />
+      </div>
+      <div class="col-md-6 nopadding d-flex justify-content-center bg-white">
+        <form method="post" class="p-4 m-2">
+          <div>
+            <h1 class="fs-2 text-dark fw-bold"> Digital Academy
+              <hr>
+            </h1>
+          </div>
+          <div>
+            <h6 class="fw-normal text-dark mb-5"> Sign in to your account</h6>
+          </div>
+          <div class="form-outline mb-4">
+            <input type="email" id="email" name="email" class="form-control form-control-lg m-1" />
+            <label class="form-label p-1">Email address</label>
+          </div>
+          <div class="form-outline mb-4">
+            <input type="password" name="pwd" class="form-control form-control-lg m-1" />
+            <label class="form-label p-1">Password</label>
+          </div>
 
-	<?php require("header.php");?>
-<div class="d-flex justify-content-center">
-    <div class="container  mt-5" style="width:25%">
-        <form method="post">
-            <center>
-                <h3 class="mt-4 text-danger"> Sign In </h3>
-                <hr width="100%">
-            </center>
-            <div class="form-group">
-                <input type="email" required class="form-control" placeholder="ABC12@gmail.com" autocomplete="off">
-            </div>
-            <div class="form-group">
-                <input type="password" autocomplete="new-password" placeholder="Enter Password " class="form-control" required>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" name="rem" type="checkbox"> Remember me
-                </label>
-            </div>
-            <div class="form-group text-right">
-                <button type="submit" value="Submit" class="btn btn-danger "> Login </button>
-                <p class="medium fw-bold mt-2 pt-1 ">Don't have an account? <a href="Registration.php" class="link-danger"> &nbsp;Register </a></p>
-            </div>
+          <div class="pt-1 mb-4">
+            <button class="btn bg-navy-blue text-white btn-lg btn-block" name="login" type="submit">Login</button>
+          </div>
+          <div class="row mt-5">
+            <a class="small text-muted" href="#!">Forgot password?</a>
+            <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
+                style="color: #393f81;">Register here</a></p>
+          </div>
+          <div class="align-self-baseline">
+            <a href="#!" class="small text-muted">Terms of use.</a>
+            <a href="#!" class="small text-muted">Privacy policy</a>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-	<?php require("footer.html");?>
+    <!-- </div> -->
+    <!-- </div> -->
+  </div>
+  </div>
+  <?php require("footer.php");?>
 </body>
+
 </html>
 
 

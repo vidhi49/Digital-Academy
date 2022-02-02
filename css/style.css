@@ -1,5 +1,5 @@
 body{
-  background-color: #f9f9ff;
+  background-color: lightgray !important;
 }
 .logo
 {
@@ -25,11 +25,18 @@ body{
 {
   background-color: #e6e6ea;
 }
-.bg-dark
+.nopadding
+{
+  padding: inherit !important;
+}
+.bg-navy-blue
 {
   background-color: #041562 !important;
 }
-
+.navy-blue
+{
+  color: #041562 !important;
+}
 @media only screen and (max-width: 500px) {
  .img-carousel{
     height: auto;

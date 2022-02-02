@@ -30,7 +30,7 @@
 	?>
   <div class="d-flex justify-content-center mt-5">
     <div class="container max-width-55 w-50 ">
-      <h3 class="m-4 text-danger text-center">Inquiry Details</h3>
+      <h3 class="m-4 navy-blue text-center">Inquiry Details</h3>
       <hr width="100%">
 
       <form action="" method="post" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="form-group mt-4">
-          <button type="submit" id="submit" name="submit" class="btn btn-danger "> Submit </button>
+          <button type="submit" id="submit" name="submit" class="btn bg-navy-blue text-white "> Submit </button>
         </div>
 
       </form>
