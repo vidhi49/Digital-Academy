@@ -23,31 +23,31 @@
               </a>
             </li>
             <li class="nav-item m-1">
-              <a href="#" class="nav-link align-middle px-0 text-dark">
+              <a href="admin-home.php" class="nav-link align-middle px-0 text-dark">
                 <i class="fas fa-clipboard-list fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline">All Inquiry</p>
               </a>
             </li>
             <li class="nav-item m-1">
-              <a href="#" class="nav-link align-middle px-0 text-dark">
+              <a href="pending-request.php" class="nav-link align-middle px-0 text-dark">
                 <i class="fas fa-spinner fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline">Pending Request</p>
               </a>
             </li>
             <li class="nav-item m-1">
-              <a href="#" class="nav-link  align-middle px-0 text-dark">
+              <a href="approval-request.php" class="nav-link  align-middle px-0 text-dark">
                 <i class="fas fa-check fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline ">Approved Request</p>
               </a>
             </li>
             <li class="nav-item m-1">
-              <a href="#" class="nav-link align-middle px-0 text-dark">
+              <a href="rejected-request.php" class="nav-link align-middle px-0 text-dark">
                 <i class="far fa-window-close fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline">Rejected</p>
               </a>
             </li>
             <li class="nav-item m-1">
-              <a href="#" class="nav-link align-middle px-0 text-dark">
+              <a href="total-institute.php" class="nav-link align-middle px-0 text-dark">
                 <i class="fas fa-university fs-5"></i>
                 <p class="ms-2 d-none d-sm-inline">Institute</p>
               </a>
