@@ -65,7 +65,7 @@
       </form>
     </div>
   </div>
-  <?php require("Footer.html");?>
+  <?php require("footer.php");?>
 </body>
 
 </html>
