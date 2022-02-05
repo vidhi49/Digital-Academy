@@ -37,6 +37,7 @@
         <div class="form-group">
           <label class="form-label">Enter School/College Name :</label>
           <input type='text' id="sname" class="form-control" name="sname" />
+          <span id='smessage'></span>
         </div>
         <div class="form-group">
           <label class="form-label">Email :</label>
@@ -80,20 +81,10 @@
 		$floc=$_FILES['cimg']['tmp_name'];
 		$date=date("Y-m-d");
 		include("../connect.php");
-    print_r($_FILES);
-		 $q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
-    //  $destination=dirname(__DIR__)."/certi_img/".$f;
-    //  $destination="/var/www/html/dgskool/certi_img/".$f;
-    //  echo "desination is $destination and temp nam is $floc<br>";
-    //  var_dump(move_uploaded_file($floc,$destination));
-    //  if(move_uploaded_file($floc,$destination))
-      // echo "Done";
-    // else
-      // print $php_errormsg;
-    //  echo $q;
+		$q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
 			if(mysqli_query($con,$q))
 			{
-				move_uploaded_file($floc,"../certi_img/".$f);
+				move_uploaded_file($floc,"../certi_img/".$sname);
 				require 'email.php';
 				echo "<script> alert('Thank You for Registration');</script>";
 				echo"<script>window.location.href='login.php';</script>";
@@ -102,7 +93,5 @@
 			{
 				die("<center><h1>Query Failed".mysqli_error($con)."</h1></center>");
 			}
-		
-		
 	}
 ?>
