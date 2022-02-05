@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="form-group mt-4">
-          <button type="submit" id="submit" name="submit" class="btn bg-navy-blue text-white "> Submit </button>
+          <button type="submit" id="submit" name="submit" class="btn bg-navy-blue text-white"> Submit </button>
         </div>
 
       </form>
@@ -76,17 +76,27 @@
 		$address=$_POST['address'];
 		$email=$_POST['email'];
 		$cno=$_POST['cno'];
-		$f=$_FILES['cimg']['name'];
+		$f=basename($_FILES['cimg']['name']);
 		$floc=$_FILES['cimg']['tmp_name'];
 		$date=date("Y-m-d");
 		include("../connect.php");
-		$q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
+    print_r($_FILES);
+		 $q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
+    //  $destination=dirname(__DIR__)."/certi_img/".$f;
+    //  $destination="/var/www/html/dgskool/certi_img/".$f;
+    //  echo "desination is $destination and temp nam is $floc<br>";
+    //  var_dump(move_uploaded_file($floc,$destination));
+    //  if(move_uploaded_file($floc,$destination))
+      // echo "Done";
+    // else
+      // print $php_errormsg;
+    //  echo $q;
 			if(mysqli_query($con,$q))
 			{
 				move_uploaded_file($floc,"../certi_img/".$f);
 				require 'email.php';
 				echo "<script> alert('Thank You for Registration');</script>";
-				echo"<script>window.location.href='Login.php';</script>";
+				echo"<script>window.location.href='login.php';</script>";
 			}
 			else
 			{
