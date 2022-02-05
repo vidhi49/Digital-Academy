@@ -37,6 +37,7 @@
         <div class="form-group">
           <label class="form-label">Enter School/College Name :</label>
           <input type='text' id="sname" class="form-control" name="sname" />
+          <span id='smessage'></span>
         </div>
         <div class="form-group">
           <label class="form-label">Email :</label>
@@ -67,7 +68,6 @@
   </div>
   <?php require("footer.php");?>
 </body>
-
 </html>
 <?php
 	if(isset($_POST['submit']))
@@ -81,17 +81,19 @@
 		$date=date("Y-m-d");
 		include("../connect.php");
 		$q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
+   
 			if(mysqli_query($con,$q))
 			{
-				move_uploaded_file($floc,"../certi_img/".$f);
+				move_uploaded_file($floc,"../certi_img/".$sname);
 				require 'email.php';
 				echo "<script> alert('Thank You for Registration');</script>";
-				echo"<script>window.location.href='Login.php';</script>";
+				echo"<script>window.location.href='login.php';</script>";
 			}
 			else
 			{
 				die("<center><h1>Query Failed".mysqli_error($con)."</h1></center>");
 			}
+    
 		
 		
 	}
