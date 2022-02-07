@@ -5,21 +5,13 @@ include("admin-header.php");
 ?>
 <html>
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="../js/jquery-3.1.1.min"></script>
-  <script src="../js/admin.js"></script>
-</head>
-
 <body>
-  <div>
+  <div class="d-flex">
     <!-- <div class="col-sm-2"> -->
     <?php include("admin-sidebar.php"); ?>
     <!-- </div> -->
     <!-- <div class="col-sm-10"> -->
-    <div class="content">
+    <div class="content m-3 p-3">
       <div class="d-flex justify-content-center">
         <div class="">
           <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
@@ -50,39 +42,30 @@ include("admin-header.php");
       <!-- </div> -->
     </div>
   </div>
+
+  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>
 <?php
-if(isset($_POST['add']))
-{
-    $email=$_POST['eid'];
-    $pwd=$_POST['pwd'];
-    $hash=password_hash($pwd,PASSWORD_DEFAULT);
-    $q="select * from master_admin_tbl where Email='$email'";
-    $res=mysqli_query($con,$q);
-    $nor=mysqli_num_rows($res);
-    //echo "$nor";
-    if($nor==0)
-    {
-        $q1="insert into master_admin_tbl values(null,'$email','$hash')";
-         if(mysqli_query($con,$q1))
-			{
-				echo "<script> alert('Thank You for Registration');</script>";
-			}
-			else
-			{
-				die("<center><h1>Query Failed".mysqli_error($con)."</h1></center>");
-			}
-
+if (isset($_POST['add'])) {
+  $email = $_POST['eid'];
+  $pwd = $_POST['pwd'];
+  $hash = password_hash($pwd, PASSWORD_DEFAULT);
+  $q = "select * from master_admin_tbl where Email='$email'";
+  $res = mysqli_query($con, $q);
+  $nor = mysqli_num_rows($res);
+  //echo "$nor";
+  if ($nor == 0) {
+    $q1 = "insert into master_admin_tbl values(null,'$email','$hash')";
+    if (mysqli_query($con, $q1)) {
+      echo "<script> alert('Thank You for Registration');</script>";
+    } else {
+      die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
     }
-    else
-    {
-        echo "<script> alert('User Already Existed');</script>";
-    }
-    
-
+  } else {
+    echo "<script> alert('User Already Existed');</script>";
+  }
 }
 
-        include("../guest/footer.php");
-        ?>
+?>

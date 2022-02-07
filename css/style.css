@@ -15,16 +15,11 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
-.bg-contact
-{
-  /* background: linear-gradient(to bottom, #ffcccc 0%, #ff6666 103%);
-   */
-   /* background-color: #f2f3f6; */
-  height: 600px;
-}
-.bg-sidebar
+.sidebar
 {
   background-color: #e6e6ea;
+  min-height: 70vh;
+  width:300px;
 }
 .nopadding
 {
@@ -34,15 +29,11 @@ body{
 {
   background-color: #041562 !important;
 }
-.width-sidebar{
-  width:300px;
-}
 .content
 {
   width: calc(100vw - 300px);
   display: inline-block;
   align-items: center;
-  min-height: 70vh;
 }
 .navy-blue
 {
@@ -52,6 +43,12 @@ body{
  .img-carousel{
     height: auto;
   }
-  
+  .sidebar{
+    width: 100px;
+  }
+  .content{
+    width: calc(100vw - 100px);
+  }
 }
+
 

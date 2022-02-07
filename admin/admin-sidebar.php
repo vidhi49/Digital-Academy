@@ -1,24 +1,18 @@
-<?php 
+<?php
 // include("admin-header.php");
 ?>
 <html>
 
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" />
-</head>
-
 <body>
   <!-- <div class="content"> -->
-  <div class="row flex-nowrap d-inline-block width-sidebar p-4">
+  <div class="row flex-nowrap d-inline-block width-sidebar p-5 sidebar">
     <!-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-sidebar"> -->
     <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"> -->
-    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none text-dark">
+    <!-- <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none text-dark">
       <p class="fs-5 d-none d-sm-inline" aria-disabled="true">Menu</p>
-    </a>
-    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-      <li class="nav-item m-1 w-100">
+    </a> -->
+    <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start" id="menu">
+      <li class="nav-item m-1">
         <a href="add-admin.php" class="nav-link align-middle px-0 text-dark">
           <i class="fas fa-user-plus fs-5"></i>
           <p class="ms-2 d-none d-sm-inline">Add Admin</p>
@@ -55,7 +49,7 @@
         </a>
       </li>
     </ul>
-    <hr>
+
     <!-- <div class="dropdown pb-4">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
