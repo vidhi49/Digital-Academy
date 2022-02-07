@@ -5,6 +5,7 @@
 <?php
     include('../connect.php');
 	include('admin-header.php');
+  include("admin-sidebar.php");
     $q="select * from inquiry_tbl Where Status='Approved'";
 	$res=mysqli_query($con,$q) or die("Query Failed");
 	$nor=mysqli_num_rows($res);

@@ -31,9 +31,10 @@
 
     <div class="container-fluid">
       <img class='logo navbar-brand ms-5' src='../img/logo1.png' />
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
+
       <!-- <div class="collapse navbar-collapse " id="collapsibleNavbar"> -->
       <ul class="navbar-nav justify-content-end fs-6">
         <li class="nav-item dropdown">
@@ -49,6 +50,7 @@
         </li>
       </ul>
       <!-- </div> -->
+
     </div>
   </nav>
 </body>

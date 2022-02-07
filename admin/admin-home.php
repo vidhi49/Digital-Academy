@@ -15,6 +15,7 @@
   <?php
 include('../connect.php');
 include('admin-header.php');
+include("admin-sidebar.php");
 		$show=false;
 		$show1=false;
 		$show2=false;
