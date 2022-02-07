@@ -33,7 +33,7 @@
       <h3 class="m-4 navy-blue text-center">Inquiry Details</h3>
       <hr width="100%">
 
-      <form action="" method="post" enctype="multipart/form-data">
+      <form name="inquiry-form" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label class="form-label">Enter School/College Name :</label>
           <input type='text' id="sname" class="form-control" name="sname" />
@@ -80,11 +80,13 @@
 		$f=basename($_FILES['cimg']['name']);
 		$floc=$_FILES['cimg']['tmp_name'];
 		$date=date("Y-m-d");
+    $extension=pathinfo($f,PATHINFO_EXTENSION);
+    $certi_img=$sname.".".$extension;
 		include("../connect.php");
-		$q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$f','Pending','$date')";
+    $q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$certi_img','Pending','$date')";
 			if(mysqli_query($con,$q))
 			{
-				move_uploaded_file($floc,"../certi_img/".$sname);
+				move_uploaded_file($floc,"../certi_img/".$certi_img);
 				require 'email.php';
 				echo "<script> alert('Thank You for Registration');</script>";
 				echo"<script>window.location.href='login.php';</script>";

@@ -36,12 +36,12 @@
 		{
 			echo "<tr>";
 			echo "<td>$r[0]</td>";//id
-			echo "<td><img class='popup' src='../institute-logo/logo/$r[6]' style='border-radius:50%' height='100' width='100'></td>";//logo
+			echo "<td><img class='popup' src='../Institute-logo/$r[9]' style='border-radius:50%' height='100' width='100'></td>";//logo
 			echo "<td>$r[1]</td>";//name
 			echo "<td>$r[2]</td>";//email
 			echo "<td>$r[3]</td>";//add
-			echo "<td>$r[4]</td>";//cont			
-            echo "<td>$r[7]</td>";//date
+			echo "<td>$r[7]</td>";//cont
+            echo "<td>$r[10]</td>";//date
 			
 		}
 		echo "</tr>";
