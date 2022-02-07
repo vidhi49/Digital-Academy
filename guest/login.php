@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
-<?php require("header.php");?>
 
+<?php require("header.php");?>
+</head>
 <body>
   <div class="container">
     <div class="row g-0  m-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
@@ -66,36 +66,46 @@
 
 <?php
 	if(isset($_REQUEST['login']))
-	{
-		$eid=$_REQUEST['eid'];
-		$pwd=$_REQUEST['pwd'];
-		
-		include('../connect.php');
-		$q="select * from tbl_user where email='$eid' and pwd='$pwd' ";
-		$res=mysqli_query($con,$q);
-		$nor=mysqli_num_rows($res);
-		if($nor>=1)
-		{
-			$r=mysqli_fetch_array($res);
-			$_SESSION['name']=$r[1];
-			
-			if(isset($_REQUEST['rem']))
-			{
-				setcookie("emailid",$eid,time()+30*24*60*60);
-				setcookie("password",$pwd,time()+30*24*60*60);
-			}
-			if($r[10]=='Customer')
-			{
-				header('location:../customer/customer_Home.php');
-			}
-			else{
-				header('location:../admin/admin_home.php');
-			}
-			
-		}
-		else
-		{
-			echo "<center><h1>Either EmailID or Password is Wrong Try Again.</h1></center>";
-		}
-	}
+  {
+    $email=$_POST['email'];
+     $pwd=$_POST['pwd'];
+        
+        include("../connect.php");
+        $q="select * from institute_admin_tbl where Email = '$email'";
+        
+        $res=mysqli_query($con,$q) or die("Qiery failed q");
+        $nor=mysqli_num_rows($res) or die("<script>alert('Not a Admin');</script>");
+        //echo "$nor";
+        if($nor == 1)
+        {
+          while($row=mysqli_fetch_array($res))
+          {
+            if(password_verify($pwd,$row[4]))
+            {
+              $_SESSION['email']=$email;
+              $q="select Logo,Name from institute_tbl where Email='$email'";
+              $res=mysqli_query($con,$q) or die("Query failed");
+              $row = mysqli_fetch_assoc($res);
+              if($row['Logo']!="")
+              {
+                $_SESSION['logo']=$row['Logo'];
+                $_SESSION['name']=$row['Name'];
+                
+                echo"<script>window.location.href='../institute-admin/institute-home.php';</script>";
+              }
+              else
+              {
+                $_SESSION['name']=$row['Name'];
+               
+                echo"<script>window.location.href='../institute-admin/institute-info.php';</script>";
+              }
+              
+            }
+            else{
+              echo "<script>alert('Passwrod Does not match');</script>";
+            }
+          }
+        }    
+
+  }
 ?>

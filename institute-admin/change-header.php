@@ -17,11 +17,15 @@
 <body>
   <div class="container-fluid bg-navy-blue">
     <div class="row">
-      <div class="col-sm-6"><img class='logo ms-1' src='../img/logo1.png' style=" height:100px" /></div>
-      <div class="col-sm-6 d-flex justify-content-end align-items-center"><span class="h-25 pe-3 fs-2 text-light"
+      <div class="col-sm-6"><img class='logo ms-1' src='../Institute-logo/<?php echo $_SESSION['logo'];?>' style=" height:100px" /></div>
+      <div class="col-sm-6 d-flex justify-content-end align-items-center">
+        <div class= "d-block">
+        <span class="h-25 pe-3 fs-2 text-light"
+          id="email"><?php echo $_SESSION['name'];?></span>
+        <span class="h-25 pe-3  text-light"
           id="email"><?php echo $_SESSION['email'];?></span>
-        <img class='logo ms-1 p-3 w-50' src='../img/p1.jpg' />
-        <a href="institute-logout.php" class="btn btn-secondary" role="button">Logout</a>
+        </div>
+        <a href="institute-logout.php" class="btn btn-secondary" role="button">log</a>
       </div>
     </div>
   </div>

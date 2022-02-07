@@ -1,7 +1,19 @@
+<head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
 <link rel="stylesheet" href="../css/style.css">
 <script src="../js/jquery-3.4.1.min"></script>
+</head>
+<body>
 <?php
     include('../connect.php');
 	include('admin-header.php');
@@ -41,7 +53,9 @@
 			echo "<td>$r[2]</td>";
 			echo "<td>$r[3]</td>";
 			echo "<td>$r[4]</td>";
-			echo "<td>$r[5]</td>";
+			echo "<td>
+            <img class='popup' src='../certi_img/$r[5]' alt='image' style='border-radius:50%' height='100' width='100'>
+			</td>";
 			echo "<td>$r[7]</td>";
             echo "<td>$r[6]</td>";
 		}
@@ -56,3 +70,19 @@
   </div>
 
 </div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img class="w-100" id="popup-img" src="" alt="image">
+      </div>
+    </div>
+  </div>
+  <script>
+  $('.popup').click(function() {
+    var src = $(this).attr('src');
+    $('.modal').modal('show');
+    $('#popup-img').attr('src', src);
+  });
+  </script>
+</body>

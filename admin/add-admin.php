@@ -62,7 +62,8 @@ if(isset($_POST['add']))
     $q="select * from master_admin_tbl where Email='$email'";
     $res=mysqli_query($con,$q);
     $nor=mysqli_num_rows($res);
-    if($nor<0)
+    //echo "$nor";
+    if($nor==0)
     {
         $q1="insert into master_admin_tbl values(null,'$email','$hash')";
          if(mysqli_query($con,$q1))
@@ -74,7 +75,8 @@ if(isset($_POST['add']))
 				die("<center><h1>Query Failed".mysqli_error($con)."</h1></center>");
 			}
 
-    }else
+    }
+    else
     {
         echo "<script> alert('User Already Existed');</script>";
     }
