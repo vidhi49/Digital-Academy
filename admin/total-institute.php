@@ -23,20 +23,20 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Logo</th>
-                <th>Instition Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Approval Date</th>
+                <th scope="th-sm">ID</th>
+                <th scope="th-sm">Instition Name</th>
+                <th scope="th-sm">Email</th>
+                <th scope="th-sm">Address</th>
+                <th scope="th-sm">Contact</th>
+                <th scope="th-sm">Certificate</th>
+                <th scope="th-sm">Date</th>
               </tr>
             </thead>
             <tbody>
               <?php
               while ($r = mysqli_fetch_array($res)) {
                 echo "<tr>";
-                echo "<td>$r[0]</td>"; //id
+                echo "<th scope='row'>$r[0]</th>";
                 echo "<td><img class='popup' src='../Institute-logo/$r[9]' style='border-radius:50%' height='100' width='100'></td>"; //logo
                 echo "<td>$r[1]</td>"; //name
                 echo "<td>$r[2]</td>"; //email

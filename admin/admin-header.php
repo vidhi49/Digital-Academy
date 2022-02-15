@@ -11,14 +11,41 @@ $email = $_SESSION['email'];
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous">
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous">
-  </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
+  </script>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     crossorigin="anonymous" />
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("body").tooltip({
+      selector: '[data-toggle=tooltip]',
+    });
+  });
+  </script>
+
+  <!-- <script type="text/javascript">
+  // add row
+  $("#addOption").click(function() {
+    var html = '';
+    html += '<div class="form-floating m-2">';
+    html += ` <textarea class="form-control" placeholder="Question " id="floatingTextarea2" style="height: 100px"
+                name="question"></textarea>`;
+    html +=
+      '<label for="floatingTextarea2">Question</label>';
+    html += '</div>';
+
+    $('#newRow').append(html);
+  });
+
+  // remove row
+  $(document).on('click', '#removeRow', function() {
+    $(this).closest('#inputFormRow').remove();
+  });
+  </script> -->
 </head>
 
 <body>
