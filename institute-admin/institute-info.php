@@ -81,7 +81,7 @@ if(isset($_POST['signin']))
     if(mysqli_query($con,$q))
     {
       echo "<script> alert('Thank You for Provinding Your Information');</script>";
-      echo"<script>window.location.href='institute-home.php';</script>";
+      echo"<script>window.location.href='staff-registration.php';</script>";
     }
     else{
       die("<center><h1>Query Failed".mysqli_error($con)."</h1></center>");
