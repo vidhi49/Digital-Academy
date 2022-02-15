@@ -56,51 +56,7 @@ $(document).ready(function () {
 				return false;	
 			}
 		}
-		// if ($('#sname').val() != '') 
-		// {
-		// 	//var allowSubmit2 = true;
-		// 	$.ajax({
-		// 		type: 'POST',
-		// 		url: 'namevalidate2.php',
-		// 		data: "sname=" + $('#sname').val(),
-		// 		success: function (result) {
-		// 			//allowSubmit2=false;
-		// 			if(result != "")
-		// 			{
-		// 				$('#smessage').html(result);
-		// 				$("#sname").focus();
-		// 				return false;
-		// 			}else{
-		// 				$('#smessage').html(result);
-		// 			}
-					
-		// 			//return false;
-		// 		}
-		// 	});
-		// 	// if(allowSubmit2)
-		// 	// 	{
-		// 	// 		e.preventDefault();
-		// 	// 	}
-		// }
-		// if ($('#email').val() != '') 
-		// 	{
-		// 		flag=0;
-		// 		$.ajax({
-		// 			type: 'POST',
-		// 			url: 'emailvalidate2.php',
-		// 			data: "email=" + $('#email').val(),
-		// 			success: function (response) {
-		// 						flag=1;
-		// 						$('#emessage').html(response);
-		// 						$("#email").focus();
-		// 						return false;												
-		// 			}
-		// 		});
-		// 		if(flag==1)
-		// 	{
-		// 		return false;	
-		// 	}	
-		// 	}
+		
 		if ($('#sname').val() != '') 
 			{
 				if($('#smessage').text() != "") 

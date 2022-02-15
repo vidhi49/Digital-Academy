@@ -83,20 +83,20 @@
             if(password_verify($pwd,$row[4]))
             {
               $_SESSION['email']=$email;
-              $q="select Logo,Name from institute_tbl where Email='$email'";
+              $q="select Logo,Name,Id from institute_tbl where Email='$email'";
               $res=mysqli_query($con,$q) or die("Query failed");
               $row = mysqli_fetch_assoc($res);
               if($row['Logo']!="")
               {
                 $_SESSION['logo']=$row['Logo'];
                 $_SESSION['name']=$row['Name'];
-                
-                echo"<script>window.location.href='../institute-admin/institute-home.php';</script>";
+                $_SESSION['inst_id']=$row['Id'];
+                echo"<script>window.location.href='../institute-admin/staff-registration.php';</script>";
               }
               else
               {
                 $_SESSION['name']=$row['Name'];
-               
+                $_SESSION['inst_id']=$row['Id'];
                 echo"<script>window.location.href='../institute-admin/institute-info.php';</script>";
               }
               
