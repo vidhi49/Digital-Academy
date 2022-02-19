@@ -10,6 +10,6 @@ $countt = mysqli_num_rows($queryss);
 // <select required name="section" class="form-control mb-3">';
 echo '<option value="">----- Choose any one -----</option>';
 while ($row = mysqli_fetch_array($queryss)) {
-    echo '<option value="' . $row['Sub_code'] . '" >' . $row['Sub_name'] . '</option>';
+  echo '<option value="' . $row['Id'] . '" >' . $row['Sub_name'] . '</option>';
 }
         //echo '</select>';
