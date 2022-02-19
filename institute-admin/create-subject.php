@@ -28,7 +28,7 @@ if(isset($_POST['save'])){
     }
     else
     {
-         $statusMsg = "<div class='alert alert-danger'>An error Occurred</div>";
+         $statusMsg = "<div class='alert alert-danger'>An error Occurred".mysqli_error($con)."</div>";
     }
   }
 }
@@ -156,7 +156,7 @@ if(isset($_POST['save'])){
                         <div class="col">
                             <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                             <?php
-                            $qry= "SELECT * FROM class_tbl ORDER BY Name ASC";
+                            $qry= "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
                             $result = $con->query($qry);
                             $num = $result->num_rows;		
                             if ($num > 0){
