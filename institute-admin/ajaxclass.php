@@ -16,4 +16,11 @@ include '../connect.php';
         }
         
 ?>
-
+<!-- 
+// echo '
+// <select required name="section" class="form-control mb-3">';
+//echo'<option value="">--Select Section--</option>';
+while ($row = mysqli_fetch_array($queryss)) {
+    echo '<option  value="' . $row['Section'] . '" >' . $row['Section'] . '</option>';
+}
+        //echo '</select>'; -->

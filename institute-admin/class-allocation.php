@@ -393,7 +393,6 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
           <thead class="thead-light">
             <tr>
-
               <th>Class Name</th>
               <th>Section</th>
               <th>Class Teacher</th>
