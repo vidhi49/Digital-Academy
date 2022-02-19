@@ -150,13 +150,58 @@ include('../admin/admin-header.php');
 if (isset($_POST['submit'])) {
 
   // include("admin-sidebar.php");
-  $q = "select * from question_tbl";
+  $q = "select * from question_tbl,answer_tbl where question_tbl.Id=answer_tbl.Question_Id";
   $res = mysqli_query($con, $q) or die("Query Failed");
 
   $nor = mysqli_num_rows($res);
   echo $nor;
-  //       if ($nor > 0) {
+  if ($nor > 0) {
+?>
+<div class="table-responsive-md table-sm w-75">
+  <br>
+  <h2>Approved Request</h2>
+  <hr><br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="th-sm">ID</th>
+        <th scope="th-sm">Question</th>
+        <th scope="th-sm">Class_Id</th>
+        <th scope="th-sm">Section</th>
+        <th scope="th-sm">Subject</th>
+        <th scope="th-sm">Option A</th>
+        <th scope="th-sm">Option B</th>
+        <th scope="th-sm">Option C</th>
+        <th scope="th-sm">Option D</th>
+        <th scope="th-sm">Option E</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+
+while ($r = mysqli_fetch_array($res)) {
+  echo "<tr>";
+  echo "<th scope='row'>$r[0]</th>";
+  echo "<td>$r[1]</td>";
+  echo "<td>$r[2]</td>";
+  echo "<td>$r[3]</td>";
+  echo "<td>$r[4]</td>";
+  echo "<td>
+<img class='popup' src='../certi_img/$r[5]' alt='image' style='border-radius:50%' height='100' width='100'>
+</td>"; //cert
+  echo "<td>$r[7]</td>";
+  echo "<td>$r[6]</td>";
+}
+echo "</tr>";
+} else {
+echo "<center><h1>No Request is Found</h1></center>";
+}
+?>
+    </tbody>
+  </table>
+</div>
+<?php
+  }
 }
 
-//       
 ?>
