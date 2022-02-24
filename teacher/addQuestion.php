@@ -7,9 +7,7 @@ include('../admin/admin-header.php'); ?>
   function subcodeDropdown(str) {
     if (str == "") {
       document.getElementById("sub_code").innerHTML = "";
-
       return;
-
 
     } else {
       if (window.XMLHttpRequest) {
@@ -236,16 +234,18 @@ if (isset($_POST['submit'])) {
 
   $q = "insert into question_tbl values(null,'$question','$result[0]','$section','$subjectcode')";
   if (mysqli_query($con, $q)) {
-    $que = "select * from question_tbl where Question='$question'";
-    $qres = mysqli_query($con, $que);
-    $qresult = mysqli_fetch_array($qres);
+    $qid = mysqli_insert_id($con);
+    echo $qid;
+    // $que = "select * from question_tbl where Question='$question'";
+    // $qres = mysqli_query($con, $que);
+    // $qresult = mysqli_fetch_array($qres);
 
     for ($x = 1; $x <= $dynamicOptions; $x++) {
       $optname = "option" . $x;
       $isCorrect =  is_numeric(array_search($x, $correctAnswers)) ? 1 : 0;
 
       if (!empty($_POST[$optname])) {
-        $qans = "insert into answer_tbl values(null,'$_POST[$optname]','$qresult[0]',$isCorrect)";
+        $qans = "insert into answer_tbl values(null,'$_POST[$optname]','$qid',$isCorrect)";
         if (mysqli_query($con, $qans)) {
         } else {
           die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
