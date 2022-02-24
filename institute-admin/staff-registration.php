@@ -33,8 +33,9 @@ include("change-header.php");
                 <div class="form-group">
                     <div class="row ">
                          <div class="col-sm-4 col-lg-6">
-                            <label class="form-control-label ml-2 p-1" >Name:</label><span class="text-danger">*</span>
-                            <input type="text" class="form-control form-control-lg m-1" id="name" name="name" placeholder="Enter Your Name" required>
+                            <label class="form-control-label ml-2 p-1" >Name:(Full Name)</label><span class="text-danger">*</span><br>
+                            
+                            <input type="text" class="form-control form-control-lg m-1" id="name" name="name" placeholder="FirstName/MiddleName/Surname" required>
                         </div>
                         <div class="col">
                             <label class="form-label  ml-2 p-1" >Email:</label><span class="text-danger">*</span>
@@ -214,14 +215,14 @@ if(isset($_POST['submit']))
         $staff_id=$row1['Id'];
         $id_p=$staff_id.".".$ext_id;
         $qualification=$staff_id.".".$ext_qcerti;
-        move_uploaded_file($idproove_loc,"staff_profile/".$id_p);
-        move_uploaded_file($qcerti_loc,"staff_profile/$qualification");
+        move_uploaded_file($idproove_loc,"staff_ID/".$id_p);
+        move_uploaded_file($qcerti_loc,"staff_qualification/$qualification");
         if(!empty($ecerti))
         {
             $ecerti_loc=$_FILES['ecerti']['tmp_name'];
             $ext_ecerti=pathinfo($ecerti,PATHINFO_EXTENSION);
             $experience_certi=$staff_id.".".$ext_ecerti;
-            move_uploaded_file($ecerti_loc,"staff_profile/".$experience_certi);
+            move_uploaded_file($ecerti_loc,"staff_experiance/".$experience_certi);
 
         }
         else

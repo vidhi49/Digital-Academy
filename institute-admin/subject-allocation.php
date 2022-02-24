@@ -1,3 +1,7 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
 <?php include("../connect.php");
 include("change-header.php");
 $Ins_id = $_SESSION['inst_id'];
@@ -11,16 +15,16 @@ if (isset($_POST['save'])) {
     // $temail = $_POST['temail'];
     $tid = $_POST['tid'];
     $subCode = $_POST['subcode'];
-    echo $className, $section, $tname, $tid, $subCode;
-    $q = "select Sub_name from subject_tbl where Sub_code='$subCode'";
+    // echo $className, $section, $tname, $tid, $subCode;
+    $q = "select Id,Sub_name from subject_tbl where Sub_code='$subCode' and Inst_id='$Ins_id'";
     $res = mysqli_query($con, $q);
     $result = mysqli_fetch_array($res);
-    echo $result[0];
-    $q1 = "select Section from class_tbl where Id='$section'";
+    // echo $result[0];
+    $q1 = "select Section from class_tbl where Id='$section' and Inst_id='$Ins_id'";
     $res1 = mysqli_query($con, $q1);
     $result1 = mysqli_fetch_array($res1);
-    echo $result1[0];
-    $query = mysqli_query($con, "insert into teacher_wise_subject_tbl values(null,'$tid','$tname','$section','$className','$subCode','$result[0]','$result1[0]','$Ins_id')");
+    // echo $result1[0];
+    $query = mysqli_query($con, "insert into teacher_wise_subject_tbl values(null,'$tid','$tname','$section','$className','$result[0]','$subCode','$result[1]','$result1[0]','$Ins_id')");
     if ($query) {
 
         $statusMsg = "<div class='alert alert-success'>Successfully Assigned!</div>";
@@ -33,9 +37,27 @@ if (isset($_POST['save'])) {
 
 if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
     $Id = $_GET['Id'];
-    $disabled = "disabled";
+    $disabled = "readonly";
+
     $query = mysqli_query($con, "select * from teacher_wise_subject_tbl where Id ='$Id'");
     $row = mysqli_fetch_array($query);
+    //-----------------------------------UPDATE-------------------------------------------------
+    if (isset($_POST['update'])) {
+        $tname = $_POST['tname'];
+        $tid = $_POST['tid'];
+        $subCode = $_POST['subcode'];
+        $q1 = "select Sub_name from subject_tbl where Sub_code='$subCode'";
+        $res1 = mysqli_query($con, $q1);
+        $result1 = mysqli_fetch_array($res1);
+        $que = mysqli_query($con, "update teacher_wise_subject_tbl set Teacher_id='$tid' ,Teacher_name='$tname',Sub_code='$subCode',Sub_name='$result1[0]' where Id='$Id'");
+        if ($que) {
+            echo "<script type = \"text/javascript\">
+        window.location = (\"subject-allocation.php\")
+        </script>";
+        } else {
+            $statusMsg = "<div class='alert alert-danger'>An error Occurred" . mysqli_error($con) . "</div>";
+        }
+    }
 }
 
 
@@ -62,11 +84,11 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 ?>
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="../css/css/ruang-admin.min.css" rel="stylesheet">
     <script>
         function sectionDropdown(str) {
@@ -392,10 +414,9 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                             $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id'";
                             $res = mysqli_query($con, $q);
                             $res1 = mysqli_fetch_array($res);
-                                echo " <select required name='subcode' id='sub_code' class='form-control mb-3' readonly>";
-                                       echo '<option   value="' . $res1['Sub_code'] . '" >' . $res1['Sub_code'] . '</option>';
-                                echo '</select>';
-                          
+                            echo " <select required name='subcode' id='sub_code' class='form-control mb-3' readonly>";
+                            echo '<option   value="' . $res1['Sub_code'] . '" >' . $res1['Sub_code'] . '</option>';
+                            echo '</select>';
                         } else {
                             echo "<select required name='subcode' id='sub_code' class='form-control mb-3' readonly>";
                             echo "</select>";
@@ -404,11 +425,34 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                     </div>
 
                 </div>
-                <div class="form-group row mb-3">
+                <!-- <div class="form-group row mb-3">
                     <div class="col">
                         <button type="submit" name="save" class="btn btn-primary">Allocate</button>
                     </div>
-                </div>
+                </div> -->
+                <?php
+                if (isset($Id)) {
+                ?>
+                    <div class="form-group row mb-3">
+
+                        <div class="col">
+                            <button type="submit" name="update" class="btn btn-warning">Update</button>
+                        </div>
+
+                    </div>
+                    
+                <?php
+                } else {
+                ?>
+                    <div class="form-group row mb-3">
+
+                        <div class="col">
+                            <button type="submit" name="save" class="btn btn-primary">Allocate</button>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
                 </form>
             </div>
         </div>
