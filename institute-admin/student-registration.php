@@ -1,7 +1,7 @@
 <?php include("../connect.php");
 include("change-header.php");
-$inst_id=$_SESSION['inst_id'];
-    $inst_name=$_SESSION['name'];
+$inst_id = $_SESSION['inst_id'];
+$inst_name = $_SESSION['name'];
 ?>
 <html>
 
@@ -10,9 +10,41 @@ $inst_id=$_SESSION['inst_id'];
   <title>Staff Emrolment</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/student.js"></script>
   <script>
+    Filevalidation = () => {
+      const fi = document.getElementById('file');
+      var filePath = fi.value;
+      var allowedExtensions =
+        /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+      if (!allowedExtensions.exec(filePath)) {
+        // alert('Invalid file type');
+        $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
+        // fi.value = '';
+        return false;
+      } else {
+        // $("#filemessage").html('');
+        if (fi.files.length > 0) {
+          for (const i = 0; i <= fi.files.length - 1; i++) {
+
+            const fsize = fi.files.item(i).size;
+            const file = Math.round((fsize / 1024));
+            if (file > 200) {
+              $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+              return false;
+            } else {
+
+              $("#filemessage").html('');
+
+              return false;
+            }
+          }
+        }
+      }
+    }
+
     function classDropdown(str) {
       if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
@@ -34,6 +66,7 @@ $inst_id=$_SESSION['inst_id'];
         xmlhttp.send();
       }
     }
+
     function selectstate(str) {
       if (str == "") {
         document.getElementById("s").innerHTML = "";
@@ -69,18 +102,30 @@ $inst_id=$_SESSION['inst_id'];
           <li class="breadcrumb-item active" aria-current="page">Student Enrolment</li>
         </ol>
       </div>
-      <?php
-      $q="select max(Id) from student_tbl where Inst_id='$inst_id'";
-      $res=mysqli_query($con,$q);
-      ?>
+
       <form method="post" enctype="multipart/form-data">
         <div class="card mb-4 " style='box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h4 class="m-0 font-weight-bold text-primary">Personal Details</h4>
             <div class="breadcrumb">
-              
-              GR No:<?php echo "GR".date("Ymd")?>
+            <?php
+            $q = "select * from student_tbl where Inst_id='$inst_id'";
+            $res = mysqli_query($con, $q);
+            $nor = mysqli_num_rows($res);
+            // echo $res[0];
+            if ($nor == 0) {
+              $gr = 1;
+            } else {
+              $q1 = "select MAX(Grno) from student_tbl where Inst_id='$inst_id'";
+              $res1 = mysqli_query($con, $q1);
+              $result = mysqli_fetch_array($res1);
+              $gr = $result[0] + 1;
+            }
+            ?>
+              GR No:<?php echo  $gr ?>
+             
             </div>
+            
           </div>
           <div class="card-body py-3">
 
@@ -151,18 +196,18 @@ $inst_id=$_SESSION['inst_id'];
               <div class="row ">
                 <div class="col">
                   <label class="form-label ml-2 p-1" for="city"> Country : <span class="text-danger">*</span></label>
-                   <select required name="country" onchange="selectstate(this.value)" class="form-control form-control-lg m-1">
-                 <option value="">--Select Class--</option>
-                  
+                  <select required name="country" onchange="selectstate(this.value)" class="form-control form-control-lg m-1">
+                    <option value="">--Select Class--</option>
+
                     <option value="India"> India </option>
 
-                  </select> 
+                  </select>
                 </div>
                 <div class=" col ">
                   <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
-                  
-                   <select required  name="s" id="s"  class="form-control form-control-lg m-1">
-                  <option value=''>--Select Section--</option>
+
+                  <select required name="s" id="s" class="form-control form-control-lg m-1">
+                    <option value=''>--Select Section--</option>
                   </select>
                 </div>
               </div>
@@ -224,16 +269,16 @@ $inst_id=$_SESSION['inst_id'];
             </div>
             <div class="row">
               <div class="col">
-               
+
                 <label class="form-label p-1 ml-2">Academic Year:<span class="text-danger">*</span></label>
-                <input class="form-control form-control-lg m-1" type="text" id="aca_year" value= "<?php echo date("Y")-1 ."-". date("Y"); ?>" name="aca_year" readonly required>
+                <input class="form-control form-control-lg m-1" type="text" id="aca_year" value="<?php echo date("Y") - 1 . "-" . date("Y"); ?>" name="aca_year" readonly required>
 
               </div>
               <div class="col">
 
                 <label class="form-label p-1 ml-2">Upload Photo:<span class="text-danger">*</span></label>
-                <input class="form-control form-control-lg m-1" type="file" id="photo" name="photo" required>
-
+                <input class="form-control form-control-lg m-1" type="file" id="file" onchange="Filevalidation()" name="photo" required>
+                <span id="filemessage"></span>
               </div>
             </div>
 
@@ -251,50 +296,49 @@ $inst_id=$_SESSION['inst_id'];
 </body>
 <?php
 
-if(isset($_POST['submit']))
-{
-  
-  $sname=$_POST['name'];
-  $fname=$_POST['fname'];
-  $mname=$_POST['mname'];
-  $gender=$_POST['gender'];
-  $dob=$_POST['dob'];
-  $cno=$_POST['cno'];
-  $email=$_POST['email'];
-  $bloodgroup=$_POST['bloodgroup'];
-  $address=$_POST['address'];
-  $country=$_POST['country'];
-  $state=$_POST['s'];
-  $class=$_POST['class'];
-  $section=$_POST['section'];
-  $aca_year=$_POST['aca_year'];
-  $imgname=$_FILES['photo']['name'];
-  $imgsize=$_FILES['photo']['size'];
-  $tmpname=$_FILES['photo']['tmp_name'];
+if (isset($_POST['submit'])) {
 
-  //img validation
-  $validImageExtension=['jpg','jpeg','png'];
-  $imageExtension=explode('.',$imgname);
-  $imageExtension=strtolower(end($imageExtension));
-  if(!in_array($imageExtension,$validImageExtension))
-  {
-    echo "<script>
-        alert('Invalid Image Extension');
-        </script>
-    ";
-  }
-  elseif($imgsize>12000000){
-    echo "
-      <script>alert('Image Size is Too Large');</script>
-    ";
-  }
-  else{
-    $newimgname="abc".date("Y.m.d");
-    $newimgname .=".".$imageExtension;
-    echo "$newimgname";
-  }
+  $sname = $_POST['name'];
+  $fname = $_POST['fname'];
+  $mname = $_POST['mname'];
+  $gender = $_POST['gender'];
+  $dob = $_POST['dob'];
+  $cno = $_POST['cno'];
+  $email = $_POST['email'];
+  $bloodgroup = $_POST['bloodgroup'];
+  $address = $_POST['address'];
+  $country = $_POST['country'];
+  $state = $_POST['s'];
+  $class = $_POST['class'];
+  $section = $_POST['section'];
+  $aca_year = $_POST['aca_year'];
+  $imgname = $_FILES['photo']['name'];
 
-  $q="insert into student_tbl values(null,'','$inst_id','$inst_name','$sname','$fname','$mname')";
+  $tmpname = $_FILES['photo']['tmp_name'];
 
+
+  $imageExtension = explode('.', $imgname);
+  $imageExtension = strtolower(end($imageExtension));
+
+  $newimgname = $inst_id . $gr;
+  $newimgname .= "." . $imageExtension;
+
+  //   // echo "$newimgname";
+  // }
+
+  $q = "insert into student_tbl values(null,'$gr','$inst_id','$inst_name','$sname','$fname','$mname','$gender','$dob','$cno','$email',
+  '$address','$country','$state','$class','$section','$bloodgroup','$newimgname','" . date("Y-m-d") . "','$aca_year','')";
+  echo $q;
+  $res = mysqli_query($con, $q);
+  if ($res) {
+    move_uploaded_file($tmpname, "student_profile/" . $newimgname);
+    echo "<script> Swal.fire(
+      'Registered',
+      'Enrolled Successfully',
+      'success'
+    )</script>";
+  } else {
+    die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
+  }
 }
 ?>
