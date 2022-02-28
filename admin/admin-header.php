@@ -19,13 +19,13 @@ $email = $_SESSION['email'];
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     crossorigin="anonymous" />
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   $(document).ready(function() {
     $("body").tooltip({
       selector: '[data-toggle=tooltip]',
     });
   });
-  </script>
+  </script> -->
 
   <!-- <script type="text/javascript">
   // add row

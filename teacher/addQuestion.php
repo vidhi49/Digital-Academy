@@ -1,89 +1,20 @@
 <?php
 include('../connect.php');
-include('../admin/admin-header.php'); ?>
+// include('../admin/admin-header.php'); 
+?>
 
 <head>
-  <script>
-  function subcodeDropdown(str) {
-    if (str == "") {
-      document.getElementById("sub_code").innerHTML = "";
-      return;
-
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("sub_code").innerHTML = this.responseText;
-
-        }
-      };
-      xmlhttp.open("GET", "ajaxSubcode.php?subject=" + str, true);
-      xmlhttp.send();
-
-    }
-
-  }
-
-  function sectionDropdown1(str) {
-    if (str == "") {
-      document.getElementById("txtHint1").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("txtHint1").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "../institute-admin/ajaxclass.php?name=" + str, true);
-      xmlhttp.send();
-    }
-  }
-
-  function subjectDropdown1(str) {
-    if (str == "") {
-      document.getElementById("subject1").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("subject1").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "ajaxSubject.php?className=" + str, true);
-      xmlhttp.send();
-    }
-  }
-  </script>
+  <script type="text/javascript" src="teacher.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <div class="form-group d-flex justify-content-center m-5">
+    <!-- <div class="form-group d-flex justify-content-center m-5">
       <button type="button" class="btn bg-navy-blue text-white" data-toggle="tooltip" title="Add Question"
         data-bs-toggle="modal" data-bs-target="#addQuestion">
         <i class="fas fa-plus fs-6"></i>
       </button>
-    </div>
+    </div> -->
     <!------------------------------------ popup Question Form---------- -->
     <div class="modal fade" id="addQuestion">
       <div class="modal-dialog">
@@ -100,7 +31,7 @@ include('../admin/admin-header.php'); ?>
 
               <div class="form-floating m-2">
                 <textarea class="form-control" placeholder="Question " id="floatingTextarea2" style="height: 100px"
-                  name="question"></textarea>
+                  name="Addquestion"></textarea>
                 <label for="floatingTextarea2">Question</label>
               </div>
 
@@ -150,7 +81,7 @@ include('../admin/admin-header.php'); ?>
                 <div class="col-sm-6">
 
                   <div class="form-floating m-2">
-                    <select required name="section" id='txtHint1' class="form-select">
+                    <select required name="section1" id='txtHint1' class="form-select">
                       <option value="">--Select Section--</option>
                     </select>
                     <label for="floatingSelect">Select Section</label>
@@ -166,7 +97,7 @@ include('../admin/admin-header.php'); ?>
               </div>
 
             </div>
-            <button type="submit" name="submit" class=" btn bg-navy-blue text-white"
+            <button type="submit" name="submitQue" class=" btn bg-navy-blue text-white"
               data-bs-dismiss="modal">Submit</button>
             <button type="button" class="btn bg-navy-blue text-white" data-bs-dismiss="modal">Cancel</button>
         </div>
@@ -177,7 +108,9 @@ include('../admin/admin-header.php'); ?>
   </div>
 
   </div>
-  <?php include("../guest/footer.php"); ?>
+  <?php
+  // include("../guest/footer.php"); 
+  ?>
 </body>
 
 <script type="text/javascript">
@@ -186,7 +119,6 @@ $("#addOption").click(function() {
   var count = $("#newRow").children().last().data('id') ?? 0;
   console.log('count', count);
   document.getElementById("dynamicOptions").setAttribute('value', count + 3);
-
 
   var html = '';
 
@@ -219,24 +151,24 @@ function funRm(index) {
 </script>
 
 <?php
-if (isset($_POST['submit'])) {
-  $question = $_POST['question'];
+if (isset($_POST['submitQue'])) {
+  $Addquestion = $_POST['Addquestion'];
   $classid = $_POST['class1'];
-  $section = $_POST['section'];
+  $section1 = $_POST['section1'];
   $subjectcode = $_POST['subject1'];
   $correctAnswers = $_POST['correctAnswer'];
   $dynamicOptions = $_POST['dynamicOptions'];
 
-  $p = "select * from class_tbl where Name='$classid' and Section='$section'";
+  $p = "select * from class_tbl where Name='$classid' and Section='$section1'";
   $res = mysqli_query($con, $p);
   // echo $dynamicOptions;
   $result = mysqli_fetch_array($res);
 
-  $q = "insert into question_tbl values(null,'$question','$result[0]','$section','$subjectcode')";
+  $q = "insert into question_tbl values(null,'$Addquestion','$result[0]','$section1','$subjectcode')";
   if (mysqli_query($con, $q)) {
     $qid = mysqli_insert_id($con);
-    echo $qid;
-    // $que = "select * from question_tbl where Question='$question'";
+    // echo $qid;
+    // $que = "select * from question_tbl where Question='$Addquestion'";
     // $qres = mysqli_query($con, $que);
     // $qresult = mysqli_fetch_array($qres);
 

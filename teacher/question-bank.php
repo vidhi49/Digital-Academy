@@ -1,6 +1,7 @@
 <?php
 include('../connect.php');
 include('../admin/admin-header.php');
+include('../teacher/addQuestion.php');
 ?>
 
 <?php
@@ -20,74 +21,12 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
 ?>
 
 <head>
-
+  <script type="text/javascript" src="teacher.js"></script>
   <script>
-  function subcodeDropdown(str) {
-    if (str == "") {
-      document.getElementById("sub_code").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("sub_code").innerHTML = this.responseText;
-
-        }
-      };
-      xmlhttp.open("GET", "ajaxSubcode.php?subject=" + str, true);
-      xmlhttp.send();
-    }
-  }
-
-  function sectionDropdown(str) {
-    if (str == "") {
-      document.getElementById("txtHint").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("txtHint").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "../institute-admin/ajaxclass.php?name=" + str, true);
-      xmlhttp.send();
-    }
-  }
-
-  function subjectDropdown(str) {
-    if (str == "") {
-      document.getElementById("subject").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("subject").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "ajaxSubject.php?className=" + str, true);
-      xmlhttp.send();
-    }
-  }
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
   </script>
 </head>
 
@@ -135,6 +74,10 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
             <div class="col-md-3 col-xs-3">
               <div class="form-group">
                 <input type="submit" value="Show Question" name="submit" class="btn bg-navy-blue text-white"></input>
+                <button type="button" class="btn bg-navy-blue text-white ms-4" data-toggle="tooltip"
+                  title="Add Question" data-bs-toggle="modal" data-bs-target="#addQuestion">
+                  <i class="fas fa-plus fs-5 "></i>
+                </button>
               </div>
             </div>
           </div>
@@ -257,7 +200,9 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title navy-blue" id="exampleModalLabel">Edit Question</h5>
+              <h5 class="modal-title navy-blue" id="exampleModalLabel">
+                Edit Question
+              </h5>
               <hr>
             </div>
             <div class="modal-body">
@@ -270,8 +215,10 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                       name="equestion"></textarea>
                     <label for="floatingTextarea2">Question</label>
                   </div>
+                  <input type="text" id="editDynamicOptions" value="" name="editDynamicOptions" />
+                  <input type="text" id="newOneOpt" value="0" name="newOneOpt" />
+
                   <div id="optRow">
-                    <input type="hidden" id="dynamicOptions" value="0" name="dynamicOptions" />
                   </div>
                   <div class="d-flex justify-content-end m-2">
                     <button type="button" class="btn bg-navy-blue text-white m-2" id="addOpt">
@@ -291,9 +238,12 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
   <?php include("../guest/footer.php"); ?>
+
 </body>
 
 <script>
@@ -301,17 +251,17 @@ $('#editQuestion').on('show.bs.modal', function(e) {
   // console.log("hello");
   // get information to update quickly to modal view as loading begins
   var opener = e.relatedTarget; //this holds the element who called the modal
-
   //we get details from attributes
   var equestion = $(opener).attr('question');
   var id = $(opener).data('id');
   var options = $(opener).data('options');
   var len = options.length;
-  // console.log(len);
 
+  // console.log(len);
   $('#editQueForm').find('[name="equestion"]').val(equestion);
   $('#editQueForm').find('[id="qid"]').val(id);
-
+  $('#editDynamicOptions').val(len);
+  document.getElementById("newOneOpt").setAttribute('value', 0);
   //------------rendering option element----
   var html1 = "",
     i;
@@ -338,34 +288,38 @@ $('#editQuestion').on('show.bs.modal', function(e) {
 });
 
 $("#addOpt").click(function() {
-  var count = $("#optRow").children().length ?? 0;
-  console.log('count', count);
-  // console.log(document.getElementById("dynamicOptions").setAttribute('value', count + 1));
+  var ocount = $("#optRow").children().length ?? 0;
+  console.log('count', ocount);
+  // document.getElementById("editDynamicOptions").setAttribute('value', ocount + 1);
+  document.getElementById("newOneOpt").setAttribute('value', ocount);
 
-  var html = '';
 
-  html += " <div class='input-group mb-3'  id='optRowChild" + count + "'>";
-  html += "<div class='form-floating flex-grow-1' >";
-  html +=
+  var html1 = '';
+
+  html1 += " <div class='input-group mb-3'  id='optRowChild" + ocount + "'>";
+  html1 +=
+    "<div class='form-floating flex-grow-1' >";
+  html1 +=
     " <input class='form-check-input' type='checkbox'  id='flexCheckDefault' >";
-  html += "<input type='text' class='form-control'  name='opt" + (count + 1) + "' placeholder='Option' >";
-  html +=
+  html1 +=
+    "<input type='text' class='form-control'  name='opt" + (ocount) + "' placeholder='Option' >";
+  html1 +=
     '<label for="opt" > Option </label>';
-  html += ' </div>';
-  html +=
-    "<button type='button' id='clr' name='clr' class='input-group-text btn btn-outline-secondary' onClick='funRm(" +
-    (count + 1) + ")'><i class='fas fa-times text-dark'></i></button >";
-  html += '</div>';
+  html1 += ' </div>';
+  html1 +=
+    "<button type='button' id='clr' name='clr' class='input-group-text btn btn-outline-secondary' onClick='funRmOpt(" +
+    (ocount) + ")'><i class='fas fa-times text-dark'></i></button >";
+  html1 += '</div>';
 
-  console.log(count);
-  $('#optRow').append(html);
-  if (count == 4) {
+  // console.log(ocount);
+  $('#optRow').append(html1);
+  if (ocount == 4) {
     $('#addOpt').prop('disabled', true);
   }
 
 });
 
-function funRm(index) {
+function funRmOpt(index) {
   console.log("#optRowChild" + index);
   $("#optRowChild" + index).remove();
   $('#addOpt').prop('disabled', false);
@@ -379,6 +333,9 @@ if (isset($_POST['editQue'])) {
   $cid = "select * from question_tbl where Id='$qid'";
   $res1 = mysqli_query($con, $cid);
   $nor1 = mysqli_fetch_array($res1);
+  $editDynamicOptions = $_POST['editDynamicOptions'];
+  $newOneOpt = $_POST['newOneOpt'];
+  echo $newOneOpt;
 
   $que = $_POST['equestion'];
   // echo $id;
@@ -396,40 +353,52 @@ if (isset($_POST['editQue'])) {
   }
   // print_r($aid);
   // $a = json_encode($aid);
-
-  for ($x = 0; $x <= $nor; $x++) {
+  for ($x = 0; $x < $editDynamicOptions; $x++) {
     $opt = "opt" . $x;
     // print_r($aid);
     // echo "abc";
-
     if (!empty($_POST[$opt])) {
       $updateAns = "update answer_tbl set Answer='$_POST[$opt]' where Question_Id='$qid' and Id='$aid[$x]'";
       // echo $updateAns;
       $result = mysqli_query($con, $updateAns);
       if ($result) {
-        // echo "<script>location.reload();</script>";
+      } else {
+
+        $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
+      }
+    } else {
+      $del = "delete from answer_tbl where Question_Id='$qid' and Id='$aid[$x]'";
+      $result1 = mysqli_query($con, $del);
+      if ($result1) {
       } else {
 
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
       }
     }
   }
-  for ($x = $nor + 1; $x < 5; $x++) {
-    $opt = "opt" . $x;
-    // echo "<br> 2: $_POST[$opt]";
-    if (!empty($_POST[$opt])) {
-      // echo "1: $_POST[$opt]";
-      $insertAns = "insert into answer_tbl values(null,'$_POST[$opt]','$qid',0)";
-      $result = mysqli_query($con, $insertAns);
-      if ($result) {
-        echo "<script>location.reload();</script>";
-      } else {
+  if ($newOneOpt > 0) {
+    echo "<br>Inside $newOneOpt";
+    for ($x = $editDynamicOptions; $x <= $newOneOpt; $x++) {
+      $opt = "opt" . $x;
+      // echo $opt;
+      $isCorrect = 0;
+      // echo "<br> 2: $_POST[$opt]";
+      if (!empty($_POST[$opt])) {
+        // echo "1: $_POST[$opt]";
+        $insertAns = "insert into answer_tbl values(null,'$_POST[$opt]','$qid','$isCorrect')";
+        // echo $insertAns;
+        $result2 = mysqli_query($con, $insertAns);
+        // print_r($result2);
+        if ($result2) {
+        } else {
 
-        $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
+          $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
+        }
       }
     }
   }
 }
+
 ?>
 
 </html>
