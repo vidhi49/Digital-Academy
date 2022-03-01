@@ -31,13 +31,45 @@ $inst_name = $_SESSION['name'];
            
             $.each(response, function(key, studview) {
               
-              $(".a").html(studview['Section']);
-              $(".b").html(studview['Gender']);
-              $(".c").html(studview['Id']);
+              $(".class").html(studview['Class'] + "-" + studview['Section']);
+              $(".gender").html(studview['Gender']);
+              $(".fname").html(studview['Father_name']);
+              $(".mname").html(studview['Mother_name']);
+              $(".gender").html(studview['Gender']);
+              $(".cno").html(studview['Mobileno']);
+              $(".dob").html(studview['Dob']);
+              $(".bloodgroup").html(studview['Bloodgroup']);
+              $(".address").html(studview['Address'] + " " + studview['State'] + " " + studview['Country'] );
+              $(".grno").html(studview['Grno']);
+              // $(".class").html(studview['Class'] + "-" + studview['Section']);
+              $(".edate").html(studview['Enroll_date']);
+              $(".ayr").html(studview['Academicyr']);
+              $(".email").html(studview['Email']);
               var img = "student_profile/" + studview['Profile'];
              
-              $(".hello").text(studview['Name']);
+              $(".name").text(studview['Name']);
               $('#popup-img1').attr('src', img);
+            });
+
+            
+          }
+        });
+
+      });
+      $(document).on('click', '#edit', function(e) {
+        var ID = $(this).attr("data-id");
+        $.ajax({
+          type: "POST",
+          url: 'ajaxStudentDelete.php',
+          data: 'stud_id=' + ID,
+         
+          success: function(response) {
+           
+            $.each(response, function(key, studview) {
+                           
+              var img = "student_profile/" + studview['Profile'];
+             
+              $('#profileimg').attr('src', img);
             });
 
             
