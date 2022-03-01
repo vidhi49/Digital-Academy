@@ -16,12 +16,12 @@
           <p class="ms-2 d-none d-sm-inline"> Question Bank </p>
         </a>
       </li>
-      <li class="nav-item m-1">
+      <!-- <li class="nav-item m-1">
         <a href="addQuestion.php" class="nav-link align-middle px-0 text-dark">
           <i class="fas fa-question fs-5"></i>
           <p class="ms-2 d-none d-sm-inline"> Add Question </p>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </body>

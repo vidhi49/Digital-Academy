@@ -83,6 +83,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
           </div>
         </form>
       </div>
+      <!------------------- display table ---------------------------------->
       <div class="row m-3 w-100" id="Quetable">
         <?php
         if (isset($_GET['submit'])) {
@@ -137,9 +138,10 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
             <tbody>
               <?php
                   while ($r = mysqli_fetch_array($res)) {
+                    // print_r($r);
                     echo "<tr>";
-                    echo "<th><input class='form-check-input' type='checkbox' name='selectedQue[]' value=''></th>";
-                    echo "<th scope='row'>$r[0]</th>";
+                    echo "<th scope='row'><div class='form-check'><input class='form-check-input' type='checkbox' name='selectedQue[]' value='0'></div></th> ";
+                    echo "<th >$r[0]</th>";
                     echo "<td>$r[1]</td>";
                     echo "<td>$className</td>";
                     echo "<td>$r[3]</td>";
@@ -150,16 +152,16 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                     $options = array();
                     if ($nor1 > 0) {
                       while ($r1 = mysqli_fetch_array($res1)) {
+                        // print_r($r1);
                         array_push($options, $r1[1]);
                         if ($r1['isCorrect'] == '1') {
                           // echo "yes";
-                          echo "<td style='color:red'>$r1[1]</td>";
+                          echo "<td style='color:green'>$r1[1]</td>";
                           // $ans = $r1[1];
                         } else {
                           echo "<td>$r1[1]</td>";
                         }
                       }
-
                       for ($i = 0; $i < 5 - $nor1; $i++) {
                         echo "<td> - </td>";
                       }
@@ -193,9 +195,8 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
         <?php
         }
           ?>
-
       </div>
-
+      <!-- -----------------------Edit Question---------------------- -->
       <div class="modal fade bd-example-modal-lg" id="editQuestion" style="height: 100%;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -215,21 +216,22 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                       name="equestion"></textarea>
                     <label for="floatingTextarea2">Question</label>
                   </div>
-                  <input type="text" id="editDynamicOptions" value="" name="editDynamicOptions" />
-                  <input type="text" id="newOneOpt" value="0" name="newOneOpt" />
+
+                  <input type="hidden" id="editDynamicOptions" value="0" name="editDynamicOptions" />
+                  <input type="hidden" id="newOneOpt" value="0" name="newOneOpt" />
 
                   <div id="optRow">
                   </div>
+
                   <div class="d-flex justify-content-end m-2">
                     <button type="button" class="btn bg-navy-blue text-white m-2" id="addOpt">
                       <i class="fas fa-plus"></i> Add More Option
                     </button>
-
                   </div>
 
                   <div class="modal-footer">
-                    <input type="submit" class="btn bg-navy-blue text-white" value="Save Changes"
-                      name="editQue"></input>
+                    <button type="submit" class="btn bg-navy-blue text-white" name="editQue">Save
+                      Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
               </div>
@@ -238,8 +240,6 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
   <?php include("../guest/footer.php"); ?>
@@ -269,7 +269,7 @@ $('#editQuestion').on('show.bs.modal', function(e) {
   for (var i = 0; i < len; i++) {
 
     html1 += "<div class='form-floating m-2'>";
-    html1 += "<input class='form-check-input' type='checkbox'>";
+    html1 += "<input class='form-check-input' type='checkbox' name='editCorrectAnswer[]' value='" + i + "'>";
     html1 +=
       "<input type=text' class='form-control' id='floatingInputInvalid' placeholder='Option' name='opt" + i +
       "' value='" + options[i] +
@@ -300,7 +300,8 @@ $("#addOpt").click(function() {
   html1 +=
     "<div class='form-floating flex-grow-1' >";
   html1 +=
-    " <input class='form-check-input' type='checkbox'  id='flexCheckDefault' >";
+    " <input class='form-check-input' type='checkbox'  id='flexCheckDefault'  name='editCorrectAnswer[]' value='" +
+    ocount + "'>";
   html1 +=
     "<input type='text' class='form-control'  name='opt" + (ocount) + "' placeholder='Option' >";
   html1 +=
@@ -335,8 +336,9 @@ if (isset($_POST['editQue'])) {
   $nor1 = mysqli_fetch_array($res1);
   $editDynamicOptions = $_POST['editDynamicOptions'];
   $newOneOpt = $_POST['newOneOpt'];
-  echo $newOneOpt;
-
+  $editCorrectAnswer = $_POST['editCorrectAnswer'];
+  print_r($editCorrectAnswer);
+  // echo $newOneOpt;
   $que = $_POST['equestion'];
   // echo $id;
   $q = "select * from answer_tbl where Question_Id='$qid'";
@@ -355,10 +357,14 @@ if (isset($_POST['editQue'])) {
   // $a = json_encode($aid);
   for ($x = 0; $x < $editDynamicOptions; $x++) {
     $opt = "opt" . $x;
+
+
     // print_r($aid);
     // echo "abc";
     if (!empty($_POST[$opt])) {
-      $updateAns = "update answer_tbl set Answer='$_POST[$opt]' where Question_Id='$qid' and Id='$aid[$x]'";
+      $isCorrect =  is_numeric(array_search($x, $editCorrectAnswer)) ? 1 : 0;
+
+      $updateAns = "update answer_tbl set Answer='$_POST[$opt]',isCorrect='$isCorrect' where Question_Id='$qid' and Id='$aid[$x]'";
       // echo $updateAns;
       $result = mysqli_query($con, $updateAns);
       if ($result) {
@@ -376,12 +382,14 @@ if (isset($_POST['editQue'])) {
       }
     }
   }
+  // --------------------Insert Query --------------------
   if ($newOneOpt > 0) {
-    echo "<br>Inside $newOneOpt";
+    // echo $editDynamicOptions;
+    // echo "<br>Inside $newOneOpt";
     for ($x = $editDynamicOptions; $x <= $newOneOpt; $x++) {
       $opt = "opt" . $x;
       // echo $opt;
-      $isCorrect = 0;
+      $isCorrect =  is_numeric(array_search($x, $editCorrectAnswer)) ? 1 : 0;
       // echo "<br> 2: $_POST[$opt]";
       if (!empty($_POST[$opt])) {
         // echo "1: $_POST[$opt]";
@@ -397,6 +405,10 @@ if (isset($_POST['editQue'])) {
       }
     }
   }
+  $yourURL = $_SERVER['REQUEST_URI'];
+  // echo $yourURL;
+  // $yourURL = "question-bank.php?class=1st&section=A&subject=5&submit=Show+Question";
+  echo ("<script>location.href='$yourURL'</script>");
 }
 
 ?>
