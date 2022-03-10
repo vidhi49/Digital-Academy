@@ -17,7 +17,7 @@ include('../connect.php');
     </div> -->
     <!------------------------------------ popup Question Form---------- -->
     <div class="modal fade" id="addQuestion">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <form method="post" class="form-floating">
             <!-- Modal Header -->
@@ -27,7 +27,7 @@ include('../connect.php');
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body p-3">
+            <div class="modal-body p-3 m-2">
 
               <div class="form-floating m-2">
                 <textarea class="form-control" placeholder="Question " id="floatingTextarea2" style="height: 100px"
@@ -97,9 +97,12 @@ include('../connect.php');
               </div>
 
             </div>
-            <button type="submit" name="submitQue" class=" btn bg-navy-blue text-white"
-              data-bs-dismiss="modal">Submit</button>
-            <button type="button" class="btn bg-navy-blue text-white" data-bs-dismiss="modal">Cancel</button>
+            <div class="modal-footer">
+
+              <button type="submit" name="submitQue" class=" btn bg-navy-blue text-white"
+                data-bs-dismiss="modal">Submit</button>
+              <button type="button" class="btn bg-navy-blue text-white" data-bs-dismiss="modal">Cancel</button>
+            </div>
         </div>
 
         </form>
