@@ -133,3 +133,22 @@
       xmlhttp.send();
     }
   }
+
+  $(function() {
+    var count = 0;
+    // console.log('111');
+    $('.cntCheck').on('change', function() {
+      console.log('checked');
+      if (this.checked) {
+        count++;
+        $('cntCheck').text(count);
+        // console.log(count);
+        // document.getElementById("totQue").ty = count;
+        // document.getElementById("totQue").type = "text";
+        document.getElementById("totQue").innerHTML = count + " Rows Selected";
+      } else {
+        count--;
+        document.getElementById("totQue").innerHTML = count + " Rows Selected";
+      }
+    })
+  })

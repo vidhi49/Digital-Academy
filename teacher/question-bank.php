@@ -1,7 +1,7 @@
 <?php
 include('../connect.php');
 include('../admin/admin-header.php');
-include('../teacher/addQuestion.php');
+require('../teacher/addQuestion.php');
 ?>
 
 <?php
@@ -121,8 +121,8 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
           <table class="table table-hover">
             <thead>
               <tr class="navy-blue">
-                <th scope="th-md" style="width: 1%;"></th>
-                <th scope="th-md" style="width: 3%;">ID</th>
+                <!-- <th scope="th-md" style="width: 1%;"></th> -->
+                <th scope="th-md" style="width: 3%;">No.</th>
                 <th scope="th-md" style="width: 25%">Question</th>
                 <th scope="th-md" style="width: 1%;">Class_Name</th>
                 <th scope="th-md" style="width: 2%;">Section</th>
@@ -137,11 +137,13 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
             </thead>
             <tbody>
               <?php
+                  $cnt = 0;
                   while ($r = mysqli_fetch_array($res)) {
                     // print_r($r);
+                    $cnt++;
                     echo "<tr>";
-                    echo "<th scope='row'><div class='form-check'><input class='form-check-input' type='checkbox' name='selectedQue[]' value='0'></div></th> ";
-                    echo "<th >$r[0]</th>";
+                    // echo "<th scope='row'><div class='form-check'><input class='form-check-input cntCheck' type='checkbox' name='selectedQue[]' value='0'></div></th> ";
+                    echo "<th >$cnt</th>";
                     echo "<td>$r[1]</td>";
                     echo "<td>$className</td>";
                     echo "<td>$r[3]</td>";
@@ -178,17 +180,23 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
               </td>";
                   }
                   echo "</tr>";
-                  echo "
-            </tbody>";
-                  echo "
-          </table>"; ?>
-              <div class="row mt-5">
-                <div class="form-group d-flex justify-content-center">
-                  <button type="button" class="btn bg-navy-blue text-white m-5" name="createExam">Create Exam</button>
+                  echo "</tbody>";
+                  echo "</table>"; ?>
+              <!-- <div class="row mt-5">
+                <div class="form-group d-flex justify-content-center align-items-center text-center d-inline-block">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-sm-6">
+                      <button type="button" class="btn bg-navy-blue text-white m-5" name="createExam">Create
+                        Exam</button>
+                    </div>
+                    <div class="col-sm-6 ">
+                      <label id="totQue" name="totalQue" class="navy-blue font-weight-bold float-right mr-4 "></label>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </div> -->
               <?php } else {
-                echo "<center><h1>No Data Found</h1></center>";
+                echo "<center><h1 class='navy-blue'>No Data Found</h1></center>";
               }
                 ?>
         </div>
@@ -234,8 +242,8 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                       Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
+                </form>
               </div>
-              </form>
             </div>
           </div>
         </div>
@@ -293,7 +301,6 @@ $("#addOpt").click(function() {
   // document.getElementById("editDynamicOptions").setAttribute('value', ocount + 1);
   document.getElementById("newOneOpt").setAttribute('value', ocount);
 
-
   var html1 = '';
 
   html1 += " <div class='input-group mb-3'  id='optRowChild" + ocount + "'>";
@@ -306,7 +313,7 @@ $("#addOpt").click(function() {
     "<input type='text' class='form-control'  name='opt" + (ocount) + "' placeholder='Option' >";
   html1 +=
     '<label for="opt" > Option </label>';
-  html1 += ' </div>';
+  html1 += '</div>';
   html1 +=
     "<button type='button' id='clr' name='clr' class='input-group-text btn btn-outline-secondary' onClick='funRmOpt(" +
     (ocount) + ")'><i class='fas fa-times text-dark'></i></button >";
@@ -326,6 +333,25 @@ function funRmOpt(index) {
   $('#addOpt').prop('disabled', false);
 }
 </script>
+<!-- checkbox count -->
+<!-- <script>
+$(function() {
+  var count = 0;
+  $('.cntCheck').on('change', function() {
+    if (this.checked) {
+      count++;
+      $('cntCheck').text(count);
+      // console.log(count);
+      // document.getElementById("totQue").ty = count;
+      // document.getElementById("totQue").type = "text";
+      document.getElementById("totQue").innerHTML = count + " Rows Selected";
+    } else {
+      count--;
+      document.getElementById("totQue").innerHTML = count + " Rows Selected";
+    }
+  })
+})
+</script> -->
 <!-- update Query -->
 <?php
 if (isset($_POST['editQue'])) {
@@ -357,8 +383,6 @@ if (isset($_POST['editQue'])) {
   // $a = json_encode($aid);
   for ($x = 0; $x < $editDynamicOptions; $x++) {
     $opt = "opt" . $x;
-
-
     // print_r($aid);
     // echo "abc";
     if (!empty($_POST[$opt])) {
@@ -399,7 +423,6 @@ if (isset($_POST['editQue'])) {
         // print_r($result2);
         if ($result2) {
         } else {
-
           $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
         }
       }
@@ -412,5 +435,6 @@ if (isset($_POST['editQue'])) {
 }
 
 ?>
+
 
 </html>
