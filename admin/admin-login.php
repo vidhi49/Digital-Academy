@@ -13,7 +13,7 @@
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                src="img1.webp"
                 alt="login form"                
                 class="img-fluid" style="height: 660; border-radius: 1rem 0 0 1rem;"
               />

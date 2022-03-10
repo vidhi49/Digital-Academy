@@ -24,14 +24,15 @@
 					if ($r[6] == "Pending") {
 						$q1 = "update inquiry_tbl set status='$status' where Id='$id'";
 						mysqli_query($con, $q1) or die("Q1");
-						$q2 = "insert into institute_tbl values(null,'$r[1]','$r[2]','$r[3]','','','','$r[4]','$r[5]','','$date')";
+						$q2 = "insert into institute_tbl values(null,'$r[0]','$r[1]','$r[2]','$r[3]','','','','$r[4]','$r[5]','','$date')";
 						mysqli_query($con, $q2) or die("Q3");
 						$q3 = "select * from institute_tbl where Email='$r[2]' and Name='$r[1]'";
 						$result = mysqli_query($con, $q3);
 						$r1 = mysqli_fetch_array($result);
-						$q4 = "insert into institute_admin_tbl values(null,$r1[0],'$r[1]','$r[2]','$pass_hash')";
+						$q4 = "insert into institute_admin_tbl values(null,$r1[0],'$r1[1]','$r1[2]','$r1[3]','$pass_hash')";
 						mysqli_query($con, $q4) or die("Q4");
 						require 'app_email.php';
+					// }
 					} else if ($r[6] == 'Approved') {
 						$show = true; //ALready Approved
 						$name = $r[1];

@@ -20,6 +20,7 @@
   <?php include("header.php");?>
   <div class="content">
     <div class="container">
+      
       <div class="row" style="height: 500px">
         <div class="col-md-6" style="background-image: url(../img/c7.jpg); color: white">
           <div class="text-left" style="padding-top: 50;padding-bottom: 50;padding-left: 30;padding-right: 30">

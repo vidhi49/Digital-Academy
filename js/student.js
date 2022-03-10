@@ -5,7 +5,7 @@ $(document).ready(function () {
 	var c_Reg = /^[0-9]+$/;
 
 	$("#submit").click(function () {
-		
+
 		if ($('#e').val() != '') {
 			if ($('#emsg').text() != "") {
 				alert($('#emsg').text());
@@ -14,6 +14,7 @@ $(document).ready(function () {
 
 			}
 		}
+
 		if (c_Reg.test($('#cno').val()) == false) {
 			alert('Please Fill Cnotact Number with digit only...');
 			$("#cno").focus();
@@ -24,9 +25,9 @@ $(document).ready(function () {
 			$("#cno").focus();
 			return false;
 		}
-		
+
 		if ($('#file').val() != "") {
-			
+
 			const fi = document.getElementById('file');
 			var filePath = fi.value;
 			var allowedExtensions =
@@ -57,11 +58,17 @@ $(document).ready(function () {
 				}
 			}
 		}
-
-
+		if ($('#section').val() != '') {
+			if ($('#elimit').text() != "") {
+				alert($('#elimit').text());
+				$("#section").focus();
+				return false;
+			}
+			
+		}
 
 	});
-	
+
 	$('#e, #cno').on('keyup', function () {
 		if (e_Reg.test($('#e').val()) == false) {
 			$('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
@@ -91,6 +98,19 @@ $(document).ready(function () {
 
 
 	});
+	$('#section').change(function () {
 
+		$.ajax({
+			type: 'POST',
+			url: 'ajaxStudentcount.php',
+			data: "classid=" + $('#section').val(),
+			success: function (response) {
+				var result = response;
+				// $('#elimit').html(response).css('color', 'red');
+				$('#elimit').html(result).css('color', 'red');
+			}
+		});
+
+	});
 
 });

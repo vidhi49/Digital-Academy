@@ -3,7 +3,7 @@ session_start();
 // include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
-$a='managestudent';
+$a='managestaff';
 ?>
 <html>
 
@@ -11,16 +11,13 @@ $a='managestudent';
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/jquery-3.1.1.min.js"></script>
-  <!-- <link rel="stylesheet" href="../css/style.css"> -->
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"> -->
-  </script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
       </script>
+  <!-- <link rel="stylesheet" href="../css/style.css"> -->
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <script>
     $(document).ready(function() {
 
@@ -37,29 +34,27 @@ $a='managestudent';
         var ID = $(this).attr("data-id");
         $.ajax({
           type: "POST",
-          url: 'ajaxStudentDelete.php',
-          data: 'stud_id=' + ID,
+          url: 'ajaxStaff.php',
+          data: 'staff_id=' + ID,
 
           success: function(response) {
 
-            $.each(response, function(key, studview) {
-              $(".class").html(studview['Class'] + "-" + studview['Section']);
-              $(".gender").html(studview['Gender']);
-              $(".fname").html(studview['Father_name']);
-              $(".mname").html(studview['Mother_name']);
-              $(".gender").html(studview['Gender']);
-              $(".cno").html(studview['Mobileno']);
-              $(".dob").html(studview['Dob']);
-              $(".bloodgroup").html(studview['Bloodgroup']);
-              $(".address").html(studview['Address'] + " ," + studview['State'] + " ," + studview['Country']);
-              $(".grno").html(studview['Grno']);
-              // $(".class").html(studview['Class'] + "-" + studview['Section']);
-              $(".edate").html(studview['Enroll_date']);
-              $(".ayr").html(studview['Academicyr']);
-              $(".email").html(studview['Email']);
-              var img = "student_profile/" + studview['Profile'];
-
-              $(".name").text(studview['Name']);
+            $.each(response, function(key, staffview) {
+              // alert(staffview['Name']);
+              $(".stype").html(staffview['Desgination']);
+              $(".gender").html(staffview['Gender']);
+              $(".Id").html(staffview['Id']);
+              $(".cno").html(staffview['Cno']);
+              $(".dob").html(staffview['Dob']);
+              $(".bloodgroup").html(staffview['Bloodgroup']);
+              $(".address").html(staffview['Address'] + " ," + staffview['State'] + " ," + staffview['Country']);
+              $(".doj").html(staffview['Doj']);
+              $(".desig").html(staffview['Desgination']);
+              $(".edate").html(staffview['Enroll_date']);
+              $(".ayr").html(staffview['Academicyr']);
+              $(".email").html(staffview['Email']);
+              var img = "staff_profile/" + staffview['Profile'];
+              $(".name").text(staffview['Name']);
               $('#popup-img1').attr('src', img);
             });
 
@@ -85,7 +80,7 @@ $a='managestudent';
         preConfirm: function() {
 
           $.ajax({
-              url: 'ajaxStudentDelete.php',
+              url: 'ajaxStaff.php',
               type: 'POST',
               data: 'delete=' + ID,
               dataType: 'Json',
@@ -105,39 +100,38 @@ $a='managestudent';
     }
 
     function readstudent() {
-      $("#load-table").load("student.php");
+      $("#load-table").load("staff.php");
     }
   </script>
 </head>
 
 <body>
-<div class="d-flex">
-  
+  <div class="d-flex">
     <?php include("institute-sidebar.php"); ?>
     <div class="container p-3">
-        <div  style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
-          <div class="py-4 pl-3 border-bottom" style="border-radius:10px 10px 0px 0px;background-color: white;">
+      <!-- <div class="d-flex justify-content-center"> -->
+      <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
+        <div class="py-4 pl-3 border-bottom " style="border-radius:10px 10px 0px 0px;background-color: white;">
           <div class="row">
             <div class="col">
-            <h1 class="h2 font-weight-bold text-primary">Student Details</h1>
+              <div class="h2 font-weight-bold text-primary">Staff Details</div>
             </div>
             <div class="col text-right mr-5">
-              <a class="btn btn-primary" href="studentfilter.php" >Filter</a>
+              <a class="btn btn-primary" href="stafffilter.php">Filter</a>
             </div>
           </div>
-            
 
-          </div>
-
-          <div id="load-table" class="p-3" style='border-radius:0px 0px 10px 10px;background-color: white;'>
-
-          </div>
         </div>
+
+        <div id="load-table" class="p-3" style='border-radius:0px 0px 10px 10px;background-color: white;'>
+
+        </div>
+      </div>
+      <!-- </div> -->
     </div>
   </div>
-
-  <!-- <div class="container p-5 text-muted ">
-    <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
+  <!-- <div class="content p-5 text-muted ">
+    <div class="d-block justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
       <div class="py-4 pl-3 border-bottom" style="border-radius:10px 10px 0px 0px;background-color: white;">
         <h1 class="h2 font-weight-bold text-primary">Staff Details</h1>
         

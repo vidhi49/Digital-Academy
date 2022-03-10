@@ -34,9 +34,20 @@ $inst_id = $_SESSION['inst_id'];
             right: 1px;
         }
 
-       
+        #circle {
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #191970;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            font-size: 45px;
+            font-weight: 30%;
+        }
     </style>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -45,17 +56,20 @@ $inst_id = $_SESSION['inst_id'];
 </head>
 <div id="stud-table">
     <div class="table-responsive p-3">
-        <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+        <!-- <table class="table table-flush table-hover" id="dataTableHover"> -->
+        <table class="table table-flush table-hover" >
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
-                    <th> Photo</th>
-                    <th> Name</th>
-                    <th>Grno</th>
-                    <th>Email</th>
-                    <th>Class</th>
-                    <th>Section</th>
-                    <th scope="th-md" style="width:22%;">Action</th>
+                    <th scope="th-md" style="width:0%;">#</th>
+                    <th scope="th-md" style="width:0%;">Photo</th>
+                    <th scope="th-md" style="width:0%;">Name</th>
+                    <th scope="th-md" style="width:0%;">ID</th>
+                    <th scope="th-md" style="width:0%;">Gender</th>
+                    <th scope="th-md" style="width:0%;">Designation</th>
+                    <th scope="th-md" style="width:0%;">Email</th>
+                    <th scope="th-md" style="width:22%;">Dob</th>
+                    <th scope="th-md" style="width:22%;">Doj</th>
+                    <th scope="th-md" style="width:30%;">Action</th>
 
                 </tr>
             </thead>
@@ -64,7 +78,7 @@ $inst_id = $_SESSION['inst_id'];
 
                 <?php
                 include("../connect.php");
-                $query = "SELECT * FROM student_tbl where Inst_id='$inst_id'";
+                $query = "SELECT * FROM staff_tbl where Inst_id='$inst_id'";
                 $rs = $con->query($query);
                 $num = $rs->num_rows;
                 $sn = 0;
@@ -73,17 +87,27 @@ $inst_id = $_SESSION['inst_id'];
                         $sn = $sn + 1;
                         echo "
                               <tr>
-                                <td>" . $sn . "</td>
-                               
-                                <td><img class='popup' src='student_profile/" . $rows['Profile'] . "' style='border-radius:50%' height='100' width='100'></td>
-                                <td>" . $rows['Name'] . "</td>
-                                <td>" . $rows['Grno'] . "</td>
+                                <td>" . $sn . "</td>";
+                        if ($rows['Profile'] == "default.jpg") {
+                            echo "<td><div class='popup1' id='circle'>";
+                            echo substr($rows['Name'], 0, 1);
+                            echo '</div></td>';
+                            
+                        } else {
+                            echo "<td><img class='popup' src='staff_profile/" . $rows['Profile'] . "' width=100px height=100px style='border-radius:50%;border: 2px solid #191970;'></td>";
+                        }
+                        // <td><img class='popup' src='staff_profile/" . $rows['Profile'] . "' style='border-radius:50%' height='100' width='100'></td>
+                        echo "<td>" . $rows['Name'] . "</td>
+                        <td>" . $rows['Id'] . "</td>
+                                <td>" . $rows['Gender'] . "</td>
+                                <td>" . $rows['Desgination'] . "</td>
                                 <td>" . $rows['Email'] . "</td>
-                                <td>" . $rows['Class'] . "</td>
-                                <td>" . $rows['Section'] . "</td>
-                                <td><a  class='btn btn-warning' href='editstudent.php?Id=" . $rows['Id'] . "' id='edit'  ><i class='fas fa-fw fa-edit'></i></a>
-                                <a  class='btn btn-danger' id='delete' href='#' data-id='" . $rows['Id'] . "' ><i class='fas fa-fw fa-trash'></i></a>
-                                <a  class='btn btn-success' id='view' href='#' data-bs-toggle='modal' data-bs-target='#studentview' data-id='" . $rows['Id'] . "'><i class='fas fa-fw fa-eye'></i></a></td>
+                                <td>" . $rows['Dob'] . "</td>
+                                <td>" . $rows['Doj'] . "</td>
+                                <td class='' >
+                                <a  class='btn btn-warning' href='editstaff.php?Id=" . $rows['Id'] . "' id='edit'  ><i class='fa  fa-edit'></i></a>
+                                <a  class='btn btn-danger' id='delete' href='#' data-id='" . $rows['Id'] . "' ><i class='fa fa-trash fs-6'></i></a>
+                                <a  class='btn btn-success' id='view' href='#' data-bs-toggle='modal' data-bs-target='#studentview' data-id='" . $rows['Id'] . "'><i class='fa fa-eye'></i> </a></td>
                                 
                               </tr>";
                     }
@@ -99,30 +123,35 @@ $inst_id = $_SESSION['inst_id'];
         </table>
     </div>
 </div>
-<a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/ruang-admin.min.js"></script>
-    <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script> 
 
-    <!-- Page level custom scripts -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable(); // ID From dataTable 
-            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-        });
-    </script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/ruang-admin.min.js"></script>
+<!-- Page level plugins -->
+<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable(); // ID From dataTable 
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+</script>
 <div class="modal fade bd-example-modal-lg" id="img" tabindex="0" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <img class="w-100" id="popup-img" src="" alt="image">
-        </div>
+    <div class="modal-dialog modal-sm modal-dialog-zoom modal-dialog-centered">
+    
+            <img class="w-100" id="popup-img" style="border-radius: 50%;" src=""   alt="image">
+
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="img1" tabindex="0" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-zoom modal-dialog-centered">
+        
+            <img class="w-100" id="popup-img" style="border-radius: 50%;" src="staff_profile/default.jpg" alt="image">
+        
     </div>
 </div>
 </div>
@@ -138,7 +167,7 @@ $inst_id = $_SESSION['inst_id'];
                                 <div> <img id="popup-img1" height="150" style="border-radius: 50%;" width="150" src="" alt="image"> </div>
                                 <div class="p-2">
                                     <p class="name fs-2"></p>
-                                    <p class="class fs-5"></p>
+                                    <span class="fs-5">ID:</span><span class="Id fs-5"></span>
                                 </div>
                             </div>
 
@@ -148,17 +177,7 @@ $inst_id = $_SESSION['inst_id'];
                                 <h3>Personal Details</h3>
                                 <button type="button" class="btn btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6>Father Name:</h6>
-                                        <p class="fname text-muted"></p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h6>Mother Name:</h6>
-                                        <p class="mname text-muted"></p>
-
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h6>Gender:</h6>
@@ -203,12 +222,12 @@ $inst_id = $_SESSION['inst_id'];
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h6>GRNO:</h6>
-                                        <p class="grno text-muted"></p>
+                                        <h6>DOJ:</h6>
+                                        <p class="doj text-muted"></p>
                                     </div>
                                     <div class="col-sm-6">
-                                        <h6>Class:</h6>
-                                        <p class="class text-muted"></p>
+                                        <h6>Designation:</h6>
+                                        <p class="desig text-muted"></p>
 
                                     </div>
                                 </div>
@@ -243,5 +262,11 @@ $inst_id = $_SESSION['inst_id'];
         $('#img').modal('show');
 
         $('#popup-img').attr('src', src);
+    });
+    $('.popup1').click(function() {
+        var src = $(this).attr('src');
+        $('#img1').modal('show');
+
+        
     });
 </script>

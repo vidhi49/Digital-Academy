@@ -9,7 +9,7 @@ include('../admin/admin-header.php');
     <?php include("teacher-sidebar.php"); ?>
     <div class="content mt-5 p-3">
       <div class="d-flex justify-content-center">
-
+        teacher home
       </div>
     </div>
   </div>

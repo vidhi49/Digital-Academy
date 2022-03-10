@@ -1,8 +1,10 @@
 <?php include("../connect.php");
-include("change-header.php");
+session_start();
+// include("change-header.php");
 $Ins_id=$_SESSION['inst_id'];
 $statusMsg="";
 $dis="";
+$a='subject';
 //------------------------SAVE--------------------------------------------------
 if(isset($_POST['save'])){
     
@@ -132,11 +134,22 @@ if(isset($_POST['save'])){
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!-- <link href="../css/css/ruang-admin.min.css" rel="stylesheet"> -->
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <!-- <link href="css/ruang-admin.min.css" rel="stylesheet"> -->
+  <script>
+    $(document).ready(function(){
+      // $(".container").fadeIn("slow");
+      $(".container").fadeIn(1000);
+      // alert("hello");
+    });
+  </script>
   
 </head>
 <html>
 <body>
-    <div class="container p-5 text-muted h6" >
+  <div class="d-flex">
+  <?php include("institute-sidebar.php"); ?>
+  <div class="container p-5 text-muted h6" style="display: none;">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Create Subjects</h1>
                 <ol class="breadcrumb">
@@ -251,6 +264,8 @@ if(isset($_POST['save'])){
                 </div>
             </div>
     </div>
+  </div>
+   
 
     <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>

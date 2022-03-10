@@ -84,6 +84,7 @@
     $certi_img=$sname.".".$extension;
 		include("../connect.php");
     $q="insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$certi_img','Pending','$date')";
+    echo $q;
 			if(mysqli_query($con,$q))
 			{
 				move_uploaded_file($floc,"../certi_img/".$certi_img);
