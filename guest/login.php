@@ -145,44 +145,41 @@ if (isset($_REQUEST['login'])) {
             text: 'Yet Admin didnt approved request!'
             
           })</script>";
-    }
-    else{
+    } else {
       $q = "select * from institute_admin_tbl where Email = '$email'";
-    $res = mysqli_query($con, $q) or die("Qiery failed q");
-    $nor = mysqli_num_rows($res) or die("<script>Swal.fire({
+      $res = mysqli_query($con, $q) or die("Qiery failed q");
+      $nor = mysqli_num_rows($res) or die("<script>Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Not a Valid User!'
       
     })</script>");
-    if ($nor == 1) {
+      if ($nor == 1) {
 
-      while ($row = mysqli_fetch_array($res)) {
+        while ($row = mysqli_fetch_array($res)) {
 
 
-        if (password_verify($pwd, $row[5])) {
-          $_SESSION['email'] = $email;
-          $q = "select Logo,Name,Id from institute_tbl where Email='$email'";
-          $res = mysqli_query($con, $q) or die("Query failed");
-          $row = mysqli_fetch_assoc($res);
-          if ($row['Logo'] != "") {
-            $_SESSION['logo'] = $row['Logo'];
-            $_SESSION['name'] = $row['Name'];
-            $_SESSION['inst_id'] = $row['Id'];
-            echo "<script>window.location.href='../institute-admin/staff-registration.php';</script>";
+          if (password_verify($pwd, $row[5])) {
+            $_SESSION['email'] = $email;
+            $q = "select Logo,Name,Id from institute_tbl where Email='$email'";
+            $res = mysqli_query($con, $q) or die("Query failed");
+            $row = mysqli_fetch_assoc($res);
+            if ($row['Logo'] != "") {
+              $_SESSION['logo'] = $row['Logo'];
+              $_SESSION['name'] = $row['Name'];
+              $_SESSION['inst_id'] = $row['Id'];
+              echo "<script>window.location.href='../institute-admin/staff-registration.php';</script>";
+            } else {
+              $_SESSION['name'] = $row['Name'];
+              $_SESSION['inst_id'] = $row['Id'];
+              echo "<script>window.location.href='../institute-admin/institute-info.php';</script>";
+            }
           } else {
-            $_SESSION['name'] = $row['Name'];
-            $_SESSION['inst_id'] = $row['Id'];
-            echo "<script>window.location.href='../institute-admin/institute-info.php';</script>";
+            echo "<script>alert('Passwrod Does not match');</script>";
           }
-        } else {
-          echo "<script>alert('Passwrod Does not match');</script>";
         }
       }
     }
-    }
-
-    
   }
 }
 ?>

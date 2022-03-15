@@ -8,19 +8,19 @@
 </head>
 
 <style>
-.content {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 150px;
-  margin-left: 80px;
-}
+  .content {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+  }
 </style>
 
 <body>
-  <?php include("header.php");?>
+  <?php include("header.php"); ?>
   <div class="content">
     <div class="container">
-      
+
       <div class="row" style="height: 500px">
         <div class="col-md-6" style="background-image: url(../img/c7.jpg); color: white">
           <div class="text-left" style="padding-top: 50;padding-bottom: 50;padding-left: 30;padding-right: 30">
@@ -82,8 +82,7 @@
             <p>Phone</p>
             <input class="form-control w-75" style="border: none;border-bottom:  2px solid " type="tel" name="phone">
             <p>Message</p>
-            <input class="form-control w-75" style="border: none;border-bottom:  2px solid " type="text"
-              name="message"><br><br>
+            <input class="form-control w-75" style="border: none;border-bottom:  2px solid " type="text" name="message"><br><br>
             <input class="btn btn-dark" name="submit" type="submit" title="Submit">
           </div>
         </div>

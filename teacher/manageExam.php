@@ -75,10 +75,11 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <td>$r[5]</td>
               <td><span class='badge badge-warning badge-pill'>$r[6]</span></td>
               <td>$r[7]</td>
-              <td><a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash mr-2'></i></a>
-              <a  href=''><i class='fa fa-edit text-primary'></i></a></td>
-              <td><a  href='' data-id='$r[0]'  data-classid='$r[2]' data-section='$r[3]' data-subjectid='$r[4]' role='button' class='btn btn-primary btn-sm'  data-toggle='modal' data-target='#QueListModal'>
-              Select
+              <td class='text-center'><a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
+              <a  href=''><i class='fa fa-edit fs-5 text-primary'></i></a></td>
+              <td><a  href='' data-id='$r[0]'  data-classid='$r[2]' data-section='$r[3]' data-subjectid='$r[4]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
+              Select </a>
+            <a role='button' class='btn p-2'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a></td>
               </tr>";
             }

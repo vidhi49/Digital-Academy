@@ -1,6 +1,8 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+body 
+{
   background-color: lightgray !important;
-  
+  font-family: 'Open Sans', sans-serif;
 }
 .logo
 {
@@ -15,7 +17,7 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
-.sidebar
+.admin-sidebar
 {
   background-color: #e6e6ea;
   min-height: 70vh;
@@ -35,10 +37,18 @@ body{
   display: inline-block;
   align-items: center;
 }
+.institute-content
+{
+  width: calc(100vw - 250px);
+  /* display: inline-block; */
+  align-items: center;
+}
 .navy-blue
 {
   color: #041562 !important;
 }
+
+/* institute-sidebar */
 
 @media only screen and (max-width: 500px) {
  .img-carousel{
@@ -49,6 +59,14 @@ body{
   }
   .content{
     width: calc(100vw - 100px);
+  }
+
+  .insttitute-sidebar{
+    width: 20px;
+  }
+  .institute-content{
+    width: calc(100vw - 20px);
+    padding: 8px !important;
   }
 }
 

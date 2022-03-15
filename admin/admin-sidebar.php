@@ -5,7 +5,7 @@
 
 <body>
   <!-- <div class="content"> -->
-  <div class="row flex-nowrap d-inline-block width-sidebar p-5 sidebar">
+  <div class="row flex-nowrap d-inline-block width-sidebar p-5 admin-sidebar">
     <!-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-sidebar"> -->
     <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"> -->
     <!-- <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none text-dark">

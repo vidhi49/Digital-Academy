@@ -3,7 +3,7 @@ session_start();
 // include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
-$a='managestudent';
+$a = 'managestudent';
 ?>
 <html>
 
@@ -17,10 +17,10 @@ $a='managestudent';
   </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
-      </script>
+  </script>
   <script>
     $(document).ready(function() {
 
@@ -111,28 +111,28 @@ $a='managestudent';
 </head>
 
 <body>
-<div class="d-flex">
-  
+  <div class="d-flex">
+
     <?php include("institute-sidebar.php"); ?>
     <div class="container p-3">
-        <div  style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
-          <div class="py-4 pl-3 border-bottom" style="border-radius:10px 10px 0px 0px;background-color: white;">
+      <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
+        <div class="py-4 pl-3 border-bottom" style="border-radius:10px 10px 0px 0px;background-color: white;">
           <div class="row">
             <div class="col">
-            <h1 class="h2 font-weight-bold text-primary">Student Details</h1>
+              <h1 class="h2 font-weight-bold text-primary">Student Details</h1>
             </div>
             <div class="col text-right mr-5">
-              <a class="btn btn-primary" href="studentfilter.php" >Filter</a>
+              <a class="btn btn-primary" href="studentfilter.php">Filter</a>
             </div>
           </div>
-            
 
-          </div>
 
-          <div id="load-table" class="p-3" style='border-radius:0px 0px 10px 10px;background-color: white;'>
-
-          </div>
         </div>
+
+        <div id="load-table" class="p-3" style='border-radius:0px 0px 10px 10px;background-color: white;'>
+
+        </div>
+      </div>
     </div>
   </div>
 

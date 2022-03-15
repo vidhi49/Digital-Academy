@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
   <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark py-1">
     <div class="container-fluid">

@@ -1,9 +1,10 @@
-<?php include("../connect.php");
+<?php
+include("../connect.php");
 session_start();
 // include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
-$a='managestaff';
+$a = 'managestaff';
 ?>
 <html>
 
@@ -15,7 +16,7 @@ $a='managestaff';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
-      </script>
+  </script>
   <!-- <link rel="stylesheet" href="../css/style.css"> -->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <script>
@@ -47,7 +48,8 @@ $a='managestaff';
               $(".cno").html(staffview['Cno']);
               $(".dob").html(staffview['Dob']);
               $(".bloodgroup").html(staffview['Bloodgroup']);
-              $(".address").html(staffview['Address'] + " ," + staffview['State'] + " ," + staffview['Country']);
+              $(".address").html(staffview['Address'] + " ," + staffview['State'] + " ," + staffview[
+                'Country']);
               $(".doj").html(staffview['Doj']);
               $(".desig").html(staffview['Desgination']);
               $(".edate").html(staffview['Enroll_date']);
