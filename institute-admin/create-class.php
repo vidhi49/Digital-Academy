@@ -128,7 +128,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class="institute-content p-5 text-muted">
+    <div class="institute-content p-5  text-muted">
       <div class="row">
         <div class="d-flex align-items-center justify-content-between mb-4">
           <h4 class="text-muted">Create Class</h4>
@@ -140,12 +140,12 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
       </div>
 
       <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
-        <div class="row">
-          <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-            <h4 class="m-0 font-weight-bold text-primary p-3">Add Class</h4>
-            <?php echo $statusMsg; ?>
-          </div>
+        <!-- <div class="row"> -->
+        <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
+          <h4 class="m-0 font-weight-bold text-primary p-2">Add Class</h4>
+          <?php echo $statusMsg; ?>
         </div>
+        <!-- </div> -->
         <div class="card-body">
           <form method="post">
             <div class="row">
@@ -188,8 +188,8 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
       </div>
       <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
-        <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="h4 m-0 font-weight-bold text-primary">All Classes</h6>
+        <div class="card-header  d-flex flex-row align-items-center justify-content-between">
+          <h4 class="font-weight-bold text-primary p-3">All Classes</h4>
         </div>
         <div class="table-responsive p-3">
           <table class="table align-items-center table-flush table-hover" id="dataTableHover">

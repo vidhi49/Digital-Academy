@@ -39,7 +39,7 @@ body
 }
 .institute-content
 {
-  width: calc(100vw - 250px);
+  width: calc(100vw - 230px);
   /* display: inline-block; */
   align-items: center;
 }
@@ -59,14 +59,6 @@ body
   }
   .content{
     width: calc(100vw - 100px);
-  }
-
-  .insttitute-sidebar{
-    width: 20px;
-  }
-  .institute-content{
-    width: calc(100vw - 20px);
-    padding: 8px !important;
   }
 }
 

@@ -22,7 +22,7 @@ include("../connect.php");
     /* top: 0; */
     /* left: 0; */
     /* height: 100%; */
-    width: 250px;
+    width: 230px;
     background-color: #041562;
     /* padding: 6px 0px 16px 0px; */
     /* padding: 6px 14px; */
@@ -100,7 +100,7 @@ include("../connect.php");
     /* margin: 5 5 0 0; */
     list-style: none;
     line-height: 50px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
   }
 
   .institute-sidebar .links_name {
@@ -112,7 +112,7 @@ include("../connect.php");
 
   .institute-sidebar ul li a {
     color: #fff;
-    display: flex;
+    /* display: flex; */
     /* align-items: center; */
     text-decoration: none;
     /* transition: all 0.4s ease; */
@@ -131,10 +131,10 @@ include("../connect.php");
   }
 
   .institute-sidebar ul li a i {
-    height: 50px;
-    min-width: 50px;
-    border-radius: 12px;
-    line-height: 50px;
+    height: 25px;
+    min-width: 25px;
+    border-radius: 9px;
+    line-height: 25px;
     text-align: center;
   }
 
@@ -145,6 +145,45 @@ include("../connect.php");
     border-radius: 20px;
   }
 
+  .institute-sidebar ul li b:nth-child(1) {
+    /* position: absolute; */
+    top: -20px;
+    /* height: 20px; */
+    /* width: 100%; */
+    background-color: #fff;
+    display: none;
+  }
+
+  .institute-sidebar ul li b:nth-child(1)::before {
+    /* content: ''; */
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    /* width: 100%; */
+    /* height: 100%; */
+    border-bottom-right-radius: 20px;
+    background: #041562;
+  }
+
+  .institute-sidebar ul li b:nth-child(2) {
+    /* position: absolute; */
+    bottom: -20px;
+    /* height: 20px; */
+    /* width: 100%; */
+    background-color: #fff;
+    display: none;
+  }
+
+  .institute-sidebar ul li b:nth-child(2)::before {
+    /* content: ''; */
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    /* width: 100%;
+    height: 100%; */
+    border-top-right-radius: 20px;
+    background: #041562;
+  }
 
   .institute-sidebar.active~.content {
     /* width: calc(100% -75px); */
@@ -155,11 +194,17 @@ include("../connect.php");
   @media only screen and (max-width: 500px) {
 
     .insttitute-sidebar {
-      width: 20px;
+      width: 50px;
+      align-items: center;
+      text-align: center;
+      display: block;
     }
 
     .institute-content {
-      width: calc(100vw - 100px);
+      width: calc(100vw - 50px);
+      padding: 15px;
+      margin: 0px;
+
     }
 
     .insttitute-sidebar .links_name {
@@ -170,7 +215,7 @@ include("../connect.php");
 </head>
 
 <body>
-  <div class="institute-sidebar">
+  <div class="institute-sidebar ps-2">
     <div class="logo_conent">
       <div class="logo">
         <!-- <div class="logo_name">
@@ -180,6 +225,8 @@ include("../connect.php");
     </div>
     <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start">
       <li class="list nav-item ">
+        <b></b>
+        <b></b>
         <a href="#" class="nav-link">
           <i class='fa fa-edit'></i>
           <span class="links_name d-sm-inline">Edit Profile</span>
@@ -188,6 +235,8 @@ include("../connect.php");
       </li>
 
       <li class="list nav-item ">
+        <b></b>
+        <b></b>
         <a href="#" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Dashbord</span>
@@ -195,7 +244,8 @@ include("../connect.php");
         <!-- <span class="tooltip">Dashbord</span> -->
       </li>
       <li class="list nav-item ">
-
+        <b></b>
+        <b></b>
         <a href="#" class="nav-link">
           <i class='fa fa-check'> </i>
           <span class="links_name d-sm-inline">Register staff</span>
@@ -203,7 +253,8 @@ include("../connect.php");
         <!-- <span class="tooltip">Register</span> -->
       </li>
       <li class="list nav-item ">
-
+        <b></b>
+        <b></b>
         <a href="#" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Register student</span>
@@ -214,7 +265,8 @@ include("../connect.php");
           if (($a == 'class')) {
             echo "Class='list active nav-item '";
           } ?>>
-
+        <b></b>
+        <b></b>
         <a href="create-class.php " class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Create Class</span>
@@ -244,7 +296,8 @@ include("../connect.php");
       <li <?php if (($a == 'managestaff')) {
             echo "Class='list active nav-item ' ";
           } ?>>
-
+        <b></b>
+        <b></b>
         <a href="manage-staff.php" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Manage staff</span>
@@ -255,7 +308,8 @@ include("../connect.php");
       <li <?php if (($a == 'viewstudent')) {
             echo "Class='list active nav-item '";
           } ?>>
-
+        <b></b>
+        <b></b>
         <a href="studentfilter.php" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">View Student</span>
@@ -265,7 +319,8 @@ include("../connect.php");
       <li <?php if (($a == 'viewstaff')) {
             echo "Class='list active nav-item '";
           } ?>>
-
+        <b></b>
+        <b></b>
         <a href="stafffilter.php" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">View staff</span>
@@ -274,6 +329,8 @@ include("../connect.php");
       </li>
 
       <li class="list nav-item ">
+        <b></b>
+        <b></b>
         <a href="#" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Attedence</span>
