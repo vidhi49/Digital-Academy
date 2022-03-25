@@ -156,7 +156,7 @@ $indian_states = array(
 
 <body>
 
-  <div class="">
+  <div class="d-flex">
     <?php
     include("institute-sidebar.php");
     ?>

@@ -143,20 +143,20 @@ $inst_id = $_SESSION['inst_id'];
 <div class="modal fade bd-example-modal-lg" id="img" tabindex="0" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-zoom modal-dialog-centered">
     
-            <img class="w-100" id="popup-img" style="border-radius: 50%;" src=""   alt="image">
+            <img class="w-100"  id="popup-img" height="300px" width="200px" style="border-radius: 50%;" src=""   alt="image">
 
     </div>
 </div>
 <div class="modal fade bd-example-modal-lg" id="img1" tabindex="0" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-zoom modal-dialog-centered">
         
-            <img class="w-100" id="popup-img" style="border-radius: 50%;" src="staff_profile/default.jpg" alt="image">
+            <img class="w-100"  id="popup-img" style="border-radius: 50%;" src="staff_profile/default.jpg" alt="image">
         
     </div>
 </div>
 </div>
 <div class="modal fade" id="studentview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg">
         <div class="modal-content">
 
             <div class="card">

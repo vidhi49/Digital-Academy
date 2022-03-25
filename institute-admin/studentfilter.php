@@ -1,7 +1,7 @@
 <?php
 include("../connect.php");
-session_start();
-// include("change-header.php");
+// session_start();
+include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
 $a='viewstudent';
@@ -132,7 +132,7 @@ $indian_states = array(
     <div class="d-flex">
         <?php include("institute-sidebar.php"); ?>
         
-      
+        
         <div class=" container  p-5" style="display: none;" >
             <form method="post">
                 <div class="row">
@@ -260,7 +260,7 @@ $indian_states = array(
                                     <br><br>
             <div class="row" id="studtable" style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
                 <div class="col m-3" style='border-radius:10px 10px 10px 10px;background-color: white;'>
-                    <div class="table-responsive p-3">
+                    <div class="table-responsive pt-3">
                         <table class="table table-hover">
                             <thead class="thead-light">
                                 <tr>

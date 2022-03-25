@@ -1,6 +1,6 @@
 <?php include("../connect.php");
-session_start();
-// include("change-header.php");
+// session_start();
+include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
 $a='managestudent';
@@ -124,7 +124,7 @@ $r = mysqli_fetch_array($res);
     <body>
         <div class="d-flex">
             <?php include("institute-sidebar.php");?>
-            <div class="container p-5 text-muted h6">
+            <div class="content p-5 text-muted h6">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h1 mb-0 text-muted">Edit Student </h1>
                 <ol class="breadcrumb">

@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 $email = $_SESSION['email'];
 ?>
 <!DOCTYPE html>
@@ -17,17 +17,22 @@ $email = $_SESSION['email'];
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
-  <div class="container-fluid ">
-    <div class="row bg-navy-blue">
-      <div class="col-sm-6"><img class='logo ms-1' src='../Institute-logo/<?php echo $_SESSION['logo']; ?>'
-          style=" height:100px" /></div>
+  <div class="container-fluid " >
+  <!-- style='box-shadow: black 0px 3px 80px;' -->
+    <div class="row bg-navy-blue"  style="box-shadow:  0 10px 15px -6px black;">
+      <div class="col-sm-6 d-flex">
+        <img class='logo ms-1' style="border-radius:50%;margin:10px" height="100" width="100" src='../Institute-logo/<?php echo $_SESSION['logo']; ?>'/>
+        <span class="h-25 fs-2 text-light" style="padding: 35px;" id="email"><?php echo $_SESSION['name']; ?></span>
+      </div>
       <div class="col-sm-6 d-flex justify-content-end align-items-center">
         <div class="d-block">
-          <span class="h-25 pe-3 fs-2 text-light" id="email"><?php echo $_SESSION['name']; ?></span>
+          
           <span class="h-25 pe-3  text-light" id="email"><?php echo $_SESSION['email']; ?></span>
         </div>
         <a href="institute-logout.php" class="btn btn-secondary" role="button">logout</a>

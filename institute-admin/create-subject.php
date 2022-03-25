@@ -1,6 +1,6 @@
 <?php include("../connect.php");
-session_start();
-// include("change-header.php");
+// session_start();
+include("change-header.php");
 $Ins_id=$_SESSION['inst_id'];
 $statusMsg="";
 $dis="";
@@ -139,7 +139,7 @@ if(isset($_POST['save'])){
   <script>
     $(document).ready(function(){
       // $(".container").fadeIn("slow");
-      $(".container").fadeIn(1000);
+      $(".institute-content").fadeIn(1000);
       // alert("hello");
     });
   </script>
@@ -149,7 +149,7 @@ if(isset($_POST['save'])){
 <body>
   <div class="d-flex">
   <?php include("institute-sidebar.php"); ?>
-  <div class="container p-5 text-muted h6" style="display: none;">
+  <div class="institute-content p-5 text-muted h6" style="display: none;">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Create Subjects</h1>
                 <ol class="breadcrumb">

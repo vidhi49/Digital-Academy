@@ -1,8 +1,9 @@
 <?php include("../connect.php");
-session_start();
-// include("change-header.php");
+// session_start();
+include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
+$a="studentregister";
 ?>
 <html>
 
@@ -13,6 +14,7 @@ $inst_name = $_SESSION['name'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/student.js"></script>
   <script src="../css/style.css"></script>
@@ -98,8 +100,8 @@ $inst_name = $_SESSION['name'];
 
   <body>
     <div class="d-flex">
-      <!-- <?php include("institute-sidebar.php"); ?> -->
-      <div class="container p-5 text-muted h6">
+      <?php include("institute-sidebar.php"); ?>
+      <div class=" institute-content p-5 text-muted h6">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h1 mb-0 text-muted">Student Enrolment</h1>
           <ol class="breadcrumb">
@@ -323,7 +325,7 @@ if (isset($_POST['submit'])) {
   $aca_year = $_POST['aca_year'];
   $imgname = $_FILES['photo']['name'];
   $tmpname = $_FILES['photo']['tmp_name'];
-  $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
   $password = substr(str_shuffle($generator), 0, 8);
   $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 

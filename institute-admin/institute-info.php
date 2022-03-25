@@ -74,10 +74,10 @@ if(isset($_POST['signin']))
     $f=$_FILES['logo']['name'];
 		$floc=$_FILES['logo']['tmp_name'];
     $extension=pathinfo($f,PATHINFO_EXTENSION);
-    $certi_img=$name.".".$extension;
-    $_SESSION['logo']=$certi_img;
-    move_uploaded_file($floc,"../Institute-logo/".$certi_img);
-    $q="update institute_tbl set Address = '$add',City='$city',State='$state', Country='$country',Logo='$certi_img' where Email='$email'";
+    $logo=$name.".".$extension;
+    $_SESSION['logo']=$logo;
+    move_uploaded_file($floc,"../Institute-logo/".$logo);
+    $q="update institute_tbl set Address = '$add',City='$city',State='$state', Country='$country',Logo='$logo' where Email='$email'";
     if(mysqli_query($con,$q))
     {
       echo "<script> alert('Thank You for Provinding Your Information');</script>";

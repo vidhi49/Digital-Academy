@@ -53,6 +53,7 @@ $inst_id = $_SESSION['inst_id'];
                     <th> Name</th>
                     <th>Grno</th>
                     <th>Email</th>
+                    <th>Gender</th>
                     <th>Class</th>
                     <th>Section</th>
                     <th scope="th-md" style="width:22%;">Action</th>
@@ -79,6 +80,7 @@ $inst_id = $_SESSION['inst_id'];
                                 <td>" . $rows['Name'] . "</td>
                                 <td>" . $rows['Grno'] . "</td>
                                 <td>" . $rows['Email'] . "</td>
+                                <td>" . $rows['Gender'] . "</td>
                                 <td>" . $rows['Class'] . "</td>
                                 <td>" . $rows['Section'] . "</td>
                                 <td><a  class='btn btn-warning' href='editstudent.php?Id=" . $rows['Id'] . "' id='edit'  ><i class='fas fa-fw fa-edit'></i></a>
@@ -127,7 +129,7 @@ $inst_id = $_SESSION['inst_id'];
 </div>
 </div>
 <div class="modal fade" id="studentview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg">
         <div class="modal-content">
 
             <div class="card">

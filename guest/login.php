@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 include("../connect.php");
 ?>
 <html>
@@ -16,6 +17,17 @@ include("../connect.php");
 
 
   <?php require("header.php"); ?>
+  <script>
+     function myFunction() {
+            var x = document.getElementById("pwd");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            
+        }
+  </script>
 </head>
 
 <body>
@@ -34,30 +46,59 @@ include("../connect.php");
           <div>
             <h6 class="fw-normal text-dark mb-5"> Sign in to your account</h6>
           </div>
+
           <div class="form-outline mb-2">
             <select class="form-control form-control-lg m-1" name="user" required>
               <option value="" disabled selected>--select user--</option>
-              <option> Teacher </option>
-              <option> Student </option>
-              <option> Institute </option>
+              <option <?php if (isset($_COOKIE['usercookie'])) {
+                        if ($_COOKIE['usercookie'] == 'Teacher') {
+                          echo "selected";
+                        }
+                      } ?>> Teacher </option>
+              <option <?php if (isset($_COOKIE['usercookie'])) {
+                        if ($_COOKIE['usercookie'] == 'Student') {
+                          echo "selected";
+                        }
+                      } ?>> Student </option>
+              <option <?php if (isset($_COOKIE['usercookie'])) {
+                        if ($_COOKIE['usercookie'] == 'Institute') {
+                          echo "selected";
+                        }
+                      } ?>> Institute </option>
 
             </select>
             <label class="form-label p-1">Select User</label>
           </div>
           <div class="form-outline mb-2">
-            <input type="email" id="email" name="email" class="form-control form-control-lg m-1" require />
+            <input type="email" id="email" name="email" value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>" class="form-control form-control-lg m-1" require />
             <label class="form-label p-1">Email address</label>
           </div>
           <div class="form-outline mb-2">
-            <input type="password" name="pwd" class="form-control form-control-lg m-1" require />
+            <div class="input-group">
+            <input type="password" name="pwd" id="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg " require />
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-eye" onclick="myFunction()"></i>
+              </span>
+            </div>
+            </div>
             <label class="form-label p-1">Password</label>
+          </div>
+          
+          <!-- <div class="form-outline mb-2">
+            <input type="password" name="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg m-1" require />
+            <label class="form-label p-1">Password</label>
+          </div> -->
+          <div class="form-outline mb-2">
+            <input type="checkbox" name="rem" class="m-1" /> Remember Me
+
           </div>
 
           <div class="pt-1 mb-4">
             <button class="btn bg-navy-blue text-white btn-lg btn-block" name="login" type="submit">Login</button>
           </div>
           <div class="row mt-3">
-            <a class="small text-muted" href="#!">Forgot password?</a>
+            <a class="small text-muted" href="forgotpassword.php">Forgot password?</a>
             <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#" style="color: #393f81;">Register here</a></p>
           </div>
           <div class="align-self-baseline">
@@ -80,6 +121,13 @@ if (isset($_REQUEST['login'])) {
   $email = $_POST['email'];
   $pwd = $_POST['pwd'];
   $user = $_POST['user'];
+  if (isset($_REQUEST['rem'])) {
+
+    setcookie("emailcookie", $email, time()+86400);
+    setcookie("passwordcookie", $pwd, time()+86400);
+    setcookie("usercookie", $user, time()+86400);
+  }
+
   if ($user == 'Teacher') {
     $q = "select * from staff_tbl where Email = '$email'";
     $res = mysqli_query($con, $q) or die("Qiery failed q");

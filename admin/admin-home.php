@@ -14,7 +14,7 @@
 				if (isset($_REQUEST['approved'])) {
 					$status = "Approved";
 					$id = $_REQUEST['id'];
-					$generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+					$generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
 					$password = substr(str_shuffle($generator), 0, 8);
 					$pass_hash = password_hash($password, PASSWORD_DEFAULT);
 					$q = "select * from inquiry_tbl where Id='$id'";

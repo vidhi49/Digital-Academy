@@ -1,6 +1,9 @@
 <?php include("../connect.php");
-// include("change-header.php");
+
 // session_start();
+include("change-header.php");
+$a = 'staffregister';
+// include("../institute-admin/change-header.php");
 ?>
 <html>
 
@@ -163,8 +166,8 @@
 
 <body>
     <div class="d-flex">
-        <!-- <?php include("institute-sidebar.php"); ?> -->
-        <div class="container p-5 text-muted h6">
+        <?php include("institute-sidebar.php"); ?>
+        <div class="institute-content p-5 text-muted h6">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h1 mb-0 text-muted">Staff Enrolment</h1>
                 <ol class="breadcrumb">
@@ -383,7 +386,7 @@ if (isset($_POST['submit'])) {
     $inst_name = $_SESSION['name'];
     $ext_id = pathinfo($idproove, PATHINFO_EXTENSION);
     $ext_qcerti = pathinfo($qcerti, PATHINFO_EXTENSION);
-    $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
     $password = substr(str_shuffle($generator), 0, 8);
     $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 

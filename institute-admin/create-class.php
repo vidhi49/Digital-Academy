@@ -1,8 +1,8 @@
 <?php include("../connect.php");
-session_start();
+// session_start();
 // include("../admin/admin-header.php");
-// include("../institute-admin/change-header.php");
-include("../institute-admin/institute-header.php");
+include("../institute-admin/change-header.php");
+// include("../institute-admin/institute-header.php");
 
 
 $Ins_id = $_SESSION['inst_id'];
@@ -127,6 +127,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
   <div class="d-flex">
     <?php
     include("institute-sidebar.php");
+    // include("SIDEBAR.php");
     ?>
     <div class="institute-content p-5  text-muted">
       <div class="row">
@@ -239,9 +240,9 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
   <?php
   require("../guest/footer.php");
   ?>
-  <a class="scroll-to-top rounded" href="#page-top">
+  <!-- <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-  </a>
+  </a> -->
   <!-- <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->

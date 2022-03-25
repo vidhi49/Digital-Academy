@@ -1,7 +1,7 @@
 <?php
 include("../connect.php");
-session_start();
-// include("change-header.php");
+// session_start();
+include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
 $a = 'managestaff';
@@ -110,7 +110,7 @@ $a = 'managestaff';
 <body>
   <div class="d-flex">
     <?php include("institute-sidebar.php"); ?>
-    <div class="container p-3">
+    <div class="content p-5">
       <!-- <div class="d-flex justify-content-center"> -->
       <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
         <div class="py-4 pl-3 border-bottom " style="border-radius:10px 10px 0px 0px;background-color: white;">
