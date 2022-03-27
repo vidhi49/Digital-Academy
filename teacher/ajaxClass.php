@@ -9,7 +9,7 @@ $queryss = mysqli_query($con, "select * from class_tbl where Name=" . $name . " 
 $countt = mysqli_num_rows($queryss);
 
 
-// echo'<option value="">--Select Section--</option>';
+echo'<option value="">--Select Section--</option>';
 while ($row = mysqli_fetch_array($queryss)) {
   echo '<option value="' . $row['Id'] . '" >' . $row['Section'] . '</option>';
 }

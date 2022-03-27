@@ -60,7 +60,7 @@ $r = mysqli_fetch_array($res);
                         const fsize = fi.files.item(i).size;
                         const file = Math.round((fsize / 1024));
                         if (file > 200) {
-                            $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+                            $("#filemessage").html('File Must be less then 200mb').css('color', 'red');
                             return false;
                         } else {
 

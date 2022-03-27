@@ -318,7 +318,7 @@ include("../connect.php");
       </li>
 
       <li <?php if (($a == 'viewstudent')) {
-            echo "Class='list active nav-item '";
+            echo "class='list active nav-item '";
           } ?>>
         <b></b>
         <b></b>
@@ -329,7 +329,7 @@ include("../connect.php");
         <!-- <span class="tooltip">View</span> -->
       </li>
       <li <?php if (($a == 'viewstaff')) {
-            echo "Class='list active nav-item '";
+            echo "class='list active nav-item '";
           } ?>>
         <b></b>
         <b></b>
@@ -340,10 +340,12 @@ include("../connect.php");
         <!-- <span class="tooltip">View</span> -->
       </li>
 
-      <li class="list nav-item ">
+      <li <?php if (($a == 'viewclassattedance')) {
+            echo "class='list active nav-item '";
+          } ?>  >
         <b></b>
         <b></b>
-        <a href="#" class="nav-link">
+        <a href="viewclassattedance.php" class="nav-link">
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Attedence</span>
         </a>

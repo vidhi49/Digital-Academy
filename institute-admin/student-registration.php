@@ -342,6 +342,8 @@ if (isset($_POST['submit'])) {
   $q = "insert into student_tbl values(null,'$gr','$inst_id','$inst_name','$sname','$fname','$mname','$gender','$dob','$cno','$email',
   '$address','$country','$state','$class','$section','$classid','$bloodgroup','$newimgname','" . date("Y-m-d") . "','$aca_year','$pass_hash')";
   // echo $q;
+  $q2 = "insert into class_wise_student values(null,'$classid','$class','$section','$sname','','$gender','$gr','$inst_id')";
+  $res2=mysqli_query($con,$q2);
   require 'sendstudentemail.php';
   $res = mysqli_query($con, $q);
 

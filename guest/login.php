@@ -18,15 +18,39 @@ include("../connect.php");
 
   <?php require("header.php"); ?>
   <script>
-     function myFunction() {
-            var x = document.getElementById("pwd");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-            
+    function myFunction() {
+      var x = document.getElementById("pwd");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+
+    }
+    $(document).ready(function() {
+      var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+      $("#login").click(function() {
+        if ($('#email').val() != '') {
+          if ($('#emessage').text() != "") {
+            alert($('#emessage').text());
+            $("#email").focus();
+            return false;
+
+          }
         }
+      });
+      $('#email').on('keyup', function() {
+        //var clen = $('#cno').val();
+        var email = $('#email').val();
+        if (e_Reg.test(email) == false) {
+          $('#emessage').html('Email Must be in abc@xyz Format').css('color', 'red');
+        } else {
+          $('#emessage').html('').css('color', 'red');
+
+        }
+
+      });
+    });
   </script>
 </head>
 
@@ -48,6 +72,7 @@ include("../connect.php");
           </div>
 
           <div class="form-outline mb-2">
+            <label class="form-label p-1">Select User</label>
             <select class="form-control form-control-lg m-1" name="user" required>
               <option value="" disabled selected>--select user--</option>
               <option <?php if (isset($_COOKIE['usercookie'])) {
@@ -67,35 +92,35 @@ include("../connect.php");
                       } ?>> Institute </option>
 
             </select>
-            <label class="form-label p-1">Select User</label>
+
           </div>
           <div class="form-outline mb-2">
-            <input type="email" id="email" name="email" value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>" class="form-control form-control-lg m-1" require />
             <label class="form-label p-1">Email address</label>
+            <input type="email" id="email" name="email" value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>" class="form-control form-control-lg m-1" required />
+
+            <span id="emessage"></span>
           </div>
           <div class="form-outline mb-2">
+            <label class="form-label p-1">Password</label>
+
             <div class="input-group">
-            <input type="password" name="pwd" id="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg " require />
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fa fa-eye" onclick="myFunction()"></i>
-              </span>
+              <input type="password" name="pwd" id="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg " required />
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-eye" onclick="myFunction()"></i>
+                </span>
+              </div>
             </div>
-            </div>
-            <label class="form-label p-1">Password</label>
+
           </div>
-          
-          <!-- <div class="form-outline mb-2">
-            <input type="password" name="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg m-1" require />
-            <label class="form-label p-1">Password</label>
-          </div> -->
+
           <div class="form-outline mb-2">
             <input type="checkbox" name="rem" class="m-1" /> Remember Me
 
           </div>
 
           <div class="pt-1 mb-4">
-            <button class="btn bg-navy-blue text-white btn-lg btn-block" name="login" type="submit">Login</button>
+            <button class="btn bg-navy-blue text-white btn-lg btn-block" id="login" name="login" type="submit">Login</button>
           </div>
           <div class="row mt-3">
             <a class="small text-muted" href="forgotpassword.php">Forgot password?</a>
@@ -123,9 +148,9 @@ if (isset($_REQUEST['login'])) {
   $user = $_POST['user'];
   if (isset($_REQUEST['rem'])) {
 
-    setcookie("emailcookie", $email, time()+86400);
-    setcookie("passwordcookie", $pwd, time()+86400);
-    setcookie("usercookie", $user, time()+86400);
+    setcookie("emailcookie", $email, time() + 86400);
+    setcookie("passwordcookie", $pwd, time() + 86400);
+    setcookie("usercookie", $user, time() + 86400);
   }
 
   if ($user == 'Teacher') {
@@ -142,6 +167,7 @@ if (isset($_REQUEST['login'])) {
         if (password_verify($pwd, $row[20])) {
           $_SESSION['email'] = $email;
           $_SESSION['Id'] = $row['Id'];
+          $_SESSION['Inst_id'] = $row['Inst_id'];
           echo "<script>window.location.href='../teacher/teacher-home.php';</script>";
         } else {
           echo "<script>Swal.fire({

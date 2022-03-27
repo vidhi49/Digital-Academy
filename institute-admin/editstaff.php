@@ -346,6 +346,8 @@ if (isset($_POST['submit'])) {
         Cno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Doj='$doj', Stype='$stype',Desgination='$designation', Bloodgroup='$bloodgroup',
         Profile='$newimgname' where Id='$id'";
         // echo $q;
+        $q1="update class_tbl set Class_teacher='$sname' where Teacher_id='$id' AND Insti_id='$inst_id'";
+        $res1=mysqli_query($con,$q1);
         $res = mysqli_query($con, $q);
         if ($res) {
 
@@ -360,6 +362,8 @@ if (isset($_POST['submit'])) {
         $q = "update staff_tbl set Name='$sname', Gender='$gender' ,Dob='$dob',
         Cno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Doj='$doj', Stype='$stype',Desgination='$designation', Bloodgroup='$bloodgroup'
          where Id='$id'";
+         $q1="update class_tbl set Class_teacher='$sname' where Teacher_id='$id' AND Insti_id='$inst_id'";
+        $res1=mysqli_query($con,$q1);
         $res = mysqli_query($con, $q);
         if ($res) {
             echo "<script type = \"text/javascript\">

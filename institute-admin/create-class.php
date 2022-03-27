@@ -114,11 +114,11 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
   <link href=" css/ruang-admin.min.css" rel="stylesheet"> -->
   <script>
-  $(document).ready(function() {
-    // $(".container").fadeIn("slow");
-    $(".institute-content").fadeIn(1000);
-    // alert("hello");
-  });
+    $(document).ready(function() {
+      // $(".container").fadeIn("slow");
+      $(".institute-content").fadeIn(1000);
+      // alert("hello");
+    });
   </script>
 </head>
 <html>
@@ -152,22 +152,16 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
             <div class="row">
               <div class="form-group row">
                 <div class="col-sm-4">
-                  <label class="form-control-label p-2 float-left">Class Name <span
-                      class="text-danger ml-2">*</span></label>
-                  <input type="text" class="form-control" name="Name"
-                    value="<?php if (isset($row['Name'])) echo $row['Name']; ?>" placeholder="Class Name" required>
+                  <label class="form-control-label p-2 float-left">Class Name <span class="text-danger ml-2">*</span></label>
+                  <input type="text" class="form-control" name="Name" value="<?php if (isset($row['Name'])) echo $row['Name']; ?>" placeholder="Class Name" required>
                 </div>
                 <div class="col-sm-4">
                   <label class="form-control-label p-2">Class Section <span class="text-danger ml-2"> *</span></label>
-                  <input type="text" class="form-control" name="Section"
-                    value="<?php if (isset($row['Section'])) echo $row['Section']; ?>" placeholder="Class Section"
-                    required>
+                  <input type="text" class="form-control" name="Section" value="<?php if (isset($row['Section'])) echo $row['Section']; ?>" placeholder="Class Section" required>
                 </div>
                 <div class="col-sm-4">
                   <label class="form-control-label p-2">Student Limit <span class="text-danger ml-2"> *</span></label>
-                  <input type="number" class="form-control" name="Stud_limit"
-                    value="<?php if (isset($row['Stud_limit'])) echo $row['Stud_limit']; ?>" required
-                    placeholder="Student Limit">
+                  <input type="number" class="form-control" name="Stud_limit" value="<?php if (isset($row['Stud_limit'])) echo $row['Stud_limit']; ?>" required placeholder="Student Limit">
                 </div>
               </div>
             </div>
@@ -175,12 +169,12 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
             if (isset($Id)) {
 
             ?>
-            <button type="submit" name="update" class="btn btn-warning">Update</button>
+              <button type="submit" name="update" class="btn btn-warning">Update</button>
             <?php
             } else {
 
             ?>
-            <button type="submit" name="save" class="btn btn-primary MT-2">Save</button>
+              <button type="submit" name="save" class="btn btn-primary MT-2">Save</button>
             <?php
             }
             ?>
@@ -253,10 +247,10 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
   <!-- Page level custom scripts -->
   <script>
-  $(document).ready(function() {
-    $('#dataTable').DataTable(); // ID From dataTable 
-    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-  });
+    $(document).ready(function() {
+      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
   </script>
 
 </body>
