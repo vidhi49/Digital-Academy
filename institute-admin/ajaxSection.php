@@ -10,7 +10,7 @@ include '../connect.php';
 
         // echo '
         // <select required name="section" class="form-control mb-3">';
-        echo'<option value="">--Select Section--</option>';
+        echo'<option value="" selected hidden>--Select Section--</option>';
         while ($row = mysqli_fetch_array($queryss)) {
         echo'<option value="'.$row['Id'].'" >'.$row['Section'].'</option>';
         

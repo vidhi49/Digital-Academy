@@ -230,6 +230,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="#" class="nav-link">
+          
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Dashbord</span>
         </a>
@@ -242,7 +243,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="change-password.php" class="nav-link">
-          <i class='fa fa-check'> </i>
+          <i class='fa fa-key'> </i>
           <span class="links_name d-sm-inline">Change Password</span>
         </a>
         <!-- <span class="tooltip">Register</span> -->
@@ -254,7 +255,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="staff-registration.php" class="nav-link">
-          <i class='fa fa-check'> </i>
+          <i class='fa fa-registered'> </i>
           <span class="links_name d-sm-inline">Register staff</span>
         </a>
         <!-- <span class="tooltip">Register</span> -->
@@ -266,7 +267,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="student-registration.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-registered'></i>
           <span class="links_name d-sm-inline">Register student</span>
         </a>
         <!-- <span class="tooltip">Register</span> -->
@@ -278,7 +279,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="create-class.php " class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-plus'></i>
           <span class="links_name d-sm-inline">Create Class</span>
         </a>
         <!-- <span class="tooltip">Create</span> -->
@@ -289,7 +290,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="create-subject.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-plus'></i>
           <span class="links_name d-sm-inline">Create Subject</span>
         </a>
         <!-- <span class="tooltip">Create</span> -->
@@ -300,7 +301,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="manage-student.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-tasks'></i>
           <span class="links_name d-sm-inline">Manage student</span>
         </a>
         <!-- <span class="tooltip">Manage</span> -->
@@ -311,7 +312,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="manage-staff.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-tasks'></i>
           <span class="links_name d-sm-inline">Manage staff</span>
         </a>
         <!-- <span class="tooltip">Manage</span> -->
@@ -323,7 +324,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="studentfilter.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-file'></i>
           <span class="links_name d-sm-inline">View Student</span>
         </a>
         <!-- <span class="tooltip">View</span> -->
@@ -334,7 +335,7 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="stafffilter.php" class="nav-link">
-          <i class='fa fa-check'></i>
+          <i class='fa fa-file'></i>
           <span class="links_name d-sm-inline">View staff</span>
         </a>
         <!-- <span class="tooltip">View</span> -->
@@ -346,8 +347,19 @@ include("../connect.php");
         <b></b>
         <b></b>
         <a href="viewclassattedance.php" class="nav-link">
-          <i class='fa fa-check'></i>
-          <span class="links_name d-sm-inline">Attedence</span>
+          <i class='fa fa-clock'></i>
+          <span class="links_name d-sm-inline">Class Attedence</span>
+        </a>
+        <!-- <span class="tooltip">Attedance</span> -->
+      </li>
+      <li <?php if (($a == 'viewstudentattedance')) {
+            echo "class='list active nav-item '";
+          } ?>  >
+        <b></b>
+        <b></b>
+        <a href="viewstudentattedance.php" class="nav-link">
+          <i class='fa fa-clock'></i>
+          <span class="links_name d-sm-inline">Stud Attedance</span>
         </a>
         <!-- <span class="tooltip">Attedance</span> -->
       </li>

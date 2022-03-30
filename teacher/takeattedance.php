@@ -131,16 +131,18 @@ if (isset($_REQUEST['take'])) {
 
             $q = "insert into attendance_tbl values(null,'$inst_id','$value','$r[0]','$teacher_id','1','$date')";
             $result1 = mysqli_query($con, $q);
+            
         }
         $q1 = "select * from class_wise_student where Inst_id='$inst_id' and Class_id='$r[0]'";
         $res1 = mysqli_query($con, $q1);
         while ($r1 = mysqli_fetch_array($res1)) {
-            $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$r[0]' AND Grno ='$r1[7]'";
+            $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$r[0]' AND Grno ='$r1[7]' AND Date='$date'";
             $res2 = mysqli_query($con, $q2);
             $nor = mysqli_num_rows($res2);
             if ($nor == 0) {
                 $q = "insert into attendance_tbl values(null,'$inst_id','$r1[7]','$r[0]','$teacher_id','0','$date')";
                 $result1 = mysqli_query($con, $q);
+                
             }
         }
         echo "<script> 
