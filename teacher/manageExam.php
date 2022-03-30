@@ -13,11 +13,10 @@ $inst_id = $_SESSION['Inst_id'];
   <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
   <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
   <script reqlink rel="stylesheet" type="text/css"
-                    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css">
-                  </script>
+    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css">
+  </script>
 
-                  <script type="text/javascript"
-                    src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
 
   <script
     src="https://www.jqueryscript.net/demo/Creating-A-Live-Editable-Table-with-jQuery-Tabledit/jquery.tabledit.js">
@@ -99,7 +98,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               $cnt++;
               echo "<tr>
               <td >$cnt</td>
-              <input type='hidden' class='eid' value='".$r[0]."'/>
+              <input type='hidden' class='eid' value='" . $r[0] . "'/>
               
               <td class='examname'>$r[2]</td>
               <td>$cname[2]</td>
@@ -169,7 +168,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                <select required class="form-select w-100 " name="subject" id='subject' onchange='subcodeDropdown(this.value)' required>
+                  <select required class="form-select w-100 " name="subject" id='subject'
+                    onchange='subcodeDropdown(this.value)' required>
                     <option value="">----- Select Subject -----</option>
                   </select>
                   <span id="subjectmsg"></span>
@@ -278,15 +278,27 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $section = $_POST['section'];
     $subjectId = $_POST['subjectId'];
     $examId = $_POST['examId'];
-    print_r($selectedQue);
+
+    $exQ = "select * from examQuestion_tbl where ExamId='$examId' ";
+    $resultSet = mysqli_query($con, $exQ);
+    $nor = mysqli_num_rows($resultSet);
+    // print_r($selectedQue);
     foreach ($selectedQue as $que) {
-      // echo "<br>" . $que;
-      $examQue = "insert into examQuestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que')";
-      if (mysqli_query($con, $examQue)) {
-        // echo "<script> alert('Thank You for Registration');</script>";
-      } else {
-        die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
+      if ($nor == 0) {
+        while ($res4 = mysqli_fetch_array($resultSet)) {
+          if ($res4[5] == $que) {
+          } else {
+            $examQue = "insert into examQuestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que')";
+            if (mysqli_query($con, $examQue)) {
+              // echo "<script> alert('Thank You for Registration');</script>";
+            } else {
+              die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
+            }
+          }
+        }
       }
+      // echo "<br>" . $que;
+
     }
     // $examQue = "insert into examQuestion_tbl values(null,'','$examId',null)";
     // echo $section, $subjectId;
@@ -319,7 +331,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
       }
     };
     xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
-      subjectId,
+      subjectId + "&examId=" + id,
       true);
     xmlhttp.send();
 
@@ -416,121 +428,56 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   //     ]
   //   },
   // });
-  $('#ExamInfoTbl').on('click','.edit',function(){
-    examname=$(".examname").html();
-    $(this).parent().parent().find(".examname").html("<input type='text' value='"+examname+"' class='form-control exNameupdate'>");
-    examdate=$(".examdate").html();
-    $(this).parent().parent().find(".examdate").html("<input type='date' value='"+examdate+"' class='form-control exDateupdate'>");
-    examtime=$(".examtime").html();
-    $(this).parent().parent().find(".examtime").html("<input type='time' value='"+examtime+"' class='form-control exTimeupdate'>");
-    
+  $('#ExamInfoTbl').on('click', '.edit', function() {
+    examname = $(".examname").html();
+    $(this).parent().parent().find(".examname").html("<input type='text' value='" + examname +
+      "' class='form-control exNameupdate'>");
+    examdate = $(".examdate").html();
+    $(this).parent().parent().find(".examdate").html("<input type='date' value='" + examdate +
+      "' class='form-control exDateupdate'>");
+    examtime = $(".examtime").html();
+    $(this).parent().parent().find(".examtime").html("<input type='time' value='" + examtime +
+      "' class='form-control exTimeupdate'>");
+
     $(".edit").attr('class', 'update');
     $(".update").html("<i class='fa fa-check fs-5 text-primary'>");
     return false;
   });
-  $('#ExamInfoTbl').on('click','.update',function(){
-    examname=$(".exNameupdate").val();
-    examid=$(".eid").val();
-    examdate=$(".exDateupdate").val();
-    examtime=$(".exTimeupdate").val();
+
+  $('#ExamInfoTbl').on('click', '.update', function() {
+    examname = $(".exNameupdate").val();
+    examid = $(".eid").val();
+    examdate = $(".exDateupdate").val();
+    examtime = $(".exTimeupdate").val();
+    // alert(examid);
     $.ajax({
-				type: 'POST',
-				url: 'updateexam.php',
-				data: "update='update'&eid=" + examid + "&examname="+examname + "&examdate="+examdate + "&examtime="+examtime,
-				success: function (response) {
-					alert(response);
-          return false;
-				}
-			});
+      type: 'POST',
+      url: 'updateexam.php',
+      data: "update='update'&eid=" + examid + "&examname=" + examname + "&examdate=" + examdate + "&examtime=" +
+        examtime,
+      success: function(response) {
+        alert(response);
+        // return false;
+      }
+    });
 
 
   });
-  $('#ExamInfoTbl').on('change','.exDateupdate',function(){
-    examid=$(".eid").val();
-    examdate=$(".exDateupdate").val();
-    $.ajax({
-				type: 'POST',
-				url: 'updateexam.php',
-				data: "check='check'&eid=" + examid +  "&examdate="+examdate,
-				success: function (response) {
-					alert(response);
-          return false;
-				}
-			});
-		
-
-
-  });
-  
-  // var editor; // use a global for the submit and return data rendering in the examples
-
-  // $(document).ready(function() {
-  //   editor = new $.fn.dataTable.Editor({
-  //     ajax: "ajaxEditExam.php",
-  //     table: "#ExamInfoTbl",
-  //     fields: [{
-  //       label: "Exam Name:",
-  //       name: "exam_name"
-  //     }, {
-  //       label: "Exam Date:",
-  //       name: "Exam_date",
-  //       type: "datetime"
-  //     }, {
-  //       label: "Status:",
-  //       name: "status"
-  //     }, {
-  //       label: "Exam_Time:",
-  //       name: "exam_time",
-  //       type: "time"
-  //     }, ]
-  //   });
-  //   $('#ExamInfoTbl').on('click', 'tbody td:not(:first-child)', function(e) {
-  //     editor.inline(this);
+  // $('#ExamInfoTbl').on('change', '.exDateupdate', function() {
+  //   examid = $(".eid").val();
+  //   examdate = $(".exDateupdate").val();
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: 'updateexam.php',
+  //     data: "check='check'&eid=" + examid + "&examdate=" + examdate,
+  //     success: function(response) {
+  //       alert(response);
+  //       return false;
+  //     }
   //   });
 
-  //   $('#ExamInfoTbl').DataTable({
-  //     dom: "Bfrtip",
-  //     ajax: "ajaxEditExam.php",
-  //     order: [
-  //       [1, 'asc']
-  //     ],
-  //     columns: [{
-  //         data: null,
-  //         defaultContent: '',
-  //         className: 'select-checkbox',
-  //         orderable: false
-  //       },
-  //       {
-  //         data: "Exam_Name"
-  //       },
-  //       {
-  //         data: "Exam_Date"
-  //       },
-  //       {
-  //         data: "Status"
-  //       },
-  //       {
-  //         data: "Exam_Time"
-  //       }
-  //     ],
-  //     select: {
-  //       style: 'os',
-  //       selector: 'td:first-child'
-  //     },
-  //     buttons: [{
-  //         extend: "create",
-  //         editor: editor
-  //       },
-  //       {
-  //         extend: "edit",
-  //         editor: editor
-  //       },
-  //       {
-  //         extend: "remove",
-  //         editor: editor
-  //       }
-  //     ]
-  //   });
+
+
   // });
   </script>
 </body>

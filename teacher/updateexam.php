@@ -15,8 +15,8 @@ if (isset($_REQUEST['update'])) {
         echo "Error";
     }
 }
-if (isset($_REQUEST['check'])) {
-    $eid = $_REQUEST['eid'];
-    $edate = $_REQUEST['examdate'];
+// if (isset($_REQUEST['check'])) {
+//     $eid = $_REQUEST['eid'];
+//     $edate = $_REQUEST['examdate'];
     
-}
+// }
