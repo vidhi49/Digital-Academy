@@ -80,9 +80,8 @@ $inst_id = $_SESSION['inst_id'];
                         <!-- <div id="selectclass" style="display: none;"> -->
                         <div id="selectclass">
                             <div>
-                                <h1 class="fs-2 text-dark ">Select Class Attedance</h1>
-                                <hr>
-
+                                <h1 class="fs-2 text-dark ">Student Attedance</h1>
+                                <hr> 
                             </div>
                             <br>
                             <div class="form-group row">
@@ -95,7 +94,7 @@ $inst_id = $_SESSION['inst_id'];
                                     $num = $result->num_rows;
                                     if ($num > 0) {
                                         echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
-                                        echo '<option value="">--Select Class--</option>';
+                                        echo '<option value="" selected hidden>--Select Class--</option>';
                                         while ($rows = $result->fetch_assoc()) {
                                             echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
                                         }
@@ -106,13 +105,9 @@ $inst_id = $_SESSION['inst_id'];
                                 <div class="col">
                                     <label class="form-control-label ml-2 p-1">Class Section<span class="text-danger ml-2">*</span></label>
                                     <?php
-
-
                                     echo ' <select    name="section" id="section"  class="form-control form-control-lg m-1" >';
-                                    echo "<option value=''>--Select Section--</option>";
+                                    echo "<option value='' >--Select Section--</option>";
                                     echo "</select>";
-
-
                                     ?>
 
                                 </div>

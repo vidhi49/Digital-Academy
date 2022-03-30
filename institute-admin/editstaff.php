@@ -332,6 +332,7 @@ if (isset($_POST['submit'])) {
     $doj = $_POST['doj'];
     $aca_year = $_POST['aca_year'];
     $profilename = $r['Profile'];
+
     if (!empty($_FILES['photo']['name'])) {
         $imgname = $_FILES['photo']['name'];
         $tmpname = $_FILES['photo']['tmp_name'];
@@ -340,7 +341,7 @@ if (isset($_POST['submit'])) {
         $newimgname = $inst_id . $r['Id'];
         $newimgname .= "." . $imageExtension;
         if ($profilename != 'default.jpg') {
-            unlink("staff_profile/" . $newimgname);
+            unlink("staff_profile/" . $profilename);
         }
         $q = "update staff_tbl set Name='$sname', Gender='$gender' ,Dob='$dob',
         Cno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Doj='$doj', Stype='$stype',Desgination='$designation', Bloodgroup='$bloodgroup',

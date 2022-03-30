@@ -359,6 +359,9 @@ if (isset($_POST['submit'])) {
     // echo $query;
     $re=mysqli_fetch_array($query);
     $sec= $re['Section'];
+    $que="select * from student_tbl where Id='$id' AND Inst_id='$inst_id'";
+    $result1=mysqli_query($con,$que);
+    $r=mysqli_fetch_array($result1);
     if (!empty($_FILES['photo']['name'])) {
         $imgname = $_FILES['photo']['name'];
 
@@ -370,13 +373,15 @@ if (isset($_POST['submit'])) {
 
         $newimgname = $inst_id . $r['Grno'];
         $newimgname .= "." . $imageExtension;
-        unlink("student_profile/" . $newimgname);
+        unlink("student_profile/" . $r['Profile']);
+        
         // echo "<script>reload(student_profile/$newimgname)</script>";
         $q = "update student_tbl set Name='$sname',Father_name='$fname', Mother_name='$mname', Gender='$gender' ,Dob='$dob',
         Mobileno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Class='$class', Section='$sec',Class_id='$class_id', Bloodgroup='$bloodgroup',
          Profile='$newimgname' where Id='$id'";
         // echo $q;
         $res = mysqli_query($con, $q);
+        
         if ($res) {
             // echo "<script>reload(student_profile/$newimgname)</script>";
             move_uploaded_file($tmpname, "student_profile/" . $newimgname);
