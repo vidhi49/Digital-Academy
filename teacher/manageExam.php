@@ -8,12 +8,15 @@ $inst_id = $_SESSION['Inst_id'];
 <head>
   <script type="text/javascript" src="teacher.js"></script>
   <script src="../js/jquery-3.1.1.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css" />
-
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+  <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+  <script
+    src="https://www.jqueryscript.net/demo/Creating-A-Live-Editable-Table-with-jQuery-Tabledit/jquery.tabledit.js">
+  </script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -51,7 +54,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
         </div>
         <hr>
-        <table class="table table-hover" id="data_table">
+        <table class="table table-hover" id="ExamInfoTbl">
           <thead>
             <tr class="navy-blue">
               <!-- <th scope="th-md" style="width: 1%;"></th> -->
@@ -393,23 +396,89 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     })
   });
 
-  $(document).ready(function() {
-    $('#data_table').Tabledit({
-      deleteButton: false,
-      editButton: false,
-      columns: {
-        identifier: [0, 'id'],
-        editable: [
-          [2, 'examName'],
-          [6, 'examDate'],
-          [7, 'status'],
-          [8, 'examTime']
-        ]
-      },
-      hideIdentifier: true,
-      url: 'ajaxEditExam.php'
-    });
+  $('#ExamInfoTbl').Tabledit({
+    editButton: false,
+    removeButton: false,
+    columns: {
+      identifier: [0, 'id'],
+      editable: [
+        [1, 'Exam Name'],
+        [5, 'Exam Date'],
+        [6, 'Status'],
+        [7, 'Exam Time']
+      ]
+    },
   });
+  // var editor; // use a global for the submit and return data rendering in the examples
+
+  // $(document).ready(function() {
+  //   editor = new $.fn.dataTable.Editor({
+  //     ajax: "ajaxEditExam.php",
+  //     table: "#ExamInfoTbl",
+  //     fields: [{
+  //       label: "Exam Name:",
+  //       name: "exam_name"
+  //     }, {
+  //       label: "Exam Date:",
+  //       name: "Exam_date",
+  //       type: "datetime"
+  //     }, {
+  //       label: "Status:",
+  //       name: "status"
+  //     }, {
+  //       label: "Exam_Time:",
+  //       name: "exam_time",
+  //       type: "time"
+  //     }, ]
+  //   });
+  //   $('#ExamInfoTbl').on('click', 'tbody td:not(:first-child)', function(e) {
+  //     editor.inline(this);
+  //   });
+
+  //   $('#ExamInfoTbl').DataTable({
+  //     dom: "Bfrtip",
+  //     ajax: "ajaxEditExam.php",
+  //     order: [
+  //       [1, 'asc']
+  //     ],
+  //     columns: [{
+  //         data: null,
+  //         defaultContent: '',
+  //         className: 'select-checkbox',
+  //         orderable: false
+  //       },
+  //       {
+  //         data: "Exam_Name"
+  //       },
+  //       {
+  //         data: "Exam_Date"
+  //       },
+  //       {
+  //         data: "Status"
+  //       },
+  //       {
+  //         data: "Exam_Time"
+  //       }
+  //     ],
+  //     select: {
+  //       style: 'os',
+  //       selector: 'td:first-child'
+  //     },
+  //     buttons: [{
+  //         extend: "create",
+  //         editor: editor
+  //       },
+  //       {
+  //         extend: "edit",
+  //         editor: editor
+  //       },
+  //       {
+  //         extend: "remove",
+  //         editor: editor
+  //       }
+  //     ]
+  //   });
+  // });
   </script>
 </body>
 
