@@ -12,6 +12,13 @@ $inst_id = $_SESSION['Inst_id'];
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
   <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+  <script reqlink rel="stylesheet" type="text/css"
+                    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css">
+                  </script>
+
+                  <script type="text/javascript"
+                    src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
+
   <script
     src="https://www.jqueryscript.net/demo/Creating-A-Live-Editable-Table-with-jQuery-Tabledit/jquery.tabledit.js">
   </script>
@@ -91,16 +98,20 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
 
               $cnt++;
               echo "<tr>
-              <td>$cnt</td>
-              <td>$r[2]</td>
+              <td >$cnt</td>
+              <input type='hidden' class='eid' value='".$r[0]."'/>
+              
+              <td class='examname'>$r[2]</td>
               <td>$cname[2]</td>
               <td>$r[4]</td>
               <td>$sname[3]</td>
-              <td>$r[6]</td>
+              <td class='examdate'>$r[6]</td>
               <td><span class='badge badge-warning badge-pill'>$r[7]</span></td>
-              <td>$r[8]</td>
+              <td class='examtime'>$r[8]</td>
               <td class='text-center'><a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
-              <a  href=''><i class='fa fa-edit fs-5 text-primary'></i></a></td>
+              <a  href='' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
+              
+              </td>
               <td><a  href='' data-id='$r[0]'  data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
             <a role='button' class='btn p-2'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
@@ -158,13 +169,9 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                  <script reqlink rel="stylesheet" type="text/css"
-                    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css">
-                  </script>
-
-                  <script type="text/javascript"
-                    src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
-
+                <select required class="form-select w-100 " name="subject" id='subject' onchange='subcodeDropdown(this.value)' required>
+                    <option value="">----- Select Subject -----</option>
+                  </select>
                   <span id="subjectmsg"></span>
                 </div>
               </div>
@@ -396,19 +403,65 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     })
   });
 
-  $('#ExamInfoTbl').Tabledit({
-    editButton: false,
-    removeButton: false,
-    columns: {
-      identifier: [0, 'id'],
-      editable: [
-        [1, 'Exam Name'],
-        [5, 'Exam Date'],
-        [6, 'Status'],
-        [7, 'Exam Time']
-      ]
-    },
+  // $('#ExamInfoTbl').Tabledit({
+  //   editButton: false,
+  //   removeButton: false,
+  //   columns: {
+  //     identifier: [0, 'id'],
+  //     editable: [
+  //       [1, 'Exam Name'],
+  //       [5, 'Exam Date'],
+  //       [6, 'Status'],
+  //       [7, 'Exam Time']
+  //     ]
+  //   },
+  // });
+  $('#ExamInfoTbl').on('click','.edit',function(){
+    examname=$(".examname").html();
+    $(this).parent().parent().find(".examname").html("<input type='text' value='"+examname+"' class='form-control exNameupdate'>");
+    examdate=$(".examdate").html();
+    $(this).parent().parent().find(".examdate").html("<input type='date' value='"+examdate+"' class='form-control exDateupdate'>");
+    examtime=$(".examtime").html();
+    $(this).parent().parent().find(".examtime").html("<input type='time' value='"+examtime+"' class='form-control exTimeupdate'>");
+    
+    $(".edit").attr('class', 'update');
+    $(".update").html("<i class='fa fa-check fs-5 text-primary'>");
+    return false;
   });
+  $('#ExamInfoTbl').on('click','.update',function(){
+    examname=$(".exNameupdate").val();
+    examid=$(".eid").val();
+    examdate=$(".exDateupdate").val();
+    examtime=$(".exTimeupdate").val();
+    $.ajax({
+				type: 'POST',
+				url: 'updateexam.php',
+				data: "update='update'&eid=" + examid + "&examname="+examname + "&examdate="+examdate + "&examtime="+examtime,
+				success: function (response) {
+					alert(response);
+          return false;
+				}
+			});
+
+
+  });
+  $('#ExamInfoTbl').on('change','.exDateupdate',function(){
+    examid=$(".eid").val();
+    examdate=$(".exDateupdate").val();
+    $.ajax({
+				type: 'POST',
+				url: 'updateexam.php',
+				data: "check='check'&eid=" + examid +  "&examdate="+examdate,
+				success: function (response) {
+					alert(response);
+          return false;
+				}
+			});
+		
+
+
+  });
+  
   // var editor; // use a global for the submit and return data rendering in the examples
 
   // $(document).ready(function() {
