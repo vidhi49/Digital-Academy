@@ -8,6 +8,13 @@ $inst_id = $_SESSION['Inst_id'];
 <head>
   <script type="text/javascript" src="teacher.js"></script>
   <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css" />
+
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
+
 </head>
 
 <?php
@@ -36,14 +43,15 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
             <h2 class="navy-blue"> Manage Exam </h2>
           </div>
           <div class="col-sm-6 d-flex justify-content-end">
-            <button type="button" class="btn bg-navy-blue text-white m-2" data-toggle="tooltip" title="Add Exam" data-bs-toggle="modal" data-bs-target="#addExam">
+            <button type="button" class="btn bg-navy-blue text-white m-2" data-toggle="tooltip" title="Add Exam"
+              data-bs-toggle="modal" data-bs-target="#addExam">
 
               <i class="fas fa-plus fs-6 "></i>
             </button>
           </div>
         </div>
         <hr>
-        <table class="table table-hover">
+        <table class="table table-hover" id="data_table">
           <thead>
             <tr class="navy-blue">
               <!-- <th scope="th-md" style="width: 1%;"></th> -->
@@ -65,14 +73,26 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
             $res = mysqli_query($con, $q);
             $nor = mysqli_num_rows($res);
             $cnt = 0;
+
             while ($r = mysqli_fetch_array($res)) {
+
+              // ---Class name
+              $cq = "select * from class_tbl where Id=$r[3]";
+              $res1 = mysqli_query($con, $cq);
+              $cname = mysqli_fetch_array($res1);
+
+              // ---subject name
+              $sq = "select * from subject_tbl where Id=$r[5]";
+              $res2 = mysqli_query($con, $sq);
+              $sname = mysqli_fetch_array($res2);
+
               $cnt++;
               echo "<tr>
               <td>$cnt</td>
               <td>$r[2]</td>
-              <td>$r[3]</td>
+              <td>$cname[2]</td>
               <td>$r[4]</td>
-              <td>$r[5]</td>
+              <td>$sname[3]</td>
               <td>$r[6]</td>
               <td><span class='badge badge-warning badge-pill'>$r[7]</span></td>
               <td>$r[8]</td>
@@ -91,7 +111,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     </div>
   </div>
   <!--------------Add Exam Modal --------------->
-  <div class="modal fade" id="addExam" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="addExam" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -108,7 +129,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
             </div>
             <div class="row p-2 mt-2">
               <div class="col-sm-4">
-                <select required id="class" class="form-select w-100" aria-label="Default select example" onchange="sectionDropdown(this.value);subjectDropdown(this.value)" name="class" required>
+                <select required id="class" class="form-select w-100" aria-label="Default select example"
+                  onchange="sectionDropdown(this.value);subjectDropdown(this.value)" name="class" required>
                   <?php
                   $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
                   $result = $con->query($qry);
@@ -133,9 +155,13 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                  <select required class="form-select w-100 " name="subject" id='subject' onchange='subcodeDropdown(this.value)' required>
-                    <option value="">----- Select Subject -----</option>
-                  </select>
+                  <script reqlink rel="stylesheet" type="text/css"
+                    href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.css">
+                  </script>
+
+                  <script type="text/javascript"
+                    src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/datatables.min.js"></script>
+
                   <span id="subjectmsg"></span>
                 </div>
               </div>
@@ -169,7 +195,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     </div>
   </div>
   <!-------------- Select Question Modal ---------------->
-  <div class="modal fade" id="QueListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal fade" id="QueListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
       <div class="modal-content" style="height: fit-content;">
         <div class="modal-header">
@@ -241,10 +268,10 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $section = $_POST['section'];
     $subjectId = $_POST['subjectId'];
     $examId = $_POST['examId'];
-    // print_r($selectedQue);
+    print_r($selectedQue);
     foreach ($selectedQue as $que) {
       // echo "<br>" . $que;
-      $examQue = "insert into examQuestion_tbl values(null,'$que','$examId','1')";
+      $examQue = "insert into examQuestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que')";
       if (mysqli_query($con, $examQue)) {
         // echo "<script> alert('Thank You for Registration');</script>";
       } else {
@@ -257,113 +284,132 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   }
   ?>
   <script>
-    $('#QueListModal').on('show.bs.modal', function(e) {
-      var opener = e.relatedTarget;
-      var id = $(opener).data('id');
-      var classId = $(opener).data('classid');
-      var section = $(opener).data('section');
-      var subjectId = $(opener).data('subjectid');
-      // console.log(subjectId);
-      $('#selectQueForm').find('[name="classId"]').val(classId);
-      $('#selectQueForm').find('[name="section"]').val(section);
-      $('#selectQueForm').find('[name="subjectId"]').val(subjectId);
-      $('#selectQueForm').find('[name="examId"]').val(id);
+  $('#QueListModal').on('show.bs.modal', function(e) {
+    var opener = e.relatedTarget;
+    var id = $(opener).data('id');
+    var classId = $(opener).data('classid');
+    var section = $(opener).data('section');
+    var subjectId = $(opener).data('subjectid');
+    // console.log(subjectId);
+    $('#selectQueForm').find('[name="classId"]').val(classId);
+    $('#selectQueForm').find('[name="section"]').val(section);
+    $('#selectQueForm').find('[name="subjectId"]').val(subjectId);
+    $('#selectQueForm').find('[name="examId"]').val(id);
 
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("QueList").innerHTML = this.responseText;
       }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("QueList").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
-        subjectId,
-        true);
-      xmlhttp.send();
+    };
+    xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
+      subjectId,
+      true);
+    xmlhttp.send();
 
 
-    });
+  });
   </script>
   <script>
-    $("#Exam").click(function() {
-      if ($("#startDate").val() != "") {
+  $("#Exam").click(function() {
+    // console.log("hello")
+    if ($("#startDate").val() != "") {
 
-        if ($("#class").val() == "") {
-          alert('Please Select Class');
-          $("#class").focus();
+      if ($("#class").val() == "") {
+        alert('Please Select Class');
+        $("#class").focus();
+        return false;
+      } else if ($("#txtHint").val() == "") {
+        alert('Please Select Section');
+        $("#txtHint").focus();
+        return false;
+      } else if ($("#subject").val() == "") {
+        alert('Please Select Subject');
+        $("#subject").focus();
+        return false;
+      } else {
+        // $.ajax({
+        //   type: 'POST',
+        //   url: 'ajaxExamvalidate.php',
+        //   // data :"class=" + $('#class').val(),
+        //   data: "class=" + $('#class').val() + "&section=" + $("#txtHint").val() + "&subject=" + $("#subject").val() + "&date=" + $("#startDate").val(),
+        //   success: function(response) {
+        //       alert(response); 
+        //   }
+        // });
+        if ($("#examdate").text() != "") {
+          alert($("#examdate").text());
+          $("#startDate").focus;
           return false;
-        } else if ($("#txtHint").val() == "") {
-          alert('Please Select Section');
-          $("#txtHint").focus();
-          return false;
-        } else if ($("#subject").val() == "") {
-          alert('Please Select Subject');
-          $("#subject").focus();
-          return false;
-        } 
-        else {
-          // $.ajax({
-          //   type: 'POST',
-          //   url: 'ajaxExamvalidate.php',
-          //   // data :"class=" + $('#class').val(),
-          //   data: "class=" + $('#class').val() + "&section=" + $("#txtHint").val() + "&subject=" + $("#subject").val() + "&date=" + $("#startDate").val(),
-          //   success: function(response) {
-          //       alert(response); 
-          //   }
-          // });
-          if($("#examdate").text() != "")
-          {
-            alert($("#examdate").text());
-            $("#startDate").focus;
-            return false;
-          }
-          
-
         }
 
 
       }
 
-    });
-    $('#startDate,#subject,#txtHint,#class').on('change', function () {
-      if($("#class").val() != "" && $("#subject").val() != "" && $("#txtHint").val() != ""){
-        $.ajax({
-            type: 'POST',
-            url: 'ajaxExamvalidate.php',
-            // data :"class=" + $('#class').val(),
-            data: "class=" + $('#class').val() + "&section=" + $("#txtHint").val() + "&subject=" + $("#subject").val() + "&date=" + $("#startDate").val(),
-            success: function(response) {
-              $('#examdate').html(response).css('color', 'red');
-            }
-          });
-      }
-     
-          
-        
-    });
-    $(function() {
-      var count = 0;
-      console.log('111');
-      $('.cntCheck').on('change', function() {
-        console.log('checked');
-        if (this.checked) {
-          count++;
-          $('cntCheck').text(count);
-          // console.log(count);
-          // document.getElementById("totQue").ty = count;
-          // document.getElementById("totQue").type = "text";
-          document.getElementById("totQue").innerHTML = count + " Rows Selected";
-        } else {
-          count--;
-          document.getElementById("totQue").innerHTML = count + " Rows Selected";
+
+    }
+
+  });
+  $('#startDate,#subject,#txtHint,#class').on('change', function() {
+    // console.log("ex")
+    if ($("#class").val() != "" && $("#subject").val() != "" && $("#txtHint").val() != "") {
+      $.ajax({
+        type: 'POST',
+        url: 'ajaxExamvalidate.php',
+        // data :"class=" + $('#class').val(),
+        data: "class=" + $('#class').val() + "&section=" + $("#txtHint").val() + "&subject=" + $("#subject")
+          .val() + "&date=" + $("#startDate").val(),
+        success: function(response) {
+          $('#examdate').html(response).css('color', 'red');
         }
-      })
+      });
+    }
+
+
+
+  });
+  $(function() {
+    var count = 0;
+    // console.log('111');
+    $('.cntCheck').on('change', function() {
+      // console.log('checked');
+      if (this.checked) {
+        count++;
+        $('cntCheck').text(count);
+        // console.log(count);
+        // document.getElementById("totQue").ty = count;
+        // document.getElementById("totQue").type = "text";
+        document.getElementById("totQue").innerHTML = count + " Rows Selected";
+      } else {
+        count--;
+        document.getElementById("totQue").innerHTML = count + " Rows Selected";
+      }
     })
+  });
+
+  $(document).ready(function() {
+    $('#data_table').Tabledit({
+      deleteButton: false,
+      editButton: false,
+      columns: {
+        identifier: [0, 'id'],
+        editable: [
+          [2, 'examName'],
+          [6, 'examDate'],
+          [7, 'status'],
+          [8, 'examTime']
+        ]
+      },
+      hideIdentifier: true,
+      url: 'ajaxEditExam.php'
+    });
+  });
   </script>
 </body>
 

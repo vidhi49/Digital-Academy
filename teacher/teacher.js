@@ -85,7 +85,7 @@
 
         }
       };
-      xmlhttp.open("GET", "ajaxSubcode.php?subject=" + str, true);
+      xmlhttp.open("GET", "../institute-admin/ajaxSubcode.php?subject=" + str, true);
       xmlhttp.send();
     }
   }
