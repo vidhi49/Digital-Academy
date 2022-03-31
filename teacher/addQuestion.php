@@ -1,6 +1,8 @@
 <?php
 include('../connect.php');
 // include('../admin/admin-header.php'); 
+$inst_id = $_SESSION['Inst_id'];
+
 ?>
 
 <head>
@@ -167,7 +169,7 @@ if (isset($_POST['submitQue'])) {
   // echo $dynamicOptions;
   $result = mysqli_fetch_array($res);
 
-  $q = "insert into question_tbl values(null,'$Addquestion','$result[0]','$section1','$subjectcode')";
+  $q = "insert into question_tbl values(null,'$Addquestion','$result[0]','$section1','$subjectcode','$inst_id')";
   if (mysqli_query($con, $q)) {
     $qid = mysqli_insert_id($con);
     // echo $qid;
@@ -180,7 +182,7 @@ if (isset($_POST['submitQue'])) {
       $isCorrect =  is_numeric(array_search($x, $correctAnswers)) ? 1 : 0;
 
       if (!empty($_POST[$optname])) {
-        $qans = "insert into answer_tbl values(null,'$_POST[$optname]','$qid',$isCorrect)";
+        $qans = "insert into answer_tbl values(null,'$_POST[$optname]','$qid',$isCorrect,'$inst_id')";
         if (mysqli_query($con, $qans)) {
         } else {
           die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");

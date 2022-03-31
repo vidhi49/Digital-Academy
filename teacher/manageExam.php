@@ -107,11 +107,11 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <td class='examdate'>$r[6]</td>
               <td><span class='badge badge-warning badge-pill'>$r[7]</span></td>
               <td class='examtime'>$r[8]</td>
-              <td class='text-center'><a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
-              <a  href='' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
-              
+              <td class='text-center'>
+              <a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
+              <a  href='?action=edit&ExamId=" . $r[0] . "' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
               </td>
-              <td><a  href='' data-id='$r[0]'  data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
+              <td><a  href='' data-id='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
             <a role='button' class='btn p-2'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a></td>
@@ -227,11 +227,9 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
             <div id="QueList">
 
             </div>
-            <div>
-              <label id="totQue" name="totalQue" class="navy-blue font-weight-bold float-right mr-4 "></label>
-            </div>
-
-
+            <!-- <div>
+              <label id='totQue' name='totQue' class='navy-blue font-weight-bold float-right mr-4 '></label>";
+            </div> -->
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -279,32 +277,63 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $subjectId = $_POST['subjectId'];
     $examId = $_POST['examId'];
 
-    $exQ = "select * from examQuestion_tbl where ExamId='$examId' ";
-    $resultSet = mysqli_query($con, $exQ);
-    $nor = mysqli_num_rows($resultSet);
-    // print_r($selectedQue);
-    foreach ($selectedQue as $que) {
-      if ($nor == 0) {
-        while ($res4 = mysqli_fetch_array($resultSet)) {
-          if ($res4[5] == $que) {
-          } else {
-            $examQue = "insert into examQuestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que')";
-            if (mysqli_query($con, $examQue)) {
-              // echo "<script> alert('Thank You for Registration');</script>";
-            } else {
-              die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
-            }
-          }
+    $question = array();
+    $q = "select * from examquestion_tbl where ExamId='$examId' and Inst_Id='$inst_id'";
+    $res = mysqli_query($con, $q);
+    $nor = mysqli_num_rows($res);
+    if ($nor == 0) {
+      foreach ($selectedQue as $que) {
+        $marks = $_POST['marks_' . $que];
+
+        $examQue = "insert into examquestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que','$marks','$inst_id')";
+        $res1 = mysqli_query($con, $examQue);
+      }
+    } else {
+      foreach ($selectedQue as $que) {
+        $marks = $_POST['marks_' . $que];
+        array_push($question, $que);
+        $q = "select * from examquestion_tbl where ExamId='$examId' AND Question_Id='$que' and Inst_Id='$inst_id'";
+        $res = mysqli_query($con, $q);
+        $nor = mysqli_num_rows($res);
+        if ($nor == 0) {
+          $examQue = "insert into examquestion_tbl values(null,'$examId','$classId','$section','$subjectId','$que','$marks','$inst_id')";
+          $res1 = mysqli_query($con, $examQue);
         }
       }
-      // echo "<br>" . $que;
-
+      $sql = "DELETE FROM examquestion_tbl WHERE  ExamId='$examId' AND Inst_Id='$inst_id'and Question_Id NOT IN ( '" . implode("', '", $question) . "' )";
+      $result = mysqli_query($con, $sql);
+      // echo "<script>alert('Question is Selected Succesfully');</script>";
     }
-    // $examQue = "insert into examQuestion_tbl values(null,'','$examId',null)";
-    // echo $section, $subjectId;
-
   }
   ?>
+  <script>
+  function showMarks(e, qid, mrk) {
+    var x = document.getElementById("r_" + qid);
+    var cntQ = document.getElementById("totQue").textContent;
+    var totMrk = document.getElementById("totMarks").textContent;
+    // console.log(mrk);
+    if (e.target.checked) {
+      cntQ++;
+      totMrk = +totMrk + mrk;
+      var html =
+        "<td><input type='number' class='form-control w-100 pr-1' min='1' max='5' name='marks_" + qid + "' id='marks_" +
+        qid +
+        "' value='" + mrk + "'></td>";
+      x.insertAdjacentHTML('beforeend', html);
+      // document.getElementById("totQue").type = "text";
+      document.getElementById("totQue").innerHTML = cntQ;
+      document.getElementById("totMarks").innerHTML = totMrk;
+    } else {
+      x.removeChild(x.lastElementChild);
+      cntQ--;
+      totMrk = +totMrk - mrk;
+      // document.getElementById("totQue").type = "text";
+      document.getElementById("totQue").innerHTML = cntQ;
+      document.getElementById("totMarks").innerHTML = totMrk;
+    }
+    // x.append(html);
+  }
+  </script>
   <script>
   $('#QueListModal').on('show.bs.modal', function(e) {
     var opener = e.relatedTarget;
@@ -370,14 +399,10 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           $("#startDate").focus;
           return false;
         }
-
-
       }
-
-
     }
-
   });
+
   $('#startDate,#subject,#txtHint,#class').on('change', function() {
     // console.log("ex")
     if ($("#class").val() != "" && $("#subject").val() != "" && $("#txtHint").val() != "") {
@@ -392,10 +417,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
         }
       });
     }
-
-
-
   });
+
   $(function() {
     var count = 0;
     // console.log('111');
@@ -429,13 +452,13 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   //   },
   // });
   $('#ExamInfoTbl').on('click', '.edit', function() {
-    examname = $(".examname").html();
+    examname = $(this).parent().parent().find(".examname").html();
     $(this).parent().parent().find(".examname").html("<input type='text' value='" + examname +
       "' class='form-control exNameupdate'>");
-    examdate = $(".examdate").html();
+    examdate = $(this).parent().parent().find(".examdate").html();
     $(this).parent().parent().find(".examdate").html("<input type='date' value='" + examdate +
       "' class='form-control exDateupdate'>");
-    examtime = $(".examtime").html();
+    examtime = $(this).parent().parent().find(".examtime").html();
     $(this).parent().parent().find(".examtime").html("<input type='time' value='" + examtime +
       "' class='form-control exTimeupdate'>");
 
@@ -452,7 +475,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     // alert(examid);
     $.ajax({
       type: 'POST',
-      url: 'updateexam.php',
+      url: 'ajaxUpdateexam.php',
       data: "update='update'&eid=" + examid + "&examname=" + examname + "&examdate=" + examdate + "&examtime=" +
         examtime,
       success: function(response) {
@@ -463,22 +486,6 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
 
 
   });
-  // $('#ExamInfoTbl').on('change', '.exDateupdate', function() {
-  //   examid = $(".eid").val();
-  //   examdate = $(".exDateupdate").val();
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: 'updateexam.php',
-  //     data: "check='check'&eid=" + examid + "&examdate=" + examdate,
-  //     success: function(response) {
-  //       alert(response);
-  //       return false;
-  //     }
-  //   });
-
-
-
-  // });
   </script>
 </body>
 

@@ -2,6 +2,7 @@
 include('../connect.php');
 include('../admin/admin-header.php');
 require('../teacher/addQuestion.php');
+$inst_id = $_SESSION['Inst_id'];
 ?>
 
 <?php
@@ -9,7 +10,7 @@ require('../teacher/addQuestion.php');
 if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delete") {
   $queId = $_GET['QueId'];
   // echo $Id;
-  $query = "delete from question_tbl where Id='$queId'";
+  $query = "delete from question_tbl where Id='$queId'and Inst_Id='$inst_id'";
   // echo $query;
   $res = mysqli_query($con, $query);
   if ($res) {
@@ -107,7 +108,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
           // echo $SubjectId;
           // echo $resCId[0];
 
-          $q = "select * from question_tbl where Subject_id='$SubjectId'  and Class_id='$resCId[0]'";
+          $q = "select * from question_tbl where Subject_id='$SubjectId'  and Class_id='$resCId[0]' and Inst_Id='$inst_id'";
           $res = mysqli_query($con, $q) or die("Query Failed");
           // print_r($res);
           $nor = mysqli_num_rows($res);
@@ -148,7 +149,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                     echo "<td>$className</td>";
                     echo "<td>$r[3]</td>";
                     echo "<td>$ressub[3]</td>";
-                    $q1 = "select * from answer_tbl where Question_Id=$r[0] ";
+                    $q1 = "select * from answer_tbl where Question_Id=$r[0] and Inst_Id='$inst_id'";
                     $res1 = mysqli_query($con, $q1);
                     $nor1 = mysqli_num_rows($res1);
                     $options = array();
@@ -357,7 +358,7 @@ $(function() {
 if (isset($_POST['editQue'])) {
 
   $qid = $_POST['qid'];
-  $cid = "select * from question_tbl where Id='$qid'";
+  $cid = "select * from question_tbl where Id='$qid' and Inst_Id='$inst_id'";
   $res1 = mysqli_query($con, $cid);
   $nor1 = mysqli_fetch_array($res1);
   $editDynamicOptions = $_POST['editDynamicOptions'];
@@ -367,7 +368,7 @@ if (isset($_POST['editQue'])) {
   // echo $newOneOpt;
   $que = $_POST['equestion'];
   // echo $id;
-  $q = "select * from answer_tbl where Question_Id='$qid'";
+  $q = "select * from answer_tbl where Question_Id='$qid' and Inst_Id='$inst_id'";
   $res = mysqli_query($con, $q);
   $nor = mysqli_num_rows($res);
   // $nor2 = ;
@@ -388,7 +389,7 @@ if (isset($_POST['editQue'])) {
     if (!empty($_POST[$opt])) {
       $isCorrect =  is_numeric(array_search($x, $editCorrectAnswer)) ? 1 : 0;
 
-      $updateAns = "update answer_tbl set Answer='$_POST[$opt]',isCorrect='$isCorrect' where Question_Id='$qid' and Id='$aid[$x]'";
+      $updateAns = "update answer_tbl set Answer='$_POST[$opt]',isCorrect='$isCorrect' where Question_Id='$qid' and Id='$aid[$x]' and Inst_Id='$inst_id'";
       // echo $updateAns;
       $result = mysqli_query($con, $updateAns);
       if ($result) {
@@ -397,7 +398,7 @@ if (isset($_POST['editQue'])) {
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
       }
     } else {
-      $del = "delete from answer_tbl where Question_Id='$qid' and Id='$aid[$x]'";
+      $del = "delete from answer_tbl where Question_Id='$qid' and Id='$aid[$x]' and Inst_Id='$inst_id'";
       $result1 = mysqli_query($con, $del);
       if ($result1) {
       } else {
@@ -417,7 +418,7 @@ if (isset($_POST['editQue'])) {
       // echo "<br> 2: $_POST[$opt]";
       if (!empty($_POST[$opt])) {
         // echo "1: $_POST[$opt]";
-        $insertAns = "insert into answer_tbl values(null,'$_POST[$opt]','$qid','$isCorrect')";
+        $insertAns = "insert into answer_tbl values(null,'$_POST[$opt]','$qid','$isCorrect','$inst_id')";
         // echo $insertAns;
         $result2 = mysqli_query($con, $insertAns);
         // print_r($result2);
