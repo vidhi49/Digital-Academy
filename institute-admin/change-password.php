@@ -54,10 +54,6 @@ $a = "changepassword";
                 <div class="col ">
                     <form method="post" class="p-4 m-2">
                         <div>
-                            <!-- 
-            <img src="../img/logo2.png" height="40px">
-            <hr> -->
-
                             <h1 class="fs-2 text-dark "><i class="fa fa-lock"></i> Change Password</h1>
                             <hr>
                             Create a New Password For your Account
