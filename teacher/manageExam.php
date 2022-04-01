@@ -111,9 +111,9 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
               <a  href='?action=edit&ExamId=" . $r[0] . "' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
               </td>
-              <td><a  href='' data-id='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
+              <td><a  href='' data-examid='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
-            <a role='button' class='btn p-2'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
+            <a role='button' data-examid='$r[0]' class='btn p-2' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a></td>
               </tr>";
             }
@@ -239,6 +239,31 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
       </div>
     </div>
   </div>
+  <!---------------- Exam Detail Modal------------ -->
+  <div class="modal fade" id="ExamDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content" style="height: fit-content;">
+        <div class="modal-header">
+          <h2 class="modal-title navy-blue" id="exampleModalScrollableTitle">
+            Exam Details
+          </h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="post" id="examDetailsForm">
+          <div class="modal-body h-100">
+            <input type='text' id='examId' name="examId">
+          </div>
+          <div class="modal-footer justify-content-end h-25">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" name="submitQue">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <?php
   include("../guest/footer.php");
   ?>
@@ -303,6 +328,12 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
       $sql = "DELETE FROM examquestion_tbl WHERE  ExamId='$examId' AND Inst_Id='$inst_id'and Question_Id NOT IN ( '" . implode("', '", $question) . "' )";
       $result = mysqli_query($con, $sql);
       // echo "<script>alert('Question is Selected Succesfully');</script>";
+      foreach ($selectedQue as $que) {
+        $emrk = $_POST['marks_' . $que];
+        $emarks = "update examquestion_tbl set Marks='$emrk' where ExamId='$examId' and Inst_Id='$inst_id' and Question_Id='$que'";
+        // echo $emarks;
+        $resSet = mysqli_query($con, $emarks);
+      }
     }
   }
   ?>
@@ -333,11 +364,22 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     }
     // x.append(html);
   }
+
+  function updateMarks(e, qid) {
+
+    var element = document.getElementById('marks_' + qid);
+    var oldValue = element.getAttribute('data-oldValue');
+    var totMrk = document.getElementById("totMarks").textContent;
+    element.setAttribute('data-oldValue', e.target.value);
+    totMrk = +totMrk - +oldValue + +e.target.value;
+    document.getElementById("totMarks").innerHTML = totMrk;
+
+  }
   </script>
   <script>
   $('#QueListModal').on('show.bs.modal', function(e) {
     var opener = e.relatedTarget;
-    var id = $(opener).data('id');
+    var examid = $(opener).data('examid');
     var classId = $(opener).data('classid');
     var section = $(opener).data('section');
     var subjectId = $(opener).data('subjectid');
@@ -345,7 +387,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $('#selectQueForm').find('[name="classId"]').val(classId);
     $('#selectQueForm').find('[name="section"]').val(section);
     $('#selectQueForm').find('[name="subjectId"]').val(subjectId);
-    $('#selectQueForm').find('[name="examId"]').val(id);
+    $('#selectQueForm').find('[name="examId"]').val(examid);
 
     if (window.XMLHttpRequest) {
       // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -360,7 +402,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
       }
     };
     xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
-      subjectId + "&examId=" + id,
+      subjectId + "&examId=" + examid,
       true);
     xmlhttp.send();
 
@@ -487,6 +529,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
 
   });
   </script>
+
 </body>
 
 </html>

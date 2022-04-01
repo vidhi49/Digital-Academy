@@ -3,7 +3,7 @@
 include '../connect.php';
 session_start();
 
-$inst_id = $_SESSION['inst_id'];
+$inst_id = $_SESSION['Inst_id'];
 $cid = $_GET['classId'];
 $sec = $_GET['section'];
 $sid = $_GET['subjectId'];
@@ -73,7 +73,7 @@ if ($nor > 0) {
         echo "<td>$r[1]</td>";
         if ($checked) {
 
-          echo "<td><input type='number' class='form-control w-100 pr-1' min='1' max='5' name='marks_$r[0]' id='marks_$r[0]' value='$mrk'></td>";
+          echo "<td><input type='number' data-oldValue='$mrk' onchange='updateMarks(event,$r[0])' class='form-control w-100 pr-1' min='1' max='5' name='marks_$r[0]' id='marks_$r[0]' value='$mrk'></td>";
         }
       }
     } else {
@@ -88,4 +88,5 @@ if ($nor > 0) {
    <p class='navy-blue font-weight-bold float-right ms-4 mb-0'>
    <label id='totMarks' name='totMarks' >$totMarks </label> Marks</p>
             </div> ";
+
       ?>
