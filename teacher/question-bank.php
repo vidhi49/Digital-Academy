@@ -222,7 +222,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
 
                   <div class="form-floating m-2">
                     <textarea class="form-control" placeholder="Question " id="floatingTextarea2" style="height: 100px"
-                      name="equestion"></textarea>
+                      name="equestion" required></textarea>
                     <label for="floatingTextarea2">Question</label>
                   </div>
 
