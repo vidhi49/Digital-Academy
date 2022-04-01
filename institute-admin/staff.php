@@ -56,8 +56,8 @@ $inst_id = $_SESSION['inst_id'];
 </head>
 <div id="stud-table">
     <div class="table-responsive p-3">
-        <!-- <table class="table table-flush table-hover" id="dataTableHover"> -->
-        <table class="table table-flush table-hover" >
+        <table class="table table-flush table-hover" id="dataTableHover">
+        <!-- <table class="table table-flush table-hover" > -->
             <thead class="thead-light">
                 <tr>
                     <th scope="th-md" style="width:0%;">#</th>

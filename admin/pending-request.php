@@ -1,11 +1,13 @@
 <body>
   <?php
   include('../connect.php');
-  include('admin-header.php'); ?>
+  include('admin-header.php'); 
+  $a = 'pendingrequest';
+  ?>
   <div class="d-flex">
     <?php include("admin-sidebar.php"); ?>
-    <div class="content mt-5 p-3">
-      <div class="d-flex justify-content-center">
+    <div class="content mt-3 p-3 ">
+      <div class="d-flex justify-content-center  m-5" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;background-color: white;">
         <?php
 
         // include("admin-sidebar.php");
@@ -15,11 +17,11 @@
         if ($nor > 0) {
         ?>
 
-        <div class="table-responsive-md table-sm w-75">
+        <div class="table-responsive-md table-sm w-100 p-5">
           <h2> Pending Request</h2>
           <hr><br>
-          <table class="table table-hover">
-            <thead>
+          <table class="table table-flush table-hover" id="dataTableHover">
+            <thead class="thead-light">
               <tr>
                 <th scope="th-sm">ID</th>
                 <th scope="th-sm">Instition Name</th>
@@ -29,6 +31,7 @@
                 <th scope="th-sm">Certificate</th>
                 <th scope="th-sm">Date</th>
                 <th scope="th-sm">Status</th>
+                
               </tr>
               </tr>
             </thead>
@@ -47,6 +50,7 @@
 			</td>";
                 echo "<td>$r[7]</td>";
                 echo "<td>$r[6]</td>";
+                
               }
               echo "</tr>";
             } else {
@@ -77,5 +81,19 @@
   </script>
   <?php include("../guest/footer.php"); ?>
 </body>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/ruang-admin.min.js"></script>
+<!-- Page level plugins -->
+<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+<!-- Page level custom scripts -->
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable(); // ID From dataTable 
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+</script>
 </html>
