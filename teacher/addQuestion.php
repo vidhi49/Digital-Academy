@@ -33,20 +33,20 @@ $inst_id = $_SESSION['Inst_id'];
 
               <div class="form-floating m-2">
                 <textarea class="form-control" placeholder="Question " id="floatingTextarea2" style="height: 100px"
-                  name="Addquestion"></textarea>
+                  name="Addquestion" required></textarea>
                 <label for="floatingTextarea2">Question</label>
               </div>
 
               <div class="form-floating m-2">
                 <input class="form-check-input" type="checkbox" name="correctAnswer[]" value="1">
                 <input type="text" class="form-control" id="floatingInputInvalid" placeholder="Option" name="option1">
-                <label for="floatingInputInvalid">Option</label>
+                <label for="floatingInputInvalid" required>Option</label>
               </div>
 
               <div class="form-floating m-2">
                 <input class="form-check-input" type="checkbox" name="correctAnswer[]" value="2">
                 <input type="text" class="form-control " id="floatingInputInvalid" placeholder="Option" name="option2">
-                <label for="floatingInputInvalid">Option</label>
+                <label for="floatingInputInvalid" required>Option</label>
               </div>
 
               <div id="newRow">

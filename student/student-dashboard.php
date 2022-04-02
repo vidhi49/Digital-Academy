@@ -9,7 +9,7 @@ include('student-header.php');
     <?php include("student-sidebar.php"); ?>
     <div class="content mt-5 p-3">
       <div class="d-flex justify-content-center">
-        student home
+        student dashboard
       </div>
     </div>
   </div>
