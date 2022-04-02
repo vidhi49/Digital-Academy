@@ -50,18 +50,19 @@ $email = $_SESSION['email'];
   });
   </script> -->
 </head>
+
 <body>
-  <div class="container-fluid " >
-  <!-- style='box-shadow: black 0px 3px 80px;' -->
-    <div class="row bg-navy-blue"  style="box-shadow:  0 10px 15px -6px black;">
+  <div class="container-fluid ">
+    <!-- style='box-shadow: black 0px 3px 80px;' -->
+    <div class="row bg-navy-blue" style="box-shadow:  0 10px 15px -6px black;">
       <div class="col-sm-6 d-flex">
-        <img class='logo  navbar-brand ms-5 '  src='../img/logo1.png'; ?>'/>
-        
+        <img class='logo  navbar-brand ms-5 ' src='../img/logo1.png' ; ?>
+
       </div>
       <div class="col-sm-6 d-flex justify-content-end align-items-center">
         <div class="d-block">
-          
-          <span class="h-25 pe-2 fs-4  text-light" id="email"><?php   echo $_SESSION['email'];; ?></span>
+
+          <span class="h-25 pe-2 fs-4  text-light" id="email"><?php echo $_SESSION['email'];; ?></span>
         </div>
         <img class='logo ms-1' src='../img/p1.jpg' style=" height:80px;width:80px;border-radius:50px;padding:20" />
         <a href="institute-logout.php" class="btn btn-secondary" role="button">logout</a>
@@ -71,7 +72,7 @@ $email = $_SESSION['email'];
   </div>
 </body>
 <!-- <body> -->
-  <!-- <nav class="navbar navbar-light bg-dark">
+<!-- <nav class="navbar navbar-light bg-dark">
     <a class="navbar-brand">
       <img class='logo ms-1' src='../img/logo1.png' style=" height:100px" />
     </a>
@@ -82,15 +83,15 @@ $email = $_SESSION['email'];
       <a href="admin-logout.php" class="btn btn-secondary btn-lg" role="button">Logout</a>
     </form>
   </nav> -->
-  <!-- <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark py-1">
+<!-- <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark py-1">
     <div class="container-fluid">
       <img class='logo navbar-brand ms-5' src='../img/logo1.png' /> -->
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button> -->
 
-      <!-- <div class="collapse navbar-collapse " id="collapsibleNavbar"> -->
-      <!-- <ul class="navbar-nav justify-content-end fs-6">
+<!-- <div class="collapse navbar-collapse " id="collapsibleNavbar"> -->
+<!-- <ul class="navbar-nav justify-content-end fs-6">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,8 +104,8 @@ $email = $_SESSION['email'];
           </ul>
         </li>
       </ul> -->
-      <!-- </div> -->
-    <!-- </div>
+<!-- </div> -->
+<!-- </div>
   </nav>
 </body> -->
 

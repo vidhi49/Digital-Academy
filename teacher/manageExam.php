@@ -65,15 +65,15 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
             <tr class="navy-blue">
               <!-- <th scope="th-md" style="width: 1%;"></th> -->
               <th scope="th-md" style="width: 3%;">No.</th>
-              <th scope="th-md" style="width: 20%">Exam Name</th>
-              <th scope="th-md" style="width: 6%;">Class_Name</th>
+              <th scope="th-md" style="width: 17%">Exam Name</th>
+              <th scope="th-md" style="width: 6%;">Class Name</th>
               <th scope="th-md" style="width: 2%;">Section</th>
               <th scope="th-md" style="width: 8%;">Subject</th>
               <th scope="th-md" style="width: 7%;">Exam Date</th>
               <th scope="th-md" style="width: 7%;">Status</th>
               <th scope="th-md" style="width: 7%;">Exam time</th>
               <th scope="th-md" style="width: 3%;">Action</th>
-              <th scope="th-md" style="width: 2%;">Question_List</th>
+              <th scope="th-md" style="width: 5%;">Question List</th>
             </tr>
           </thead>
           <tbody>
@@ -113,7 +113,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               </td>
               <td><a  href='' data-examid='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
-            <a role='button' data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-2' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
+            <a role='button' data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a></td>
               </tr>";
             }

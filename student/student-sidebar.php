@@ -99,8 +99,8 @@ include('../connect.php');
             class="ms-2 span">Settings</span>
         </a>
       </li>
-      <li> <a href="#" class="nav-link text-white p-2 m-2"> <i class="fa fa-bookmark"></i><span
-            class="ms-2 span">Bookmarks</span>
+      <li> <a href="studentExam.php" class="nav-link text-white p-2 m-2"> <i class="fa fa-bell"></i><span
+            class="ms-2 span">Exam</span>
         </a>
       </li>
     </ul>
