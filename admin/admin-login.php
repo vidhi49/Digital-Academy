@@ -79,6 +79,7 @@
             if(password_verify($pwd,$row[2]))
             {
               $_SESSION['email']=$email;
+              $_SESSION['id']=$row[0];
               header("location:admin-home.php");
             }
             else{

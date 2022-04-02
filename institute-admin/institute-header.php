@@ -51,7 +51,7 @@ $email = $_SESSION['email'];
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="admin-logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="institute-logout.php">Logout</a></li>
           </ul>
         </li>
       </ul>

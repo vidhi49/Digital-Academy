@@ -32,12 +32,18 @@ $(document).ready(function(){
 		}
 	});
 	$('#pwd, #cpwd ,#eid').on('keyup', function () {
-		alert('email');
         if (e_Reg.test($('#eid').val()) == false) {
             $('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
         }
         else {
-            $('#emsg').html('').css('color', 'red');
+            $.ajax({
+				type: 'POST',
+				url: 'ajaxEmail.php',
+				data: "email=" + $('#eid').val(),
+				success: function (response) {
+					$('#emsg').html(response).css('color', 'red');
+				}
+			});
         }
 
         if ($("#pwd").val() != "") {
