@@ -1,5 +1,11 @@
 <?php
 // include("admin-header.php");
+include_once('../connect.php');
+// session_start();
+$email=$_SESSION['email'];
+$q="select * from master_admin_tbl where Email='$email'";
+$res=mysqli_query($con,$q);
+$result=mysqli_fetch_array($res);
 ?>
 <html>
 <style>
@@ -41,7 +47,11 @@
       <p class="fs-5 d-none d-sm-inline" aria-disabled="true">Menu</p>
     </a> -->
     <ul class="nav nav-pills flex-column mb-sm-auto">
-      <li <?php
+      <?php
+      if($result[4]=='1')
+      {
+      ?>
+        <li <?php
           if (($a == 'addadmin')) {
             echo "class=' active nav-item m-1 '";
           } ?>>
@@ -50,14 +60,24 @@
           <p class="ms-2 d-none d-sm-inline">Add Admin</p>
         </a>
       </li>
-      <li class="nav-item m-1">
-        <a href="add-admin.php" class="nav-link align-middle px-0">
+      <?php
+      }
+      ?>
+      
+      <li <?php
+          if (($a == 'adminedit')) {
+            echo "class=' active nav-item m-1 '";
+          } ?>>
+        <a href="admin-edit.php" class="nav-link align-middle px-0">
           <i class="fas fa-edit fs-5"></i>
           <p class="ms-2 d-none d-sm-inline">Edit Profile</p>
         </a>
       </li>
-      <li class="nav-item m-1">
-        <a href="add-admin.php" class="nav-link align-middle px-0">
+      <li <?php
+          if (($a == 'changepwd')) {
+            echo "class=' active nav-item m-1 '";
+          } ?>>
+        <a href="admin-changepwd.php" class="nav-link align-middle px-0">
           <i class="fas fa-key fs-5"></i>
           <p class="ms-2 d-none d-sm-inline">Change Password</p>
         </a>

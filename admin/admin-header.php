@@ -2,6 +2,10 @@
 
 session_start();
 $email = $_SESSION['email'];
+$id = $_SESSION['id'];
+$q="select * from master_admin_tbl where Id='$id'";
+$res=mysqli_query($con,$q);
+$result=mysqli_fetch_array($res);
 ?>
 <html>
 
@@ -61,10 +65,10 @@ $email = $_SESSION['email'];
       <div class="col-sm-6 d-flex justify-content-end align-items-center">
         <div class="d-block">
           
-          <span class="h-25 pe-2 fs-4  text-light" id="email"><?php   echo $_SESSION['email'];; ?></span>
+          <span class="h-25 pe-2 fs-4  text-light" id="email"><?php   echo $result[1]; ?></span>
         </div>
-        <img class='logo ms-1' src='../img/p1.jpg' style=" height:80px;width:80px;border-radius:50px;padding:20" />
-        <a href="institute-logout.php" class="btn btn-secondary" role="button">logout</a>
+        <img class='logo ms-1' src='admin_profile/<?php echo $result[3]; ?>' style=" height:80px;width:80px;border-radius:50px;padding:20" />
+        <a href="../admin/admin-logout.php" class="btn btn-secondary" role="button">logout</a>
       </div>
     </div>
 

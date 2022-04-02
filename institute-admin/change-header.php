@@ -40,7 +40,7 @@ $r=mysqli_fetch_array($res);
           
           <span class="h-25 pe-3  text-light" id="email"><?php echo  $r['Email']; ?></span>
         </div>
-        <a href="institute-logout.php" class="btn btn-secondary" role="button">logout</a>
+        <a href="../institute-admin/institute-logout.php" class="btn btn-secondary" role="button">logout</a>
       </div>
     </div>
 
