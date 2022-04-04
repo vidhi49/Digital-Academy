@@ -98,8 +98,7 @@ $Inst_id = $_SESSION['Inst_id'];
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary" name='submitExam'>Submit</button>
           </div>
         </form>
       </div>
@@ -138,7 +137,43 @@ $Inst_id = $_SESSION['Inst_id'];
 
   });
   </script>
-</body>
+  <?php
+  if (isset($_POST['submitExam'])) {
+    $classid = $_POST['classId'];
+    $section = $_POST['section'];
+    $subjectid = $_POST['subjectId'];
+    $examid = $_POST['examId'];
+    // echo $classid, $section, $subjectid, $examid;
+    // $ans = $_POST['exAns'];
+    // echo $ans;
+    $ansCheck = $_POST['examAns'];
+    $eq = "select * from examquestion_tbl where cid='$classid' and section='$section' and subjectId='$subjectid' and Inst_id='$Inst_id' and ExamId='$examid'";
+    // echo $examQ;
+    $res = mysqli_query($con, $eq) or die("Query Failed-1");
+    // echo $eq;
+    while ($q1 = mysqli_fetch_array($res)) {
+      // print_r($que);
+      $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]'";
+      $res1 = mysqli_query($con, $a) or die("Query Failed-1");
+      // echo $a;
+      $nor = mysqli_num_rows($res1);
+      // echo $nor;
+      $anscnt = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]' and IsCorrect='1'";
+      $res6 = mysqli_query($con, $anscnt) or die("Query Failed-3");
+      $n = mysqli_num_rows($res6);
 
+      while ($ans = mysqli_fetch_array($res1)) {
+
+        for ($x = 1; $x <= $nor; $x++) {
+          $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
+
+          $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$ans[0]','$correct','$examid','$Id','$subjectid'";
+          echo $q3;
+        }
+      }
+    }
+  }
+  ?>
+</body>
 
 </html>
