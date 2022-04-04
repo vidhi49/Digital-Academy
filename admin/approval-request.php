@@ -1,7 +1,7 @@
 <body>
   <?php
   include('../connect.php');
-  include('admin-header.php'); 
+  include('admin-header.php');
   $a = 'approvedrequest';
   ?>
   <div class="d-flex">
@@ -17,25 +17,36 @@
         if ($nor > 0) {
         ?>
 
-        <div class="table-responsive-md table-sm w-100 p-5">
-          <h2> Approved Request</h2>
-          <hr><br>
-          <table class="table table-flush table-hover" id="dataTableHover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="th-sm">ID</th>
-                <th scope="th-sm">Instition Name</th>
-                <th scope="th-sm">Email</th>
-                <th scope="th-sm">Address</th>
-                <th scope="th-sm">Contact</th>
-                <th scope="th-sm">Certificate</th>
-                <th scope="th-sm">Date</th>
-                <th scope="th-sm">Status</th>
-                
-              </tr>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="table-responsive-md table-sm w-100 p-5">
+            <div class="row">
+              <div class="col">
+                <h2> Approved Request</h2>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <form action="approved_req_rpt.php" target="_blank">
+                  <input type="submit" value="Print" class="btn btn-success fs-4" />
+                </form>
+
+              </div>
+            </div>
+
+            <hr><br>
+            <table class="table table-flush table-hover" id="dataTableHover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="th-sm">ID</th>
+                  <th scope="th-sm">Instition Name</th>
+                  <th scope="th-sm">Email</th>
+                  <th scope="th-sm">Address</th>
+                  <th scope="th-sm">Contact</th>
+                  <th scope="th-sm">Certificate</th>
+                  <th scope="th-sm">Date</th>
+                  <th scope="th-sm">Status</th>
+
+                </tr>
+                </tr>
+              </thead>
+              <tbody>
               <?php
 
               while ($r = mysqli_fetch_array($res)) {
@@ -50,22 +61,20 @@
 			</td>";
                 echo "<td>$r[7]</td>";
                 echo "<td>$r[6]</td>";
-                
               }
               echo "</tr>";
             } else {
               echo "<center><h1>No Request is Found</h1></center>";
             }
               ?>
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
       </div>
     </div>
   </div>
   </div>
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <img class="w-100" id="popup-img" src="" alt="image">
@@ -73,11 +82,11 @@
     </div>
   </div>
   <script>
-  $('.popup').click(function() {
-    var src = $(this).attr('src');
-    $('.modal').modal('show');
-    $('#popup-img').attr('src', src);
-  });
+    $('.popup').click(function() {
+      var src = $(this).attr('src');
+      $('.modal').modal('show');
+      $('#popup-img').attr('src', src);
+    });
   </script>
   <?php include("../guest/footer.php"); ?>
 </body>
@@ -91,9 +100,10 @@
 
 <!-- Page level custom scripts -->
 <script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable(); // ID From dataTable 
-        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-    });
+  $(document).ready(function() {
+    $('#dataTable').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
 </script>
+
 </html>

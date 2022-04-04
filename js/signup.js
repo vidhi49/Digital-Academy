@@ -2,8 +2,8 @@
 $(document).ready(function () {
 	var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
 	var c_Reg = /^[0-9]+$/;
-	 
-	 
+
+
 	$("#submit").click(function () {
 		//var conlen = $('#cno').val();
 		if ($("#sname").val() == '' && $("#address").val() == '' && $("#email").val() == '' && $("#cno").val() == '') {
@@ -16,68 +16,71 @@ $(document).ready(function () {
 			$("#sname").focus();
 			return false;
 		}
-		
+
 		if ($('#email').val() == '') {
 			alert('Please Fill Email...');
 			$("#email").focus();
 			return false;
 		}
 		else {
-			if (e_Reg.test($("#email").val())==false) 
-			{
+			if (e_Reg.test($("#email").val()) == false) {
 				alert('Please Fill Email in abc@xyz.com Format...');
 				$("#email").focus();
 				return false;
 			}
 		}
-			
-		
+
+
 		if ($('#address').val() == '') {
 			alert('Please Fill Address...');
 			$("#address").focus();
 			return false;
 		}
 		if ($('#cno').val() == '') {
+			// alert($('#filemessage').text());
 			alert('Please Fill Cnotact Number...');
 			$("#cno").focus();
 			return false;
 		}
 		else {
 
-			if (c_Reg.test($('#cno').val())==false) {
+			if (c_Reg.test($('#cno').val()) == false) {
 				alert('Please Fill Cnotact Number with digit only...');
 				$("#cno").focus();
 				return false;
 			}
-			else if($('#cno').val().length != 10)
-			 {
+			else if ($('#cno').val().length != 10) {
 				alert('Please Fill 10 digit number...');
 				$("#cno").focus();
-				return false;	
+				return false;
 			}
 		}
-		
-		if ($('#sname').val() != '') 
-			{
-				if($('#smessage').text() != "") 
-				{
-					alert($('#smessage').text());
-					$("#sname").focus();
-					return false;
 
-				}
-			}
-		if ($('#email').val() != '') 
-			{
-				if($('#emessage').text() != "") 
-				{
-					alert($('#emessage').text());
-					$("#email").focus();
-					return false;
+		if ($('#sname').val() != '') {
+			if ($('#smessage').text() != "") {
+				alert($('#smessage').text());
+				$("#sname").focus();
+				return false;
 
-				}
 			}
-			
+		}
+		if ($('#email').val() != '') {
+			if ($('#emessage').text() != "") {
+				alert($('#emessage').text());
+				$("#email").focus();
+				return false;
+
+			}
+		}
+		if ($('#cimg').val() != '') {
+		if ($('#filemessage').text() != '') {
+			alert($('#filemessage').text());
+			$("#cimg").focus();
+			return false;
+
+		}
+	}
+
 	});
 	$('#email, #cno,#sname').on('keyup', function () {
 		//var clen = $('#cno').val();
@@ -110,16 +113,14 @@ $(document).ready(function () {
 
 		}
 
-		if (c_Reg.test($('#cno').val())==false) {
+		if (c_Reg.test($('#cno').val()) == false) {
 			$('#cmessage').html('Contact Must be of digit only').css('color', 'red');
 		}
-		else if($('#cno').val().length != 10)
-		 {
+		else if ($('#cno').val().length != 10) {
 			$('#cmessage').html(' PLEase enter 10 digit').css('color', 'red');
 
 		}
-		else 
-		{
+		else {
 			$('#cmessage').html('');
 		}
 

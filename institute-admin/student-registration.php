@@ -3,7 +3,7 @@
 include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
-$a="studentregister";
+$a = "studentregister";
 ?>
 <html>
 
@@ -14,9 +14,9 @@ $a="studentregister";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  
+
   <script src="../js/jquery-3.1.1.min.js"></script>
-  <script src="../js/student.js"></script>
+  <!-- <script src="../js/student.js"></script> -->
   <script src="../css/style.css"></script>
   <script>
     Filevalidation = () => {
@@ -93,6 +93,118 @@ $a="studentregister";
         xmlhttp.send();
       }
     }
+
+    $(document).ready(function() {
+
+      var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+      var c_Reg = /^[0-9]+$/;
+
+      $("#submit").click(function() {
+
+        
+          if ($('#emsg').text() != "") {
+            alert($('#emsg').text());
+            $("#e").focus();
+            return false;
+
+          }
+        
+
+        if (c_Reg.test($('#cno').val()) == false) {
+          alert('Please Fill Cnotact Number with digit only...');
+          $("#cno").focus();
+          return false;
+        } else if ($('#cno').val().length != 10) {
+          alert('Please Fill 10 digit number...');
+          $("#cno").focus();
+          return false;
+        }
+
+        if ($('#file').val() != "") {
+
+          const fi = document.getElementById('file');
+          var filePath = fi.value;
+          var allowedExtensions =
+            /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+          if (!allowedExtensions.exec(filePath)) {
+            alert('Photo Must be jpg/jpeg/png/gif');
+            // $("#filemessage").html('File must be jpg').css('color', 'red');
+            // alert('hello');
+            // fi.value = '';
+            $("#file").focus();
+            return false;
+          } else {
+            // $("#filemessage").html('');
+            if (fi.files.length > 0) {
+              for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                if (file > 200) {
+                  alert('size');
+                  $("#file").focus();
+                  // $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+                  return false;
+                } else {
+
+                }
+              }
+            }
+          }
+        }
+        if ($('#section').val() != '') {
+          if ($('#elimit').text() != "") {
+            alert($('#elimit').text());
+            $("#section").focus();
+            return false;
+          }
+
+        }
+
+      });
+
+      $('#e, #cno').on('keyup', function() {
+        if (e_Reg.test($('#e').val()) == false) {
+          $('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
+        } else {
+          $.ajax({
+            type: 'POST',
+            url: 'studentemail.php',
+            data: "check=check&e=" + $('#e').val(),
+            success: function(response) {
+              $('#emsg').html(response).css('color', 'red');
+            }
+          });
+
+        }
+
+        if (c_Reg.test($('#cno').val()) == false) {
+          $('#cmessage').html('Contact Must be of digit only').css('color', 'red');
+        } else if ($('#cno').val().length != 10) {
+          $('#cmessage').html(' Please enter 10 digit').css('color', 'red');
+
+        } else {
+          $('#cmessage').html('');
+        }
+
+
+      });
+      $('#section').change(function() {
+
+        $.ajax({
+          type: 'POST',
+          url: 'ajaxStudentcount.php',
+          data: "classid=" + $('#section').val(),
+          success: function(response) {
+            var result = response;
+            // $('#elimit').html(response).css('color', 'red');
+            $('#elimit').html(result).css('color', 'red');
+          }
+        });
+
+      });
+
+    });
   </script>
 </head>
 
@@ -138,15 +250,19 @@ $a="studentregister";
 
               <div class="form-group">
                 <div class="row ">
-                  <div class="col-sm-4 col-lg-4">
+                  <div class="col-sm-3 col-lg-3">
                     <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="name" name="name" placeholder="First Name/Surname" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="name" name="name" placeholder="First Name" required>
                   </div>
-                  <div class="col-sm-4 col-lg-4">
+                  <div class="col-sm-3 col-lg-3">
+                    <label class="form-control-label ml-2 p-1">Surname:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-lg m-1" id="surname" name="surname" placeholder="Surname" required>
+                  </div>
+                  <div class="col-sm-3 col-lg-3">
                     <label class="form-control-label ml-2 p-1">Father Name:<span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-lg m-1" id="fname" name="fname" placeholder="First Name/Surname" required>
                   </div>
-                  <div class="col-sm-4 col-lg-4">
+                  <div class="col-sm-3 col-lg-3">
                     <label class="form-control-label ml-2 p-1">Mother Name:<span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-lg m-1" id="mname" name="mname" placeholder="First Name/Surname" required>
                   </div>
@@ -233,7 +349,7 @@ $a="studentregister";
                 <div class="col-xl-6">
                   <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                   <?php
-                  $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
+                  $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC";
                   $result = $con->query($qry);
                   $num = $result->num_rows;
                   if ($num > 0) {
@@ -249,28 +365,28 @@ $a="studentregister";
                 <div class="col-xl-6" id="hello">
                   <label class="form-control-label">Class Section<span class="text-danger ml-2">*</span></label>
                   <?php
-                  if (isset($Id)) {
-                    $q = "SELECT * FROM class_tbl where Id='$Id'";
-                    $res = mysqli_query($con, $q);
-                    $res1 = mysqli_fetch_array($res);
-                    $qry = "SELECT  * FROM class_tbl where Name='$res1[2]' ORDER BY Section ASC";
-                    $result = $con->query($qry);
-                    $num = $result->num_rows;
-                    if ($num > 0) {
-                      echo ' <select required name="section" id="section"  class="form-control form-control-lg m-1">';
+                  // if (isset($Id)) {
+                  //   $q = "SELECT * FROM class_tbl where Id='$Id' AND Insti_id='$inst_id'";
+                  //   $res = mysqli_query($con, $q);
+                  //   $res1 = mysqli_fetch_array($res);
+                  //   $qry = "SELECT  * FROM class_tbl where Name='$res1[2]' AND  Insti_id='$inst_id' ORDER BY Section ASC";
+                  //   $result = $con->query($qry);
+                  //   $num = $result->num_rows;
+                  //   if ($num > 0) {
+                  //     echo ' <select required name="section" id="section"  class="form-control form-control-lg m-1">';
 
-                      while ($rows = $result->fetch_assoc()) {
-                        echo '<option ' . (($res1['Section'] == $rows['Section']) ? 'selected="selected"' : "") . '  value="' . $rows['Section'] . '" >' . $rows['Section'] . '</option>';
-                      }
-                      echo '</select>';
-                      echo '<p id="elimit"></p>';
-                    }
-                  } else {
+                  //     while ($rows = $result->fetch_assoc()) {
+                  //       echo '<option ' . (($res1['Section'] == $rows['Section']) ? 'selected="selected"' : "") . '  value="' . $rows['Section'] . '" >' . $rows['Section'] . '</option>';
+                  //     }
+                  //     echo '</select>';
+                  //     echo '<p id="elimit"></p>';
+                  //   }
+                  // } else {
                     echo ' <select required  name="section" id="section"  class="form-control form-control-lg m-1">';
                     echo "<option value=''>--Select Section--</option>";
                     echo "</select>";
                     echo '<p id="elimit"></p>';
-                  }
+                  // }
                   ?>
 
                 </div>
@@ -310,6 +426,7 @@ $a="studentregister";
 if (isset($_POST['submit'])) {
 
   $sname = $_POST['name'];
+  $surname = $_POST['surname'];
   $fname = $_POST['fname'];
   $mname = $_POST['mname'];
   $gender = $_POST['gender'];
@@ -338,12 +455,12 @@ if (isset($_POST['submit'])) {
   $query = mysqli_query($con, "select * from class_tbl where Id='$classid' and Insti_id='$inst_id'");
   $re = mysqli_fetch_array($query);
   $section = $re['Section'];
-
-  $q = "insert into student_tbl values(null,'$gr','$inst_id','$inst_name','$sname','$fname','$mname','$gender','$dob','$cno','$email',
+  $studname = $sname . " " . $surname;
+  $q = "insert into student_tbl values(null,'$gr','$inst_id','$studname','$fname','$mname','$gender','$dob','$cno','$email',
   '$address','$country','$state','$class','$section','$classid','$bloodgroup','$newimgname','" . date("Y-m-d") . "','$aca_year','$pass_hash')";
   // echo $q;
-  $q2 = "insert into class_wise_student values(null,'$classid','$class','$section','$sname','','$gender','$gr','$inst_id')";
-  $res2=mysqli_query($con,$q2);
+  $q2 = "insert into class_wise_student values(null,'$classid','$class','$section','$studname','','$gender','$gr','$inst_id')";
+  $res2 = mysqli_query($con, $q2);
   require 'sendstudentemail.php';
   $res = mysqli_query($con, $q);
 

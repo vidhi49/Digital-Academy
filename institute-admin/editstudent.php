@@ -4,6 +4,7 @@ include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
 $a='managestudent';
+
 $indian_states = array(
     'AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CT' => 'Chhattisgarh',
     'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir',
@@ -13,7 +14,7 @@ $indian_states = array(
     'UP' => 'Uttar Pradesh', 'WB' => 'West Bengal',
 );
 $id = $_REQUEST['Id'];
-$q = "select * from student_tbl where Id='$id'";
+$q = "select * from student_tbl where Id='$id' AND Inst_id='$inst_id'";
 $res = mysqli_query($con, $q);
 $r = mysqli_fetch_array($res);
 ?>
@@ -40,6 +41,7 @@ $r = mysqli_fetch_array($res);
                 $("#profileimg").fadeIn("slow").attr('src', tmppath);
                 
             });
+            
         });
 
         Filevalidation = () => {
@@ -211,6 +213,7 @@ $r = mysqli_fetch_array($res);
                                 <div class="col-sm-4 col-lg-4">
                                     <label class="form-control-label ml-2 p-1">Email:<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control form-control-lg m-1" id="e" value="<?php echo  $r['Email'] ?>" name="email" placeholder="abc@xyz.com" required>
+                                    <input type="hidden" id='hiddenid' value="<?php echo $_REQUEST['Id']?>">
                                     <span id="emsg"></span>
                                 </div>
                                 <div class="col">
@@ -274,7 +277,7 @@ $r = mysqli_fetch_array($res);
                             <div class="col-xl-6">
                                 <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                                 <?php
-                                $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
+                                $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC";
                                 $result = $con->query($qry);
                                 $num = $result->num_rows;
                                 if ($num > 0) {
@@ -294,7 +297,7 @@ $r = mysqli_fetch_array($res);
                                 //   $q = "SELECT * FROM class_tbl where Id='$class'";
                                 //   $res = mysqli_query($con, $q);
                                 //   $res1 = mysqli_fetch_array($res);
-                                $qry = "SELECT  * FROM class_tbl where Name='$class' ORDER BY Section ASC";
+                                $qry = "SELECT  * FROM class_tbl where Name='$class' AND Insti_id='$inst_id' ORDER BY Section ASC";
                                 $result = $con->query($qry);
                                 $num = $result->num_rows;
                                 if ($num > 0) {
@@ -364,21 +367,16 @@ if (isset($_POST['submit'])) {
     $r=mysqli_fetch_array($result1);
     if (!empty($_FILES['photo']['name'])) {
         $imgname = $_FILES['photo']['name'];
-
         $tmpname = $_FILES['photo']['tmp_name'];
-
-
         $imageExtension = explode('.', $imgname);
         $imageExtension = strtolower(end($imageExtension));
-
         $newimgname = $inst_id . $r['Grno'];
         $newimgname .= "." . $imageExtension;
-        unlink("student_profile/" . $r['Profile']);
-        
+        unlink("student_profile/" . $r['Profile']);        
         // echo "<script>reload(student_profile/$newimgname)</script>";
         $q = "update student_tbl set Name='$sname',Father_name='$fname', Mother_name='$mname', Gender='$gender' ,Dob='$dob',
         Mobileno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Class='$class', Section='$sec',Class_id='$class_id', Bloodgroup='$bloodgroup',
-         Profile='$newimgname' where Id='$id'";
+         Profile='$newimgname' where Id='$id' AND Inst_id='$inst_id'";
         // echo $q;
         $res = mysqli_query($con, $q);
         
@@ -396,7 +394,7 @@ if (isset($_POST['submit'])) {
     } else {
         $q = "update student_tbl set Name='$sname',Father_name='$fname', Mother_name='$mname', Gender='$gender' ,Dob='$dob',
         Mobileno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Class='$class', Section='$sec',Class_id='$class_id', Bloodgroup='$bloodgroup'
-          where Id='$id'";
+          where Id='$id' AND  Inst_id='$inst_id'";
         $res = mysqli_query($con, $q);
         if ($res) {
             echo "<script type = \"text/javascript\">

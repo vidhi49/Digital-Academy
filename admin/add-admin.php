@@ -182,31 +182,51 @@ if (isset($_POST['add'])) {
   $email = $_POST['eid'];
   $pwd = $_POST['pwd'];
   $permission=$_POST['permission'];
-  if (!empty($_FILES['photo']['name'])) {
-    $imgname = $_FILES['photo']['name'];
-    $tmpname = $_FILES['photo']['tmp_name'];
-    $imageExtension = explode('.', $imgname);
-    $imageExtension = strtolower(end($imageExtension));
-    $q = "select Max(Id) from master_admin_tbl";
-    $res = mysqli_query($con, $q);
-    $result = mysqli_fetch_array($res);
-
-    $newimgname = $result[0] + 1;
-    $newimgname .= "." . $imageExtension;
-    move_uploaded_file($tmpname, "admin_profile/" . $newimgname);
-  } else {
-    $newimgname = "default.jpg";
-  }
   $hash = password_hash($pwd, PASSWORD_DEFAULT);
   $q = "select * from master_admin_tbl where Email='$email'";
   $res = mysqli_query($con, $q);
   $nor = mysqli_num_rows($res);
   //echo "$nor";
   if ($nor == 0) {
-    $q1 = "insert into master_admin_tbl values(null,'$email','$hash','$newimgname','$permission')";
-    if (mysqli_query($con, $q1)) {
-      echo "<script> alert('Thank You for Registration');</script>";
-    } else {
+    $q1 = "insert into master_admin_tbl values(null,'$email','$hash','','$permission')";
+    $r=mysqli_query($con, $q1);
+    if($r){
+      $q2="select * from master_admin_tbl where Email='$email'";
+      $r1=mysqli_query($con,$q2);
+      $row=mysqli_fetch_array($r1);
+      if (!empty($_FILES['photo']['name'])) {
+        $imgname = $_FILES['photo']['name'];
+        $tmpname = $_FILES['photo']['tmp_name'];
+        $imageExtension = explode('.', $imgname);
+        $imageExtension = strtolower(end($imageExtension));
+        $newimgname = $row[0];
+        $newimgname .= "." . $imageExtension;
+        
+        
+      } else {
+        $newimgname = "default.jpg";
+      }
+      move_uploaded_file($tmpname, "admin_profile/" . $newimgname);
+      $que = "update master_admin_tbl set Profile='$newimgname' where Id='$row[0]'";
+      $r=mysqli_query($con, $que);
+      echo "<script>Swal.fire({
+          
+        title: 'Updated',
+        text: 'New Admin is Added',
+        type: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+        preConfirm: function() {
+
+            window.location = (\"admin-dashboard.php\")
+  
+          },
+          allowOutsideClick: false
+        
+      })</script>";
+    }
+    
+    else {
       die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
     }
   } else {

@@ -1,9 +1,15 @@
 <?php
 include '../connect.php';
 $response=array();
+session_start();
+$instid=$_SESSION['inst_id'];
 if(isset($_POST['delete'])){
     $id=$_POST['delete'];
-    $query="delete from student_tbl where Id='$id'";
+    $que="select * from student_tbl where Id='$id' AND Inst_id='$instid'";
+    $re=mysqli_query($con,$que);
+    $res1=mysqli_fetch_array($re);
+    unlink("student_profile/" . $res1['Profile']);
+    $query="delete from student_tbl where Id='$id' AND Inst_id='$instid'";
     $res=mysqli_query($con,$query);
     if($res)
     {
@@ -22,7 +28,7 @@ if(isset($_POST['stud_id']))
 {
     $id=$_POST['stud_id'];
     $result_array=array();
-    $query="select * from student_tbl where Id='$id'";
+    $query="select * from student_tbl where Id='$id' AND Inst_id='$instid'";
     $res=mysqli_query($con,$query);
     if(mysqli_num_rows($res)>0)
     {

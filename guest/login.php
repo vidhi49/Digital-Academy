@@ -164,7 +164,7 @@ if (isset($_REQUEST['login'])) {
     })</script>");
     if ($nor == 1) {
       while ($row = mysqli_fetch_array($res)) {
-        if (password_verify($pwd, $row[20])) {
+        if (password_verify($pwd, $row[19])) {
           $_SESSION['email'] = $email;
           $_SESSION['Id'] = $row['Id'];
           $_SESSION['Inst_id'] = $row['Inst_id'];
@@ -191,9 +191,10 @@ if (isset($_REQUEST['login'])) {
     })</script>");
     if ($nor == 1) {
       while ($row = mysqli_fetch_array($res)) {
-        if (password_verify($pwd, $row[21])) {
+        if (password_verify($pwd, $row[20])) {
           $_SESSION['email'] = $email;
           $_SESSION['Id'] = $row['Id'];
+          $_SESSION['Inst_id'] = $row['Inst_id'];
           echo "<script>window.location.href='../student/student-home.php';</script>";
         } else {
           echo "<script>Swal.fire({
@@ -242,7 +243,7 @@ if (isset($_REQUEST['login'])) {
               $_SESSION['logo'] = $row['Logo'];
               $_SESSION['name'] = $row['Name'];
               $_SESSION['inst_id'] = $row['Id'];
-              echo "<script>window.location.href='../institute-admin/staff-registration.php';</script>";
+              echo "<script>window.location.href='../institute-admin/institute-dashboard.php';</script>";
             } else {
               $_SESSION['name'] = $row['Name'];
               $_SESSION['inst_id'] = $row['Id'];

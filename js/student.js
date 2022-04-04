@@ -72,18 +72,18 @@ $(document).ready(function () {
 	$('#e, #cno').on('keyup', function () {
 		if (e_Reg.test($('#e').val()) == false) {
 			$('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
-		}
-		else {
+		  } else {
 			$.ajax({
-				type: 'POST',
-				url: 'studentemail.php',
-				data: "e=" + $('#e').val(),
-				success: function (response) {
-					$('#emsg').html(response).css('color', 'red');
-				}
+			  type: 'POST',
+			  url: 'studentemail.php',
+			  data: "update=update&e=" + $('#e').val()+ "&id="+$('#hiddenid').val(),
+			  success: function(response) {
+				$('#emsg').html(response).css('color', 'red');
+			  }
 			});
-
-		}
+  
+		  }
+		
 
 		if (c_Reg.test($('#cno').val()) == false) {
 			$('#cmessage').html('Contact Must be of digit only').css('color', 'red');

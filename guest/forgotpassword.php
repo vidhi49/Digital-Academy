@@ -14,8 +14,6 @@ include("../connect.php");
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/reset.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
   <?php require("header.php"); ?>
 </head>
 
@@ -113,7 +111,7 @@ if (isset($_REQUEST['send'])) {
     }
   }
   if ($user == 'Student') {
-    $q = "select * from student_tbl where Email = '$email'";
+    $q = "select * from student_tbl where Email='$email'";
     $res = mysqli_query($con, $q) or die("Qiery failed q");
     $nor = mysqli_num_rows($res) or die("<script> Swal.fire({
       icon: 'error',

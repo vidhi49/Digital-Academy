@@ -21,12 +21,77 @@ $indian_states = array(
 <head>
 
     <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/editprofile.js"></script>
+    <!-- <script src="../js/editprofile.js"></script> -->
     <script>
         $(document).ready(function() {
+            var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+            var c_Reg = /^[0-9]+$/;
             $("#file").change(function(e) {
                 var tmppath = URL.createObjectURL(e.target.files[0]);
                 $("#profileimg").fadeIn("slow").attr('src', tmppath);
+
+            });
+            $("#change").click(function() {
+                //var conlen = $('#cno').val();
+
+                // alert('hello');
+                if ($('#nmsg').text() != "") {
+                    alert($('#nmsg').text());
+                    $("#institutename").focus();
+                    return false;
+                }
+                if ($('#emailmessage').text() != "") {
+                    alert($('#emailmessage').text());
+                    $("#e").focus();
+                    return false;
+                }
+                if ($('#cnomessage').text() != "") {
+                    alert($('#cnomessage').text());
+                    $("#cno").focus();
+                    return false;
+                }
+
+
+            });
+            $('#e, #cno,#institutename').on('keyup', function() {
+                //var clen = $('#cno').val();
+                var email = $('#e').val();
+                if ($('#institutename').val() != '') {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'ajaxinstitutename.php',
+                        data: "instname=" + $('#institutename').val(),
+                        success: function(response) {
+                            $('#nmsg').html(response).css('color', 'red');
+                        }
+                    });
+
+
+                }
+
+                if (e_Reg.test(email) == false) {
+                    $('#emailmessage').html('Email Must be in abc@xyz Format').css('color', 'red');
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'ajaxinstituteemail.php',
+                        data: "email=" + email,
+                        success: function(response) {
+                            $('#emailmessage').html(response).css('color', 'red');
+                        }
+                    });
+
+                }
+
+                if (c_Reg.test($('#cno').val()) == false) {
+                    $('#cnomessage').html('Contact Must be of digit only').css('color', 'red');
+                } else if ($('#cno').val().length != 10) {
+                    $('#cnomessage').html(' PLEase enter 10 digit').css('color', 'red');
+
+                } else {
+                    $('#cnomessage').html('');
+                }
+
 
             });
         });
@@ -112,7 +177,7 @@ $indian_states = array(
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <input class="form-control form-control-lg m-1" name="logo" type="file" id="file" onchange="Filevalidation()" >
+                                            <input class="form-control form-control-lg m-1" name="logo" type="file" id="file" onchange="Filevalidation()">
                                             <span id="filemessage"></span>
                                         </div>
                                     </div>
@@ -131,14 +196,14 @@ $indian_states = array(
                                         <div class="col">
                                             <label class="form-control-label ml-2 p-1">Email:<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control form-control-lg m-1" id="e" value="<?php echo  $r['Email'] ?>" name="email" placeholder="abc@xyz.com" required>
-                                            <span id="emsg"></span>
+                                            <span id="emailmessage"></span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label class="form-label ml-2 p-1">Phone No.:<span class="text-danger">*</span></label>
                                             <input class="form-control form-control-lg m-1" type="tel" value="<?php echo  $r['Cno'] ?>" maxlength="10" id="cno" name="cno" placeholder="Enter your phone number" required>
-                                            <span id="cmessage"></span>
+                                            <span id="cnomessage"></span>
                                         </div>
                                     </div>
 
@@ -203,7 +268,7 @@ if (isset($_POST['change'])) {
     $country = $_POST['country'];
     $state = $_POST['s'];
     $Logo = $r['Logo'];
-    
+
     if ($_FILES['logo']['name']!="") {
         $imgname = $_FILES['logo']['name'];
         $tmpname = $_FILES['logo']['tmp_name'];
@@ -213,26 +278,26 @@ if (isset($_POST['change'])) {
         $newimgname .= "." . $imageExtension;      
         echo $newimgname;  
         unlink("../Institute-logo/" . $Logo);        
-        
+
         $q = "update institute_tbl set Name='$name', Cno='$cno', Email='$email',Address='$address' , 
         Country='$country', State='$state', Logo='$newimgname' where Id='$insti_id'";
         $res = mysqli_query($con, $q);
-        
+
         $q1 = "update inquiry_tbl set Name='$name', Cno='$cno', Email='$email',Address='$address' 
         where Id='$r[1]'";
         $res1 = mysqli_query($con, $q1);
         $q2 = "update institute_admin_tbl set Inst_name='$name',Email='$email' where Inst_id='$insti_id'";
         $res2 = mysqli_query($con, $q2);
-        
+
         if ($res) {
             if($res1)
             { 
                 if($res2)
                 {
-                   
+
                     move_uploaded_file($tmpname, "../Institute-logo/" . $newimgname);
                 echo "<script>Swal.fire({
-          
+
                     title: 'Updated',
                     text: 'Your Profile is Updated',
                     type: 'warning',
@@ -241,15 +306,15 @@ if (isset($_POST['change'])) {
                     preConfirm: function() {
 
                         window.location = (\"editprofile.php\")
-              
+
                       },
                       allowOutsideClick: false
-                    
+
                   })</script>";
-                 
+
                 }
             }
-           
+
         } else {
             die("<center><h1>Query Failedfgf" . mysqli_error($con) . "</h1></center>");
         }
@@ -257,22 +322,22 @@ if (isset($_POST['change'])) {
         $q = "update institute_tbl set Name='$name', Cno='$cno', Email='$email',Address='$address' , 
         Country='$country', State='$state' where Id='$insti_id'";
         $res = mysqli_query($con, $q);
-        
+
         $q1 = "update inquiry_tbl set Name='$name', Cno='$cno', Email='$email',Address='$address' 
         where Id='$r[1]'";
         $res1 = mysqli_query($con, $q1);
         $q2 = "update institute_admin_tbl set Inst_name='$name',Email='$email' where Inst_id='$insti_id'";
         $res2 = mysqli_query($con, $q2);
-        
+
         if ($res) {
             if($res1)
             { 
                 if($res2)
                 {
-                   
-                     
+
+
                 echo "<script>Swal.fire({
-          
+
                     title: 'Updated',
                     text: 'Your Profile is Updated',
                     type: 'warning',
@@ -281,15 +346,15 @@ if (isset($_POST['change'])) {
                     preConfirm: function() {
 
                         window.location = (\"editprofile.php\")
-              
+
                       },
                       allowOutsideClick: false
-                    
+
                   })</script>";
-                 
+
                 }
             }
-           
+
         } else {
             die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
         }

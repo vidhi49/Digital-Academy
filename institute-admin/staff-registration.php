@@ -13,7 +13,7 @@ $a = 'staffregister';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/staff.js"></script>
+    <!-- <script src="../js/staff.js"></script> -->
     <script src="../css/style.css"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
@@ -161,6 +161,94 @@ $a = 'staffregister';
                 }
             }
         }
+
+        $(document).ready(function() {
+
+            var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+            var c_Reg = /^[0-9]+$/;
+
+            $("#submit").click(function() {
+
+                // if ($('#e').val() != '') {
+                    if ($('#emsg').text() != "") {
+                        alert($('#emsg').text());
+                        $("#e").focus();
+                        return false;
+
+                    }
+                    if($('#profilemessage').text()!="")
+                    {
+                        alert($('#profilemessage').text());
+                        $("#profile").focus();
+                        return false;
+                    }
+                    if($('#excertimessage').text()!="")
+                    {
+                        alert($('#excertimessage').text());
+                        $("#ecerti").focus();
+                        return false;
+                    }
+                    if($('#qmessage').text()!="")
+                    {
+                        alert($('#qmessage').text());
+                        $("#qcerti").focus();
+                        return false;
+                    }
+                    if($('#idmessage').text()!="")
+                    {
+                        alert($('#idmessage').text());
+                        $("#id_proof").focus();
+                        return false;
+                    }
+                // }
+                // if (c_Reg.test($('#cno').val()) == false) {
+                //     alert('Please Fill Cnotact Number with digit only...');
+                //     $("#cno").focus();
+                //     return false;
+                // } else if ($('#cno').val().length != 10) {
+                //     alert('Please Fill 10 digit number...');
+                //     $("#cno").focus();
+                //     return false;
+                // }
+                if ($('#cmessage').text() != "") {
+                        alert($('#cmessage').text());
+                        $("#cno").focus();
+                        return false;
+
+                    }
+
+
+
+            });
+            $('#e, #cno').on('keyup', function() {
+                if (e_Reg.test($('#e').val()) == false) {
+                    $('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'validatestaffemail.php',
+                        data: "e=" + $('#e').val(),
+                        success: function(response) {
+                            $('#emsg').html(response).css('color', 'red');
+                        }
+                    });
+
+                }
+
+                if (c_Reg.test($('#cno').val()) == false) {
+                    $('#cmessage').html('Contact Must be of digit only').css('color', 'red');
+                } else if ($('#cno').val().length != 10) {
+                    $('#cmessage').html(' Please enter 10 digit').css('color', 'red');
+
+                } else {
+                    $('#cmessage').html('');
+                }
+
+
+            });
+
+
+        });
     </script>
 </head>
 
@@ -383,20 +471,28 @@ if (isset($_POST['submit'])) {
     $doj = $_POST['doj'];
     $date = date("Y-m-d");
     $inst_id = $_SESSION['inst_id'];
-    $inst_name = $_SESSION['name'];
     $ext_id = pathinfo($idproove, PATHINFO_EXTENSION);
     $ext_qcerti = pathinfo($qcerti, PATHINFO_EXTENSION);
     $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
     $password = substr(str_shuffle($generator), 0, 8);
     $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-
+    // $query = mysqli_query($con, "select * from institute_tbl where Id='$inst_id'");
+    // $res1 = mysqli_fetch_array($query);
     //$certi_img=$sname.".".$extension;
-    $q = "insert into staff_tbl values(null ,'$inst_id','$inst_name','$name','$gender','$email','$cno','$address','$state','$country',
+    if ($stype == 'Teaching') {
+        $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
     '$dob','$doj','$stype','$designation','','','','','$bloodgroup','$aca_year','$pass_hash','$date')";
-    require 'sendstaffemail.php';
+        require 'sendstaffemail.php';
+    }
+    if ($stype == 'Non-Teaching') {
+        $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
+    '$dob','$doj','$stype','$designation','','','','','$bloodgroup','$aca_year','','$date')";
+        // require 'sendstaffemail.php';
+    }
+
     if (mysqli_query($con, $q)); {
-        $q1 = "select Id from staff_tbl where Email = '$email'";
+        $q1 = "select Id from staff_tbl where Email = '$email' AND Inst_id='$inst_id'";
         $res1 = mysqli_query($con, $q1) or die("Query failed" . mysqli_error($con));
 
         $row1 = mysqli_fetch_assoc($res1);
@@ -421,7 +517,7 @@ if (isset($_POST['submit'])) {
         } else {
             $photo = "default.jpg";
         }
-        $q2 = "update staff_tbl set Id_prove='$id_p',Exp_doc='$experience_certi',Quali_doc='$qualification',Profile='$photo' where Id='$staff_id'";
+        $q2 = "update staff_tbl set Id_prove='$id_p',Exp_doc='$experience_certi',Quali_doc='$qualification',Profile='$photo' where Id='$staff_id' AND Inst_id='$inst_id'";
         if (mysqli_query($con, $q2)) {
             echo "<script> Swal.fire(
                 'Registered',

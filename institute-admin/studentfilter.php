@@ -53,7 +53,7 @@ $indian_states = array(
         // });
 
         $(document).ready(function() {
-            $(".container").fadeIn(1000);
+            $(".content").fadeIn(1000);
             $("#filter").click(function() {
                 if ($("#from_dob").val() != "") {
                     if ($("#to_dob").val() == "") {
@@ -133,7 +133,7 @@ $indian_states = array(
         <?php include("institute-sidebar.php"); ?>
         
         
-        <div class=" container  p-5" style="display: none;" >
+        <div class=" content  p-5" style="display: none;" >
             <form method="post">
                 <div class="row">
                     <div class="col">
@@ -225,7 +225,7 @@ $indian_states = array(
                                     <div class="col">
                                         <label class="form-label ml-2 p-1" for="city"> Country : <span class="text-danger">*</span></label>
                                         <select name="country" class="form-control form-control-lg m-1">
-                                            <option value="">--Select Class--</option>
+                                            <option value="">--Select--</option>
 
                                             <option value="India"> India </option>
 
@@ -235,10 +235,10 @@ $indian_states = array(
                                         <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
 
                                         <select name="state" id="state" class="form-control form-control-lg m-1">
-                                            <option value=''>--Select Section--</option>
+                                            <option value=''>--Select--</option>
                                             <?php
                                             foreach ($indian_states as $x => $val) {
-                                                echo '<option ' . (($r['State'] == $val) ? 'selected="selected"' : "") . '   > ' . $val . ' </option>';
+                                                echo '<option value="'.$val.'"   > ' . $val . ' </option>';
                                             } ?>
                                         </select>
                                     </div>
@@ -259,11 +259,11 @@ $indian_states = array(
             <!-- <div class="row" id="studtable" style="display: none;" > -->
                                     <br><br>
             <div class="row" id="studtable" style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
-                <div class="col m-3" style='border-radius:10px 10px 10px 10px;background-color: white;'>
-                    <div class="table-responsive pt-3">
+                <div class="col" style='border-radius:10px 10px 10px 10px;background-color: white;'>
+                    <div class="table-responsive p-3">
                         <table class="table table-hover">
                             <thead class="thead-light">
-                                <tr>
+                                <tr class="text-primary">
                                     <th>#</th>
                                     <th>Photo</th>
                                     <th>Grno</th>

@@ -160,8 +160,8 @@ $indian_states = array(
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class="content  mt-5 p-3">
-      <div class="d-flex justify-content-center float-center align-items-center">
+     <div class=" content  p-5"  >
+      <!-- <div class="d-flex justify-content-center float-center align-items-center"> -->
         <form method="post">
           <div class="row">
             <div class="col">
@@ -237,7 +237,7 @@ $indian_states = array(
                       <label class="form-label ml-2 p-1" for="city"> Country : <span
                           class="text-danger">*</span></label>
                       <select name="country" class="form-control form-control-lg m-1">
-                        <option value="">--Select Class--</option>
+                        <option value="">--Select Country--</option>
 
                         <option value="India"> India </option>
 
@@ -247,10 +247,10 @@ $indian_states = array(
                       <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
 
                       <select name="state" id="state" class="form-control form-control-lg m-1">
-                        <option value=''>--Select Section--</option>
+                        <option value=''>--Select State--</option>
                         <?php
                         foreach ($indian_states as $x => $val) {
-                          echo '<option ' . (($r['State'] == $val) ? 'selected="selected"' : "") . '   > ' . $val . ' </option>';
+                          echo '<option value="'.$val.'"   > ' . $val . ' </option>';
                         } ?>
                       </select>
                     </div>
@@ -288,7 +288,7 @@ $indian_states = array(
             </div>
           </div>
         </form>
-      </div>
+      <!-- </div> -->
       <!-- <div class="row" id="studtable" style="display: none;" > -->
       <br><br>
       <div class="row" id="studtable" style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">

@@ -24,9 +24,10 @@
 					$res = mysqli_query($con, $q);
 					$r = mysqli_fetch_array($res);
 					if ($r[6] == "Pending") {
-						$q1 = "update inquiry_tbl set status='$status' where Id='$id'";
+						$q1 = "update inquiry_tbl set status='$status', Date='$date' where Id='$id'";
 						mysqli_query($con, $q1) or die("Q1");
 						$q2 = "insert into institute_tbl values(null,'$r[0]','$r[1]','$r[2]','$r[3]','','','','$r[4]','$r[5]','','$date')";
+						// echo $q2;
 						mysqli_query($con, $q2) or die("Q3");
 						$q3 = "select * from institute_tbl where Email='$r[2]' and Name='$r[1]'";
 						$result = mysqli_query($con, $q3);
@@ -50,7 +51,7 @@
 					$res = mysqli_query($con, $q);
 					$r = mysqli_fetch_array($res);
 					if ($r[6] == 'Pending') {
-						$q1 = "update inquiry_tbl set status='$status' where Id='$id'";
+						$q1 = "update inquiry_tbl set status='$status' AND Date='$date' where Id='$id'";
 						mysqli_query($con, $q1) or die("Q1");
 						require 'rej_email.php';
 					} else if ($r[6] == 'Approved') {
@@ -89,7 +90,6 @@
 							confirmButtonColor: '#d33',
 							confirmButtonText: 'OK',
 						})</script>";
-					
 				}
 				if ($show3) {
 					echo "<script> 
@@ -99,8 +99,6 @@
 							confirmButtonColor: '#d33',
 							confirmButtonText: 'OK',
 						})</script>";
-					
-						
 				}
 				// include("admin-sidebar.php");
 				$q = "select * from inquiry_tbl";
@@ -110,7 +108,18 @@
 				?>
 
 					<div class="table-responsive-md table-sm w-100 p-5">
-						<h2> All Request</h2>
+						<div class="row">
+							<div class="col">
+							<h2> All Request</h2>
+							</div>
+							<div class="col d-flex justify-content-end">
+								<form action="total_req_rpt.php" target="_blank">
+									<input type="submit" value="Print" class="btn btn-success fs-4" />
+								</form>
+
+							</div>
+						</div>
+						
 						<hr><br>
 						<table class="table table-flush table-hover" id="dataTableHover">
 							<thead class="thead-light">

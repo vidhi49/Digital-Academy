@@ -11,7 +11,7 @@ if(isset($_POST['save'])){
     $className=$_POST['Name'];
     $sub_code=trim($_POST['Sub_code']);
     $sub_name=$_POST['Sub_name'];
-    $query=mysqli_query($con,"select * from subject_tbl where Sub_code ='$sub_code'");
+    $query=mysqli_query($con,"select * from subject_tbl where Sub_code ='$sub_code' AND Inst_id='$Ins_id'");
     $ret=mysqli_fetch_array($query);
 
     if($ret > 0){ 
@@ -19,7 +19,7 @@ if(isset($_POST['save'])){
         $statusMsg = "<div class='alert alert-danger'>This Subject Code is Already Exists!</div>";
     }
     else{
-        $q=mysqli_query($con,"select * from class_tbl where Name='$className'");
+        $q=mysqli_query($con,"select * from class_tbl where Name='$className' AND Insti_id='$Ins_id'");
         $res=mysqli_fetch_array($q);
         $class_id=$res['Id'];
         $query=mysqli_query($con,"insert into subject_tbl(Inst_id,Sub_code,Sub_name,Class_name,Class_id) values('$Ins_id','$sub_code','$sub_name','$className','$class_id')");
@@ -41,7 +41,7 @@ if(isset($_POST['save'])){
 	{
         $Id= $_GET['Id'];
 
-        $query=mysqli_query($con,"select * from subject_tbl where Id ='$Id'");
+        $query=mysqli_query($con,"select * from subject_tbl where Id ='$Id' AND Inst_id='$Ins_id'");
         $row=mysqli_fetch_array($query);
         $dis="disabled";
         //------------UPDATE-----------------------------
@@ -52,15 +52,15 @@ if(isset($_POST['save'])){
             $sub_code=$_POST['Sub_code'];
             $sub_name=$_POST['Sub_name'];
 
-            $q=mysqli_query($con,"select * from subject_tbl where Sub_code='$sub_code'");
+            $q=mysqli_query($con,"select * from subject_tbl where Sub_code='$sub_code' AND Inst_id='$Ins_id'");
             $res=mysqli_fetch_array($q);
-            $q1=mysqli_query($con,"select * from subject_tbl where Id = '$res[Id]'");
+            $q1=mysqli_query($con,"select * from subject_tbl where Id = '$res[Id]' AND Inst_id='$Ins_id'");
             $res1=mysqli_fetch_array($q1);
             if($res1>0)
             {
               if($Id==$res['Id'])
               {
-                $query=mysqli_query($con,"update subject_tbl set Sub_name='$sub_name' where Id='$Id'");
+                $query=mysqli_query($con,"update subject_tbl set Sub_name='$sub_name' where Id='$Id' AND Inst_id='$Ins_id'");
 
                 if ($query) 
                 {
@@ -82,7 +82,7 @@ if(isset($_POST['save'])){
             }
             else
             {
-                $query=mysqli_query($con,"update subject_tbl set Sub_code=' $sub_code',Sub_name='$sub_name' where Id='$Id'");
+                $query=mysqli_query($con,"update subject_tbl set Sub_code=' $sub_code',Sub_name='$sub_name' where Id='$Id' AND Inst_id='$Ins_id'");
 
                 if ($query) 
                 {
@@ -109,7 +109,7 @@ if(isset($_POST['save'])){
 	{
         $Id= $_GET['Id'];
 
-        $query = mysqli_query($con,"DELETE FROM subject_tbl WHERE Id='$Id'");
+        $query = mysqli_query($con,"DELETE FROM subject_tbl WHERE Id='$Id' AND Inst_id='$Ins_id'");
 
         if ($query == TRUE) {
 
@@ -169,11 +169,11 @@ if(isset($_POST['save'])){
                         <div class="col">
                             <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                             <?php
-                            $qry= "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
+                            $qry= "SELECT DISTINCT Name FROM class_tbl where  Insti_id='$Ins_id' ORDER BY Name ASC";
                             $result = $con->query($qry);
                             $num = $result->num_rows;		
                             if ($num > 0){
-                            echo ' <select required name="Name" '.$dis.' onchange="classDropdown(this.value)" class="form-control mb-3">';
+                            echo ' <select required name="Name" '.$dis.' onchange="classDropdown(this.value)" class="form-control form-control-lg mb-3">';
                             echo'<option value="">--Select Class--</option>';
                             while ($rows = $result->fetch_assoc()){
                             echo'<option '.(($row['Class_name']==$rows['Name'])?'selected="selected"':"").' value="'.$rows['Name'].'" >'.$rows['Name'].'</option>';
@@ -184,11 +184,11 @@ if(isset($_POST['save'])){
                         </div>
                         <div class="col">
                             <label class="form-control-label ">Create Subject Code<span class="text-danger ml-2">*</span></label>
-                            <input type="text" class="form-control" name="Sub_code" value="<?php if(isset($row['Sub_code'])) echo $row['Sub_code'];?>" placeholder="Enter Subject Code">
+                            <input type="text" class="form-control form-control-lg" name="Sub_code" value="<?php if(isset($row['Sub_code'])) echo $row['Sub_code'];?>" placeholder="Enter Subject Code">
                         </div>
                         <div class="col">
                             <label class="form-control-label ">Create Subject<span class="text-danger ml-2">*</span></label>
-                            <input type="text" class="form-control" name="Sub_name" value="<?php if(isset($row['Sub_name'])) echo $row['Sub_name'];?>" placeholder="Enter Subject Name">
+                            <input type="text" class="form-control form-control-lg" name="Sub_name" value="<?php if(isset($row['Sub_name'])) echo $row['Sub_name'];?>" placeholder="Enter Subject Name">
                         </div>
                         
                     </div>
@@ -230,7 +230,7 @@ if(isset($_POST['save'])){
                     <tbody>
 
                   <?php
-                      $query = "SELECT * FROM subject_tbl";
+                      $query = "SELECT * FROM subject_tbl where  Inst_id='$Ins_id'";
                       $rs = $con->query($query);
                       $num = $rs->num_rows;
                       $sn=0;
@@ -267,9 +267,7 @@ if(isset($_POST['save'])){
   </div>
    
 
-    <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+   
 
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

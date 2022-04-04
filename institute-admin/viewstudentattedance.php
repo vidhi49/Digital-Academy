@@ -298,7 +298,7 @@ $inst_id = $_SESSION['inst_id'];
                         <!-- <div id="selectclass" style="display: none;"> -->
                         <div>
                             <div>
-                                <h1 class="fs-2 text-dark ">Attedence (<?php echo $_REQUEST['date']; ?>)</h1>
+                                <h1 class="fs-2 text-dark ">Attedance (<?php echo $_REQUEST['date']; ?>)</h1>
                                 <hr>
 
                             </div>
@@ -391,7 +391,7 @@ $inst_id = $_SESSION['inst_id'];
             <div>
                 <div class="row">
                     <div class="col">
-                        <h1 class="fs-2 text-dark ">Attedence From(
+                        <h1 class="fs-2 text-dark ">Attedance From(
                             <?php
                             $date = $_REQUEST['from_date'];
                             $unixTimestamp = strtotime($date);

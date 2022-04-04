@@ -113,8 +113,8 @@ if(isset($_REQUEST['change']))
 {
     $newpwd=$_REQUEST['newpassword'];
     $pass_hash=password_hash($newpwd,PASSWORD_DEFAULT);
-    $email=$_SESSION['email'];
-    $q="update master_admin_tbl set Pwd='$pass_hash' where Email='$email'";
+    $id=$_SESSION['id'];
+    $q="update master_admin_tbl set Pwd='$pass_hash' where Id='$id'";
     $res=mysqli_query($con,$q);
     if($res)
     {

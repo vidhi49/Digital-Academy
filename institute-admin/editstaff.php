@@ -2,7 +2,6 @@
 // session_start();
 include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
-$inst_name = $_SESSION['name'];
 $a = 'managestaff';
 $indian_states = array(
     'AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CT' => 'Chhattisgarh',
@@ -13,7 +12,7 @@ $indian_states = array(
     'UP' => 'Uttar Pradesh', 'WB' => 'West Bengal',
 );
 $id = $_REQUEST['Id'];
-$q = "select * from staff_tbl where Id='$id'";
+$q = "select * from staff_tbl where Id='$id' AND Inst_id='$inst_id'";
 $res = mysqli_query($con, $q);
 $r = mysqli_fetch_array($res);
 ?>
@@ -26,7 +25,7 @@ $r = mysqli_fetch_array($res);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/staff.js"></script>
+    <!-- <script src="../js/staff.js"></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,12 +34,83 @@ $r = mysqli_fetch_array($res);
     <!-- <link href="../css/css/ruang-admin.min.css" rel="stylesheet"> -->
     <script>
         $(document).ready(function() {
+            var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+	var c_Reg = /^[0-9]+$/;
+	 
             $("#file").change(function(e) {
                 var tmppath = URL.createObjectURL(e.target.files[0]);
                 $("#profileimg").fadeIn("slow").attr('src', tmppath);
 
             });
+            $("#submit").click(function ()
+    {
+		if($('#filemessage').text() != "") 
+				{
+					alert($('#filemessage').text());
+					$("#file").focus();
+					return false;
+
+				}
+            if ($('#e').val()!= '') 
+			{
+				if($('#emsg').text() != "") 
+				{
+					alert($('#emsg').text());
+					$("#e").focus();
+					return false;
+
+				}
+			}
+			if (c_Reg.test($('#cno').val())==false) {
+				alert('Please Fill Cnotact Number with digit only...');
+				$("#cno").focus();
+				return false;
+			}
+			else if($('#cno').val().length != 10)
+			 {
+				alert('Please Fill 10 digit number...');
+				$("#cno").focus();
+				return false;	
+			}
+		
+		
+		
+			
+	});
+	$('#e, #cno').on('keyup', function(){
+		if (e_Reg.test($('#e').val()) == false) 
+        {
+			$('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
+		}
+		else {
+			$.ajax({
+				type: 'POST',
+				url: 'staffemail.php',
+				data: "e=" + $('#e').val() +"&id=" + $('#hiddenid').val(),
+				success: function (response) {  
+					$('#emsg').html(response).css('color','red');
+				}
+			});
+
+		}
+
+		if (c_Reg.test($('#cno').val())==false) {
+			$('#cmessage').html('Contact Must be of digit only').css('color', 'red');
+		}
+		else if($('#cno').val().length != 10)
+		 {
+			$('#cmessage').html(' Please enter 10 digit').css('color', 'red');
+
+		}
+		else 
+		{
+			$('#cmessage').html('');
+		}
+
+
+	});
         });
+
 
         Filevalidation = () => {
             const fi = document.getElementById('file');
@@ -201,6 +271,7 @@ $r = mysqli_fetch_array($res);
                                     </div>
                                     <div class="col-sm-4 col-lg-4">
                                         <label class="form-control-label ml-2 p-1">Email:<span class="text-danger">*</span></label>
+                                        <input type="hidden" id="hiddenid" value="<?php echo $_REQUEST['Id']?>">
                                         <input type="text" class="form-control form-control-lg m-1" id="e" value="<?php echo  $r['Email'] ?>" name="email" placeholder="abc@xyz.com" required>
                                         <span id="emsg"></span>
                                     </div>
@@ -267,7 +338,7 @@ $r = mysqli_fetch_array($res);
                                     <select class="form-control form-control-lg m-1" id="stype" name="stype" required>
                                         <option value="" disabled selected> Choose... </option>
                                         <option <?php if ($r['Stype'] == 'Teaching') echo ' selected'; ?>>Teaching</option>
-                                        <option <?php if ($r['Stype'] == 'Nom-Teaching') echo ' selected'; ?>>Non-Teaching</option>
+                                        <option <?php if ($r['Stype'] == 'Non-Teaching') echo ' selected'; ?>>Non-Teaching</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -345,7 +416,7 @@ if (isset($_POST['submit'])) {
         }
         $q = "update staff_tbl set Name='$sname', Gender='$gender' ,Dob='$dob',
         Cno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Doj='$doj', Stype='$stype',Desgination='$designation', Bloodgroup='$bloodgroup',
-        Profile='$newimgname' where Id='$id'";
+        Profile='$newimgname' where Id='$id' AND Inst_id='$inst_id'";
         // echo $q;
         $q1="update class_tbl set Class_teacher='$sname' where Teacher_id='$id' AND Insti_id='$inst_id'";
         $res1=mysqli_query($con,$q1);
@@ -362,7 +433,7 @@ if (isset($_POST['submit'])) {
     } else {
         $q = "update staff_tbl set Name='$sname', Gender='$gender' ,Dob='$dob',
         Cno='$cno', Email='$email',Address='$address' , Country='$country', State='$state', Doj='$doj', Stype='$stype',Desgination='$designation', Bloodgroup='$bloodgroup'
-         where Id='$id'";
+         where Id='$id' AND Inst_id='$inst_id'";
          $q1="update class_tbl set Class_teacher='$sname' where Teacher_id='$id' AND Insti_id='$inst_id'";
         $res1=mysqli_query($con,$q1);
         $res = mysqli_query($con, $q);

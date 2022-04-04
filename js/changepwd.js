@@ -32,6 +32,7 @@ $(document).ready(function () {
 
         if ($('#currentpassword').val() != '') {
 			$.ajax({
+                
 				type: 'POST',
 				url: 'passwordvalidate.php',
 				data: "currentpassword=" + $('#currentpassword').val(),

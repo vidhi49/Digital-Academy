@@ -14,7 +14,7 @@ if (isset($_POST['save'])) {
   $className = $_POST['Name'];
   $Stud_limit = $_POST['Stud_limit'];
   $sec = $_POST['Section'];
-  $query = mysqli_query($con, "select * from class_tbl where Name ='$className'");
+  $query = mysqli_query($con, "select * from class_tbl where Name ='$className'AND Section='$sec' AND Insti_id='$Ins_id'");
   $ret = mysqli_fetch_array($query);
 
   if ($ret > 0) {
@@ -39,7 +39,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
   $Id = $_GET['Id'];
 
 
-  $query = mysqli_query($con, "select * from class_tbl where Id ='$Id'");
+  $query = mysqli_query($con, "select * from class_tbl where Id ='$Id' AND Insti_id='$Ins_id'");
   $row = mysqli_fetch_array($query);
 
   //------------UPDATE-----------------------------
@@ -48,15 +48,16 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
 
     $className = $_POST['Name'];
     $Stud_limit = $_POST['Stud_limit'];
-    $q = mysqli_query($con, "select * from class_tbl where  Name ='$className'");
+    $sec = $_POST['Section'];
+    $q = mysqli_query($con, "select * from class_tbl where  Name ='$className' AND Section='$sec' AND Insti_id='$Ins_id'");
     $res = mysqli_fetch_array($q);
-    $query1 = mysqli_query($con, "select * from class_tbl where  Id ='$res[Id]'");
+    $query1 = mysqli_query($con, "select * from class_tbl where  Id ='$res[Id]' AND Insti_id='$Ins_id'");
     $ret = mysqli_fetch_array($query1);
     if ($ret > 0) {
 
       if ($Id == $res['Id']) {
 
-        $query = mysqli_query($con, "update class_tbl set Stud_limit='$Stud_limit' where Id='$Id'");
+        $query = mysqli_query($con, "update class_tbl set Stud_limit='$Stud_limit',Section='$sec' where Id='$Id' AND Insti_id='$Ins_id'");
 
         if ($query) {
 
@@ -70,7 +71,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
         $statusMsg = "<div class='alert alert-danger'>This Class Already Exists!</div>";
       }
     } else {
-      $query = mysqli_query($con, "update class_tbl set Name='$className' ,Stud_limit='$Stud_limit' where Id='$Id'");
+      $query = mysqli_query($con, "update class_tbl set Name='$className' ,Stud_limit='$Stud_limit',Section='$sec' where Id='$Id' AND Insti_id='$Ins_id'");
 
       if ($query) {
 
@@ -90,7 +91,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
 if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete") {
   $Id = $_GET['Id'];
 
-  $query = mysqli_query($con, "DELETE FROM class_tbl WHERE Id='$Id'");
+  $query = mysqli_query($con, "DELETE FROM class_tbl WHERE Id='$Id' AND Insti_id='$Ins_id'");
 
   if ($query == TRUE) {
 
@@ -132,7 +133,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     <div class="institute-content p-5  text-muted">
       <div class="row">
         <div class="d-flex align-items-center justify-content-between mb-4">
-          <h4 class="text-muted">Create Class</h4>
+          <h1 class="text-muted">Create Class</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
             <li class="breadcrumb-item active navy-blue m-0 pb-1" aria-current="page">Create Class</li>
@@ -153,15 +154,15 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
               <div class="form-group row">
                 <div class="col-sm-4">
                   <label class="form-control-label p-2 float-left">Class Name <span class="text-danger ml-2">*</span></label>
-                  <input type="text" class="form-control" name="Name" value="<?php if (isset($row['Name'])) echo $row['Name']; ?>" placeholder="Class Name" required>
+                  <input type="text" class="form-control form-control-lg" name="Name" value="<?php if (isset($row['Name'])) echo $row['Name']; ?>" placeholder="Class Name" required>
                 </div>
                 <div class="col-sm-4">
                   <label class="form-control-label p-2">Class Section <span class="text-danger ml-2"> *</span></label>
-                  <input type="text" class="form-control" name="Section" value="<?php if (isset($row['Section'])) echo $row['Section']; ?>" placeholder="Class Section" required>
+                  <input type="text" class="form-control form-control-lg" name="Section" value="<?php if (isset($row['Section'])) echo $row['Section']; ?>" placeholder="Class Section" required>
                 </div>
                 <div class="col-sm-4">
                   <label class="form-control-label p-2">Student Limit <span class="text-danger ml-2"> *</span></label>
-                  <input type="number" class="form-control" name="Stud_limit" value="<?php if (isset($row['Stud_limit'])) echo $row['Stud_limit']; ?>" required placeholder="Student Limit">
+                  <input type="number" class="form-control form-control-lg" name="Stud_limit" value="<?php if (isset($row['Stud_limit'])) echo $row['Stud_limit']; ?>" required placeholder="Student Limit">
                 </div>
               </div>
             </div>
@@ -200,7 +201,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
             </thead>
             <tbody>
               <?php
-              $query = "SELECT * FROM class_tbl";
+              $query = "SELECT * FROM class_tbl Where Insti_id='$Ins_id'";
               $rs = $con->query($query);
               $num = $rs->num_rows;
               $sn = 0;

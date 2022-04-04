@@ -19,7 +19,18 @@
         ?>
 
         <div class="table-responsive-md table-sm w-100 p-5">
-          <h2> Rejected Request</h2>
+          <div class="row">
+            <div class="col">
+            <h2> Rejected Request</h2>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <form action="rejected_req_rpt.php" target="_blank">
+              <input type="submit" value="Print" class="btn btn-success fs-4" />
+              </form>
+              
+            </div>
+          </div>
+          
           <hr><br>
           <table class="table table-flush table-hover" id="dataTableHover">
             <thead class="thead-light">

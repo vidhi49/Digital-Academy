@@ -226,10 +226,13 @@ include("../connect.php");
         <!-- <span class="tooltip">Edit</span> -->
       </li>
 
-      <li class="list nav-item ">
+      <li <?php
+          if (($a == 'institutedashboard')) {
+            echo "class=' active nav-item '";
+          } ?>>
         <b></b>
         <b></b>
-        <a href="#" class="nav-link">
+        <a href="institute-dashboard.php" class="nav-link">
 
           <i class='fa fa-check'></i>
           <span class="links_name d-sm-inline">Dashbord</span>
@@ -295,6 +298,28 @@ include("../connect.php");
         </a>
         <!-- <span class="tooltip">Create</span> -->
       </li>
+      <li <?php if (($a == 'allocateclass')) {
+            echo "class='list active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="class-allocation.php" class="nav-link">
+          <i class='fa fa-plus'></i>
+          <span class="links_name d-sm-inline">Allocate Class</span>
+        </a>
+        <!-- <span class="tooltip">Create</span> -->
+      </li>
+      <li <?php if (($a == 'allocatesubject')) {
+            echo "class='list active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="subject-allocation.php" class="nav-link">
+          <i class='fa fa-plus'></i>
+          <span class="links_name d-sm-inline">Allocate Subject</span>
+        </a>
+        <!-- <span class="tooltip">Create</span> -->
+      </li>
       <li <?php if (($a == 'managestudent')) {
             echo "Class='list active nav-item '";
           } ?>>
@@ -348,7 +373,7 @@ include("../connect.php");
         <b></b>
         <a href="viewclassattedance.php" class="nav-link">
           <i class='fa fa-clock'></i>
-          <span class="links_name d-sm-inline">Class Attedence</span>
+          <span class="links_name d-sm-inline">Class Attedance</span>
         </a>
         <!-- <span class="tooltip">Attedance</span> -->
       </li>

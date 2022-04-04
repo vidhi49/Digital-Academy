@@ -1,8 +1,8 @@
 
 <?php require('institute-header.php');
 include('../connect.php');
-$name=$_SESSION['name'];
-$email=$_SESSION['email'];
+$id=$_SESSION['inst_id'];
+
 ?>
 <head>
   
@@ -77,7 +77,7 @@ if(isset($_POST['signin']))
     $logo=$name.".".$extension;
     $_SESSION['logo']=$logo;
     move_uploaded_file($floc,"../Institute-logo/".$logo);
-    $q="update institute_tbl set Address = '$add',City='$city',State='$state', Country='$country',Logo='$logo' where Email='$email'";
+    $q="update institute_tbl set Address = '$add',City='$city',State='$state', Country='$country',Logo='$logo' where Id='$id'";
     if(mysqli_query($con,$q))
     {
       echo "<script> alert('Thank You for Provinding Your Information');</script>";

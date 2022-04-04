@@ -69,6 +69,7 @@ $a = "changepassword";
                                     </span>
                                 </div>
                             </div>
+
                             <span id="currentpwd"></span>
                         </div>
 

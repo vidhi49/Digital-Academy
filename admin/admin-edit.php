@@ -165,6 +165,70 @@ $r = mysqli_fetch_array($res);
 <?php
 if (isset($_REQUEST['update'])) {
   $email = $_REQUEST['eid'];
-  echo $email;
+  $profile=$r[3];
+  if (!empty($_FILES['photo']['name'])) {
+    $imgname = $_FILES['photo']['name'];
+    $tmpname = $_FILES['photo']['tmp_name'];
+    $imageExtension = explode('.', $imgname);
+    $imageExtension = strtolower(end($imageExtension));
+    $newimgname = $r[0];
+    $newimgname .= "." . $imageExtension;     
+    unlink("admin_profile/" . $profile); 
+    $que="update master_admin_tbl set Email='$email' , Profile='$newimgname' Where Id='$id'";
+    echo $que;
+    $res=mysqli_query($con,$que);
+    
+    if($res)
+    {
+      move_uploaded_file($tmpname, "admin_profile/" . $newimgname);
+      // echo "<script>alert('updated');</script>";
+      echo "<script>Swal.fire({
+          
+        title: 'Updated',
+        text: 'Your Profile is Updated',
+        type: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+        preConfirm: function() {
+
+            window.location = (\"admin-edit.php\")
+  
+          },
+          allowOutsideClick: false
+        
+      })</script>";
+     
+    }
+  }
+  else
+  { 
+    $que="update master_admin_tbl set Email='$email'  Where Id='$id'";
+    echo $que;
+    $res=mysqli_query($con,$que);
+    
+    if($res)
+    {
+      // echo "<script>alert('updated');</script>";
+      echo "<script>Swal.fire({
+          
+        title: 'Updated',
+        text: 'Your Profile is Updated',
+        type: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+        preConfirm: function() {
+
+            window.location = (\"admin-edit.php\")
+  
+          },
+          allowOutsideClick: false
+        
+      })</script>";
+     
+    }
+  }
+    
+    
+ 
 }
 ?>

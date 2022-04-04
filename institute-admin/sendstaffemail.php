@@ -35,6 +35,8 @@ $mail = new PHPMailer();
   color: midnightblue;">Login ID: '.$email.'
   <br>
  Password:'.$password.'
+ <br>
+ User:Student
         </td>
   </tr>
   <tr >

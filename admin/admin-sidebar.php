@@ -3,7 +3,8 @@
 include_once('../connect.php');
 // session_start();
 $email=$_SESSION['email'];
-$q="select * from master_admin_tbl where Email='$email'";
+$id = $_SESSION['id'];
+$q="select * from master_admin_tbl where Id='$id'";
 $res=mysqli_query($con,$q);
 $result=mysqli_fetch_array($res);
 ?>
@@ -47,10 +48,20 @@ $result=mysqli_fetch_array($res);
       <p class="fs-5 d-none d-sm-inline" aria-disabled="true">Menu</p>
     </a> -->
     <ul class="nav nav-pills flex-column mb-sm-auto">
+    <li <?php
+          if (($a == 'admindashboard')) {
+            echo "class=' active nav-item m-1 '";
+          } ?>>
+        <a href="admin-dashboard.php" class="nav-link align-middle px-0 ">
+          <i class="fa fa-th-large" aria-hidden="true"></i>
+          <p class="ms-2 d-none d-sm-inline">Dashboard</p>
+        </a>
+      </li>
       <?php
       if($result[4]=='1')
       {
       ?>
+
         <li <?php
           if (($a == 'addadmin')) {
             echo "class=' active nav-item m-1 '";
@@ -79,10 +90,19 @@ $result=mysqli_fetch_array($res);
           } ?>>
         <a href="admin-changepwd.php" class="nav-link align-middle px-0">
           <i class="fas fa-key fs-5"></i>
+          <i class="fa-solid fa-table-list"></i>
           <p class="ms-2 d-none d-sm-inline">Change Password</p>
         </a>
       </li>
-      
+      <li <?php
+          if (($a == 'manageadmin')) {
+            echo "class=' active nav-item m-1 '";
+          } ?>>
+        <a href="manageadmin.php" class="nav-link align-middle px-0 ">
+          <i class="fas fa-list fs-5"></i>
+          <p class="ms-2 d-none d-sm-inline">All Admin</p>
+        </a>
+      </li>
       
       <li <?php
           if (($a == 'allrequest')) {
@@ -99,6 +119,7 @@ $result=mysqli_fetch_array($res);
           } ?>>
         <a href="pending-request.php" class="nav-link align-middle px-0 ">
           <i class="fas fa-spinner fs-5"></i>
+
           <p class="ms-2 d-none d-sm-inline">Pending Request</p>
         </a>
       </li>
