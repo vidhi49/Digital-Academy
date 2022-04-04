@@ -8,7 +8,7 @@ if(isset($_POST['delete'])){
     $que="select * from staff_tbl where Id='$id' AND Inst_id='$instid'";
     $re=mysqli_query($con,$que);
     $res1=mysqli_fetch_array($re);
-    if($res1['Profile']!='defalut.jpg'){
+    if($res1['Profile']!='default.jpg'){
         unlink("staff_profile/" . $res1['Profile']);
     }
     

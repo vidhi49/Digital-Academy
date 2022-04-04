@@ -54,6 +54,8 @@ $mail = new PHPMailer();
 				$mail->Password = "optical1030";
 				$mail->Subject="Approved Authorization";
 				$mail->setFrom("sem5b.01.tmtbca@gmail.com");
+				// $mail->addAddress("$email");
+
 				$mail->addAddress("sem5b.02.tmtbca@gmail.com");
                 $mail->send();
 				$mail->smtpClose();
