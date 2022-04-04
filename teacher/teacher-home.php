@@ -1,6 +1,6 @@
 <?php
 include('../connect.php');
-include('../admin/admin-header.php');
+include('../teacher/teacher-header.php');
 ?>
 <html>
 

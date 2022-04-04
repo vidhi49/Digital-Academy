@@ -54,7 +54,6 @@ include('../connect.php');
       width: calc(100vw - 50px);
       padding: 5px;
       /* margin: 0px; */
-
     }
 
     .student-sidebar .span {
