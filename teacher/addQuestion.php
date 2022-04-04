@@ -7,6 +7,29 @@ $inst_id = $_SESSION['Inst_id'];
 
 <head>
   <script type="text/javascript" src="teacher.js"></script>
+  <script>
+    function sectionDropdown1(str) {
+    if (str == "") {
+      document.getElementById("section1").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section1").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxClass2.php?&Id=" + str, true);
+      xmlhttp.send();
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -83,7 +106,7 @@ $inst_id = $_SESSION['Inst_id'];
                 <div class="col-sm-6">
 
                   <div class="form-floating m-2">
-                    <select required name="section1" id='txtHint1' class="form-select">
+                    <select required name="section1" id='section1' class="form-select">
                       <option value="">--Select Section--</option>
                     </select>
                     <label for="floatingSelect">Select Section</label>
@@ -164,12 +187,14 @@ if (isset($_POST['submitQue'])) {
   $correctAnswers = $_POST['correctAnswer'];
   $dynamicOptions = $_POST['dynamicOptions'];
 
-  $p = "select * from class_tbl where Name='$classid' and Section='$section1'";
+  $p = "select * from class_tbl where Name='$classid' and Id='$section1'";
+  // echo $p;
   $res = mysqli_query($con, $p);
   // echo $dynamicOptions;
   $result = mysqli_fetch_array($res);
 
-  $q = "insert into question_tbl values(null,'$Addquestion','$result[0]','$section1','$subjectcode','$inst_id')";
+  $q = "insert into question_tbl values(null,'$Addquestion','$section1','$result[7]','$subjectcode','$inst_id')";
+  // echo $q;
   if (mysqli_query($con, $q)) {
     $qid = mysqli_insert_id($con);
     // echo $qid;

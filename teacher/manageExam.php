@@ -6,8 +6,9 @@ $inst_id = $_SESSION['Inst_id'];
 <html>
 
 <head>
-  <script type="text/javascript" src="teacher.js"></script>
+  
   <script src="../js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="teacher.js"></script>
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
@@ -23,7 +24,29 @@ $inst_id = $_SESSION['Inst_id'];
   </script>
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
+  <script>
+function sectionDropdown(str) {
+    if (str == "") {
+      document.getElementById("section").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxClass.php?Id=" + str, true);
+      xmlhttp.send();
+    }
+  }
+  </script>
 </head>
 
 <?php
@@ -155,12 +178,12 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
                     }
                     echo '</select>';
                   }
-                  ?>
+                  ?>  
                   <span id="classmsg"></span>
               </div>
               <div class="col-sm-4">
                 <div class="form-group d-flex justify-content-center">
-                  <select required name="section" id='txtHint' class="form-select  w-100" required>
+                  <select required name="section" id='section' class="form-select  w-100" required>
                     <option value="">--Select Section--</option>
                   </select>
                   <span id="sectionmsg"></span>
@@ -264,7 +287,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="submitQue">Save</button>
+            <!-- <button type="submit" class="btn btn-primary" name="submitQue">Save</button> -->
           </div>
         </form>
       </div>
@@ -284,14 +307,16 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $exTime = $_POST['exTime'];
     $exStatus = $_POST['exStatus'];
 
-    $classId = "select * from class_tbl where  Name='$exclass' and Section='$exsection'";
+    $classId = "select * from class_tbl where  Name='$exclass' and Id='$exsection'";
+    echo $classId;
     $cname = mysqli_query($con, $classId);
     $resCId = mysqli_fetch_array($cname);
     // echo $resCId[0];
     // echo $exsubject;
     // echo $exsection;
 
-    $q = "insert into exam_tbl values(null,'$inst_id','$examName','$resCId[0]','$exsection','$exsubject','$exDate','$exStatus','$exTime')";
+    $q = "insert into exam_tbl values(null,'$inst_id','$examName','$exsection','$resCId[7]','$exsubject','$exDate','$exStatus','$exTime')";
+    echo $q;
     if (mysqli_query($con, $q)) {
       echo ("<script>location.href='$yourURL'</script>");
     } else {
@@ -500,7 +525,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
         type: 'POST',
         url: 'ajaxExamvalidate.php',
         // data :"class=" + $('#class').val(),
-        data: "class=" + $('#class').val() + "&section=" + $("#txtHint").val() + "&subject=" + $("#subject")
+        data: "class=" + $('#class').val() + "&section=" + $("#section").val() + "&subject=" + $("#subject")
           .val() + "&date=" + $("#startDate").val(),
         success: function(response) {
           $('#examdate').html(response).css('color', 'red');

@@ -60,7 +60,7 @@ if ($nor > 0) {
         $rs = mysqli_fetch_array($result);
         // $checked = false;
         // echo "Hello" . $checked;
-        $mrk = $rs[6] ? $rs[6] : 1;
+        $mrk = $rs ? $rs[6] : 1;
         $cnt++;
         echo "<tr id='r_$r[0]'>";
         if ($checked) {

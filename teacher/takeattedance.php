@@ -1,6 +1,7 @@
 <?php
 include('../connect.php');
-session_start();
+// session_start();
+ include('teacher-header.php'); 
 $teacher_id = $_SESSION['Id'];
 $inst_id = $_SESSION['Inst_id'];
 
@@ -10,8 +11,8 @@ $inst_id = $_SESSION['Inst_id'];
 <body>
     <div class="d-flex">
         <?php include("teacher-sidebar.php"); ?>
-        <div class="container-fluid ml-4 content">
-            <?php include('teacher-header.php'); ?>
+        <!-- <div class="container-fluid ml-4 "> -->
+            
             <div class="content mt-5 p-3 ">
                 <div class="d-flex justify-content-center">
                     <div class="institute-content  text-muted">

@@ -29,6 +29,29 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
   </script>
+  <script>
+function sectionDropdown(str) {
+    if (str == "") {
+      document.getElementById("section").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxClass.php?Id=" + str, true);
+      xmlhttp.send();
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -59,7 +82,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
             </div>
             <div class="col-md-3 col-xs-3">
               <div class="form-group d-flex justify-content-center">
-                <select required name="section" id='txtHint' class="form-select  w-100" required>
+                <select required name="section" id='section' class="form-select  w-100" required>
                   <option value="">--Select Section--</option>
                 </select>
               </div>
@@ -102,13 +125,14 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
 
           //------------class name----------
 
-          $classId = "select * from class_tbl where  Name='$className' and Section='$section'";
-          $cname = mysqli_query($con, $classId);
-          $resCId = mysqli_fetch_array($cname);
-          // echo $SubjectId;
+          // $classId = "select * from class_tbl where  Name='$className' and Section='$section'";
+          // $cname = mysqli_query($con, $classId);
+          // $resCId = mysqli_fetch_array($cname);
+          // // echo $SubjectId;
           // echo $resCId[0];
 
-          $q = "select * from question_tbl where Subject_id='$SubjectId'  and Class_id='$resCId[0]' and Inst_Id='$inst_id'";
+          $q = "select * from question_tbl where Subject_id='$SubjectId'  and Class_id='$section' and Inst_Id='$inst_id'";
+          // echo $q;
           $res = mysqli_query($con, $q) or die("Query Failed");
           // print_r($res);
           $nor = mysqli_num_rows($res);

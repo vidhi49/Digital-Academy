@@ -12,14 +12,15 @@ $day = date('l', $unixTimestamp);
 if ($day == 'Sunday') {
     echo "sunday";
 } else {
-    $query = "select * from class_tbl where Name='$class' AND Section='$section' AND Insti_id='$inst_id'";
-    $result = mysqli_query($con, $query);
-    $r = mysqli_fetch_array($result);
-
-    $q = "select * from exam_tbl where Exam_Date='$date' AND Class_id='$r[0]' AND Section='$section' AND Inst_id='$inst_id'";
+    // $query = "select * from class_tbl where Name='$class' AND Section='$section' AND Insti_id='$inst_id'";
+    // $result = mysqli_query($con, $query);
+    // $r = mysqli_fetch_array($result);
+    // echo $query;
+    $q = "select * from exam_tbl where Exam_Date='$date' AND Class_id='$section' AND Inst_id='$inst_id'";
     $res = mysqli_query($con, $q);
     $nor = mysqli_num_rows($res);
     $r1 = mysqli_fetch_array($res);
+    // echo $q;
 
     if ($nor == 1) {
         if ($r1['Subject_Id'] == $subject) {
