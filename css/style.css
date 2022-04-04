@@ -37,6 +37,12 @@ body
   display: inline-block;
   align-items: center;
 }
+.student-content
+{
+  width: calc(100vw - 250px);
+  display: inline-block;
+  align-items: center;
+}
 .institute-content
 {
   width: calc(100vw - 230px);
@@ -58,7 +64,9 @@ body
     width: 100px;
   }
   .content{
-    width: calc(100vw - 100px);
+    width: calc(100vw - 50px);
+    margin:1px;
+    padding: 1px;
   }
 }
 
