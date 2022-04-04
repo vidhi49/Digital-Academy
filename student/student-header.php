@@ -1,7 +1,8 @@
 <?php
-
 session_start();
 $email = $_SESSION['email'];
+$Id = $_SESSION['Id'];
+$Inst_id = $_SESSION['Inst_id'];
 ?>
 <html>
 
@@ -17,6 +18,8 @@ $email = $_SESSION['email'];
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
   </script>
   <link rel="stylesheet" href="../css/style.css">
+  <script type="text/javascript" src="teacher.js"></script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     crossorigin="anonymous" />
 
