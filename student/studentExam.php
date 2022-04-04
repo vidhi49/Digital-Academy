@@ -147,6 +147,7 @@ $Inst_id = $_SESSION['Inst_id'];
     // $ans = $_POST['exAns'];
     // echo $ans;
     $ansCheck = $_POST['examAns'];
+    print_r($ansCheck);
     $eq = "select * from examquestion_tbl where cid='$classid' and section='$section' and subjectId='$subjectid' and Inst_id='$Inst_id' and ExamId='$examid'";
     // echo $examQ;
     $res = mysqli_query($con, $eq) or die("Query Failed-1");
@@ -165,10 +166,12 @@ $Inst_id = $_SESSION['Inst_id'];
       while ($ans = mysqli_fetch_array($res1)) {
 
         for ($x = 1; $x <= $nor; $x++) {
-          $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
+
+          // echo $as;
+          // $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
 
           $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$ans[0]','$correct','$examid','$Id','$subjectid'";
-          echo $q3;
+          // echo $q3;
         }
       }
     }
