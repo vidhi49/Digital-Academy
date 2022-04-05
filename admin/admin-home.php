@@ -47,11 +47,12 @@
 				if (isset($_REQUEST['rejected'])) {
 					$status = "Rejected";
 					$id = $_REQUEST['id'];
+					$date = date("Y-m-d");
 					$q = "select * from inquiry_tbl where Id='$id'";
 					$res = mysqli_query($con, $q);
 					$r = mysqli_fetch_array($res);
 					if ($r[6] == 'Pending') {
-						$q1 = "update inquiry_tbl set status='$status' AND Date='$date' where Id='$id'";
+						$q1 = "update inquiry_tbl set status='$status' , Date='$date' where Id='$id'";
 						mysqli_query($con, $q1) or die("Q1");
 						require 'rej_email.php';
 					} else if ($r[6] == 'Approved') {

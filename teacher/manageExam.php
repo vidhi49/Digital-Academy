@@ -583,16 +583,15 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   });
 
   $('#ExamInfoTbl').on('click', '.update', function() {
-    examname = $(".exNameupdate").val();
-    examid = $(".eid").val();
-    examdate = $(".exDateupdate").val();
-    examtime = $(".exTimeupdate").val();
+    examname = $(this).parent().parent().find(".exNameupdate").val();
+    examid = $(this).parent().parent().find(".eid").val();
+    examdate = $(this).parent().parent().find(".exDateupdate").val();
+    examtime = $(this).parent().parent().find(".exTimeupdate").val();
     // alert(examid);
     $.ajax({
       type: 'POST',
       url: 'ajaxUpdateexam.php',
-      data: "update='update'&eid=" + examid + "&examname=" + examname + "&examdate=" + examdate + "&examtime=" +
-        examtime,
+      data: "update='update'&eid=" + examid + "&examname=" + examname + "&examdate=" + examdate + "&examtime=" + examtime,
       success: function(response) {
         alert(response);
         // return false;

@@ -42,6 +42,18 @@
         </a>
       </li>
       <li class="nav-item m-1">
+        <a href="viewstudent.php" class="nav-link align-middle px-0 text-white">
+          <i class="fas fa-users fs-5"></i>
+          <p class="ms-2 d-none d-sm-inline"> View Student</p>
+        </a>
+      </li>
+      <li class="nav-item m-1">
+        <a href="viewclasses.php" class="nav-link align-middle px-0 text-white">
+          <i class="fas fa-address-book fs-5"></i>
+          <p class="ms-2 d-none d-sm-inline"> View Classes</p>
+        </a>
+      </li>
+      <li class="nav-item m-1">
         <a href="takeattedance.php" class="nav-link align-middle px-0 text-white">
           <i class="fas fa-question fs-5"></i>
           <p class="ms-2 d-none d-sm-inline"> Take Attedance </p>

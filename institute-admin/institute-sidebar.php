@@ -388,6 +388,44 @@ include("../connect.php");
         </a>
         <!-- <span class="tooltip">Attedance</span> -->
       </li>
+      <li <?php
+          if (($a == 'fees')) {
+            echo "class=' active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="fees.php " class="nav-link">
+          <i class='fa fa-check'></i>
+          <span class="links_name d-sm-inline">Fee details</span>
+        </a>
+        <!-- <span class="tooltip">Create</span> -->
+      </li>
+      <li <?php
+          if (($a == 'payments')) {
+            echo "class=' active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="payments.php " class="nav-link">
+          <i class='fa fa-check'></i>
+          <span class="links_name d-sm-inline">List of Payments</span>
+        </a>
+        <!-- <span class="tooltip">Create</span> -->
+      </li>
+      
+      <li <?php
+          if (($a == 'payment_rpt')) {
+            echo "class=' active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="payment_rpt.php " class="nav-link">
+          <i class='fa fa-check'></i>
+          <span class="links_name d-sm-inline">Payment Report</span>
+        </a>
+        <!-- <span class="tooltip">Create</span> -->
+      </li>
+      
     </ul>
 
   </div>
