@@ -144,10 +144,8 @@ $Inst_id = $_SESSION['Inst_id'];
     $subjectid = $_POST['subjectId'];
     $examid = $_POST['examId'];
     // echo $classid, $section, $subjectid, $examid;
-    // $ans = $_POST['exAns'];
-    // echo $ans;
-    $ansCheck = $_POST['examAns'];
-    print_r($ansCheck);
+
+
     $eq = "select * from examquestion_tbl where cid='$classid' and section='$section' and subjectId='$subjectid' and Inst_id='$Inst_id' and ExamId='$examid'";
     // echo $examQ;
     $res = mysqli_query($con, $eq) or die("Query Failed-1");
@@ -163,17 +161,23 @@ $Inst_id = $_SESSION['Inst_id'];
       $res6 = mysqli_query($con, $anscnt) or die("Query Failed-3");
       $n = mysqli_num_rows($res6);
 
-      while ($ans = mysqli_fetch_array($res1)) {
+      $submittedAnsCheck = is_array($_POST['examAns_' . $q1[5]]) ?  implode(',', $_POST['examAns_' . $q1[5]]) : $_POST['examAns_' . $q1[5]];
 
-        for ($x = 1; $x <= $nor; $x++) {
 
-          // echo $as;
-          // $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
+      $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$submittedAnsCheck','$examid','$Id','$subjectid')";
+      echo $q3;
+      $resset = mysqli_query($con, $q3) or die("Query Failed-4");
 
-          $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$ans[0]','$correct','$examid','$Id','$subjectid'";
-          // echo $q3;
-        }
-      }
+      // while ($ans = mysqli_fetch_array($res1)) {
+
+      //   for ($x = 1; $x <= $nor; $x++) {
+
+      //     // echo $as;
+      //     // $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
+
+
+      //   }
+      // }
     }
   }
   ?>
