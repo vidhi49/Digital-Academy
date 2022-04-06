@@ -256,7 +256,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="submitQue">Save</button>
+            <!-- <button type="submit" class="btn btn-primary" name="submitQue">Publish Exam </button> -->
           </div>
         </form>
       </div>
@@ -287,7 +287,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" name="submitQue">Save</button> -->
+            <button type="submit" class="btn btn-primary" name="pusblishExam">Publish</button>
           </div>
         </form>
       </div>
@@ -296,6 +296,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   <?php
   include("../guest/footer.php");
   ?>
+  <!-- ------Publish Exma--------->
+
   <!----------- Add exam ------------->
   <?php
   if (isset($_POST['addExam'])) {

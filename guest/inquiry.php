@@ -96,7 +96,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Contact No :</label>
-                    <input type='tel' id="cno" maxlength="10" class="form-control form-control-lg" name="cno" placeholder="10 Digits Only" />
+                    <input type='number' id="cno" maxlength="10" class="form-control form-control-lg" name="cno" placeholder="10 Digits Only" />
                     <span id='cmessage'></span>
                   </div>
                 </div>

@@ -28,10 +28,8 @@ if (isset($_POST['allocate'])) {
     }
   } else {
     $query1 = mysqli_query($con, "select * from class_tbl where NOT Teacher_id ='$tid' and Insti_id='$Ins_id'");
-    echo "select * from class_tbl where NOT Teacher_id ='$tid' and Insti_id='$Ins_id'";
     $res = mysqli_fetch_array($query1);
     if ($query1) {
-
       if ($res['Section'] == $section && $res['Name'] == $className) {
         $statusMsg = "<div class='alert alert-danger'>Another Teacher Is Assigned To This Class !</div>";
       } else {
