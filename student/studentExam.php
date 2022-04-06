@@ -164,20 +164,20 @@ $Inst_id = $_SESSION['Inst_id'];
       $submittedAnsCheck = is_array($_POST['examAns_' . $q1[5]]) ?  implode(',', $_POST['examAns_' . $q1[5]]) : $_POST['examAns_' . $q1[5]];
 
 
-      $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$submittedAnsCheck','$examid','$Id','$subjectid')";
-      echo $q3;
+      $correctAns = array();
+      while ($ans = mysqli_fetch_array($res6)) {
+        if ($ans[3] == '1') {
+          array_push($correctAns, $ans[0]);
+        }
+      }
+      // print_r($correctAns);
+      // print_r(explode(',', $submittedAnsCheck));
+      $result = $correctAns == explode(',', $submittedAnsCheck) ? 1 : 0;
+      echo $result;
+
+      $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$submittedAnsCheck','$examid','$Id','$subjectid','$result')";
+      // echo $q3;
       $resset = mysqli_query($con, $q3) or die("Query Failed-4");
-
-      // while ($ans = mysqli_fetch_array($res1)) {
-
-      //   for ($x = 1; $x <= $nor; $x++) {
-
-      //     // echo $as;
-      //     // $correct =  is_numeric(array_search($x, $ansCheck)) ? 1 : 0;
-
-
-      //   }
-      // }
     }
   }
   ?>

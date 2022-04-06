@@ -10,6 +10,7 @@ include('../connect.php');
   <style>
   .stud-sidebar-body {
     background-color: #041562;
+
   }
 
   .nav-link:hover {
@@ -83,22 +84,23 @@ include('../connect.php');
 </head>
 
 <body class="stud-sidebar-body">
-  <div class="d-flex flex-column student-sidebar vh-100 flex-shrink-0 p-3 text-white" id='student-sidebar'> <a href="/"
+  <div class="d-flex flex-column student-sidebar vh-100 flex-shrink-0 p-3 text-white" id='student-sidebar'
+    style="box-shadow: inset 0 10px 15px -6px black;"> <a href="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> <svg class="bi me-2"
-        width="40" height="32"> </svg> <span class="fs-4 span">BBBootstrap</span> </a>
+        width="40" height="32"> </svg> <span class="fs-5 span">Welcome </span> </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item"> <a href="#" class="nav-link active p-2 m-2" aria-current="page"> <i
-            class="fa fa-home"></i><span class="ms-2 span">Home</span> </a> </li>
+      <!-- <li class="nav-item"> <a href="#" class="nav-link active p-2 m-2" aria-current="page"> <i -->
+      <!-- class="fa fa-home"></i><span class="ms-2 span">Home</span> </a> </li> -->
       <li> <a href="student-dashboard.php" class="nav-link text-white p-2 m-2">
           <i class="fa fa-tachometer fa-rotate-90	"></i>
           <span class="ms-1 span">Dashboard</span>
         </a> </li>
-      <li> <a href="#" class="nav-link text-white p-2 m-2"> <i class="fa fa-cog"></i><span
-            class="ms-2 span">Settings</span>
-        </a>
+      <!-- <li> <a href="#" class="nav-link text-white p-2 m-2"> <i class="fa fa-cog"></i><span -->
+      <!-- class="ms-2 span">Settings</span> -->
+      <!-- </a> -->
       </li>
-      <li> <a href="studentExam.php" class="nav-link text-white p-2 m-2"> <i class="fa fa-bell"></i><span
+      <li> <a href="studentExam.php" class="nav-link active text-white p-2 m-2"> <i class="fa fa-bell"></i><span
             class="ms-2 span">Exam</span>
         </a>
       </li>
@@ -108,13 +110,13 @@ include('../connect.php');
         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt=""
           width="32" height="32" class="rounded-circle me-2"> <strong> John W </strong> </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item text-dark" href="#">New project</a></li>
+        <li><a class="dropdown-item text-dark" href="#">Settings</a></li>
+        <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item text-dark" href="../teacher/teacher-logout.php">Sign out</a></li>
       </ul>
     </div>
   </div>

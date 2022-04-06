@@ -6,7 +6,7 @@ $inst_id = $_SESSION['Inst_id'];
 <html>
 
 <head>
-  
+
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="teacher.js"></script>
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,7 @@ $inst_id = $_SESSION['Inst_id'];
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script>
-function sectionDropdown(str) {
+  function sectionDropdown(str) {
     if (str == "") {
       document.getElementById("section").innerHTML = "";
       return;
@@ -178,7 +178,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
                     }
                     echo '</select>';
                   }
-                  ?>  
+                  ?>
                   <span id="classmsg"></span>
               </div>
               <div class="col-sm-4">
@@ -287,7 +287,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" name="submitQue">Save</button> -->
+            <!-- <button type="submit" class="btn btn-primary" name="publishExam">Save</button> -->
           </div>
         </form>
       </div>

@@ -59,7 +59,7 @@ $res = mysqli_query($con, $examQ) or die("Query Failed-1");
           $n = mysqli_num_rows($res6);
 
           if ($n == 1) {
-            echo "<td> <input class='form-check-input me-1 p-1' type='radio' name='examAns_$q1[0]' value='$ans[0]'> $ans[1]";
+            echo "<td> <input class='form-check-input me-1 p-1' type='radio' name='examAns_$q1[0]' value='$ans[0]' required> $ans[1]";
           } else {
             echo "<td> <input class='form-check-input me-1' type='checkbox' name='examAns_$q1[0][]' value='$ans[0]'> $ans[1]";
           }
