@@ -138,6 +138,10 @@ if(isset($_POST['view']))
 {
     $class=$_REQUEST['class'];
     $section=$_REQUEST['section'];
+    $q="select * from class_tbl where Id='$section'";
+    $res=mysqli_query($con,$q);
+    $result=mysqli_fetch_array($res);
+    $sec=$result['Section'];
     echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
 }
 

@@ -36,7 +36,7 @@ $mail = new PHPMailer();
   <br>
  Password:'.$password.'
  <br>
- User:Student
+ User:Teacher
         </td>
   </tr>
   <tr >

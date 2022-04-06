@@ -76,10 +76,7 @@ if ($nor > 0) {
           echo "<td><input type='number' data-oldValue='$mrk' onchange='updateMarks(event,$r[0])' class='form-control w-100 pr-1' min='1' max='5' name='marks_$r[0]' id='marks_$r[0]' value='$mrk'></td>";
         }
       }
-    } else {
-      echo "<center><h1>No Data Found...</h1></center>";
-    }
-    echo " </tbody>
+      echo " </tbody>
    </div>
    </table>
    <div>
@@ -89,4 +86,8 @@ if ($nor > 0) {
    <label id='totMarks' name='totMarks' >$totMarks </label> Marks</p>
             </div> ";
 
+    } else {
+      echo "<center><h1>No Data Found...</h1></center>";
+    }
+    
       ?>
