@@ -8,21 +8,20 @@ include('../connect.php');
   <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-  .stud-sidebar-body {
-    background-color: #041562;
-
-  }
-
   .nav-link:hover {
-    background-color: #525252 !important
+    background-color: #525252 !important;
   }
 
   .nav-link .fa {
-    transition: all 1s
+    transition: all 1s;
   }
 
   .nav-link:hover .fa {
-    transform: rotate(360deg)
+    transform: rotate(360deg);
+  }
+
+  nav li {
+    position: relative;
   }
 
   .student-sidebar {
@@ -37,10 +36,11 @@ include('../connect.php');
     /* transition: all 0.5s ease; */
   }
 
-  .student-sidebar ul li.active {
+  .student-sidebar ul li:active {
     color: #fff;
     background-color: #0d6efd;
   }
+
 
   @media only screen and (max-width: 500px) {
 
@@ -64,10 +64,10 @@ include('../connect.php');
   </style>
   <script>
   /* Code for changing active 
-  link on clicking */
+            link on clicking */
   var btns =
-    $("#student-sidebar .nav-pills .nav-item ");
-  console.log(btns);
+    $("#navigation .navbar-nav .nav-link");
+
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click",
       function() {
@@ -83,16 +83,17 @@ include('../connect.php');
   </script>
 </head>
 
-<body class="stud-sidebar-body">
+<body>
   <div class="d-flex flex-column student-sidebar vh-100 flex-shrink-0 p-3 text-white" id='student-sidebar'
     style="box-shadow: inset 0 10px 15px -6px black;"> <a href="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> <svg class="bi me-2"
         width="40" height="32"> </svg> <span class="fs-5 span">Welcome </span> </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="navbar-nav nav-pills flex-column mb-auto">
       <!-- <li class="nav-item"> <a href="#" class="nav-link active p-2 m-2" aria-current="page"> <i -->
       <!-- class="fa fa-home"></i><span class="ms-2 span">Home</span> </a> </li> -->
-      <li> <a href="student-dashboard.php" class="nav-link text-white p-2 m-2">
+      <li class="nav-item"> <a href="student-dashboard.php" aria-current="page"
+          class="nav-link active text-white p-2 m-2">
           <i class="fa fa-tachometer fa-rotate-90	"></i>
           <span class="ms-1 span">Dashboard</span>
         </a> </li>
@@ -100,8 +101,8 @@ include('../connect.php');
       <!-- class="ms-2 span">Settings</span> -->
       <!-- </a> -->
       </li>
-      <li> <a href="studentExam.php" class="nav-link active text-white p-2 m-2"> <i class="fa fa-bell"></i><span
-            class="ms-2 span">Exam</span>
+      <li class="nav-item"> <a href="studentExam.php" class="nav-link  text-white p-2 m-2"> <i
+            class="fa fa-bell"></i><span class="ms-2 span">Exam</span>
         </a>
       </li>
     </ul>

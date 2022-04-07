@@ -9,14 +9,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/style.css">
+
 </head>
+
 <?php require('header.php') ?>
 
 <body>
   <div>
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
@@ -55,27 +58,31 @@
   </div>
   <div class="container p-5 ">
     <div class="row m-5">
-      <div class="col-sm-4 text-center"><i class="fa fa-address-book fa-3x" aria-hidden="true"></i>
+      <div class="col-sm-4 text-center navy-blue animate__animated animate__fadeInLeft animate__slower"><i
+          class="fa fa-address-book fa-3x" aria-hidden="true"></i>
         <p class="mt-3"> Admission Management</p>
       </div>
-      <div class=" col-sm-4 text-center"><i class="fa fa-users fa-3x" aria-hidden="true"></i>
-        <p class="mt-3">Staff Management</p>
+      <div class=" col-sm-4 text-center navy-blue animate__animated animate__fadeInRight animate__slower"><i
+          class="fa fa-users fa-3x" aria-hidden="true"></i>
+        <p class="mt-3"> Staff Management </p>
       </div>
-      <div class="col-sm-4 text-center"><i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
-        <p class="mt-3"> Time-table Management</p>
-      </div>
+      <!-- <div class="col-sm-4 text-center"><i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
+        <p class="mt-3"> Time-table Management </p>
+      </div> -->
     </div>
     <div class=" row m-5">
-      <div class="col-sm-4 text-center"><i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
+      <div class="col-sm-4 text-center navy-blue animate__animated animate__bounce animate__slower"><i
+          class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
         </i>
-        <p class="mt-3"> Online Examination</p>
+        <p class="mt-3"> Online Examination </p>
       </div>
-      <div class="col-sm-4 text-center">
+      <div class="col-sm-4 text-center navy-blue animate__animated animate__flash animate__slower"><i
+          class="fas fa-coins fa-3x" aria-hidden="true"></i>
+        <p class="mt-3"> Fees Management </p>
+      </div>
+      <!-- <div class="col-sm-4 text-center">
         <p class="mt-3"></p>
-      </div>
-      <div class="col-sm-4 text-center">
-        <p class="mt-3"></p>
-      </div>
+      </div> -->
     </div>
   </div>
 </body>
