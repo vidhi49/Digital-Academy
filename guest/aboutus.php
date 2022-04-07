@@ -24,8 +24,8 @@ h1 {
 
 <body>
   <?php require("header.php"); ?>
-  <div class="container content d-block">
-    <div class="row p-5 mt-3" style="background-image: url(https://source.unsplash.com/1400x500/?education,dark)">
+  <div class="content d-block w-100">
+    <div class="row p-5 mt-3" style="background-image: url(https://source.unsplash.com/1400x500/?education,dark); ">
       <h1 class="text-center  animate__animated animate__bounce animate__slower delay-2s">DIGITAL ACADEMY
       </h1>
       <hr>

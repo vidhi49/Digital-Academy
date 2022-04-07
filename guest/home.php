@@ -2,91 +2,104 @@
 <html lang="en">
 
 <head>
-  <title> Welcome Guest </title>
+  <title>Welcome Guest</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/style.css">
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
+<style>
+.nav-item::after {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: #fec400;
+  transition: 0.2s;
+}
 
-<?php require('header.php') ?>
+.nav-link:hover {
+  transform: scale(1.3);
+}
+
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: darkgrey;
+  font-weight: bold;
+  /* font-size: large; */
+}
+
+.btn-get-started {
+  color: #213b52;
+  border-radius: 50px;
+  padding: 8px 35px 10px 35px;
+  border: 2px solid #fdc134;
+  transition: all ease-in-out 0.3s;
+  display: inline-block;
+  background: #fdc134;
+}
+
+.btn-get-started:hover {
+  background: transparent;
+  color: #fff;
+}
+</style>
 
 <body>
-  <div>
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner ">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <img src="../img/sl1.jpg" class="d-block img-carousel " alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h4>Digital Academy </h4>
-            <p class="fs-5">Expand educational oppertunities with DGSkool.</p>
-          </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img src="../img/sl2.jpg" class="d-block img-carousel" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <!-- <h5>Second slde label</h5> -->
-            <p class="fs-5">The fundamental purpose of school is learing not teaching.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="../img/sl3.jpg" class="d-block img-carousel " alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h4>Digital Academy</h4>
-            <p class="fs-5">Instructions ends in the school room but education ends only with life.</p>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+  <header class="bg-navy-blue pt-3">
+    <div class="container d-flex align-items-center justify-content-between">
+      <img class='logo navbar-brand ' src='../img/logo1.png' />
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark">
+        <div class="d-flex justify-content-end collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav fs-6">
+            <li class="nav-item">
+              <a class="nav-link m-2" href="#home">Home</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link m-2 " href="aboutus.php">Registration-Request</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link m-2" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link m-2 " href="contactus.php">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link m-2" href="home.php">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </div>
-  <div class="container p-5 ">
-    <div class="row m-5">
-      <div class="col-sm-4 text-center navy-blue animate__animated animate__fadeInLeft animate__slower"><i
-          class="fa fa-address-book fa-3x" aria-hidden="true"></i>
-        <p class="mt-3"> Admission Management</p>
+  </header>
+  <div id="home" class="bg-navy-blue">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class="col-sm-6 p-5">
+          <p style="color:#bec4cb;" class="mt-5 fs-1 fw-bold	">Your new digital experience with DGSkool</p>
+          <p style="color:#bec4cb;" class="fs-5">We are team of talented developers making websites with more Security
+            and As per Requirements.
+          </p>
+          <button href="" class="btn-get-started scrollto">Get Started</button>
+        </div>
+        <div class="col-sm-6">
+
+        </div>
       </div>
-      <div class=" col-sm-4 text-center navy-blue animate__animated animate__fadeInRight animate__slower"><i
-          class="fa fa-users fa-3x" aria-hidden="true"></i>
-        <p class="mt-3"> Staff Management </p>
-      </div>
-      <!-- <div class="col-sm-4 text-center"><i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
-        <p class="mt-3"> Time-table Management </p>
-      </div> -->
-    </div>
-    <div class=" row m-5">
-      <div class="col-sm-4 text-center navy-blue animate__animated animate__bounce animate__slower"><i
-          class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
-        </i>
-        <p class="mt-3"> Online Examination </p>
-      </div>
-      <div class="col-sm-4 text-center navy-blue animate__animated animate__flash animate__slower"><i
-          class="fas fa-coins fa-3x" aria-hidden="true"></i>
-        <p class="mt-3"> Fees Management </p>
-      </div>
-      <!-- <div class="col-sm-4 text-center">
-        <p class="mt-3"></p>
-      </div> -->
     </div>
   </div>
 </body>
-
-</html>
-<?php require('footer.php'); ?>

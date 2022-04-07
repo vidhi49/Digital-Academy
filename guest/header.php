@@ -42,33 +42,37 @@
 </style>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark py-1">
-    <div class="container-fluid">
-      <img class='logo navbar-brand ms-5 ' src='../img/logo1.png' />
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="justify-content-end collapse navbar-collapse " id="collapsibleNavbar">
-        <ul class="navbar-nav fs-6">
-          <li class="nav-item m-2">
-            <a class="nav-link  " href="home.php">Home</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link " href="inquiry.php">Inquiry</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link " href="login.php">Login</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link " href="aboutus.php">About Us</a>
-          </li>
-          <li class="nav-item m-2">
-            <a class="nav-link " href="contactus.php">Contact Us</a>
-          </li>
-        </ul>
-      </div>
+  <div class="row bg-navy-blue">
+    <div class="container">
+      <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark">
+        <div class="container-fluid">
+          <img class='logo navbar-brand ' src='../img/logo1.png' />
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="justify-content-end collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav fs-6">
+              <li class="nav-item">
+                <a class="nav-link  " href="">Home</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="">Inquiry</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="login.php">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
 
 </body>
 
