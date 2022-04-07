@@ -214,8 +214,8 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <label>Status</label>
               <select class="form-select" name="exStatus">
                 <option>Pending</option>
-                <option>Created</option>
-                <option>Completed</option>
+                <!-- <option>Created</option>
+                <option>Published</option> -->
               </select>
             </div>
             <div class="modal-footer">
@@ -256,7 +256,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" name="submitQue">Publish Exam </button> -->
+            <button type="submit" class="btn btn-primary" name="submitQue">Save </button>
           </div>
         </form>
       </div>
@@ -287,7 +287,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-primary" name="publishExam">Save</button> -->
+            <button type="submit" class="btn btn-primary" name="publishExam">Publish Exam</button>
           </div>
         </form>
       </div>
@@ -296,8 +296,6 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   <?php
   include("../guest/footer.php");
   ?>
-  <!-- ------Publish Exma--------->
-
   <!----------- Add exam ------------->
   <?php
   if (isset($_POST['addExam'])) {
@@ -372,10 +370,20 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $resSet3 = mysqli_query($con, $rec);
     $nors = mysqli_num_rows($resSet3);
     if ($nors > 0) {
-      $status = "update exam_tbl set Status='created' where Id='$examId' and Inst_id='$inst_id'";
+      $status = "update exam_tbl set Status='Created' where Id='$examId' and Inst_id='$inst_id'";
       $result = mysqli_query($con, $status);
       echo "<script>window.location.href='manageExam.php';</script>";
     }
+  }
+  ?>
+  <!-- Published Exam -->
+  <?php
+  if (isset($_POST['publishExam'])) {
+    $examId = $_POST['examId'];
+    // echo $examId;
+    $q = "update exam_tbl set Status='Published' where Inst_id='$inst_id' and Id='$examId' ";
+    $res = mysqli_query($con, $q);
+    // echo $q;
   }
   ?>
   <script>
@@ -465,6 +473,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     $('#examDetails').find('[name="section"]').val(section);
     $('#examDetails').find('[name="subjectId"]').val(subjectId);
     $('#examDetails').find('[name="examId"]').val(examId);
+    $('#examDetails').find('[name="publishExam"]').val(examId);
 
     if (window.XMLHttpRequest) {
       // code for IE7+, Firefox, Chrome, Opera, Safari

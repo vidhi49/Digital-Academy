@@ -2,6 +2,7 @@
 
 include '../connect.php';
 session_start();
+$Id = $_SESSION['Id'];
 
 $Inst_id = $_SESSION['Inst_id'];
 $cid = $_GET['classId'];
@@ -9,64 +10,73 @@ $sec = $_GET['section'];
 $sid = $_GET['subjectId'];
 $examId = $_GET['examId'];
 
-$examQ = "select * from examquestion_tbl where cid='$cid' and section='$sec' and subjectId='$sid' and Inst_id='$Inst_id' and ExamId='$examId'";
-// echo $examQ;
+$c = "select * from studentExamResult_tbl where Inst_id='$Inst_id' and Student_Id='$Id' and Exam_Id='$examId'";
+// echo $c;
+$resr = mysqli_query($con, $c) or die("Query Failed-1");
+$nor = mysqli_num_rows($resr);
+if ($nor > 0) {
+  echo "You have already submitted Exam...";
+} else {
+  $examQ = "select * from examquestion_tbl where cid='$cid' and section='$sec' and subjectId='$sid' and Inst_id='$Inst_id' and ExamId='$examId'";
+  // echo $examQ;
 
-$res = mysqli_query($con, $examQ) or die("Query Failed-1");
+  $res = mysqli_query($con, $examQ) or die("Query Failed-1");
 
-// print_r($eq);
+  // print_r($eq);
 
 
-// $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id=$q1[0]";
-// // echo $a;
-// $res2 = mysqli_query($con, $a) or die("Query Failed3");
-// $ans = mysqli_fetch_array($res2);
+  // $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id=$q1[0]";
+  // // echo $a;
+  // $res2 = mysqli_query($con, $a) or die("Query Failed3");
+  // $ans = mysqli_fetch_array($res2);
 ?>
 <div class="table table-responsive-md">
   <table class="table table-borderless ">
     <?php
-    $cnt = 0;
-    while ($eq = mysqli_fetch_array($res)) {
+      $cnt = 0;
+      while ($eq = mysqli_fetch_array($res)) {
 
-      $q = "select * from question_tbl where Inst_Id='$Inst_id' and Class_Id='$cid' and Section='$sec' and Subject_Id='$sid' and Id='$eq[5]'";
-      // echo $q;
-      $res1 = mysqli_query($con, $q) or die("Query Failed-2");
+        $q = "select * from question_tbl where Inst_Id='$Inst_id' and Class_Id='$cid' and Section='$sec' and Subject_Id='$sid' and Id='$eq[5]'";
+        // echo $q;
+        $res1 = mysqli_query($con, $q) or die("Query Failed-2");
 
-      while ($q1 = mysqli_fetch_array($res1)) {
+        while ($q1 = mysqli_fetch_array($res1)) {
 
-        $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[0]'";
-        $res3 = mysqli_query($con, $a) or die("Query Failed-3");
+          $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[0]'";
+          $res3 = mysqli_query($con, $a) or die("Query Failed-3");
 
-        $nor = mysqli_num_rows($res3);
-        // echo $nor;
-        $cnt++;
-        $num = $nor + 1;
-        echo "<tr style='border-style: none;'>
+          $nor = mysqli_num_rows($res3);
+          // echo $nor;
+          $cnt++;
+          $num = $nor + 1;
+          echo "<tr style='border-style: none;'>
       <td class='p-2' rowspan='$num' style='width: 4%;'>$cnt</td>
       <td class='p-2' style='width: 96%;'>$q1[1]</tr>
       <tr>";
-        while ($ans = mysqli_fetch_array($res3)) {
-          // $n = $nor + 1;
-          // if ($n == 2) {
+          while ($ans = mysqli_fetch_array($res3)) {
+            // $n = $nor + 1;
+            // if ($n == 2) {
 
-          //   echo "<td><input type='text'>$ans[1]</div>";
-          // } else {
-          //   echo "hi";
-          //   echo "<td >$ans[1]";
-          // }
-          $anscnt = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[0]' and IsCorrect='1'";
-          $res6 = mysqli_query($con, $anscnt) or die("Query Failed-3");
-          $n = mysqli_num_rows($res6);
+            //   echo "<td><input type='text'>$ans[1]</div>";
+            // } else {
+            //   echo "hi";
+            //   echo "<td >$ans[1]";
+            // }
+            $anscnt = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[0]' and IsCorrect='1'";
+            $res6 = mysqli_query($con, $anscnt) or die("Query Failed-4");
+            $n = mysqli_num_rows($res6);
 
-          if ($n == 1) {
-            echo "<td> <input class='form-check-input me-1 p-1' type='radio' name='examAns_$q1[0]' value='$ans[0]' required> $ans[1]";
-          } else {
-            echo "<td> <input class='form-check-input me-1' type='checkbox' name='examAns_$q1[0][]' value='$ans[0]'> $ans[1]";
+            if ($n == 1) {
+              echo "<td> <input class='form-check-input me-1 p-1' type='radio' name='examAns_$q1[0]' value='$ans[0]' required> $ans[1]";
+            } else {
+              echo "<td> <input class='form-check-input me-1' type='checkbox' name='examAns_$q1[0][]' value='$ans[0]'> $ans[1]";
+            }
+            echo "</td></tr>";
           }
-          echo "</td></tr>";
         }
       }
-    }
-    ?>
+      ?>
   </table>
 </div>
+<?php
+} ?>

@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 include('../connect.php');
 include('student-header.php');
 $email = $_SESSION['email'];
@@ -8,7 +11,6 @@ $Inst_id = $_SESSION['Inst_id'];
 <html>
 
 <head>
-
 </head>
 
 <body>
@@ -26,10 +28,18 @@ $Inst_id = $_SESSION['Inst_id'];
           // echo $sq;
           $result = mysqli_fetch_array($res);
 
-          $q = "select * from exam_tbl where Inst_id='$Inst_id' and Class_id='$result[15]' and Section='$result[14]'";
+          $q = "select * from exam_tbl as t1 left join studentExamResult_tbl as t2 on t1.Id=t2.Exam_Id and t2.Student_Id='$Id' where t1.Inst_id='$Inst_id' and t1.Class_id='$result[15]' and t1.Section='$result[14]' and t1.Status In('Created','Published')";
+          // echo $q;
           $res1 = mysqli_query($con, $q);
 
+
+          $nor = mysqli_num_rows($res1);
+
+          if ($nor == 0) {
+            echo "No Exam...";
+          } else {
           ?>
+
           <table class="table table-hover" id="ExamInfoTbl">
             <thead>
               <tr class="navy-blue">
@@ -44,30 +54,38 @@ $Inst_id = $_SESSION['Inst_id'];
             </thead>
             <tbody>
               <?php
-              $cnt = 0;
-              while ($result1 = mysqli_fetch_array($res1)) {
-                if ($result1[7] == 'created' || $result1[7] == 'published') {
-                  $s = "select * from subject_tbl where Id='$result1[5]' and Inst_id='$Inst_id'";
-                  $res4 = mysqli_query($con, $s);
-                  $rset = mysqli_fetch_array($res4);
-                  // echo $s;
-                  $cnt++;
-                  echo "<tr class='m-2'>
+                $cnt = 0;
+
+                while ($result1 = mysqli_fetch_array($res1)) {
+
+                  if ($result1[7] == 'Created' || $result1[7] == 'Published') {
+
+                    $s = "select * from subject_tbl where Id='$result1[5]' and Inst_id='$Inst_id'";
+                    $res4 = mysqli_query($con, $s);
+                    $rset = mysqli_fetch_array($res4);
+                    // echo $s;
+                    $cnt++;
+                    echo "<tr class='m-2'>
                   <td>$cnt</td>
                   <td>$result1[2]</td>
                   <td>$rset[3]</td>
                   <td>$result1[6]</td>
                   <td>$result1[8]</td>";
-                  if ($result1[7] == 'published') {
-                    echo "<td><a role='button' class='btn btn-outline-primary p-1' data-bs-toggle='modal' data-bs-target='#giveExam' data-classid='$result[15]' data-section='$result[14]'' data-subjectid='$rset[0]' data-examid='$result1[0]'><i class='fas fa-edit fs-6 pr-2' aria-hidden='true'></i>Start Exam </a></td>";
-                  }
-                  echo "</tr>";
-              ?>
+
+                    if ($result1[7] == 'Published') {
+                      if (is_numeric($result1[13])) {
+                        echo "<td class='navy-blue'>Result : $result1[13] Marks</td>";
+                      } else {
+                        echo "<td><a role='button' name='startExam' value='$result1[0]' class='btn btn-outline-primary p-1' data-bs-toggle='modal' data-bs-target='#giveExam' data-classid='$result[15]' data-section='$result[14]'' data-subjectid='$rset[0]' data-examid='$result1[0]'><i class='fas fa-edit fs-6 pr-2' aria-hidden='true'></i>Start Exam </a></td>";
+                      }
+                    }
+                    echo "</tr>";
+                ?>
               <?php
-                } else {
-                  echo "No Exam...";
+                  }
                 }
               }
+
               ?>
             </tbody>
           </table>
@@ -144,42 +162,65 @@ $Inst_id = $_SESSION['Inst_id'];
     $subjectid = $_POST['subjectId'];
     $examid = $_POST['examId'];
     // echo $classid, $section, $subjectid, $examid;
+    $chk = "select * from studentExamResult_tbl where Inst_id='$Inst_id' and Exam_Id='$examid' and Student_Id='$Id'";
+    $res0 = mysqli_query($con, $chk) or die("Query Failed-1");
+    $nor = mysqli_num_rows($res0);
+    if ($nor > 0) {
+    } else {
+
+      $eq = "select * from examquestion_tbl where cid='$classid' and section='$section' and subjectId='$subjectid' and Inst_id='$Inst_id' and ExamId='$examid'";
+      // echo $examQ;
+      $res = mysqli_query($con, $eq) or die("Query Failed-1");
+      // echo $eq;
+      while ($q1 = mysqli_fetch_array($res)) {
+        // print_r($que);
+        $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]'";
+        $res1 = mysqli_query($con, $a) or die("Query Failed-1");
+        // echo $a;
+        $nor = mysqli_num_rows($res1);
+        // echo $nor;
+        $anscnt = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]' and IsCorrect='1'";
+        $res6 = mysqli_query($con, $anscnt) or die("Query Failed-3");
+        $n = mysqli_num_rows($res6);
+
+        $submittedAnsCheck = is_array($_POST['examAns_' . $q1[5]]) ?  implode(',', $_POST['examAns_' . $q1[5]]) : $_POST['examAns_' . $q1[5]];
 
 
-    $eq = "select * from examquestion_tbl where cid='$classid' and section='$section' and subjectId='$subjectid' and Inst_id='$Inst_id' and ExamId='$examid'";
-    // echo $examQ;
-    $res = mysqli_query($con, $eq) or die("Query Failed-1");
-    // echo $eq;
-    while ($q1 = mysqli_fetch_array($res)) {
-      // print_r($que);
-      $a = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]'";
-      $res1 = mysqli_query($con, $a) or die("Query Failed-1");
-      // echo $a;
-      $nor = mysqli_num_rows($res1);
-      // echo $nor;
-      $anscnt = "select * from answer_tbl where Inst_Id='$Inst_id' and Question_Id='$q1[5]' and IsCorrect='1'";
-      $res6 = mysqli_query($con, $anscnt) or die("Query Failed-3");
-      $n = mysqli_num_rows($res6);
-
-      $submittedAnsCheck = is_array($_POST['examAns_' . $q1[5]]) ?  implode(',', $_POST['examAns_' . $q1[5]]) : $_POST['examAns_' . $q1[5]];
-
-
-      $correctAns = array();
-      while ($ans = mysqli_fetch_array($res6)) {
-        if ($ans[3] == '1') {
-          array_push($correctAns, $ans[0]);
+        $correctAns = array();
+        while ($ans = mysqli_fetch_array($res6)) {
+          if ($ans[3] == '1') {
+            array_push($correctAns, $ans[0]);
+          }
         }
-      }
-      // print_r($correctAns);
-      // print_r(explode(',', $submittedAnsCheck));
-      $result = $correctAns == explode(',', $submittedAnsCheck) ? 1 : 0;
-      echo $result;
 
-      $q3 = "insert into examAnswer_tbl values(null,'$Inst_id','$q1[5]','$submittedAnsCheck','$examid','$Id','$subjectid','$result')";
-      // echo $q3;
-      $resset = mysqli_query($con, $q3) or die("Query Failed-4");
+        $result = $correctAns == explode(',', $submittedAnsCheck) ? 1 : 0;
+
+        $q3 = "insert into examanswer_tbl values(null,'$Inst_id','$q1[5]','$submittedAnsCheck','$examid','$Id','$subjectid','$result')";
+        // echo $q3;
+        $resset = mysqli_query($con, $q3) or die("Query Failed-4");
+      }
+      $s = "select * from examanswer_tbl where result='1' and Inst_id='$Inst_id' and examid='$examid' and studentId='$Id'";
+      // echo  $s;
+      $res7 = mysqli_query($con, $s) or die("Query Failed-5");
+      $mrk = 0;
+
+      while ($arr = mysqli_fetch_array($res7)) {
+        $eq = "select * from examquestion_tbl where Inst_id='$Inst_id' and ExamId='$examid' and Question_Id='$arr[2]'";
+        // echo $eq;
+        $res = mysqli_query($con, $eq) or die("Query Failed-1");
+        // print_r($arr);
+        $arr1 = mysqli_fetch_array($res);
+        $mrk = $mrk + $arr1[6];
+      }
+      // echo $mrk;
+      $ex = "insert into studentExamResult_tbl values(null,'$Id','$examid','$Inst_id','$mrk')";
+      $rest = mysqli_query($con, $ex) or die("Query Failed-4");
     }
+    echo "<script>window.location.href='studentExam.php';</script>";
   }
+  ?>
+  <?php
+
   ?>
 </body>
 
