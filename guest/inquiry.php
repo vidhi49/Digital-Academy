@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title> Register </title>
+  <title> Registeration Request </title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -11,43 +11,43 @@
   <script src="../js/signup.js"></script>
 
   <style>
-    @media screen and (min-width: 992px) {
-      .max-width-55 {
-        max-width: 85;
-      }
+  @media screen and (min-width: 992px) {
+    .max-width-55 {
+      max-width: 85;
     }
+  }
   </style>
   <script>
-    Filevalidation = () => {
-      const fi = document.getElementById('cimg');
-      var filePath = fi.value;
-      var allowedExtensions =
-        /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-      if (!allowedExtensions.exec(filePath)) {
-        // alert('Invalid file type');
-        $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
-        // fi.value = '';
-        return false;
-      } else {
-        // $("#filemessage").html('');
-        if (fi.files.length > 0) {
-          for (const i = 0; i <= fi.files.length - 1; i++) {
+  Filevalidation = () => {
+    const fi = document.getElementById('cimg');
+    var filePath = fi.value;
+    var allowedExtensions =
+      /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      // alert('Invalid file type');
+      $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
+      // fi.value = '';
+      return false;
+    } else {
+      // $("#filemessage").html('');
+      if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
 
-            const fsize = fi.files.item(i).size;
-            const file = Math.round((fsize / 1024));
-            if (file > 200) {
-              $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
-              return false;
-            } else {
+          const fsize = fi.files.item(i).size;
+          const file = Math.round((fsize / 1024));
+          if (file > 200) {
+            $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+            return false;
+          } else {
 
-              $("#filemessage").html('');
+            $("#filemessage").html('');
 
-              return false;
-            }
+            return false;
           }
         }
       }
     }
+  }
   </script>
 </head>
 
@@ -70,7 +70,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Enter School Name :</label>
-                    <input type='text' id="sname" class="form-control form-control-lg" placeholder="Enter School Name" name="sname" />
+                    <input type='text' id="sname" class="form-control form-control-lg" placeholder="Enter School Name"
+                      name="sname" />
                     <span id='smessage'></span>
                   </div>
                 </div>
@@ -79,7 +80,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Email :</label>
-                    <input type='email' id="email" class="form-control form-control-lg" name="email" placeholder="Enter Valid Email Id" />
+                    <input type='email' id="email" class="form-control form-control-lg" name="email"
+                      placeholder="Enter Valid Email Id" />
                     <span id='emessage'></span>
                   </div>
                 </div>
@@ -88,7 +90,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Address :</label>
-                    <textarea cols='20' id="address" rows="3" class="form-control form-control-lg" name="address"></textarea>
+                    <textarea cols='20' id="address" rows="3" class="form-control form-control-lg"
+                      name="address"></textarea>
                   </div>
                 </div>
               </div>
@@ -96,7 +99,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Contact No :</label>
-                    <input type='number' id="cno" maxlength="10" class="form-control form-control-lg" name="cno" placeholder="10 Digits Only" />
+                    <input type='number' id="cno" maxlength="10" class="form-control form-control-lg" name="cno"
+                      placeholder="10 Digits Only" />
                     <span id='cmessage'></span>
                   </div>
                 </div>
@@ -104,7 +108,8 @@
                   <div class="form-group ">
                     <label class=" form-label">Provide School/College Certificate Image :</label>
 
-                    <input type='file' id="cimg" name="cimg" onchange="Filevalidation()" required class="form-control form-control-lg" />
+                    <input type='file' id="cimg" name="cimg" onchange="Filevalidation()" required
+                      class="form-control form-control-lg" />
                     <span id='filemessage'></span>
                   </div>
                 </div>
@@ -112,7 +117,8 @@
               <div class="row">
                 <div class="col">
                   <div class="form-group mt-4">
-                    <button type="submit" id="submit" name="submit" class="btn bg-navy-blue text-white"> Submit </button>
+                    <button type="submit" id="submit" name="submit" class="btn bg-navy-blue text-white"> Submit
+                    </button>
                   </div>
                 </div>
               </div>
