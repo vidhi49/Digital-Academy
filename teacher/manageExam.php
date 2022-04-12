@@ -138,10 +138,12 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               Select </a>
             <a role='button' data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a>
-            <button data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' ><i class='fas fa-play text-primary fs-5' ></i>
-            </button></td>
+            <a class='btn btn-primary' href='publishexam.php?id=$r[0]' role='button'> <i class='fas fa-play text-light fs-5' ></i> Publish</a>
+            </td>
               </tr>";
             }
+            // <button data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' ><i class='fas fa-play text-primary fs-5' ></i>
+            // </button>
             ?>
           </tbody>
         </table>
