@@ -134,10 +134,12 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
               <a  href='?action=edit&ExamId=" . $r[0] . "' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
               </td>
-              <td><a  href='' data-examid='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
+              <td><a data-examid='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
             <a role='button' data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
-            </a></td>
+            </a>
+            <button data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' ><i class='fas fa-play text-primary fs-5' ></i>
+            </button></td>
               </tr>";
             }
             ?>
@@ -287,7 +289,6 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
           </div>
           <div class="modal-footer justify-content-end h-25">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="publishExam">Publish Exam</button>
           </div>
         </form>
       </div>
@@ -376,16 +377,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     }
   }
   ?>
-  <!-- Published Exam -->
-  <?php
-  if (isset($_POST['publishExam'])) {
-    $examId = $_POST['examId'];
-    // echo $examId;
-    $q = "update exam_tbl set Status='Published' where Inst_id='$inst_id' and Id='$examId' ";
-    $res = mysqli_query($con, $q);
-    // echo $q;
-  }
-  ?>
+
   <script>
   function showMarks(e, qid, mrk) {
     var x = document.getElementById("r_" + qid);
@@ -427,6 +419,39 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     document.getElementById("totMarks").innerHTML = totMrk;
 
   }
+  </script>
+  <script>
+  $('#publishExam').on('click', function(e) {
+    var opener = e.relatedTarget;
+    var examId = $(opener).data('examid');
+    var classId = $(opener).data('classid');
+    var section = $(opener).data('section');
+    var subjectId = $(opener).data('subjectid');
+    console.log(examId);
+    // $('#selectQueForm').find('[name="classId"]').val(classId);
+    // $('#selectQueForm').find('[name="section"]').val(section);
+    // $('#selectQueForm').find('[name="subjectId"]').val(subjectId);
+    // $('#selectQueForm').find('[name="examId"]').val(examId);
+
+    // if (window.XMLHttpRequest) {
+    //   // code for IE7+, Firefox, Chrome, Opera, Safari
+    //   xmlhttp = new XMLHttpRequest();
+    // } else {
+    //   // code for IE6, IE5
+    //   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    // }
+    // xmlhttp.onreadystatechange = function() {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     document.getElementById("QueList").innerHTML = this.responseText;
+    //   }
+    // };
+    // xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
+    //   subjectId + "&examId=" + examId,
+    //   true);
+    // xmlhttp.send();
+
+
+  });
   </script>
   <script>
   $('#QueListModal').on('show.bs.modal', function(e) {
