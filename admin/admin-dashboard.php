@@ -26,7 +26,7 @@ $a = 'admindashboard';
             </div>
             <div class="row mx-3">
                 <div class="col-lg-6 mt-5">
-                    <div class="card" style="border-radius: 20px;background-color:white">
+                    <div class="card" style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                         <div class="card-body">
                             <!-- <h2 class="d-flex justify-content-end" style="position:absolute;right: 20;">Today's Date:<?php echo date('F-d') ?></h2> -->
                             <div class="d-flex " style="position:absolute;right: 20;">
@@ -154,7 +154,7 @@ $a = 'admindashboard';
                 </div>
             </div>
             <div class="row mx-4 ">
-                <div class="col-md-8 mt-5 mr-5 " style="border-radius: 20px;background-color:white">
+                <div class="col-md-8 mt-5 mr-5 " style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <center>
                         <h4 class="pt-4">Request of Months</h4>
                     </center>
@@ -164,7 +164,7 @@ $a = 'admindashboard';
 
 
                 </div>
-                <div class="col mt-5" style="border-radius: 20px;background-color:white">
+                <div class="col mt-5" style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <h3 class="m-3 text-center">Total Admin</h3>
                     <hr>
                     <div>
@@ -202,8 +202,8 @@ $a = 'admindashboard';
                     <br>
                 </div>
             </div>
-            <div class="row m-4 mt-5">
-                <div class="col" style="border-radius: 20px;background-color:white">
+            <div class="row m-4 mt-5 mb-5">
+                <div class="col" style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <?php
 
                     // include("admin-sidebar.php");
@@ -271,16 +271,26 @@ $a = 'admindashboard';
 </body>
 <?php
 //chart
-// $p = "select * from inquiry_tbl";
-// $res = mysqli_query($con, $p);
-// $num = mysqli_num_rows($res);
-// $all = array();
-// $approved = array();
-// $rej = array();
-// if ($num > 0) {
-//     while ($r = mysqli_fetch_row($res)) {
-//     }
-// } else
+$p = "select * from inquiry_tbl";
+$res = mysqli_query($con, $p);
+$num = mysqli_num_rows($res);
+$all = array();
+$approved = array();
+$rej = array();
+if ($num > 0) {
+    for($i=01;$i<=12;$i++){
+        while ($r = mysqli_fetch_row($res)) {
+            $unixTimestamp = strtotime($r[7]);
+            $d = date('j', $unixTimestamp);
+            // echo $d;
+            if($i!=$d)
+            {
+                echo $d;
+            }
+        }
+    }
+    
+} else
 
 
 ?>
@@ -294,111 +304,130 @@ $a = 'admindashboard';
                 label: 'Total Request',
                 data: [6, 5, 1, 5, 1, 5, 9, 5, 6, 5, 9, 4],
                 backgroundColor: [
-                    // 'rgb(255, 99, 132)',//pink
-                    // 'rgb(255, 159, 64)',//orange
-                    // 'rgb(255, 205, 86)',//yellow
-                    // 'rgb(75, 192, 192)',//info
+                    'rgb(255, 99, 132)',//pink
+                    'rgb(255, 159, 64)',//orange
+                    'rgb(255, 205, 86)',//yellow
+                    'rgb(75, 192, 192)',//info
+                    'rgb(54, 162, 235)',//blue
+                    'rgb(153, 102, 255)',//vio
+                    'rgb(201, 203, 207)',//grey
+                    'rgb(255, 99, 132)',//pink
+                    'rgb(255, 159, 64)',//orange
+                    'rgb(255, 205, 86)',//yellow
+                    'rgb(75, 192, 192)',//info
                     // 'rgb(54, 162, 235)',//blue
                     // 'rgb(153, 102, 255)',//vio
                     // 'rgb(201, 203, 207)',//grey
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)'
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)'
 
                 ],
                 borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)'
+                    'rgb(255, 99, 132)',//pink
+                    'rgb(255, 159, 64)',//orange
+                    'rgb(255, 205, 86)',//yellow
+                    'rgb(75, 192, 192)',//info
+                    'rgb(54, 162, 235)',//blue
+                    'rgb(153, 102, 255)',//vio
+                    'rgb(201, 203, 207)',//grey
+                    'rgb(255, 99, 132)',//pink
+                    'rgb(255, 159, 64)',//orange
+                    'rgb(255, 205, 86)',//yellow
+                    'rgb(75, 192, 192)',//info
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)',
+                    // 'rgb(255, 99, 132)'
 
                 ],
                 borderWidth: 1,
             },
-            {
-                label: 'Approved Request',
-                data: [5, 0, 8, 1, 0, 5, 6, 0, 3, 5, 2, 5],
-                backgroundColor: [
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)'
-                ],
-                borderColor: [
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)',
-                    'rgb(153, 102, 255)'
+            // {
+            //     label: 'Approved Request',
+            //     data: [5, 0, 8, 1, 0, 5, 6, 0, 3, 5, 2, 5],
+            //     backgroundColor: [
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)'
+            //     ],
+            //     borderColor: [
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)',
+            //         'rgb(153, 102, 255)'
 
-                ],
-                borderWidth: 1,
-            }, {
-                label: 'Rejected Request',
-                data: [6, 3, 1, 5, 0, 5, 0, 5, 8, 5, 9, 4],
-                backgroundColor: [
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)'
-                ],
-                borderColor: [
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 205, 86)'
+            //     ],
+            //     borderWidth: 1,
+            // },
+            // {
+            //     label: 'Rejected Request',
+            //     data: [6, 3, 1, 5, 0, 5, 0, 5, 8, 5, 9, 4],
+            //     backgroundColor: [
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)'
+            //     ],
+            //     borderColor: [
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)',
+            //         'rgb(255, 205, 86)'
 
-                ],
-                borderWidth: 1,
-            }
+            //     ],
+            //     borderWidth: 1,
+            // }
         ]
     };
     // const config = {
