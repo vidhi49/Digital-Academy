@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 </head>
 
@@ -88,6 +91,39 @@
   bottom: 0;
   left: calc(50% - 20px);
 }
+
+.feature-icon:hover {
+  color: white !important;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: rotate(360deg);
+  /* -moz-transform: rotate(360deg); */
+  /* -o-transform: rotate(360deg); */
+  /* -ms-transform: rotate(360deg); */
+}
+
+.feature-circle:hover,
+.feature-icon:hover {
+  background-color: #162e50;
+  color: white !important;
+}
+
+
+.feature-circle {
+  border-radius: 105px;
+  background-color: #efefef;
+  color: #041562;
+  /* text-align: center; */
+  width: 105px;
+  height: 105px;
+  line-height: 105px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 <body>
@@ -105,7 +141,7 @@
                 <a class="nav-link m-2" href="#home">Home</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2 " href="aboutus.php">Registration-Request</a>
+                <a class="nav-link m-2 " href="inquiry.php">Registration-Request</a>
               </li>
               <li class="nav-item ">
                 <a class="nav-link m-2" href="login.php">Login</a>
@@ -125,7 +161,7 @@
 
   <div id="home" class="bg-navy-blue">
     <div class="container">
-      <div class="row d-flex align-items-center">
+      <div class="row d-flex align-items-center pb-5">
         <div class="col-sm-6">
           <p style="color:#bec4cb;"
             class="mt-5 fs-1 fw-bold animate__animated animate__bounce animate__slower delay-2s">Your new digital
@@ -178,37 +214,197 @@
       </div>
     </div>
     <div id="features" class="feature">
-      <h2 class="text-center navy-blue fw-bold fs-4 feature-title p-3"> FEATURES
+      <h2 class="text-center fw-bold fs-4 feature-title p-3"> FEATURES
         <!-- <hr class="w-100 h-25 text-primary fw-bolder" /> -->
       </h2>
-      <div class="row">
-        <div class="col-sm-6">
-          <img src="../img/hh.png" class="img-fluid w-75" />
+      <div class="row mt-5">
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-wpforms navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ADMISSION MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Class wise/Individual student reports
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> MIS report generation</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Student promotion based on academis year
+                    set by institution</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">STUDENT MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Detailed student profile
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Fees paid and fees due can be viewed
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Maintaining records of absence and
+                    attendance</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Handling records of examinations,
+                    assessments, marks, grades and academic progression</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Daily attendance
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Holiday scheduling
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized reports & graphical
+                    representations</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Alerts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-credit-card navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">FEE MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Setup Your Own Class Fee Structure, For
+                    Each Class.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports – Student dues list, class wise
+                    due list, student wise fee collection, class wise fee collection, Fee collection summary report</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6">
-
+      <div class="row mt-5">
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="fade-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Online Exam
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Integrated to Attendance System
+                    attendance</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> OMR Integration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <img src="../img/jj.png" />
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Daily attendance
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Holiday scheduling
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized reports & graphical
+                    representations</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Alerts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <img src="../img/kk.png" />
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">STAFF MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Detailed Teaching and non-teaching staff
+                    profile.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Consolidate view of staff reports
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Track your teacher's particulars,
+                    residential addresses and other data.
+                    representations</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Manage users password and privileges</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-6"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-        </div>
-        <div class="col-sm-6">
-          <img src="../img/ll.png" />
-
+        <div class="col-sm-3 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-list-alt navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ID CARD MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Easily create student and staff ID cards.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Design and print fully customizable
+                    student photo ID cards
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Viewable/printable ID card generation
+                    residential addresses and other data.
+                    representations</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized information on id cards</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </body>
+<script type="text/javascript">
+AOS.init({
+  duration: 1200,
+})
+</script>
+
+</html>

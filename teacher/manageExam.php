@@ -422,39 +422,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
 
   }
   </script>
-  <script>
-  $('#publishExam').on('click', function(e) {
-    var opener = e.relatedTarget;
-    var examId = $(opener).data('examid');
-    var classId = $(opener).data('classid');
-    var section = $(opener).data('section');
-    var subjectId = $(opener).data('subjectid');
-    console.log(examId);
-    // $('#selectQueForm').find('[name="classId"]').val(classId);
-    // $('#selectQueForm').find('[name="section"]').val(section);
-    // $('#selectQueForm').find('[name="subjectId"]').val(subjectId);
-    // $('#selectQueForm').find('[name="examId"]').val(examId);
 
-    // if (window.XMLHttpRequest) {
-    //   // code for IE7+, Firefox, Chrome, Opera, Safari
-    //   xmlhttp = new XMLHttpRequest();
-    // } else {
-    //   // code for IE6, IE5
-    //   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    // }
-    // xmlhttp.onreadystatechange = function() {
-    //   if (this.readyState == 4 && this.status == 200) {
-    //     document.getElementById("QueList").innerHTML = this.responseText;
-    //   }
-    // };
-    // xmlhttp.open("GET", "ajaxQuestionList.php?classId=" + classId + "&section=" + section + "&subjectId=" +
-    //   subjectId + "&examId=" + examId,
-    //   true);
-    // xmlhttp.send();
-
-
-  });
-  </script>
   <script>
   $('#QueListModal').on('show.bs.modal', function(e) {
     var opener = e.relatedTarget;
