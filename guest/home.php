@@ -66,7 +66,9 @@
   /* padding: 0px; */
 }
 
-.feature-title {
+
+.feature-title,
+.contact-title {
   position: relative;
 }
 
@@ -81,7 +83,29 @@
   left: calc(50% - 60px);
 }
 
+.contact-title::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
 .feature-title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #fdc134;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.contact-title::after {
   content: "";
   position: absolute;
   display: block;
@@ -150,7 +174,7 @@
                 <a class="nav-link m-2 " href="#aboutus">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link m-2" href="home.php">Contact Us</a>
+                <a class="nav-link m-2" href="#contact">Contact Us</a>
               </li>
             </ul>
           </div>
@@ -213,12 +237,12 @@
         </div>
       </div>
     </div>
-    <div id="features" class="feature">
+    <div id="features" class="feature m-2">
       <h2 class="text-center fw-bold fs-4 feature-title p-3"> FEATURES
         <!-- <hr class="w-100 h-25 text-primary fw-bolder" /> -->
       </h2>
       <div class="row mt-5">
-        <div class="col-sm-3 d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
@@ -238,7 +262,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3 d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
@@ -261,96 +285,8 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
-            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-            <div class="feature-circle">
-              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
-              <div class="float-left">
-                <ul style="list-style: none; padding:0px;">
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Daily attendance
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Holiday scheduling
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized reports & graphical
-                    representations</li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Alerts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
-            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-            <div class="feature-circle">
-              <i class="fa fa-credit-card navy-blue fs-1 feature-icon"></i>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">FEE MANAGEMENT</h5>
-              <div class="float-left">
-                <ul style="list-style: none; padding:0px;">
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Setup Your Own Class Fee Structure, For
-                    Each Class.
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports – Student dues list, class wise
-                    due list, student wise fee collection, class wise fee collection, Fee collection summary report</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="fade-left"
-            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-            <div class="feature-circle">
-              <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
-              <div class="float-left">
-                <ul style="list-style: none; padding:0px;">
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Online Exam
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Integrated to Attendance System
-                    attendance</li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> OMR Integration</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
-            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-            <div class="feature-circle">
-              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
-              <div class="float-left">
-                <ul style="list-style: none; padding:0px;">
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Daily attendance
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Holiday scheduling
-                  </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized reports & graphical
-                    representations</li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Alerts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
               <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
@@ -373,8 +309,76 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3 d-flex justify-content-center">
-          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+      </div>
+      <div class="row mt-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-credit-card navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">FEE MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Setup Your Own Class Fee Structure, For
+                    Each Class.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports – Student dues list, class wise
+                    due list, student wise fee collection, class wise fee collection, Fee collection summary report</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Online Exam
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Integrated to Attendance System
+                    attendance</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> OMR Integration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Daily attendance
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Holiday scheduling
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Customized reports & graphical
+                    representations</li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Alerts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5 mb-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
               <i class="fa fa-list-alt navy-blue fs-1 feature-icon"></i>
@@ -397,9 +401,89 @@
             </div>
           </div>
         </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
+            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="feature-circle">
+              <i class="fa fa-list navy-blue fs-1 feature-icon"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title navy-blue text-center m-3 fw-bold"> STUDY MATERIAL MANAGEMENT</h5>
+              <div class="float-left">
+                <ul style="list-style: none; padding:0px;">
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> It saves your time and money.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Atudents Can read any time whenver needs.
+                  </li>
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Teachers can manage whenever they want or
+                    whenever they get time.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="contact aos-init aos-animate m-2" data-aos="fade-up">
+      <h2 class="text-center fw-bold fs-4 contact-title p-3"> CONTACT
+        <!-- <hr class="w-100 h-25 text-primary fw-bolder" /> -->
+      </h2>
+      <div class="row d-flex m-3 ">
+        <div class="col-sm-6 ">
+          <div class="row mt-3  me-2" style="background-color: #fafbff;">
+            <p class="fs-5 text-secondary mb-5 p-5">We're open for any suggestion you need or just chat.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-center h-100">
+              <div class="mt-4 aos-init aos-animate p-5" data-aos="fade-up" data-aos-delay="100"
+                style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background-color: #fafbff;">
+                <i class="fa fa-envelope text-warning fs-3 m-2" aria-hidden="true"></i>
+                <h4 class="aos-init aos-animate text-secondary fw-bold m-2" data-aos="fade-up" data-aos-delay="100">
+                  Email Us
+                </h4>
+                <p class="aos-init aos-animate m-4" data-aos="fade-up" data-aos-delay="100"> DGSkool@gmail.com</p>
+              </div>
+            </div>
+            <div class="col-sm-6 text-center h-100">
+              <div class="mt-4 aos-init aos-animate p-5" data-aos="fade-up" data-aos-delay="100"
+                style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background-color: #fafbff;">
+                <i class=" fa fa-phone text-warning fs-3 m-2" aria-hidden="true"></i>
+                <h4 class="aos-init aos-animate text-secondary fw-bold m-2" data-aos="fade-up" data-aos-delay="100">
+                  Call Us
+                </h4>
+                <p class="aos-init aos-animate m-4" data-aos="fade-up" data-aos-delay="100"> 9878967009</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-3 p-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;background-color: #fafbff;">
+          <form method="post" class="w-100 aos-init aos-animate" data-aos="fade-up">
+            <div class="row mb-3">
+              <div class="col-sm-6 form-group">
+                <input type="text" placeholder="Your Name" class="form-control p-2 " required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <input type="text" placeholder="Your Email" class="form-control p-2 " required>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <input type="text" placeholder="Subject" class="form-control p-2" required>
+            </div>
+            <div class="form-group mb-5">
+              <textarea class="form-control p-2" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="text-center">
+              <button class="btn bg-warning text-white btn-md btn-block p-2" type="submit"> Send Message </button>
+            </div>
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
+
 </body>
 <script type="text/javascript">
 AOS.init({
