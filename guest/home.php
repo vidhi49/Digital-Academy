@@ -148,6 +148,28 @@
   justify-content: center;
   align-items: center;
 }
+
+.social-links a {
+
+  font-size: 18px;
+  display: inline-block;
+  background: #152736bd;
+  color: white;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #fcb102;
+  color: #fff;
+  text-decoration: none;
+}
 </style>
 
 <body>
@@ -168,7 +190,7 @@
                 <a class="nav-link m-2 " href="inquiry.php">Registration-Request</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2" href="login.php">Login</a>
+                <a class="nav-link m-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link m-2 " href="#aboutus">About Us</a>
@@ -429,7 +451,7 @@
       <h2 class="text-center fw-bold fs-4 contact-title p-3"> CONTACT
         <!-- <hr class="w-100 h-25 text-primary fw-bolder" /> -->
       </h2>
-      <div class="row d-flex m-3 ">
+      <div class="row d-flex m-5 ">
         <div class="col-sm-6 ">
           <div class="row mt-3  me-2" style="background-color: #fafbff;">
             <p class="fs-5 text-secondary mb-5 p-5">We're open for any suggestion you need or just chat.
@@ -479,11 +501,148 @@
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
+  <div class="bg-secondary ">
+    <div class="container">
+      <div class="row text-center navy-blue container ">
+        <h3 class="fw-bold mt-5 mb-5 ">DGSkool</h3>
+        <h5 class="text-white ">Teaching Turning Today's Learners Into Tomorrow's Leaders</h5>>
+        <div class="social-links mb-5 ">
+          <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 justify-content-start">
+          <small class="text-white fw-bold m-5">Copyright &copy; 2022 All Rights Reserved DGSkool
+            <span id='currentyear'></span></small>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end">
+          <h6 class="text-white fs-6 pe-3">Designed By : </h6>
+          <p class="text-warning ">Vishva Ardeshna
+            <br />
+            Vidhi Ardeshna <br />
+            Aarti Gohil
+          </p>
 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row g-0  m-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+              <div class="col-md-6 nopadding">
+                <img src="../img/logo3.jpg" alt="login form" class="img-fluid rounded rounded-4 w-100 h-100" />
+              </div>
+              <div class="col-md-6 nopadding d-flex justify-content-center bg-white">
+                <form method="post" class="p-4 m-2">
+                  <div>
+                    <h1 class="fs-2 text-dark fw-bold"> Digital Academy
+                      <hr>
+                    </h1>
+                  </div>
+                  <div>
+                    <h6 class="fw-normal text-dark mb-5"> Sign in to your account</h6>
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label p-1">Select User</label>
+                    <select class="form-control form-control-lg m-1" name="user" required>
+                      <option value="" disabled selected>--select user--</option>
+                      <option <?php if (isset($_COOKIE['usercookie'])) {
+                                if ($_COOKIE['usercookie'] == 'Teacher') {
+                                  echo "selected";
+                                }
+                              } ?>> Teacher </option>
+                      <option <?php if (isset($_COOKIE['usercookie'])) {
+                                if ($_COOKIE['usercookie'] == 'Student') {
+                                  echo "selected";
+                                }
+                              } ?>> Student </option>
+                      <option <?php if (isset($_COOKIE['usercookie'])) {
+                                if ($_COOKIE['usercookie'] == 'Institute') {
+                                  echo "selected";
+                                }
+                              } ?>> Institute </option>
+
+                    </select>
+
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label p-1">Email address</label>
+                    <input type="email" id="email" name="email"
+                      value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>"
+                      class="form-control form-control-lg m-1" required />
+
+                    <span id="emessage"></span>
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label p-1">Password</label>
+
+                    <div class="input-group">
+                      <input type="password" name="pwd" id="pwd"
+                        value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>"
+                        class="form-control form-control-lg " required />
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-eye" onclick="myFunction()"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <input type="checkbox" name="rem" class="m-1" /> Remember Me
+
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn bg-navy-blue text-white btn-lg btn-block" id="login" name="login"
+                      type="submit">Login</button>
+                  </div>
+                  <div class="row mt-3">
+                    <a class="small text-muted" href="forgotpassword.php">Forgot password?</a>
+                    <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#"
+                        style="color: #393f81;">Register here</a></p>
+                  </div>
+                  <div class="align-self-baseline">
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 <script type="text/javascript">
 AOS.init({
