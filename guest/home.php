@@ -1,3 +1,4 @@
+<?php include("login.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -170,6 +171,10 @@
   color: #fff;
   text-decoration: none;
 }
+
+.login-btn:hover {
+  border: none;
+}
 </style>
 
 <body>
@@ -190,7 +195,8 @@
                 <a class="nav-link m-2 " href="inquiry.php">Registration-Request</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                <a href="#" class="btn nav-link m-2 login-btn border-0" role="button" data-bs-toggle="modal"
+                  data-bs-target="#loginModal">Login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link m-2 " href="#aboutus">About Us</a>
@@ -528,117 +534,6 @@
             Vidhi Ardeshna <br />
             Aarti Gohil
           </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row g-0  m-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-              <div class="col-md-6 nopadding">
-                <img src="../img/logo3.jpg" alt="login form" class="img-fluid rounded rounded-4 w-100 h-100" />
-              </div>
-              <div class="col-md-6 nopadding d-flex justify-content-center bg-white">
-                <form method="post" class="p-4 m-2">
-                  <div>
-                    <h1 class="fs-2 text-dark fw-bold"> Digital Academy
-                      <hr>
-                    </h1>
-                  </div>
-                  <div>
-                    <h6 class="fw-normal text-dark mb-5"> Sign in to your account</h6>
-                  </div>
-
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Select User</label>
-                    <select class="form-control form-control-lg m-1" name="user" required>
-                      <option value="" disabled selected>--select user--</option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Teacher') {
-                                  echo "selected";
-                                }
-                              } ?>> Teacher </option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Student') {
-                                  echo "selected";
-                                }
-                              } ?>> Student </option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Institute') {
-                                  echo "selected";
-                                }
-                              } ?>> Institute </option>
-
-                    </select>
-
-                  </div>
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Email address</label>
-                    <input type="email" id="email" name="email"
-                      value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>"
-                      class="form-control form-control-lg m-1" required />
-
-                    <span id="emessage"></span>
-                  </div>
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Password</label>
-
-                    <div class="input-group">
-                      <input type="password" name="pwd" id="pwd"
-                        value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>"
-                        class="form-control form-control-lg " required />
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa fa-eye" onclick="myFunction()"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="form-outline mb-2">
-                    <input type="checkbox" name="rem" class="m-1" /> Remember Me
-
-                  </div>
-
-                  <div class="pt-1 mb-4">
-                    <button class="btn bg-navy-blue text-white btn-lg btn-block" id="login" name="login"
-                      type="submit">Login</button>
-                  </div>
-                  <div class="row mt-3">
-                    <a class="small text-muted" href="forgotpassword.php">Forgot password?</a>
-                    <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#"
-                        style="color: #393f81;">Register here</a></p>
-                  </div>
-                  <div class="align-self-baseline">
-                    <a href="#!" class="small text-muted">Terms of use.</a>
-                    <a href="#!" class="small text-muted">Privacy policy</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- </div> -->
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
         </div>
       </div>
     </div>
