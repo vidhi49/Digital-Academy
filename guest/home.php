@@ -1,4 +1,5 @@
-<?php include("login.php"); ?>
+<?php include("login.php");
+include("registration-Request.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,7 +155,7 @@
 
   font-size: 18px;
   display: inline-block;
-  background: #152736bd;
+  background: #6c757d70;
   color: white;
   line-height: 1;
   padding: 8px 0;
@@ -192,7 +193,8 @@
                 <a class="nav-link m-2" href="#home">Home</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2 " href="inquiry.php">Registration-Request</a>
+                <a href="#" class="btn nav-link m-2 login-btn border-0" role="button" data-bs-toggle="modal"
+                  data-bs-target="#registerRequestModal">Registration-Request</a>
               </li>
               <li class="nav-item ">
                 <a href="#" class="btn nav-link m-2 login-btn border-0" role="button" data-bs-toggle="modal"
@@ -330,7 +332,7 @@
                   </li>
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Track your teacher's particulars,
                     residential addresses and other data.
-                    representations</li>
+                  </li>
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Manage users password and privileges</li>
                 </ul>
               </div>
@@ -352,7 +354,7 @@
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Setup Your Own Class Fee Structure, For
                     Each Class.
                   </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports – Student dues list, class wise
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports - Student dues list, class wise
                     due list, student wise fee collection, class wise fee collection, Fee collection summary report</li>
                 </ul>
               </div>
@@ -510,12 +512,12 @@
       </div>
     </div>
   </div>
-  <div class="bg-secondary ">
+  <div class="bg-dark ">
     <div class="container">
-      <div class="row text-center navy-blue container ">
+      <div class="row text-center text-warning container ">
         <h3 class="fw-bold mt-5 mb-5 ">DGSkool</h3>
-        <h5 class="text-white ">Teaching Turning Today's Learners Into Tomorrow's Leaders</h5>>
-        <div class="social-links mb-5 ">
+        <h5 class="text-white ">Teaching Turning Today's Learners Into Tomorrow's Leaders</h5>
+        <div class="social-links mb-5 mt-3">
           <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
           <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
           <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
@@ -524,7 +526,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6 justify-content-start">
-          <small class="text-white fw-bold m-5">Copyright &copy; 2022 All Rights Reserved DGSkool
+          <small class="text-white fw-bold">Copyright &copy; 2022 All Rights Reserved DGSkool
             <span id='currentyear'></span></small>
         </div>
         <div class="col-sm-6 d-flex justify-content-end">

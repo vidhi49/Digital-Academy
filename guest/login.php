@@ -19,7 +19,7 @@
 <body>
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content m-1" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+      <div class="modal-content m-1 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <!-- <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
         <div class="d-flex justify-content-end m-2"><button type="button" class="btn-close flex-end text-muted"
