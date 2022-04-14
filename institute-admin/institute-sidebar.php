@@ -9,27 +9,31 @@ include("../connect.php");
 ?>
 
 <head>
+  <!-- <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'> -->
+
   <style>
-  /* * {
+    /* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poopins", sans-serif;
   } */
 
-  .institute-sidebar {
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    /* height: 100%; */
-    width: 230px;
-    background-color: #041562;
-    padding: 50px 0px 16px 0px;
-    /* padding: 6px 14px; */
-    /* transition: all 0.5s ease; */
-  }
+    .institute-sidebar {
+      /* position: absolute; */
+      /* top: 0; */
+      /* left: 0; */
+      /* height: 100%; */
+      width: 230px;
+      background-color: #041562;
+      padding: 50px 0px 16px 0px;
+      /* padding: 6px 14px; */
+      /* transition: all 0.5s ease; */
+    }
 
-  /* 
+    /* 
   .institute-sidebar.active {
     width: 75px;
   } */
@@ -37,9 +41,9 @@ include("../connect.php");
 
 
 
-  /* .institute-sidebar #btn {
+    /* .institute-sidebar #btn {
     /* position: absolute; */
-  /* color: #fff;
+    /* color: #fff;
     left: 90%;
     top: 6px;
     font-size: 20px;
@@ -48,158 +52,201 @@ include("../connect.php");
     text-align: center;
     line-height: 50px;
     transform: translate(-50%); */
-  /* } */
+    /* } */
 
-  /* .institute-sidebar ul {
+    /* .institute-sidebar ul {
       margin-top: 20px;
   list-style: none;
   padding-left: 10px;
    } */
 
-  .institute-sidebar ul li {
-    position: relative;
-    height: 60px;
-    width: 100%;
-    /* padding: 0; */
-    /* margin: 5 5 0 0; */
-    list-style: none;
-    line-height: 50px;
-    /* border-radius: 12px; */
-  }
+    .institute-sidebar ul li {
+      position: relative;
+      height: 60px;
+      width: 100%;
+      /* padding: 0; */
+      /* margin: 5 5 0 0; */
+      list-style: none;
+      line-height: 50px;
+      /* border-radius: 12px; */
+    }
 
-  .institute-sidebar .links_name {
-    /* opacity: 0; */
-    pointer-events: none;
-    /* transition: all 0.5s ease; */
-    display: none;
-  }
+    .institute-sidebar .links_name {
+      /* opacity: 0; */
+      pointer-events: none;
+      /* transition: all 0.5s ease; */
+      display: none;
+    }
 
-  .institute-sidebar ul li a {
-    color: #fff;
-    /* display: flex; */
-    /* align-items: center; */
-    text-decoration: none;
-    /* transition: all 0.4s ease; */
-    /* border-radius: 20px; */
-    /* border-top-left-radius: 20px; */
-    /* border-bottom-left-radius: 20px; */
-    /* white-space: nowrap; */
-  }
+    .institute-sidebar ul li a {
+      color: #fff;
+      /* display: flex; */
+      /* align-items: center; */
+      text-decoration: none;
+      /* transition: all 0.4s ease; */
+      /* border-radius: 20px; */
+      /* border-top-left-radius: 20px; */
+      /* border-bottom-left-radius: 20px; */
+      /* white-space: nowrap; */
+    }
 
-  .institute-sidebar ul li a:hover {
-    /* background: #fff; */
-    color: #fff;
-    font-size: 20px;
-    transition: all 0.5s ease;
-    /* margin-right: 8px; */
-  }
+    .institute-sidebar ul li a:hover {
+      /* background: #fff; */
+      color: #FFD124;
+      /* font-size: 20px; */
+      transition: all 0.5s ease;
+      /* margin-right: 8px; */
+    }
 
-  .institute-sidebar ul li a i {
-    height: 50px;
-    min-width: 50px;
-    /* border-radius: 50px; */
-    text-align: center;
-  }
+    .institute-sidebar ul li a:hover i {
+      /* background: #fff; */
+      color: #FFD124;
+      /* font-size: 20px; */
+      transition: all 0.5s ease;
+      /* margin-right: 8px; */
+    }
 
-  /* li.active a i {
+    .institute-sidebar ul li a i {
+      height: 50px;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .institute-sidebar ul li .icon-link {
+      justify-content: space-between;
+      display: flex;
+
+
+    }
+
+    .institute-sidebar ul li .icon-link i {
+      height: 50px;
+      min-width: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: #f2f6fa;
+    }
+
+    .institute-sidebar ul li.active .icon-link {
+      justify-content: space-between;
+      display: flex;
+    }
+
+    .institute-sidebar ul li.active .icon-link i {
+      height: 50px;
+      min-width: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: #11101d;
+    }
+
+    .institute-sidebar ul li .sub-menu {
+      padding-left: 80px;
+    }
+
+    .institute-sidebar ul li .sub-menu li {
+      padding: 0;
+    }
+
+    /* li.active a i {
     background: #041562;
     border: 2px solid #fff;
     color: #fff;
     /* border-radius: 50px; */
-  /* } */
+    /* } */
 
-  .institute-sidebar ul li.active {
-    background-color: #eee;
-    border-top-left-radius: 60px;
-    border-bottom-left-radius: 60px;
-  }
+    .institute-sidebar ul li.active {
+      background-color: #f2f6fa;
+      border-top-left-radius: 60px;
+      border-bottom-left-radius: 60px;
+    }
 
-  .institute-sidebar ul li.active a {
-    color: #11101d;
-  }
+    .institute-sidebar ul li.active a {
+      color: #11101d;
+    }
 
-  .institute-sidebar ul li.active a:hover {
-    color: #11101d;
-  }
+    .institute-sidebar ul li.active a:hover {
+      color: #11101d;
+    }
 
-  .institute-sidebar ul li.active a i {
-    height: 50px;
-    width: 50px;
-    /* background: #041562; */
-    border-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-top-left-radius: 50%;
-    /* color: #eee; */
-    /* margin: 5px 5px 5px 5px; */
-  }
-
-  .institute-sidebar ul li.active b:nth-child(1) {
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    background: #eee;
-    /* border-bottom-right-radius: 60px; */
-    top: -20px;
-    left: 0;
-  }
-
-  .institute-sidebar ul li.active b:nth-child(1)::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 20px;
-    background: #041562;
-    border-bottom-right-radius: 60px;
-    /* top: -20px; */
-    left: 0;
-  }
-
-  .institute-sidebar ul li.active b:nth-child(2) {
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    background: #eee;
-    bottom: -20px;
-    left: 0;
-  }
-
-  .institute-sidebar ul li.active b:nth-child(2)::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 20px;
-    background: #041562;
-    border-top-right-radius: 60px;
-    left: 0;
-    /* bottom: -30px; */
-  }
-
-  .institute-sidebar.active~.content {
-    /* width: calc(100% -75px); */
-    /* left: 30px; */
-    transition: all 0.3s ease;
-  }
-
-  @media only screen and (max-width: 500px) {
-
-    .insttitute-sidebar {
+    .institute-sidebar ul li.active a i {
+      height: 50px;
       width: 50px;
-      align-items: center;
-      text-align: center;
-      display: block;
+      /* background: #041562; */
+      border-radius: 50%;
+      border-bottom-left-radius: 50%;
+      border-top-left-radius: 50%;
+      /* color: #eee; */
+      /* margin: 5px 5px 5px 5px; */
     }
 
-    .institute-content {
-      width: calc(100vw - 50px);
-      padding: 15px;
-      margin: 0px;
-
+    .institute-sidebar ul li.active b:nth-child(1) {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: #f2f6fa;
+      /* border-bottom-right-radius: 60px; */
+      top: -20px;
+      left: 0;
     }
 
-    .insttitute-sidebar .links_name {
-      display: none;
+    .institute-sidebar ul li.active b:nth-child(1)::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 20px;
+      background: #041562;
+      border-bottom-right-radius: 60px;
+      /* top: -20px; */
+      left: 0;
     }
-  }
+
+    .institute-sidebar ul li.active b:nth-child(2) {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: #f2f6fa;
+      bottom: -20px;
+      left: 0;
+    }
+
+    .institute-sidebar ul li.active b:nth-child(2)::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 20px;
+      background: #041562;
+      border-top-right-radius: 60px;
+      left: 0;
+      /* bottom: -30px; */
+    }
+
+    .institute-sidebar.active~.content {
+      /* width: calc(100% -75px); */
+      /* left: 30px; */
+      transition: all 0.3s ease;
+    }
+
+    @media only screen and (max-width: 500px) {
+
+      .insttitute-sidebar {
+        width: 50px;
+        align-items: center;
+        text-align: center;
+        display: block;
+      }
+
+      .institute-content {
+        width: calc(100vw - 50px);
+        padding: 15px;
+        margin: 0px;
+
+      }
+
+      .insttitute-sidebar .links_name {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -212,7 +259,21 @@ include("../connect.php");
           </div> -->
       </div>
     </div>
-    <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start">
+
+    <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start" id="menu">
+      <li class="active">
+        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+        <i class="fa fa-th-large"></i></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+          <li class="w-100">
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+          </li>
+
+        </ul>
+      </li>
       <li <?php
           if (($a == 'editprofile')) {
             echo "class=' active nav-item '";
@@ -234,9 +295,29 @@ include("../connect.php");
         <b></b>
         <a href="institute-dashboard.php" class="nav-link">
 
-          <i class='fa fa-check'></i>
+          <i class="fa fa-th-large" aria-hidden="true"></i>
           <span class="links_name d-sm-inline">Dashbord</span>
         </a>
+        <!-- <span class="tooltip">Dashbord</span> -->
+      </li>
+      <li <?php
+          if (($a == 'staffregister')) {
+            echo "class=' active nav-item '";
+          } ?>>
+        <b></b>
+        <b></b>
+        <div class="icon-link">
+          <a href="staff-registration.php" class="nav-link">
+            <i class="fa fa-th-large"></i>
+            <span class="links_name d-sm-inline">Staff</span>
+          </a>
+          <i class="bx bxs-chevron-down"></i>
+        </div>
+        <!-- <ul class="sub-menu">
+          <li><a href="#">Register</a></li>
+          <li><a href="#">manage</a></li>
+          <li><a href="#">view</a></li>
+        </ul> -->
         <!-- <span class="tooltip">Dashbord</span> -->
       </li>
       <li <?php
@@ -249,7 +330,6 @@ include("../connect.php");
           <i class='fa fa-key'> </i>
           <span class="links_name d-sm-inline">Change Password</span>
         </a>
-        <!-- <span class="tooltip">Register</span> -->
       </li>
       <li <?php
           if (($a == 'staffregister')) {
@@ -261,7 +341,6 @@ include("../connect.php");
           <i class='fa fa-registered'> </i>
           <span class="links_name d-sm-inline">Register staff</span>
         </a>
-        <!-- <span class="tooltip">Register</span> -->
       </li>
       <li <?php
           if (($a == 'studentregister')) {
@@ -412,7 +491,7 @@ include("../connect.php");
         </a>
         <!-- <span class="tooltip">Create</span> -->
       </li>
-      
+
       <li <?php
           if (($a == 'payment_rpt')) {
             echo "class=' active nav-item '";
@@ -425,7 +504,7 @@ include("../connect.php");
         </a>
         <!-- <span class="tooltip">Create</span> -->
       </li>
-      
+
     </ul>
 
   </div>

@@ -11,6 +11,7 @@ include("../connect.php");
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
     <style>
@@ -80,6 +81,10 @@ include("../connect.php");
             line-height: 60px;
             text-align: center;
             font-size: 20px;
+        }
+
+        .institute-sidebar ul li .icon-link {
+            justify-content: space-between;
         }
 
         .institute-sidebar ul li a span {
@@ -191,7 +196,7 @@ include("../connect.php");
                     <span>Dashbord</span>
                 </a>
             </li>
-            <li class="active nav-item">
+            <li class=" nav-item">
                 <p></p>
                 <p></p>
                 <a href="#" class="nav-link">
@@ -207,10 +212,7 @@ include("../connect.php");
                     <span>Register Student</span>
                 </a>
             </li>
-            <li <?php
-                if (($a == 'class')) {
-                    echo "class=' active nav-item '";
-                } ?>>
+            <li>
                 <p></p>
                 <p></p>
                 <a href="#" class="nav-link">
@@ -218,15 +220,33 @@ include("../connect.php");
                     <span>Create Class</span>
                 </a>
             </li>
-            <li <?php if (($a == 'subject')) {
-            echo "class='list active nav-item '";
-          } ?>>
-                <p></p>
-                <p></p>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-check icon"></i>
-                    <span>Create Subject</span>
+            <li class="nav-item m-5">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle nav-link align-middle px-0 text-white"><i class="fas fa-folder-open fs-5 mr-2"></i>
+                    Exam
                 </a>
+                <ul class="collapse list-unstyled"> id="homeSubmenu">
+                    <li>
+                        <a href="question-bank.php" class="nav-link float-right text-white"> Add Question </a>
+                    </li>
+                    <li>
+                        <a href="manageExam.php" class="nav-link float-right text-white" aria-expanded="true">Manage Exam</a>
+                    </li>
+                    <!-- <li>
+            <a href="#">Home 3</a>
+          </li> -->
+                </ul>
+            </li>
+            <li class="active nav-item">
+                <p></p>
+                <p></p>
+                <div class="icon-link d-flex">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-check icon"></i>
+                        <span>Create Subject</span>
+                    </a>
+                    <i class="bx bxs-chevron-down"></i>
+                </div>
+
             </li>
             <li class="nav-item">
                 <p></p>

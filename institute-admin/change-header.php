@@ -25,10 +25,11 @@ $r=mysqli_fetch_array($res);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 </head>
 
 <body>
-  <div class="container-fluid " >
+  <div class="container-fluid " style="display: none;">
   <!-- style='box-shadow: black 0px 3px 80px;' -->
     <div class="row bg-navy-blue"  style="box-shadow:  0 10px 15px -6px black;">
       <div class="col-sm-6 d-flex">

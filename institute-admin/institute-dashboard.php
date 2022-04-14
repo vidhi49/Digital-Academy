@@ -16,7 +16,7 @@ $inst_id = $_SESSION['inst_id'];
 <body>
     <div class="d-flex">
         <?php
-        include("institute-sidebar.php");
+        include("s.php");
         ?>
         <div class="institute-content">
             <div class="row m-5">
