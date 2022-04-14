@@ -276,7 +276,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-wpforms navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-wpforms fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ADMISSION MANAGEMENT</h5>
@@ -296,7 +296,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-users fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">STUDENT MANAGEMENT</h5>
@@ -319,7 +319,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-users fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">STAFF MANAGEMENT</h5>
@@ -345,7 +345,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-credit-card navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-credit-card fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">FEE MANAGEMENT</h5>
@@ -368,7 +368,7 @@ include("registration-Request.php"); ?>
               <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
+              <h5 class="card-title  text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
               <div class="float-left">
                 <ul style="list-style: none; padding:0px;">
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
@@ -387,7 +387,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-hand-o-up fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
@@ -411,7 +411,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-list-alt navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-list-alt fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ID CARD MANAGEMENT</h5>
@@ -435,7 +435,7 @@ include("registration-Request.php"); ?>
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-list navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-list fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold"> STUDY MATERIAL MANAGEMENT</h5>
