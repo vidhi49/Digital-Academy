@@ -4,6 +4,7 @@ include('../connect.php');
 include('teacher-header.php');
 $teacher_id = $_SESSION['Id'];
 $inst_id = $_SESSION['Inst_id'];
+$page="";
 
 ?>
 <html>

@@ -1,11 +1,11 @@
 <?php
 
-session_start();
-$email = $_SESSION['email'];
-$id = $_SESSION['id'];
-$q = "select * from master_admin_tbl where Id='$id'";
-$res = mysqli_query($con, $q);
-$result = mysqli_fetch_array($res);
+// session_start();
+// $email = $_SESSION['email'];
+// $id = $_SESSION['id'];
+// $q = "select * from master_admin_tbl where Id='$id'";
+// $res = mysqli_query($con, $q);
+// $result = mysqli_fetch_array($res);
 ?>
 <html>
 
@@ -56,7 +56,7 @@ $result = mysqli_fetch_array($res);
 </head>
 
 <body>
-  <div class="container-fluid ">
+  <div class="container-fluid " style="display: none;">
     <!-- style='box-shadow: black 0px 3px 80px;' -->
     <div class="row bg-navy-blue" style="box-shadow:  0 10px 15px -6px black;">
       <div class="col-sm-6 d-flex">

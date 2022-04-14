@@ -150,6 +150,7 @@ $result=mysqli_fetch_array($res);
           <p class="ms-2 d-none d-sm-inline">Institute</p>
         </a>
       </li>
+      
     </ul>
 
     <!-- <div class="dropdown pb-4">

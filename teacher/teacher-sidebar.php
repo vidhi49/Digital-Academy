@@ -1,7 +1,5 @@
 <html>
-<style>
 
-</style>
 
 <body>
 
@@ -9,23 +7,23 @@
     <div class="text-center text-light ">
       <div class="row">
         <div class="col">
-        <?php
-      $id = $_SESSION['Inst_id'];
-      $q = mysqli_query($con, "select * from institute_tbl where Id='$id'");
-      $r = mysqli_fetch_array($q);
-      echo "<img src='../Institute-logo/$r[10]'  height=100 width=100 style='border-radius:50%'>";
-     
-      ?>
+          <?php
+          $id = $_SESSION['Inst_id'];
+          $q = mysqli_query($con, "select * from institute_tbl where Id='$id'");
+          $r = mysqli_fetch_array($q);
+          echo "<img src='../Institute-logo/$r[10]'  height=100 width=100 style='border-radius:50%'>";
+
+          ?>
         </div>
       </div>
       <div class="row">
         <div class="col p-3">
           <?php
-           echo $r['Name'];
+          echo $r['Name'];
           ?>
         </div>
       </div>
-      
+
       <hr>
     </div>
     <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start" id="menu">
@@ -35,19 +33,20 @@
           <p class="ms-2 d-none d-sm-inline "> Home </p>
         </a>
       </li>
-      <li class="nav-item m-1">
+      <!-- <li class="nav-item m-1">
         <a href="question-bank.php" class="nav-link align-middle px-0 text-white">
           <i class="fas fa-question fs-5"></i>
           <p class="ms-2 d-none d-sm-inline"> Question Bank </p>
         </a>
-      </li>
+      </li> -->
       <li class="nav-item m-1">
         <a href="viewstudent.php" class="nav-link align-middle px-0 text-white">
           <i class="fas fa-users fs-5"></i>
           <p class="ms-2 d-none d-sm-inline"> View Student</p>
         </a>
       </li>
-      <li class="nav-item m-1">
+      <li class="active nav-item m-1">
+     
         <a href="viewclasses.php" class="nav-link align-middle px-0 text-white">
           <i class="fas fa-address-book fs-5"></i>
           <p class="ms-2 d-none d-sm-inline"> View Classes</p>
@@ -65,11 +64,17 @@
           <p class="ms-2 d-none d-sm-inline"> Generate Roll Number </p>
         </a>
       </li> -->
-      <li class="nav-item m-1">
+      <li class="active nav-item m-1">
+    
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle nav-link align-middle px-0 text-white"><i class="fas fa-folder-open fs-5 mr-2"></i>
           Exam
         </a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
+        <ul <?php
+            if ($page == 'exam') {
+              echo 'class=" list-unstyled"';
+            } else {
+              echo 'class="collapse list-unstyled"';
+            } ?> id="homeSubmenu">
           <li>
             <a href="question-bank.php" class="nav-link float-right text-white"> Add Question </a>
           </li>
