@@ -1,3 +1,5 @@
+<?php include("login.php");
+include("registration-Request.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,7 +155,7 @@
 
   font-size: 18px;
   display: inline-block;
-  background: #152736bd;
+  background: #6c757d70;
   color: white;
   line-height: 1;
   padding: 8px 0;
@@ -169,6 +171,10 @@
   background: #fcb102;
   color: #fff;
   text-decoration: none;
+}
+
+.login-btn:hover {
+  border: none;
 }
 </style>
 
@@ -187,10 +193,12 @@
                 <a class="nav-link m-2" href="#home">Home</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2 " href="inquiry.php">Registration-Request</a>
+                <a href="#" class="btn nav-link m-2 login-btn border-0" role="button" data-bs-toggle="modal"
+                  data-bs-target="#registerRequestModal">Registration-Request</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link m-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                <a href="#" class="btn nav-link m-2 login-btn border-0" role="button" data-bs-toggle="modal"
+                  data-bs-target="#loginModal">Login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link m-2 " href="#aboutus">About Us</a>
@@ -268,7 +276,7 @@
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-wpforms navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-wpforms fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ADMISSION MANAGEMENT</h5>
@@ -288,7 +296,7 @@
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-users fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">STUDENT MANAGEMENT</h5>
@@ -311,7 +319,7 @@
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-users navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-users fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">STAFF MANAGEMENT</h5>
@@ -324,7 +332,7 @@
                   </li>
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Track your teacher's particulars,
                     residential addresses and other data.
-                    representations</li>
+                  </li>
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Manage users password and privileges</li>
                 </ul>
               </div>
@@ -337,7 +345,7 @@
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-credit-card navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-credit-card fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">FEE MANAGEMENT</h5>
@@ -346,7 +354,7 @@
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Setup Your Own Class Fee Structure, For
                     Each Class.
                   </li>
-                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports – Student dues list, class wise
+                  <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Reports - Student dues list, class wise
                     due list, student wise fee collection, class wise fee collection, Fee collection summary report</li>
                 </ul>
               </div>
@@ -360,7 +368,7 @@
               <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
-              <h5 class="card-title navy-blue text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
+              <h5 class="card-title  text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
               <div class="float-left">
                 <ul style="list-style: none; padding:0px;">
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
@@ -379,7 +387,7 @@
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-hand-o-up navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-hand-o-up fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ATTENDANCE TRACKER</h5>
@@ -403,7 +411,7 @@
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-list-alt navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-list-alt fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold">ID CARD MANAGEMENT</h5>
@@ -427,7 +435,7 @@
           <div class="card w-100 align-items-center p-3 aos-init aos-animate" data-aos="flip-left"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-list navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-list fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
               <h5 class="card-title navy-blue text-center m-3 fw-bold"> STUDY MATERIAL MANAGEMENT</h5>
@@ -504,12 +512,12 @@
       </div>
     </div>
   </div>
-  <div class="bg-secondary ">
+  <div class="bg-dark ">
     <div class="container">
-      <div class="row text-center navy-blue container ">
+      <div class="row text-center text-warning container ">
         <h3 class="fw-bold mt-5 mb-5 ">DGSkool</h3>
-        <h5 class="text-white ">Teaching Turning Today's Learners Into Tomorrow's Leaders</h5>>
-        <div class="social-links mb-5 ">
+        <h5 class="text-white ">Teaching Turning Today's Learners Into Tomorrow's Leaders</h5>
+        <div class="social-links mb-5 mt-3">
           <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
           <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
           <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
@@ -518,7 +526,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6 justify-content-start">
-          <small class="text-white fw-bold m-5">Copyright &copy; 2022 All Rights Reserved DGSkool
+          <small class="text-white fw-bold">Copyright &copy; 2022 All Rights Reserved DGSkool
             <span id='currentyear'></span></small>
         </div>
         <div class="col-sm-6 d-flex justify-content-end">
@@ -528,117 +536,6 @@
             Vidhi Ardeshna <br />
             Aarti Gohil
           </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row g-0  m-5" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-              <div class="col-md-6 nopadding">
-                <img src="../img/logo3.jpg" alt="login form" class="img-fluid rounded rounded-4 w-100 h-100" />
-              </div>
-              <div class="col-md-6 nopadding d-flex justify-content-center bg-white">
-                <form method="post" class="p-4 m-2">
-                  <div>
-                    <h1 class="fs-2 text-dark fw-bold"> Digital Academy
-                      <hr>
-                    </h1>
-                  </div>
-                  <div>
-                    <h6 class="fw-normal text-dark mb-5"> Sign in to your account</h6>
-                  </div>
-
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Select User</label>
-                    <select class="form-control form-control-lg m-1" name="user" required>
-                      <option value="" disabled selected>--select user--</option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Teacher') {
-                                  echo "selected";
-                                }
-                              } ?>> Teacher </option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Student') {
-                                  echo "selected";
-                                }
-                              } ?>> Student </option>
-                      <option <?php if (isset($_COOKIE['usercookie'])) {
-                                if ($_COOKIE['usercookie'] == 'Institute') {
-                                  echo "selected";
-                                }
-                              } ?>> Institute </option>
-
-                    </select>
-
-                  </div>
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Email address</label>
-                    <input type="email" id="email" name="email"
-                      value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>"
-                      class="form-control form-control-lg m-1" required />
-
-                    <span id="emessage"></span>
-                  </div>
-                  <div class="form-outline mb-2">
-                    <label class="form-label p-1">Password</label>
-
-                    <div class="input-group">
-                      <input type="password" name="pwd" id="pwd"
-                        value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>"
-                        class="form-control form-control-lg " required />
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa fa-eye" onclick="myFunction()"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="form-outline mb-2">
-                    <input type="checkbox" name="rem" class="m-1" /> Remember Me
-
-                  </div>
-
-                  <div class="pt-1 mb-4">
-                    <button class="btn bg-navy-blue text-white btn-lg btn-block" id="login" name="login"
-                      type="submit">Login</button>
-                  </div>
-                  <div class="row mt-3">
-                    <a class="small text-muted" href="forgotpassword.php">Forgot password?</a>
-                    <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#"
-                        style="color: #393f81;">Register here</a></p>
-                  </div>
-                  <div class="align-self-baseline">
-                    <a href="#!" class="small text-muted">Terms of use.</a>
-                    <a href="#!" class="small text-muted">Privacy policy</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- </div> -->
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
         </div>
       </div>
     </div>
