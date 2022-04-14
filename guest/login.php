@@ -1,3 +1,8 @@
+<?php
+session_start();
+ob_start();
+include("../connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +18,44 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+  function myFunction() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+
+  }
+  $(document).ready(function() {
+    var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    $("#login").click(function() {
+      if ($('#email').val() != '') {
+        if ($('#emessage').text() != "") {
+          alert($('#emessage').text());
+          $("#email").focus();
+          return false;
+
+        }
+      }
+    });
+    $('#email').on('keyup', function() {
+      //var clen = $('#cno').val();
+      var email = $('#email').val();
+      if (e_Reg.test(email) == false) {
+        $('#emessage').html('Email Must be in abc@xyz Format').css('color', 'red');
+      } else {
+        $('#emessage').html('').css('color', 'red');
+
+      }
+
+    });
+  });
+  </script>
 
 </head>
 
@@ -101,3 +144,120 @@
 </body>
 
 </html>
+<?php
+if (isset($_REQUEST['login'])) {
+  $email = $_POST['email'];
+  $pwd = $_POST['pwd'];
+  $user = $_POST['user'];
+  if (isset($_REQUEST['rem'])) {
+
+    setcookie("emailcookie", $email, time() + 86400);
+    setcookie("passwordcookie", $pwd, time() + 86400);
+    setcookie("usercookie", $user, time() + 86400);
+  }
+
+  if ($user == 'Teacher') {
+    $q = "select * from staff_tbl where Email = '$email'";
+    $res = mysqli_query($con, $q) or die("Qiery failed q");
+    $nor = mysqli_num_rows($res) or die("<script> Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not a Valid User!'
+      
+    })</script>");
+    if ($nor == 1) {
+      while ($row = mysqli_fetch_array($res)) {
+        if (password_verify($pwd, $row[19])) {
+          $_SESSION['email'] = $email;
+          $_SESSION['Id'] = $row['Id'];
+          $_SESSION['Inst_id'] = $row['Inst_id'];
+          echo "<script>window.location.href='../teacher/teacher-home.php';</script>";
+        } else {
+          echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Passward Does Not Match!'
+            
+          })</script>";
+        }
+      }
+    }
+  }
+  if ($user == 'Student') {
+    $q = "select * from student_tbl where Email = '$email'";
+    $res = mysqli_query($con, $q) or die("Qiery failed q");
+    $nor = mysqli_num_rows($res) or die("<script> Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not a Valid User!'
+      
+    })</script>");
+    if ($nor == 1) {
+      while ($row = mysqli_fetch_array($res)) {
+        if (password_verify($pwd, $row[20])) {
+          $_SESSION['email'] = $email;
+          $_SESSION['Id'] = $row['Id'];
+          $_SESSION['Inst_id'] = $row['Inst_id'];
+          echo "<script>window.location.href='../student/student-home.php';</script>";
+        } else {
+          echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Passward Does Not Match!'
+            
+          })</script>";
+        }
+      }
+    }
+  }
+
+  if ($user == "Institute") {
+
+    $query = "select status from inquiry_tbl where Email='$email'";
+    $result = mysqli_query($con, $query);
+    $r = mysqli_fetch_array($result);
+    if ($r[0] == 'Pending') {
+      echo "<script>Swal.fire({
+            
+            title: 'Oops...',
+            text: 'Yet Admin didnt approved request!'
+            
+          })</script>";
+    } else {
+      $q = "select * from institute_admin_tbl where Email = '$email'";
+      $res = mysqli_query($con, $q) or die("Qiery failed q");
+      $nor = mysqli_num_rows($res) or die("<script>Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not a Valid User!'
+      
+    })</script>");
+      if ($nor == 1) {
+
+        while ($row = mysqli_fetch_array($res)) {
+
+
+          if (password_verify($pwd, $row[5])) {
+            $_SESSION['email'] = $email;
+            $q = "select Logo,Name,Id from institute_tbl where Email='$email'";
+            $res = mysqli_query($con, $q) or die("Query failed");
+            $row = mysqli_fetch_assoc($res);
+            if ($row['Logo'] != "") {
+              $_SESSION['logo'] = $row['Logo'];
+              $_SESSION['name'] = $row['Name'];
+              $_SESSION['inst_id'] = $row['Id'];
+              echo "<script>window.location.href='../institute-admin/institute-dashboard.php';</script>";
+            } else {
+              $_SESSION['name'] = $row['Name'];
+              $_SESSION['inst_id'] = $row['Id'];
+              echo "<script>window.location.href='../institute-admin/institute-info.php';</script>";
+            }
+          } else {
+            echo "<script>alert('Passwrod Does not match');</script>";
+          }
+        }
+      }
+    }
+  }
+}
+?>

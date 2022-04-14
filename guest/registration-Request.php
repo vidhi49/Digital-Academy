@@ -13,7 +13,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="../js/signup.js"></script>
 
+  <style>
+  @media screen and (min-width: 992px) {
+    .max-width-55 {
+      max-width: 85;
+    }
+  }
+  </style>
+  <script>
+  Filevalidation = () => {
+    const fi = document.getElementById('cimg');
+    var filePath = fi.value;
+    var allowedExtensions =
+      /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      // alert('Invalid file type');
+      $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
+      // fi.value = '';
+      return false;
+    } else {
+      // $("#filemessage").html('');
+      if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
+
+          const fsize = fi.files.item(i).size;
+          const file = Math.round((fsize / 1024));
+          if (file > 200) {
+            $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+            return false;
+          } else {
+
+            $("#filemessage").html('');
+
+            return false;
+          }
+        }
+      }
+    }
+  }
+  </script>
 </head>
 
 <body>
