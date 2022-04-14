@@ -2,7 +2,7 @@
 include('../connect.php');
 include('../teacher/teacher-header.php');
 $inst_id = $_SESSION['Inst_id'];
-$page="exam";
+$page = "exam";
 ?>
 <html>
 
@@ -25,6 +25,12 @@ $page="exam";
   </script>
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+  </script>
   <script>
   function sectionDropdown(str) {
     if (str == "") {
@@ -132,14 +138,15 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
               <td><span class='badge badge-warning badge-pill'>$r[7]</span></td>
               <td class='examtime'>$r[8]</td>
               <td class='text-center'>
-              <a href='?action=delete&ExamId=" . $r[0] . "' ><i class='fa fa-trash fs-5 mr-2'></i></a>
+              <a href='?action=delete&ExamId=" . $r[0] . "'><i class='fa fa-trash text-primary fs-5 mr-2'></i></a>
               <a  href='?action=edit&ExamId=" . $r[0] . "' class='edit'><i class='fa fa-edit fs-5 text-primary'></i></a>
               </td>
               <td><a data-examid='$r[0]' data-inst_id='$inst_id' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' role='button' class='btn bg-navy-blue text-white btn-sm fs-0'  data-toggle='modal' data-target='#QueListModal'>
               Select </a>
             <a role='button' data-examid='$r[0]' data-classid='$r[3]' data-section='$r[4]' data-subjectid='$r[5]' class='btn p-1' data-toggle='modal' data-target='#ExamDetailModal'><i class='fa fa-eye text-primary fs-5' aria-hidden='true'></i>
             </a>
-            <a class='btn btn-primary' href='publishexam.php?id=$r[0]' role='button'> <i class='fas fa-play text-light fs-5' ></i> Publish</a>
+            <a class='btn btn-primary' href='publishexam.php?id=$r[0]' role='button' data-toggle='tooltip'
+            title='Start Exam'> <i class='fas fa-play text-light fs-5' ></i> </a>
             </td>
               </tr>";
             }

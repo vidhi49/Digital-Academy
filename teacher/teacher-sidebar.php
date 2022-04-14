@@ -1,93 +1,226 @@
 <html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Welcome </title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script> -->
+  <!-- Popper.JS -->
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function() {
+
+    $('#sidebarCollapse').on('click', function() {
+      $('#sidebar').toggleClass('active');
+    });
+
+  });
+  </script>
+  <script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+  </script>
+</head>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  /* background-color: #041562; */
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  /* background: #6d7fcc; */
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: navy;
+  background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: navy;
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  /* background: #6d7fcc; */
+}
+
+.wrapper {
+  display: flex;
+  width: 230px;
+  align-items: stretch;
+}
+
+#sidebar {
+  /* width: 250px; */
+  /* max-width: 250px; */
+  /* min-height: 100vh; */
+  height: 100vh;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+/* 
+#sidebar.active {
+  margin-left: -250px;
+} */
+
+@media (max-width: 768px) {
+  /* 
+  #sidebar {
+    margin-left: -250px;
+  } */
+
+  .wrapper {
+    width: calc(100vw - 230px);
+  }
+
+  .li-name {
+    display: none;
+  }
+
+  ul ul a {
+    padding-left: 2px !important;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+}
+</style>
 
 <body>
+  <div class="wrapper" style="background-color: #041562;">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <!-- <h3>Bootstrap Sidebar</h3> -->
+        <nav class="navbar navbar-expand-sm navbar-light float-right">
+          <!-- <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn text-secondary">
+              <i class="fas fa-align-justify"></i>
+               <span>Toggle Sidebar</span> -->
+          <!-- </button> -->
 
-  <div class="row flex-nowrap d-inline-block width-sidebar p-5 sidebar" style="background-color:#041562;">
-    <div class="text-center text-light ">
-      <div class="row">
-        <div class="col">
-          <?php
-          $id = $_SESSION['Inst_id'];
-          $q = mysqli_query($con, "select * from institute_tbl where Id='$id'");
-          $r = mysqli_fetch_array($q);
-          echo "<img src='../Institute-logo/$r[10]'  height=100 width=100 style='border-radius:50%'>";
-
-          ?>
-        </div>
+          <!-- </div> -->
+        </nav>
       </div>
-      <div class="row">
-        <div class="col p-3">
-          <?php
-          echo $r['Name'];
-          ?>
-        </div>
-      </div>
+      <ul class="list-unstyled components">
+        <!-- <p>Dummy Heading</p> -->
 
-      <hr>
-    </div>
-    <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start" id="menu">
-      <li class="nav-item m-1">
-        <a href="teacher-home.php" class="nav-link align-middle px-0 text-white" data-toggle="modal" data-target="#exampleModal">
-          <i class="fas fa-home fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline "> Home </p>
-        </a>
-      </li>
-      <!-- <li class="nav-item m-1">
-        <a href="question-bank.php" class="nav-link align-middle px-0 text-white">
-          <i class="fas fa-question fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline"> Question Bank </p>
-        </a>
-      </li> -->
-      <li class="nav-item m-1">
-        <a href="viewstudent.php" class="nav-link align-middle px-0 text-white">
-          <i class="fas fa-users fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline"> View Student</p>
-        </a>
-      </li>
-      <li class="active nav-item m-1">
-     
-        <a href="viewclasses.php" class="nav-link align-middle px-0 text-white">
-          <i class="fas fa-address-book fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline"> View Classes</p>
-        </a>
-      </li>
-      <li class="nav-item m-1">
-        <a href="takeattedance.php" class="nav-link align-middle px-0 text-white">
-          <i class="fas fa-question fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline"> Take Attedance </p>
-        </a>
-      </li>
-      <!-- <li class="nav-item m-1">
-        <a href="takeattedance.php" class="nav-link align-middle px-0 text-white">
-          <i class="fas fa-question fs-5"></i>
-          <p class="ms-2 d-none d-sm-inline"> Generate Roll Number </p>
-        </a>
-      </li> -->
-      <li class="active nav-item m-1">
-    
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle nav-link align-middle px-0 text-white"><i class="fas fa-folder-open fs-5 mr-2"></i>
-          Exam
-        </a>
-        <ul <?php
-            if ($page == 'exam') {
-              echo 'class=" list-unstyled"';
-            } else {
-              echo 'class="collapse list-unstyled"';
-            } ?> id="homeSubmenu">
-          <li>
-            <a href="question-bank.php" class="nav-link float-right text-white"> Add Question </a>
-          </li>
-          <li>
-            <a href="manageExam.php" class="nav-link float-right text-white" aria-expanded="true">Manage Exam</a>
-          </li>
-          <!-- <li>
-            <a href="#">Home 3</a>
-          </li> -->
-        </ul>
-      </li>
-    </ul>
+        <li class="m-2">
+          <a href="#"><i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
+        </li>
+
+        <li class="m-2">
+          <a href="question-bank.php" data-toggle="tooltip" title="Question Bank"><i
+              class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
+              Bank</span></a>
+        </li>
+
+        <li class="m-2">
+          <a href="viewstudent.php"><i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
+        </li>
+
+        <li class="active m-2">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+              class="far fa-file-alt me-2 fs-5"></i> <span class="li-name">Exam </span></a>
+          <ul <?php
+              if ($page == 'exam') {
+                echo 'class=" list-unstyled"';
+              } else {
+                echo 'class="collapse "';
+              }
+              ?> id="homeSubmenu">
+            <li>
+              <a href="question-bank.php">
+                <span>Add Question</span>
+              </a>
+            </li>
+            <li>
+              <a href="manageExam.php"><span> Manage Exam</span></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </div>
+  <!-- <div id="content">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-align-left"></i>
+          <span>Toggle Sidebar</span>
+        </button>
+
+      </div>
+    </nav>
+  </div> -->
+
 </body>
 
 
