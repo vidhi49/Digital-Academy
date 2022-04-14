@@ -249,7 +249,7 @@ include("registration-Request.php"); ?>
         </p>
       </div>
       <div class="row p-5">
-        <div class="col-sm-6">
+        <div class="col-sm-6 aos-animate" data-aos="fade-right">
           <h1 class='navy-blue'>Our team is your team.
             <hr>
           </h1>
@@ -262,7 +262,7 @@ include("registration-Request.php"); ?>
             firsthand the importance of school-parent engagement.
           </p>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 aos-animate" data-aos="fade-left">
           <img src="https://source.unsplash.com/650x350/?team" alt="">
         </div>
       </div>
@@ -365,10 +365,10 @@ include("registration-Request.php"); ?>
           <div class="card w-100  align-items-center p-3 aos-init aos-animate" data-aos="flip-right"
             style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="feature-circle">
-              <i class="fa fa-file-text-o navy-blue fs-1 feature-icon"></i>
+              <i class="fa fa-file-text-o fs-1 feature-icon"></i>
             </div>
             <div class="card-body">
-              <h5 class="card-title  text-center m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
+              <h5 class="card-title  text-center navy-blue m-3 fw-bold">ONLINE EXAMS AND EVALUATION MANAGEMENT</h5>
               <div class="float-left">
                 <ul style="list-style: none; padding:0px;">
                   <li><i class="fa fa-check navy-blue" aria-hidden="true"></i> Exam scheduling & evaluation
