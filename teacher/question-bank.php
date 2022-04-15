@@ -3,7 +3,7 @@ include('../connect.php');
 include('../teacher/teacher-header.php');
 require('../teacher/addQuestion.php');
 $inst_id = $_SESSION['Inst_id'];
-$page="exam";
+$page = "exam";
 ?>
 
 <?php
@@ -23,6 +23,16 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
 ?>
 
 <head>
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <script>
+  function generatePDF() {
+    // Choose the element that our invoice is rendered in.
+    const element = document.getElementById('Quetable');
+    // Choose the element and save the PDF for our user.
+    html2pdf().from(element).save();
+  }
+  </script>
   <script type="text/javascript" src="teacher.js"></script>
   <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -31,7 +41,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
   })
   </script>
   <script>
-function sectionDropdown(str) {
+  function sectionDropdown(str) {
     if (str == "") {
       document.getElementById("section").innerHTML = "";
       return;
@@ -143,6 +153,8 @@ function sectionDropdown(str) {
         <div class="table-responsive-md table-md w-100 p-5" id="tblQue">
           <br>
           <h2 class="navy-blue">Question Bank</h2>
+          <button onclick="generatePDF()">Download as PDF</button>
+
           <hr><br>
           <table class="table table-hover">
             <thead>

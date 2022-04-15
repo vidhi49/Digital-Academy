@@ -28,7 +28,7 @@ $Inst_id = $_SESSION['Inst_id'];
           // echo $sq;
           $result = mysqli_fetch_array($res);
 
-          $q = "select * from exam_tbl as t1 left join studentExamResult_tbl as t2 on t1.Id=t2.Exam_Id and t2.Student_Id='$Id' where t1.Inst_id='$Inst_id' and t1.Class_id='$result[15]' and t1.Section='$result[14]' and t1.Status In('Created','Published')";
+          $q = "select * from exam_tbl as t1 left join studentExamResult_tbl as t2 on t1.Id=t2.Exam_Id and t2.Student_Id='$Id' where t1.Inst_id='$Inst_id' and t1.Class_id='$result[15]' and t1.Section='$result[14]' and t1.Status In('Created','Published','Completed')";
           // echo $q;
           $res1 = mysqli_query($con, $q);
 
@@ -58,7 +58,7 @@ $Inst_id = $_SESSION['Inst_id'];
 
                 while ($result1 = mysqli_fetch_array($res1)) {
 
-                  if ($result1[7] == 'Created' || $result1[7] == 'Published') {
+                  if ($result1[7] == 'Created' || $result1[7] == 'Published' || $result1[7] == 'Completed') {
 
                     $s = "select * from subject_tbl where Id='$result1[5]' and Inst_id='$Inst_id'";
                     $res4 = mysqli_query($con, $s);
@@ -72,12 +72,13 @@ $Inst_id = $_SESSION['Inst_id'];
                   <td>$result1[6]</td>
                   <td>$result1[8]</td>";
 
-                    if ($result1[7] == 'Published') {
+                    if ($result1[7] == 'Completed') {
                       if (is_numeric($result1[13])) {
                         echo "<td class='navy-blue'>Result : $result1[13] Marks</td>";
-                      } else {
-                        echo "<td><a role='button' name='startExam' value='$result1[0]' class='btn btn-outline-primary p-1' data-bs-toggle='modal' data-bs-target='#giveExam' data-classid='$result[15]' data-section='$result[14]'' data-subjectid='$rset[0]' data-examid='$result1[0]'><i class='fas fa-edit fs-6 pr-2' aria-hidden='true'></i>Start Exam </a></td>";
                       }
+                    }
+                    if ($result1[7] == 'Published') {
+                      echo "<td><a role='button' name='startExam' value='$result1[0]' class='btn btn-outline-primary p-1' data-bs-toggle='modal' data-bs-target='#giveExam' data-classid='$result[15]' data-section='$result[14]'' data-subjectid='$rset[0]' data-examid='$result1[0]'><i class='fas fa-edit fs-6 pr-2' aria-hidden='true'></i>Start Exam </a></td>";
                     }
                     echo "</tr>";
                 ?>
