@@ -160,134 +160,132 @@ $indian_states = array(
     <?php
     include("institute-sidebar.php");
     ?>
-     <div class=" content  p-5"  >
+    <div class=" institute-content container">
       <!-- <div class="d-flex justify-content-center float-center align-items-center"> -->
-        <form method="post">
-          <div class="row">
-            <div class="col">
-              <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
-                <div class="py-4 pl-3 border-bottom "
-                  style="border-radius:10px 10px 0px 0px;background-color: #030d38;">
-                  <div class="h2 font-weight-bold text-white">Filter Staff Details</div>
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
+              <div class="py-4 pl-3 border-bottom " style="border-radius:10px 10px 0px 0px;background-color: #030d38;">
+                <div class="h2 font-weight-bold text-white">Filter Staff Details</div>
+              </div>
+              <div class="py-4 pl-3" style="border-radius:0px 0px 10px 10px;background-color: white;">
+                <div class="row mr-2 ">
+                  <div class="col-sm-4">
+                    <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-lg m-1" id="name" name="name"
+                      placeholder="First Name/Surname">
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label ml-2 p-1"> Gender : <span class="text-danger">*</span></label>
+                    <select class="form-control form-control-lg m-1" id="gender" name="gender">
+                      <option value="" selected> Choose... </option>
+                      <option value="Male"> Male </option>
+                      <option value="Female"> Female </option>
+                      <option value="Other"> Other </option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label ml-2 p-1">Blood Group:<span class="text-danger">*</span></label>
+                    <select class="form-control form-control-lg m-1" id="bloodgroup" name="bloodgroup">
+                      <option value="" selected>--Select--</option>
+                      <option> A+ </option>
+                      <option> A- </option>
+                      <option> AB+ </option>
+                      <option> AB+ </option>
+                      <option> B- </option>
+                      <option> B+ </option>
+                      <option> O+ </option>
+                      <option> O- </option>
+                    </select>
+                  </div>
                 </div>
-                <div class="py-4 pl-3" style="border-radius:0px 0px 10px 10px;background-color: white;">
-                  <div class="row mr-2 ">
-                    <div class="col-sm-4 col-lg-4">
-                      <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control form-control-lg m-1" id="name" name="name"
-                        placeholder="First Name/Surname">
-                    </div>
-                    <div class="col">
-                      <label class="form-label ml-2 p-1"> Gender : <span class="text-danger">*</span></label>
-                      <select class="form-control form-control-lg m-1" id="gender" name="gender">
-                        <option value="" selected> Choose... </option>
-                        <option value="Male"> Male </option>
-                        <option value="Female"> Female </option>
-                        <option value="Other"> Other </option>
-                      </select>
-                    </div>
-                    <div class="col">
-                      <label class="form-label ml-2 p-1">Blood Group:<span class="text-danger">*</span></label>
-                      <select class="form-control form-control-lg m-1" id="bloodgroup" name="bloodgroup">
-                        <option value="" selected>--Select--</option>
-                        <option> A+ </option>
-                        <option> A- </option>
-                        <option> AB+ </option>
-                        <option> AB+ </option>
-                        <option> B- </option>
-                        <option> B+ </option>
-                        <option> O+ </option>
-                        <option> O- </option>
-                      </select>
-                    </div>
+                <div class="row mr-2">
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1">DOB[From]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="from_dob" name="from_dob">
                   </div>
-                  <div class="row mr-2">
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">DOB[From]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="from_dob" name="from_dob">
-                    </div>
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">DOB[To]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="to_dob" name="to_dob">
-                    </div>
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">DOJ[From]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="from_doj" name="from_doj">
-                    </div>
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">DOJ[To]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="to_doj" name="to_doj">
-                    </div>
-
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1">DOB[To]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="to_dob" name="to_dob">
                   </div>
-                  <div class="row mr-2">
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">Enrolment Date[From]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="from_edate" name="from_edate">
-                    </div>
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">Enrolment[To]:<span class="text-danger">*</span></label>
-                      <input class="form-control form-control-lg m-1" type="date" id="to_edate" name="to_edate">
-                    </div>
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1">DOJ[From]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="from_doj" name="from_doj">
                   </div>
-                  <div class="row mr-2">
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1">DOJ[To]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="to_doj" name="to_doj">
+                  </div>
+
+                </div>
+                <div class="row mr-2">
+                  <div class="col-sm-6">
+                    <label class="form-label ml-2 p-1">Enrolment Date[From]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="from_edate" name="from_edate">
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="form-label ml-2 p-1">Enrolment[To]:<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg m-1" type="date" id="to_edate" name="to_edate">
+                  </div>
+                </div>
+                <div class="row mr-2">
 
 
-                    <div class="col">
-                      <label class="form-label ml-2 p-1" for="city"> Country : <span
-                          class="text-danger">*</span></label>
-                      <select name="country" class="form-control form-control-lg m-1">
-                        <option value="">--Select Country--</option>
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1" for="city"> Country : <span class="text-danger">*</span></label>
+                    <select name="country" class="form-control form-control-lg m-1">
+                      <option value="">--Select Country--</option>
 
-                        <option value="India"> India </option>
+                      <option value="India"> India </option>
 
-                      </select>
-                    </div>
-                    <div class=" col ">
-                      <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
+                    </select>
+                  </div>
+                  <div class="col-sm-3">
+                    <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
 
-                      <select name="state" id="state" class="form-control form-control-lg m-1">
-                        <option value=''>--Select State--</option>
-                        <?php
-                        foreach ($indian_states as $x => $val) {
-                          echo '<option value="'.$val.'"   > ' . $val . ' </option>';
-                        } ?>
-                      </select>
-                    </div>
-                    <div class="col">
-                      <label class="form-label p-1 ml-2">Staff Type:</label><span class="text-danger">*</span>
-                      <select class="form-control form-control-lg m-1" id="stype" name="stype">
+                    <select name="state" id="state" class="form-control form-control-lg m-1">
+                      <option value=''>--Select State--</option>
+                      <?php
+                      foreach ($indian_states as $x => $val) {
+                        echo '<option value="' . $val . '"   > ' . $val . ' </option>';
+                      } ?>
+                    </select>
+                  </div>
+                  <div class="col-sm-3">
+                    <label class="form-label p-1 ml-2">Staff Type:</label><span class="text-danger">*</span>
+                    <select class="form-control form-control-lg m-1" id="stype" name="stype">
+                      <option value="" selected> --Select-- </option>
+                      <option>Teaching</option>
+                      <option>Non-Teaching</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-outline">
+                      <label class="form-label ml-2 p-1">Designation</label><span class="text-danger">*</span>
+                      <select class="form-control form-control-lg m-1" name="designation">
                         <option value="" selected> --Select-- </option>
-                        <option>Teaching</option>
-                        <option>Non-Teaching</option>
+                        <option> Faculty </option>
+                        <option> Clerk </option>
+                        <option> Accountant </option>
+                        <option> Principle </option>
                       </select>
                     </div>
-                    <div class="col">
-                      <div class="form-outline">
-                        <label class="form-label ml-2 p-1">Designation</label><span class="text-danger">*</span>
-                        <select class="form-control form-control-lg m-1" name="designation">
-                          <option value="" selected> --Select-- </option>
-                          <option> Faculty </option>
-                          <option> Clerk </option>
-                          <option> Accountant </option>
-                          <option> Principle </option>
-                        </select>
-                      </div>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="row py-3">
-                    <div class="col">
-                      <input type="submit" name="filter" id="filter" value="Filter" class="btn bg-navy-blue text-white">
-                      <input type="submit" name="showall" id="showall" value="Show All"
-                        class="btn bg-navy-blue text-white">
-                    </div>
+                <div class="row py-3">
+                  <div class="col">
+                    <input type="submit" name="filter" id="filter" value="Filter" class="btn bg-navy-blue text-white">
+                    <input type="submit" name="showall" id="showall" value="Show All"
+                      class="btn bg-navy-blue text-white">
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </form>
+        </div>
+      </form>
       <!-- </div> -->
       <!-- <div class="row" id="studtable" style="display: none;" > -->
       <br><br>

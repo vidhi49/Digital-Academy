@@ -19,192 +19,192 @@ $a = "student";
   <!-- <script src="../js/student.js"></script> -->
   <script src="../css/style.css"></script>
   <script>
-    Filevalidation = () => {
-      const fi = document.getElementById('file');
-      var filePath = fi.value;
-      var allowedExtensions =
-        /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-      if (!allowedExtensions.exec(filePath)) {
-        // alert('Invalid file type');
-        $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
-        // fi.value = '';
-        return false;
-      } else {
-        // $("#filemessage").html('');
-        if (fi.files.length > 0) {
-          for (const i = 0; i <= fi.files.length - 1; i++) {
+  Filevalidation = () => {
+    const fi = document.getElementById('file');
+    var filePath = fi.value;
+    var allowedExtensions =
+      /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      // alert('Invalid file type');
+      $("#filemessage").html('Photo Must be jpg/jpeg/png/gif').css('color', 'red');
+      // fi.value = '';
+      return false;
+    } else {
+      // $("#filemessage").html('');
+      if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
 
-            const fsize = fi.files.item(i).size;
-            const file = Math.round((fsize / 1024));
-            if (file > 200) {
-              $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
-              return false;
-            } else {
-
-              $("#filemessage").html('');
-
-              return false;
-            }
-          }
-        }
-      }
-    }
-
-    function classDropdown(str) {
-      if (str == "") {
-        document.getElementById("section").innerHTML = "";
-        return;
-      } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("section").innerHTML = this.responseText;
-          }
-        };
-        xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
-        xmlhttp.send();
-      }
-    }
-
-    function selectstate(str) {
-      if (str == "") {
-        document.getElementById("s").innerHTML = "";
-        return;
-      } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("s").innerHTML = this.responseText;
-          }
-        };
-        xmlhttp.open("GET", "ajaxState.php?name=" + str, true);
-        xmlhttp.send();
-      }
-    }
-
-    $(document).ready(function() {
-
-      var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-      var c_Reg = /^[0-9]+$/;
-
-      $("#submit").click(function() {
-
-        
-          if ($('#emsg').text() != "") {
-            alert($('#emsg').text());
-            $("#e").focus();
-            return false;
-
-          }
-        
-
-        if (c_Reg.test($('#cno').val()) == false) {
-          alert('Please Fill Cnotact Number with digit only...');
-          $("#cno").focus();
-          return false;
-        } else if ($('#cno').val().length != 10) {
-          alert('Please Fill 10 digit number...');
-          $("#cno").focus();
-          return false;
-        }
-
-        if ($('#file').val() != "") {
-
-          const fi = document.getElementById('file');
-          var filePath = fi.value;
-          var allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-          if (!allowedExtensions.exec(filePath)) {
-            alert('Photo Must be jpg/jpeg/png/gif');
-            // $("#filemessage").html('File must be jpg').css('color', 'red');
-            // alert('hello');
-            // fi.value = '';
-            $("#file").focus();
+          const fsize = fi.files.item(i).size;
+          const file = Math.round((fsize / 1024));
+          if (file > 200) {
+            $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
             return false;
           } else {
-            // $("#filemessage").html('');
-            if (fi.files.length > 0) {
-              for (const i = 0; i <= fi.files.length - 1; i++) {
 
-                const fsize = fi.files.item(i).size;
-                const file = Math.round((fsize / 1024));
-                if (file > 200) {
-                  alert('size');
-                  $("#file").focus();
-                  // $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
-                  return false;
-                } else {
+            $("#filemessage").html('');
 
-                }
+            return false;
+          }
+        }
+      }
+    }
+  }
+
+  function classDropdown(str) {
+    if (str == "") {
+      document.getElementById("section").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
+      xmlhttp.send();
+    }
+  }
+
+  function selectstate(str) {
+    if (str == "") {
+      document.getElementById("s").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("s").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxState.php?name=" + str, true);
+      xmlhttp.send();
+    }
+  }
+
+  $(document).ready(function() {
+
+    var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    var c_Reg = /^[0-9]+$/;
+
+    $("#submit").click(function() {
+
+
+      if ($('#emsg').text() != "") {
+        alert($('#emsg').text());
+        $("#e").focus();
+        return false;
+
+      }
+
+
+      if (c_Reg.test($('#cno').val()) == false) {
+        alert('Please Fill Cnotact Number with digit only...');
+        $("#cno").focus();
+        return false;
+      } else if ($('#cno').val().length != 10) {
+        alert('Please Fill 10 digit number...');
+        $("#cno").focus();
+        return false;
+      }
+
+      if ($('#file').val() != "") {
+
+        const fi = document.getElementById('file');
+        var filePath = fi.value;
+        var allowedExtensions =
+          /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+          alert('Photo Must be jpg/jpeg/png/gif');
+          // $("#filemessage").html('File must be jpg').css('color', 'red');
+          // alert('hello');
+          // fi.value = '';
+          $("#file").focus();
+          return false;
+        } else {
+          // $("#filemessage").html('');
+          if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+              const fsize = fi.files.item(i).size;
+              const file = Math.round((fsize / 1024));
+              if (file > 200) {
+                alert('size');
+                $("#file").focus();
+                // $("#filemessage").html('File Must be less then 200kb').css('color', 'red');
+                return false;
+              } else {
+
               }
             }
           }
         }
-        if ($('#section').val() != '') {
-          if ($('#elimit').text() != "") {
-            alert($('#elimit').text());
-            $("#section").focus();
-            return false;
-          }
-
+      }
+      if ($('#section').val() != '') {
+        if ($('#elimit').text() != "") {
+          alert($('#elimit').text());
+          $("#section").focus();
+          return false;
         }
 
-      });
+      }
 
-      $('#e, #cno').on('keyup', function() {
-        if (e_Reg.test($('#e').val()) == false) {
-          $('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
-        } else {
-          $.ajax({
-            type: 'POST',
-            url: 'studentemail.php',
-            data: "check=check&e=" + $('#e').val(),
-            success: function(response) {
-              $('#emsg').html(response).css('color', 'red');
-            }
-          });
+    });
 
-        }
-
-        if (c_Reg.test($('#cno').val()) == false) {
-          $('#cmessage').html('Contact Must be of digit only').css('color', 'red');
-        } else if ($('#cno').val().length != 10) {
-          $('#cmessage').html(' Please enter 10 digit').css('color', 'red');
-
-        } else {
-          $('#cmessage').html('');
-        }
-
-
-      });
-      $('#section').change(function() {
-
+    $('#e, #cno').on('keyup', function() {
+      if (e_Reg.test($('#e').val()) == false) {
+        $('#emsg').html('Please Fill Email in abc@xyz.com').css('color', 'red');
+      } else {
         $.ajax({
           type: 'POST',
-          url: 'ajaxStudentcount.php',
-          data: "classid=" + $('#section').val(),
+          url: 'studentemail.php',
+          data: "check=check&e=" + $('#e').val(),
           success: function(response) {
-            var result = response;
-            // $('#elimit').html(response).css('color', 'red');
-            $('#elimit').html(result).css('color', 'red');
+            $('#emsg').html(response).css('color', 'red');
           }
         });
 
+      }
+
+      if (c_Reg.test($('#cno').val()) == false) {
+        $('#cmessage').html('Contact Must be of digit only').css('color', 'red');
+      } else if ($('#cno').val().length != 10) {
+        $('#cmessage').html(' Please enter 10 digit').css('color', 'red');
+
+      } else {
+        $('#cmessage').html('');
+      }
+
+
+    });
+    $('#section').change(function() {
+
+      $.ajax({
+        type: 'POST',
+        url: 'ajaxStudentcount.php',
+        data: "classid=" + $('#section').val(),
+        success: function(response) {
+          var result = response;
+          // $('#elimit').html(response).css('color', 'red');
+          $('#elimit').html(result).css('color', 'red');
+        }
       });
 
     });
+
+  });
   </script>
 </head>
 
@@ -213,7 +213,7 @@ $a = "student";
   <body>
     <div class="d-flex">
       <?php include("institute-sidebar.php"); ?>
-      <div class=" institute-content p-5 text-muted h6">
+      <div class=" institute-content container text-muted h6">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h1 mb-0 text-muted">Student Enrolment</h1>
           <ol class="breadcrumb">
@@ -250,25 +250,29 @@ $a = "student";
 
               <div class="form-group">
                 <div class="row ">
-                  <div class="col-sm-3 col-lg-3">
+                  <div class="col-sm-3 ">
                     <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="name" name="name" placeholder="First Name" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="name" name="name"
+                      placeholder="First Name" required>
                   </div>
-                  <div class="col-sm-3 col-lg-3">
+                  <div class="col-sm-3">
                     <label class="form-control-label ml-2 p-1">Surname:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="surname" name="surname" placeholder="Surname" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="surname" name="surname"
+                      placeholder="Surname" required>
                   </div>
-                  <div class="col-sm-3 col-lg-3">
+                  <div class="col-sm-3">
                     <label class="form-control-label ml-2 p-1">Father Name:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="fname" name="fname" placeholder="First Name/Surname" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="fname" name="fname"
+                      placeholder="First Name/Surname" required>
                   </div>
-                  <div class="col-sm-3 col-lg-3">
+                  <div class="col-sm-3 ">
                     <label class="form-control-label ml-2 p-1">Mother Name:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="mname" name="mname" placeholder="First Name/Surname" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="mname" name="mname"
+                      placeholder="First Name/Surname" required>
                   </div>
                 </div>
                 <div class="row ">
-                  <div class="col">
+                  <div class="col-sm-6 ">
                     <label class="form-label ml-2 p-1" for="city"> Gender : <span class="text-danger">*</span></label>
                     <select class="form-control form-control-lg m-1" name="gender" required>
                       <option value="" disabled selected> Choose... </option>
@@ -277,23 +281,25 @@ $a = "student";
                       <option value="Other"> Other </option>
                     </select>
                   </div>
-                  <div class=" col ">
+                  <div class="col-sm-6 ">
                     <label class="form-label ml-2 p-1">DOB[Date of birth]:<span class="text-danger">*</span></label>
                     <input class="form-control form-control-lg m-1" type="date" id="dob" name="dob" required>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-4 col-lg-4">
+                  <div class="col-sm-4 ">
                     <label class="form-label ml-2 p-1">Phone No.:<span class="text-danger">*</span></label>
-                    <input class="form-control form-control-lg m-1" type="tel" maxlength="10" id="cno" name="cno" placeholder="Enter your phone number" required>
+                    <input class="form-control form-control-lg m-1" type="tel" maxlength="10" id="cno" name="cno"
+                      placeholder="Enter your phone number" required>
                     <span id="cmessage"></span>
                   </div>
-                  <div class="col-sm-4 col-lg-4">
+                  <div class="col-sm-4">
                     <label class="form-control-label ml-2 p-1">Email:<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control form-control-lg m-1" id="e" name="email" placeholder="abc@xyz.com" required>
+                    <input type="text" class="form-control form-control-lg m-1" id="e" name="email"
+                      placeholder="abc@xyz.com" required>
                     <span id="emsg"></span>
                   </div>
-                  <div class="col">
+                  <div class="col-sm-4 ">
                     <label class="form-label ml-2 p-1">Blood Group:<span class="text-danger">*</span></label>
                     <select class="form-control form-control-lg m-1" name="bloodgroup" required>
                       <option value="" disabled selected> Choose... </option>
@@ -309,23 +315,25 @@ $a = "student";
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col form-outline">
+                  <div class="form-outline">
                     <label class="form-label ml-2 p-1">Address:<span class="text-danger">*</span></label>
-                    <textarea cols='20' id="address" required rows="2" class="form-control form-control-lg m-1" name="address"></textarea>
+                    <textarea cols='20' id="address" required rows="2" class="form-control form-control-lg m-1"
+                      name="address"></textarea>
                   </div>
 
                 </div>
                 <div class="row ">
-                  <div class="col">
+                  <div class="col-sm-6">
                     <label class="form-label ml-2 p-1" for="city"> Country : <span class="text-danger">*</span></label>
-                    <select required name="country" onchange="selectstate(this.value)" class="form-control form-control-lg m-1">
+                    <select required name="country" onchange="selectstate(this.value)"
+                      class="form-control form-control-lg m-1">
                       <option value="">--Select Class--</option>
 
                       <option value="India"> India </option>
 
                     </select>
                   </div>
-                  <div class=" col ">
+                  <div class="col-sm-6">
                     <label class="form-label ml-2 p-1">State:<span class="text-danger">*</span></label>
 
                     <select required name="s" id="s" class="form-control form-control-lg m-1">
@@ -346,7 +354,7 @@ $a = "student";
             </div>
             <div class="card-body ">
               <div class="row">
-                <div class="col-xl-6">
+                <div class="col-sm-6">
                   <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                   <?php
                   $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC";
@@ -362,7 +370,7 @@ $a = "student";
                   }
                   ?>
                 </div>
-                <div class="col-xl-6" id="hello">
+                <div class="col-sm-6" id="hello">
                   <label class="form-control-label">Class Section<span class="text-danger ml-2">*</span></label>
                   <?php
                   // if (isset($Id)) {
@@ -382,10 +390,10 @@ $a = "student";
                   //     echo '<p id="elimit"></p>';
                   //   }
                   // } else {
-                    echo ' <select required  name="section" id="section"  class="form-control form-control-lg m-1">';
-                    echo "<option value=''>--Select Section--</option>";
-                    echo "</select>";
-                    echo '<p id="elimit"></p>';
+                  echo ' <select required  name="section" id="section"  class="form-control form-control-lg m-1">';
+                  echo "<option value=''>--Select Section--</option>";
+                  echo "</select>";
+                  echo '<p id="elimit"></p>';
                   // }
                   ?>
 
@@ -393,16 +401,18 @@ $a = "student";
               </div>
               <!--row-->
               <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
 
                   <label class="form-label p-1 ml-2">Academic Year:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="text" id="aca_year" value="<?php echo date("Y") - 1 . "-" . date("Y"); ?>" name="aca_year" readonly required>
+                  <input class="form-control form-control-lg m-1" type="text" id="aca_year"
+                    value="<?php echo date("Y") - 1 . "-" . date("Y"); ?>" name="aca_year" readonly required>
 
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
 
                   <label class="form-label p-1 ml-2">Upload Photo:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="file" id="file" onchange="Filevalidation()" name="photo" required>
+                  <input class="form-control form-control-lg m-1" type="file" id="file" onchange="Filevalidation()"
+                    name="photo" required>
                   <span id="filemessage"></span>
                 </div>
               </div>

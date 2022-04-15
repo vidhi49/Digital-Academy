@@ -123,82 +123,82 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
   <!-- <link href="../css/css/ruang-admin.min.css" rel="stylesheet"> -->
 
   <script>
-    function classDropdown(str) {
-      if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
+  function classDropdown(str) {
+    if (str == "") {
+      document.getElementById("txtHint").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
       } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("txtHint").innerHTML = this.responseText;
-          }
-        };
-        xmlhttp.open("GET", "ajaxclass.php?name=" + str, true);
-        xmlhttp.send();
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxclass.php?name=" + str, true);
+      xmlhttp.send();
+    }
+  }
+
+  function teacheremail(str) {
+    if (str == "") {
+      //document.getElementById("tidHint").innerHTML = "";
+      document.getElementById("emailHint").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          //document.getElementById("tidHint").innerHTML = this.responseText;
+          document.getElementById("emailHint").innerHTML = this.responseText;
+        }
+      };
+      // xmlhttp.open("GET","ajaxTeacher.php?Name="+str,true);
+      // xmlhttp.send();
+      xmlhttp.open("GET", "ajaxTeacheremail.php?Name=" + str, true);
+      xmlhttp.send();
     }
 
-    function teacheremail(str) {
-      if (str == "") {
-        //document.getElementById("tidHint").innerHTML = "";
-        document.getElementById("emailHint").innerHTML = "";
-        return;
+  }
+
+  function teacherDropdown(str) {
+    if (str == "") {
+      document.getElementById("tidHint").innerHTML = "";
+
+      return;
+
+
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
       } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            //document.getElementById("tidHint").innerHTML = this.responseText;
-            document.getElementById("emailHint").innerHTML = this.responseText;
-          }
-        };
-        // xmlhttp.open("GET","ajaxTeacher.php?Name="+str,true);
-        // xmlhttp.send();
-        xmlhttp.open("GET", "ajaxTeacheremail.php?Name=" + str, true);
-        xmlhttp.send();
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("tidHint").innerHTML = this.responseText;
+
+        }
+      };
+      xmlhttp.open("GET", "ajaxTeacher.php?Email=" + str, true);
+      xmlhttp.send();
 
     }
 
-    function teacherDropdown(str) {
-      if (str == "") {
-        document.getElementById("tidHint").innerHTML = "";
-
-        return;
-
-
-      } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("tidHint").innerHTML = this.responseText;
-
-          }
-        };
-        xmlhttp.open("GET", "ajaxTeacher.php?Email=" + str, true);
-        xmlhttp.send();
-
-      }
-
-    }
+  }
   </script>
 </head>
 <html>
@@ -208,7 +208,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class="institute-content p-5 text-muted h6">
+    <div class="institute-content container text-muted h6">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Class Allocation</h1>
         <ol class="breadcrumb">
@@ -243,7 +243,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
               </div>
               <div class="col-xl-6" id="hello">
                 <label class="form-control-label">Class Section<span class="text-danger ml-2">*</span></label>
-                 <?php
+                <?php
                 if (isset($Id)) {
                   $q = "SELECT * FROM class_tbl where Id='$Id' AND Insti_id='$Ins_id'";
                   $res = mysqli_query($con, $q);
@@ -259,7 +259,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                     }
                     echo '</select>';
                   }
-                } else { 
+                } else {
                   echo ' <select required  name="section" id="txtHint"  class="form-control form-control-lg mb-3">';
                   echo "<option value=''>--Select Section--</option>";
                   echo "</select>";
@@ -364,23 +364,23 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
           <?php
           if (isset($Id)) {
           ?>
-            <div class="form-group row mb-3">
+          <div class="form-group row mb-3">
 
-              <div class="col-lg-1">
-                <button type="submit" name="update" class="btn btn-warning">Update</button>
-              </div>
-
+            <div class="col-lg-1">
+              <button type="submit" name="update" class="btn btn-warning">Update</button>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <?php
           } else {
           ?>
-            <div class="form-group row mb-3">
+          <div class="form-group row mb-3">
 
-              <div class="col">
-                <button type="submit" name="allocate" class="btn btn-primary">Allocate</button>
-              </div>
+            <div class="col">
+              <button type="submit" name="allocate" class="btn btn-primary">Allocate</button>
             </div>
+          </div>
           <?php
           }
           ?>
@@ -441,7 +441,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
   </div>
 
 
- 
+
 
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -453,10 +453,10 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
   <!-- Page level custom scripts -->
   <script>
-    $(document).ready(function() {
-      $('#dataTable').DataTable(); // ID From dataTable 
-      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-    });
+  $(document).ready(function() {
+    $('#dataTable').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
   </script>
 
 </body>

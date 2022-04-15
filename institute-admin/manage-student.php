@@ -22,91 +22,92 @@ $a = 'managestudent';
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous">
   </script>
   <script>
-    $(document).ready(function() {
+  $(document).ready(function() {
 
-      readstudent();
+    readstudent();
 
-      $(document).on('click', '#delete', function(e) {
-        var ID = $(this).attr("data-id");
+    $(document).on('click', '#delete', function(e) {
+      var ID = $(this).attr("data-id");
 
-        SwalDelete(ID);
-        e.preventDefault();
+      SwalDelete(ID);
+      e.preventDefault();
+    });
+
+    $(document).on('click', '#view', function(e) {
+      var ID = $(this).attr("data-id");
+      $.ajax({
+        type: "POST",
+        url: 'ajaxStudentDelete.php',
+        data: 'stud_id=' + ID,
+
+        success: function(response) {
+
+          $.each(response, function(key, studview) {
+            $(".class").html(studview['Class'] + "-" + studview['Section']);
+            $(".gender").html(studview['Gender']);
+            $(".fname").html(studview['Father_name']);
+            $(".mname").html(studview['Mother_name']);
+            $(".gender").html(studview['Gender']);
+            $(".cno").html(studview['Mobileno']);
+            $(".dob").html(studview['Dob']);
+            $(".bloodgroup").html(studview['Bloodgroup']);
+            $(".address").html(studview['Address'] + " ," + studview['State'] + " ," + studview[
+              'Country']);
+            $(".grno").html(studview['Grno']);
+            // $(".class").html(studview['Class'] + "-" + studview['Section']);
+            $(".edate").html(studview['Enroll_date']);
+            $(".ayr").html(studview['Academicyr']);
+            $(".email").html(studview['Email']);
+            var img = "student_profile/" + studview['Profile'];
+
+            $(".name").text(studview['Name']);
+            $('#popup-img1').attr('src', img);
+          });
+
+
+        }
       });
-
-      $(document).on('click', '#view', function(e) {
-        var ID = $(this).attr("data-id");
-        $.ajax({
-          type: "POST",
-          url: 'ajaxStudentDelete.php',
-          data: 'stud_id=' + ID,
-
-          success: function(response) {
-
-            $.each(response, function(key, studview) {
-              $(".class").html(studview['Class'] + "-" + studview['Section']);
-              $(".gender").html(studview['Gender']);
-              $(".fname").html(studview['Father_name']);
-              $(".mname").html(studview['Mother_name']);
-              $(".gender").html(studview['Gender']);
-              $(".cno").html(studview['Mobileno']);
-              $(".dob").html(studview['Dob']);
-              $(".bloodgroup").html(studview['Bloodgroup']);
-              $(".address").html(studview['Address'] + " ," + studview['State'] + " ," + studview['Country']);
-              $(".grno").html(studview['Grno']);
-              // $(".class").html(studview['Class'] + "-" + studview['Section']);
-              $(".edate").html(studview['Enroll_date']);
-              $(".ayr").html(studview['Academicyr']);
-              $(".email").html(studview['Email']);
-              var img = "student_profile/" + studview['Profile'];
-
-              $(".name").text(studview['Name']);
-              $('#popup-img1').attr('src', img);
-            });
-
-
-          }
-        });
-
-      });
-
 
     });
 
-    function SwalDelete(ID) {
 
-      Swal.fire({
-        title: 'Are You Sure?',
-        text: "IT will be deleted permanently",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes,delete it!',
-        preConfirm: function() {
+  });
 
-          $.ajax({
-              url: 'ajaxStudentDelete.php',
-              type: 'POST',
-              data: 'delete=' + ID,
-              dataType: 'Json',
+  function SwalDelete(ID) {
 
-            })
-            .done(function(response) {
-              // Swal.fire('Deleted!',response.message,response.status);
-              readstudent();
-            })
-            .fail(function() {
-              Swal.fire('Oops..!', 'Something went wrong with ajax!', 'error');
-            });
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: "IT will be deleted permanently",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes,delete it!',
+      preConfirm: function() {
 
-        },
-        allowOutsideClick: false
-      });
-    }
+        $.ajax({
+            url: 'ajaxStudentDelete.php',
+            type: 'POST',
+            data: 'delete=' + ID,
+            dataType: 'Json',
 
-    function readstudent() {
-      $("#load-table").load("student.php");
-    }
+          })
+          .done(function(response) {
+            // Swal.fire('Deleted!',response.message,response.status);
+            readstudent();
+          })
+          .fail(function() {
+            Swal.fire('Oops..!', 'Something went wrong with ajax!', 'error');
+          });
+
+      },
+      allowOutsideClick: false
+    });
+  }
+
+  function readstudent() {
+    $("#load-table").load("student.php");
+  }
   </script>
 </head>
 
@@ -114,7 +115,7 @@ $a = 'managestudent';
   <div class="d-flex">
 
     <?php include("institute-sidebar.php"); ?>
-    <div class="institute-content p-5 ">
+    <div class="institute-content ">
       <div style="box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;">
         <div class="py-4 pl-3 border-bottom" style="border-radius:10px 10px 0px 0px;background-color: white;">
           <div class="row">

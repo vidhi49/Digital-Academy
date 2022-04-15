@@ -86,9 +86,9 @@
     var src = $(this).attr('src');
     $('.modal').modal('show');
     $('#popup-img').attr('src', src);
-  });
-  </script>
-  <script src="../vendor/jquery/jquery.min.js">
+  }); <
+  /scrip> <
+  script src = "../vendor/jquery/jquery.min.js" >
   </script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

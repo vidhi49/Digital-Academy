@@ -1,5 +1,5 @@
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <?php include("../connect.php");
@@ -85,171 +85,171 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 ?>
 
 <head>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <link href="../css/css/ruang-admin.min.css" rel="stylesheet"> -->
-    <script>
-        function sectionDropdown(str) {
-            if (str == "") {
-                document.getElementById("section").innerHTML = "";
-                return;
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("section").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
-                xmlhttp.send();
-            }
+
+  <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Nova+Slim" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- <link href="../css/css/ruang-admin.min.css" rel="stylesheet"> -->
+  <script>
+  function sectionDropdown(str) {
+    if (str == "") {
+      document.getElementById("section").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section").innerHTML = this.responseText;
         }
+      };
+      xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
+      xmlhttp.send();
+    }
+  }
 
-        function subjectDropdown(str) {
-            if (str == "") {
-                document.getElementById("subject").innerHTML = "";
-                return;
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("subject").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "ajaxSubject.php?classId=" + str, true);
-                xmlhttp.send();
-            }
+  function subjectDropdown(str) {
+    if (str == "") {
+      document.getElementById("subject").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("subject").innerHTML = this.responseText;
         }
+      };
+      xmlhttp.open("GET", "ajaxSubject.php?classId=" + str, true);
+      xmlhttp.send();
+    }
+  }
 
-        function teacheremail(str) {
-            if (str == "") {
-                //document.getElementById("tidHint").innerHTML = "";
-                document.getElementById("emailHint").innerHTML = "";
-                return;
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        //document.getElementById("tidHint").innerHTML = this.responseText;
-                        document.getElementById("emailHint").innerHTML = this.responseText;
-                    }
-                };
-                // xmlhttp.open("GET","ajaxTeacher.php?Name="+str,true);
-                // xmlhttp.send();
-                xmlhttp.open("GET", "ajaxTeacheremail.php?Name=" + str, true);
-                xmlhttp.send();
-            }
-
+  function teacheremail(str) {
+    if (str == "") {
+      //document.getElementById("tidHint").innerHTML = "";
+      document.getElementById("emailHint").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          //document.getElementById("tidHint").innerHTML = this.responseText;
+          document.getElementById("emailHint").innerHTML = this.responseText;
         }
+      };
+      // xmlhttp.open("GET","ajaxTeacher.php?Name="+str,true);
+      // xmlhttp.send();
+      xmlhttp.open("GET", "ajaxTeacheremail.php?Name=" + str, true);
+      xmlhttp.send();
+    }
 
-        function teacherDropdown(str) {
-            if (str == "") {
-                document.getElementById("tidHint").innerHTML = "";
+  }
 
-                return;
+  function teacherDropdown(str) {
+    if (str == "") {
+      document.getElementById("tidHint").innerHTML = "";
+
+      return;
 
 
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("tidHint").innerHTML = this.responseText;
-
-                    }
-                };
-                xmlhttp.open("GET", "ajaxTeacher.php?Email=" + str, true);
-                xmlhttp.send();
-
-            }
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("tidHint").innerHTML = this.responseText;
 
         }
+      };
+      xmlhttp.open("GET", "ajaxTeacher.php?Email=" + str, true);
+      xmlhttp.send();
 
-        function subcodeDropdown(str) {
-            if (str == "") {
-                document.getElementById("sub_code").innerHTML = "";
+    }
 
-                return;
+  }
+
+  function subcodeDropdown(str) {
+    if (str == "") {
+      document.getElementById("sub_code").innerHTML = "";
+
+      return;
 
 
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("sub_code").innerHTML = this.responseText;
-
-                    }
-                };
-                xmlhttp.open("GET", "ajaxSubcode.php?subject=" + str, true);
-                xmlhttp.send();
-
-            }
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("sub_code").innerHTML = this.responseText;
 
         }
-    </script>
+      };
+      xmlhttp.open("GET", "ajaxSubcode.php?subject=" + str, true);
+      xmlhttp.send();
+
+    }
+
+  }
+  </script>
 </head>
 <html>
 
 <body>
-    <div class="d-flex">
-        <?php
+  <div class="d-flex">
+    <?php
         include("institute-sidebar.php");
         // include("SIDEBAR.php");
         ?>
 
-        <div class="institute-content p-5 text-muted h6">
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Subject Allocation</h1>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subject Allocation</li>
+    <div class="institute-content container text-muted h6">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Subject Allocation</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Subject Allocation</li>
 
-                </ol>
-            </div>
-            <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
-                <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                    <h4 class="m-0 font-weight-bold text-primary">Select Class</h4>
-                    <?php echo $statusMsg; ?>
-                </div>
-                <div class="card-body">
-                    <form method="post">
-                        <div class="form-group row mb-3">
-                            <div class="col-xl-6">
-                                <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
-                                <?php
+        </ol>
+      </div>
+      <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
+        <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
+          <h4 class="m-0 font-weight-bold text-primary">Select Class</h4>
+          <?php echo $statusMsg; ?>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            <div class="form-group row mb-3">
+              <div class="col-xl-6">
+                <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
+                <?php
                                 $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$Ins_id' ORDER BY Name ASC";
                                 $result = $con->query($qry);
                                 $num = $result->num_rows;
@@ -262,10 +262,10 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                     echo '</select>';
                                 }
                                 ?>
-                            </div>
-                            <div class="col-xl-6">
-                                <label class="form-control-label">Class Section<span class="text-danger ml-2">*</span></label>
-                                <?php
+              </div>
+              <div class="col-xl-6">
+                <label class="form-control-label">Class Section<span class="text-danger ml-2">*</span></label>
+                <?php
                                 if (isset($Id)) {
                                     $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id' AND Insti_id='$Ins_id'";
                                     $res = mysqli_query($con, $q);
@@ -290,25 +290,25 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                     echo "</select>";
                                 }
                                 ?>
-                            </div>
-                        </div>
-
-
-                </div>
-
+              </div>
             </div>
-            <!--end of card -->
-            <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
-                <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="h4 m-0 font-weight-bold text-primary">Assign Subject Teacher</h6>
 
-                </div>
-                <div class="card-body">
 
-                    <div class="form-group row mb-3">
-                        <div class="col-xl-5">
-                            <label class="form-control-label">Select Teacher<span class="text-danger ml-2">*</span></label>
-                            <?php
+        </div>
+
+      </div>
+      <!--end of card -->
+      <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
+        <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="h4 m-0 font-weight-bold text-primary">Assign Subject Teacher</h6>
+
+        </div>
+        <div class="card-body">
+
+          <div class="form-group row mb-3">
+            <div class="col-xl-5">
+              <label class="form-control-label">Select Teacher<span class="text-danger ml-2">*</span></label>
+              <?php
                             $qry = "SELECT DISTINCT Name  FROM staff_tbl where stype='Teaching' AND Inst_id='$Ins_id' ORDER BY Name ASC";
                             $result = $con->query($qry);
                             $num = $result->num_rows;
@@ -321,11 +321,11 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                 echo '</select>';
                             }
                             ?>
-                        </div>
-                        <div class="col-xl-5">
-                            <label class="form-control-label">Teacher_Email<span class="text-danger ml-2">*</span></label>
+            </div>
+            <div class="col-xl-5">
+              <label class="form-control-label">Teacher_Email<span class="text-danger ml-2">*</span></label>
 
-                            <?php
+              <?php
                             if (isset($Id)) {
                                 $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id' AND Inst_id='$Ins_id'";
                                 $res = mysqli_query($con, $q);
@@ -348,11 +348,11 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                 echo "</select>";
                             }
                             ?>
-                        </div>
-                        <div class="col-xl-2">
-                            <label class="form-control-label">Teacher_ID<span class="text-danger ml-2">*</span></label>
+            </div>
+            <div class="col-xl-2">
+              <label class="form-control-label">Teacher_ID<span class="text-danger ml-2">*</span></label>
 
-                            <?php
+              <?php
                             if (isset($Id)) {
                                 $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id'";
                                 $res = mysqli_query($con, $q);
@@ -374,17 +374,17 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                 echo "</select>";
                             }
                             ?>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
+            </div>
+          </div>
+          <div class="form-group row mb-3">
 
-                        <div class="col-xl-6">
-                            <label class="form-control-label">Select Subject<span class="text-danger ml-2">*</span></label>
-                            <!-- <select required name="subject" id='subject' onchange='subcodeDropdown(this.value)' class="form-control mb-3">
+            <div class="col-xl-6">
+              <label class="form-control-label">Select Subject<span class="text-danger ml-2">*</span></label>
+              <!-- <select required name="subject" id='subject' onchange='subcodeDropdown(this.value)' class="form-control mb-3">
                             <option value="">--Select Subject--</option>
 
                         </select> -->
-                            <?php
+              <?php
                             if (isset($Id)) {
                                 $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id' AND Inst_id='$Ins_id'";
                                 $res = mysqli_query($con, $q);
@@ -412,12 +412,12 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                 echo "</select>";
                             }
                             ?>
-                        </div>
-                        <div class="col-xl-6">
-                            <label class="form-control-label">Subject Code<span class="text-danger ml-2">*</span></label>
-                            <!-- <select required name="subcode" readonly id='sub_code' class="form-control mb-3">
+            </div>
+            <div class="col-xl-6">
+              <label class="form-control-label">Subject Code<span class="text-danger ml-2">*</span></label>
+              <!-- <select required name="subcode" readonly id='sub_code' class="form-control mb-3">
                         </select> -->
-                            <?php
+              <?php
                             if (isset($Id)) {
                                 $q = "SELECT * FROM teacher_wise_subject_tbl where Id='$Id' AND Inst_id='$Ins_id'";
                                 $res = mysqli_query($con, $q);
@@ -430,61 +430,61 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                                 echo "</select>";
                             }
                             ?>
-                        </div>
+            </div>
 
-                    </div>
-                    <!-- <div class="form-group row mb-3">
+          </div>
+          <!-- <div class="form-group row mb-3">
                     <div class="col">
                         <button type="submit" name="save" class="btn btn-primary">Allocate</button>
                     </div>
                 </div> -->
-                    <?php
+          <?php
                     if (isset($Id)) {
                     ?>
-                        <div class="form-group row mb-3">
+          <div class="form-group row mb-3">
 
-                            <div class="col">
-                                <button type="submit" name="update" class="btn btn-warning">Update</button>
-                            </div>
+            <div class="col">
+              <button type="submit" name="update" class="btn btn-warning">Update</button>
+            </div>
 
-                        </div>
+          </div>
 
-                    <?php
+          <?php
                     } else {
                     ?>
-                        <div class="form-group row mb-3">
+          <div class="form-group row mb-3">
 
-                            <div class="col">
-                                <button type="submit" name="save" class="btn btn-primary">Allocate</button>
-                            </div>
-                        </div>
-                    <?php
+            <div class="col">
+              <button type="submit" name="save" class="btn btn-primary">Allocate</button>
+            </div>
+          </div>
+          <?php
                     }
                     ?>
-                    </form>
-                </div>
-            </div>
-            <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
-                <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="h4 m-0 font-weight-bold text-primary">Subject Teachers</h6>
+          </form>
+        </div>
+      </div>
+      <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
+        <div class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="h4 m-0 font-weight-bold text-primary">Subject Teachers</h6>
 
-                </div>
-                <div class="table-responsive p-3">
-                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Class Name</th>
-                                <th>Section</th>
-                                <th>Subject Code</th>
-                                <th>Subject Name</th>
-                                <th>Subject Teacher</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+        </div>
+        <div class="table-responsive p-3">
+          <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th>Class Name</th>
+                <th>Section</th>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Subject Teacher</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
                             $query = "SELECT * FROM teacher_wise_subject_tbl Where Inst_id='$Ins_id'";
                             $rs = $con->query($query);
                             $num = $rs->num_rows;
@@ -512,28 +512,28 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                             }
 
                             ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-   
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/ruang-admin.min.js"></script>
-    <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  </div>
 
-    <!-- Page level custom scripts -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable(); // ID From dataTable 
-            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-        });
-    </script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/ruang-admin.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script>
+  $(document).ready(function() {
+    $('#dataTable').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
+  </script>
 
 </body>
 
