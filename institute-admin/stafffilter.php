@@ -1,7 +1,7 @@
 <?php
 include("../connect.php");
 // session_start();
-$a = 'viewstaff';
+$a = 'staff';
 include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];

@@ -99,7 +99,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="form-label">Contact No :</label>
-                    <input type='number' id="cno" maxlength="10" class="form-control form-control-lg" name="cno"
+                    <input type='text' id="cno" maxlength="10" class="form-control form-control-lg" name="cno"
                       placeholder="10 Digits Only" />
                     <span id='cmessage'></span>
                   </div>

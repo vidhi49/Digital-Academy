@@ -3,7 +3,7 @@
 // include("../admin/admin-header.php");
 include("../institute-admin/change-header.php");
 // include("../institute-admin/institute-header.php");
-$a = "viewclassattedance";
+$a = "attendance";
 $inst_id = $_SESSION['inst_id'];
 
 
@@ -137,7 +137,7 @@ $classteacher = $r['Class_teacher'];
                                 </div>
                             </div>
                             <div class="pt-1 mb-4">
-                                <button class="btn bg-navy-blue text-white btn-lg " id="show" name="show" type="submit">Show Attedance</button>
+                                <button class="btn bg-navy-blue text-white btn-lg " id="show" name="show" type="submit">Show Attendance</button>
                             </div>
                         </div>
 
@@ -152,7 +152,7 @@ $classteacher = $r['Class_teacher'];
                         <!-- <div id="selectclass" style="display: none;"> -->
                         <div>
                             <div>
-                                <h1 class="fs-2 text-dark ">Todays Attedance(<?php echo date('d-F') ?>)</h1>
+                                <h1 class="fs-2 text-dark ">Todays Attendance(<?php echo date('d-F') ?>)</h1>
                                 <hr>
                                 Class Teacher: <?php echo ucwords($classteacher); ?>
                             </div>
@@ -207,7 +207,7 @@ $classteacher = $r['Class_teacher'];
                                             } else {
                                                 echo
                                                 "<div class='alert alert-danger' role='alert'>
-                                                            Attedance is Not Taken Yet!
+                                                            Attendance is Not Taken Yet!
                                                             </div>";
                                             }
                                         } else {
@@ -243,7 +243,7 @@ $classteacher = $r['Class_teacher'];
                         <!-- <div id="selectclass" style="display: none;"> -->
                         <div>
                             <div>
-                                <h1 class="fs-2 text-dark ">Attedance (<?php echo $_REQUEST['date']; ?>)</h1>
+                                <h1 class="fs-2 text-dark ">Attendance (<?php echo $_REQUEST['date']; ?>)</h1>
                                 <hr>
                                 Class Teacher: <?php echo ucwords($classteacher); ?>
                             </div>
@@ -333,7 +333,7 @@ $classteacher = $r['Class_teacher'];
                             <div>
                                 <div class="row">
                                     <div class="col">
-                                        <h1 class="fs-2 text-dark ">Attedance From(
+                                        <h1 class="fs-2 text-dark ">Attendance From(
                                             <?php
                                             $date = $_REQUEST['from_date'];
                                             $unixTimestamp = strtotime($date);

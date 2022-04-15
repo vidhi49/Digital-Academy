@@ -1,514 +1,405 @@
-<html>
 <?php
-include("../connect.php");
-// $a='';
-// session_start();
+// include("admin-header.php");
+include_once('../connect.php');
 // include("change-header.php");
-// $inst_id = $_SESSION['inst_id'];
-// $inst_name = $_SESSION['name'];
+// session_start();
+$id = $_SESSION['inst_id'];
+$q = "select * from institute_tbl where Id='$id'";
+$res = mysqli_query($con, $q);
+$abc = mysqli_fetch_array($res);
+$insti_name = $abc['Name'];
+
 ?>
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .admin-sidebar .nav {
+    padding: 15px 0px 15px 30px;
+  }
 
-<head>
-  <!-- <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
-  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'> -->
+  .admin-sidebar .nav .nav-item {
+    position: relative;
+  }
 
-  <style>
-    /* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poopins", sans-serif;
-  } */
+  .admin-sidebar .nav .nav-item a {
+    color: azure;
+  }
 
-    .institute-sidebar {
-      /* position: absolute; */
-      /* top: 0; */
-      /* left: 0; */
-      /* height: 100%; */
-      width: 230px;
-      background-color: #041562;
-      padding: 50px 0px 16px 0px;
-      /* padding: 6px 14px; */
-      /* transition: all 0.5s ease; */
-    }
+  .admin-sidebar .nav .nav-item {
+    padding: 10px 0px 10px 30px;
+    font-size: large;
+    margin: 5px 0px;
+  }
 
-    /* 
-  .institute-sidebar.active {
-    width: 75px;
-  } */
+  .admin-sidebar .nav .nav-item:hover {
+    background-color: #FFD124;
+    border-radius: 30px 0px 0px 30px;
+    /* margin:0px 10px 0px 0px; */
+    margin-right: 10px;
+  }
 
+  .admin-sidebar .nav .nav-item:hover a {
+    color: #041562;
+  }
 
+  .admin-sidebar .nav .nav-item.active {
+    background-color: white;
+    border-radius: 30px 0px 0px 30px;
+    /* border-bottom-right-radius: 10px; */
+  }
 
+  .admin-sidebar .nav .nav-item.active a {
+    color: #041562;
+  }
 
-    /* .institute-sidebar #btn {
-    /* position: absolute; */
-    /* color: #fff;
-    left: 90%;
-    top: 6px;
-    font-size: 20px;
-    height: 50px;
-    width: 20px;
-    text-align: center;
-    line-height: 50px;
-    transform: translate(-50%); */
-    /* } */
+  .admin-sidebar .nav .nav-item.active b:nth-child(1) {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    /* justify-content: end; */
+    background: #f2f6fa;
+    /* border-bottom-right-radius: 60px; */
+    top: -10px;
+    left: 0px;
+    /* right: 0; */
+  }
 
-    /* .institute-sidebar ul {
-      margin-top: 20px;
-  list-style: none;
-  padding-left: 10px;
-   } */
-
-    .institute-sidebar ul li {
-      position: relative;
-      height: 60px;
-      width: 100%;
-      /* padding: 0; */
-      /* margin: 5 5 0 0; */
-      list-style: none;
-      line-height: 50px;
-      /* border-radius: 12px; */
-    }
-
-    .institute-sidebar .links_name {
-      /* opacity: 0; */
-      pointer-events: none;
-      /* transition: all 0.5s ease; */
-      display: none;
-    }
-
-    .institute-sidebar ul li a {
-      color: #fff;
-      /* display: flex; */
-      /* align-items: center; */
-      text-decoration: none;
-      /* transition: all 0.4s ease; */
-      /* border-radius: 20px; */
-      /* border-top-left-radius: 20px; */
-      /* border-bottom-left-radius: 20px; */
-      /* white-space: nowrap; */
-    }
-
-    .institute-sidebar ul li a:hover {
-      /* background: #fff; */
-      color: #FFD124;
-      /* font-size: 20px; */
-      transition: all 0.5s ease;
-      /* margin-right: 8px; */
-    }
-
-    .institute-sidebar ul li a:hover i {
-      /* background: #fff; */
-      color: #FFD124;
-      /* font-size: 20px; */
-      transition: all 0.5s ease;
-      /* margin-right: 8px; */
-    }
-
-    .institute-sidebar ul li a i {
-      height: 50px;
-      min-width: 50px;
-      text-align: center;
-    }
-
-    .institute-sidebar ul li .icon-link {
-      justify-content: space-between;
-      display: flex;
-
-
-    }
-
-    .institute-sidebar ul li .icon-link i {
-      height: 50px;
-      min-width: 50px;
-      text-align: center;
-      line-height: 50px;
-      color: #f2f6fa;
-    }
-
-    .institute-sidebar ul li.active .icon-link {
-      justify-content: space-between;
-      display: flex;
-    }
-
-    .institute-sidebar ul li.active .icon-link i {
-      height: 50px;
-      min-width: 50px;
-      text-align: center;
-      line-height: 50px;
-      color: #11101d;
-    }
-
-    .institute-sidebar ul li .sub-menu {
-      padding-left: 80px;
-    }
-
-    .institute-sidebar ul li .sub-menu li {
-      padding: 0;
-    }
-
-    /* li.active a i {
+  .admin-sidebar .nav .nav-item.active b:nth-child(1)::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 10px;
     background: #041562;
-    border: 2px solid #fff;
-    color: #fff;
-    /* border-radius: 50px; */
-    /* } */
+    border-bottom-right-radius: 60px;
+    /* top: -20px; */
+    left: 0;
+  }
 
-    .institute-sidebar ul li.active {
-      background-color: #f2f6fa;
-      border-top-left-radius: 60px;
-      border-bottom-left-radius: 60px;
-    }
+  .admin-sidebar .nav .nav-item.active b:nth-child(2) {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: #f2f6fa;
+    bottom: -10px;
+    left: 0;
+  }
 
-    .institute-sidebar ul li.active a {
-      color: #11101d;
-    }
-
-    .institute-sidebar ul li.active a:hover {
-      color: #11101d;
-    }
-
-    .institute-sidebar ul li.active a i {
-      height: 50px;
-      width: 50px;
-      /* background: #041562; */
-      border-radius: 50%;
-      border-bottom-left-radius: 50%;
-      border-top-left-radius: 50%;
-      /* color: #eee; */
-      /* margin: 5px 5px 5px 5px; */
-    }
-
-    .institute-sidebar ul li.active b:nth-child(1) {
-      position: absolute;
-      width: 100%;
-      height: 20px;
-      background: #f2f6fa;
-      /* border-bottom-right-radius: 60px; */
-      top: -20px;
-      left: 0;
-    }
-
-    .institute-sidebar ul li.active b:nth-child(1)::after {
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 20px;
-      background: #041562;
-      border-bottom-right-radius: 60px;
-      /* top: -20px; */
-      left: 0;
-    }
-
-    .institute-sidebar ul li.active b:nth-child(2) {
-      position: absolute;
-      width: 100%;
-      height: 20px;
-      background: #f2f6fa;
-      bottom: -20px;
-      left: 0;
-    }
-
-    .institute-sidebar ul li.active b:nth-child(2)::after {
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 20px;
-      background: #041562;
-      border-top-right-radius: 60px;
-      left: 0;
-      /* bottom: -30px; */
-    }
-
-    .institute-sidebar.active~.content {
-      /* width: calc(100% -75px); */
-      /* left: 30px; */
-      transition: all 0.3s ease;
-    }
-
-    @media only screen and (max-width: 500px) {
-
-      .insttitute-sidebar {
-        width: 50px;
-        align-items: center;
-        text-align: center;
-        display: block;
-      }
-
-      .institute-content {
-        width: calc(100vw - 50px);
-        padding: 15px;
-        margin: 0px;
-
-      }
-
-      .insttitute-sidebar .links_name {
-        display: none;
-      }
-    }
-  </style>
-</head>
+  .admin-sidebar .nav .nav-item.active b:nth-child(2)::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 10px;
+    background: #041562;
+    border-top-right-radius: 60px;
+    left: 0;
+    /* bottom: -30px; */
+  }
+</style>
 
 <body>
-  <div class="institute-sidebar ps-2 " style="box-shadow: inset 0 10px 15px -6px black;">
-    <div class="logo_conent">
-      <div class="logo">
-        <!-- <div class="logo_name">
-            Academy
-          </div> -->
+  <!-- <div class="content"> -->
+  <div class="row bg-navy-blue pt-5 admin-sidebar" style="box-shadow: inset 0 10px 35px -7px black;border-radius: 0px 150px 0px 0px;">
+    <!-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-sidebar"> -->
+    <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"> -->
+    <!-- <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none text-dark">
+      <p class="fs-5 d-none d-sm-inline" aria-disabled="true">Menu</p>
+    </a> -->
+    
+
+    <ul class="nav nav-pills flex-column mb-sm-auto">
+    <div class="row">
+      <div class="col text-center fs-4">
+        <?php
+        echo '<img src="../Institute-logo/' . $abc[10] . '" style="border-radius:50px" height="100" width="100">';
+        ?>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col text-light text-center mr-3 fs-4">
+        <?php echo $insti_name ?>
       </div>
     </div>
-
-    <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start" id="menu">
-      <li class="active">
-        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-        <i class="fa fa-th-large"></i></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-          <li class="w-100">
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-          </li>
-          <li>
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-          </li>
-
-        </ul>
+      <hr class="text-light w-100 text-center">
+      <li <?php
+          if (($a == 'institutedashboard')) {
+            echo "class='active nav-item '";
+          } else {
+            echo "class='nav-item'";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="institute-dashboard.php" class="nav-link align-middle px-0 ">
+          <i class="fa fa-th-large" aria-hidden="true"></i>
+          <p class="ms-2 d-none d-sm-inline">Dashboard</p>
+        </a>
       </li>
       <li <?php
           if (($a == 'editprofile')) {
-            echo "class=' active nav-item '";
+            echo "class=' active nav-item  '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="editprofile.php" class="nav-link">
-          <i class='fa fa-edit'></i>
-          <span class="links_name d-sm-inline">Edit Profile</span>
+        <a href="editprofile.php" class="nav-link align-middle px-0">
+          <i class="fas fa-edit fs-5"></i>
+          <p class="ms-2 d-none d-sm-inline">Edit Profile</p>
         </a>
-        <!-- <span class="tooltip">Edit</span> -->
-      </li>
-
-      <li <?php
-          if (($a == 'institutedashboard')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="institute-dashboard.php" class="nav-link">
-
-          <i class="fa fa-th-large" aria-hidden="true"></i>
-          <span class="links_name d-sm-inline">Dashbord</span>
-        </a>
-        <!-- <span class="tooltip">Dashbord</span> -->
-      </li>
-      <li <?php
-          if (($a == 'staffregister')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <div class="icon-link">
-          <a href="staff-registration.php" class="nav-link">
-            <i class="fa fa-th-large"></i>
-            <span class="links_name d-sm-inline">Staff</span>
-          </a>
-          <i class="bx bxs-chevron-down"></i>
-        </div>
-        <!-- <ul class="sub-menu">
-          <li><a href="#">Register</a></li>
-          <li><a href="#">manage</a></li>
-          <li><a href="#">view</a></li>
-        </ul> -->
-        <!-- <span class="tooltip">Dashbord</span> -->
       </li>
       <li <?php
           if (($a == 'changepassword')) {
             echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="change-password.php" class="nav-link">
-          <i class='fa fa-key'> </i>
-          <span class="links_name d-sm-inline">Change Password</span>
+        <a href="change-password.php" class="nav-link align-middle px-0">
+          <i class="fas fa-key fs-5"></i>
+          <i class="fa-solid fa-table-list"></i>
+          <p class="ms-2 d-none d-sm-inline">Change Password</p>
         </a>
       </li>
-      <li <?php
-          if (($a == 'staffregister')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="staff-registration.php" class="nav-link">
-          <i class='fa fa-registered'> </i>
-          <span class="links_name d-sm-inline">Register staff</span>
-        </a>
-      </li>
-      <li <?php
-          if (($a == 'studentregister')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="student-registration.php" class="nav-link">
-          <i class='fa fa-registered'></i>
-          <span class="links_name d-sm-inline">Register student</span>
-        </a>
-        <!-- <span class="tooltip">Register</span> -->
-      </li>
+
+
       <li <?php
           if (($a == 'class')) {
             echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="create-class.php " class="nav-link">
-          <i class='fa fa-plus'></i>
-          <span class="links_name d-sm-inline">Create Class</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
-      <li <?php if (($a == 'subject')) {
-            echo "class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="create-subject.php" class="nav-link">
-          <i class='fa fa-plus'></i>
-          <span class="links_name d-sm-inline">Create Subject</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
-      <li <?php if (($a == 'allocateclass')) {
-            echo "class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="class-allocation.php" class="nav-link">
-          <i class='fa fa-plus'></i>
-          <span class="links_name d-sm-inline">Allocate Class</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
-      <li <?php if (($a == 'allocatesubject')) {
-            echo "class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="subject-allocation.php" class="nav-link">
-          <i class='fa fa-plus'></i>
-          <span class="links_name d-sm-inline">Allocate Subject</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
-      <li <?php if (($a == 'managestudent')) {
-            echo "Class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="manage-student.php" class="nav-link">
-          <i class='fa fa-tasks'></i>
-          <span class="links_name d-sm-inline">Manage student</span>
-        </a>
-        <!-- <span class="tooltip">Manage</span> -->
-      </li>
-      <li <?php if (($a == 'managestaff')) {
-            echo "Class='list active nav-item ' ";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="manage-staff.php" class="nav-link">
-          <i class='fa fa-tasks'></i>
-          <span class="links_name d-sm-inline">Manage staff</span>
-        </a>
-        <!-- <span class="tooltip">Manage</span> -->
-      </li>
+        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-tasks fs-5"></i>
 
-      <li <?php if (($a == 'viewstudent')) {
-            echo "class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="studentfilter.php" class="nav-link">
-          <i class='fa fa-file'></i>
-          <span class="links_name d-sm-inline">View Student</span>
-        </a>
-        <!-- <span class="tooltip">View</span> -->
-      </li>
-      <li <?php if (($a == 'viewstaff')) {
-            echo "class='list active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="stafffilter.php" class="nav-link">
-          <i class='fa fa-file'></i>
-          <span class="links_name d-sm-inline">View staff</span>
-        </a>
-        <!-- <span class="tooltip">View</span> -->
-      </li>
+              <p class="ms-2 d-none d-sm-inline">Classes</p>
+            </div>
 
-      <li <?php if (($a == 'viewclassattedance')) {
-            echo "class='list active nav-item '";
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
+        </a>
+      </li>
+      <ul <?php
+          if (($a == 'class')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu1">
+        <li class="p-0">
+          <a href="create-class.php" class="nav-link text-light">Add class</a>
+        </li>
+        <li class="p-0">
+          <a href="class-allocation.php" class="nav-link text-light">Allocate Class</a>
+        </li>
+        <li class="p-0">
+          <a href="viewclass.php" class="nav-link text-light">View Class</a>
+        </li>
+
+      </ul>
+      <li <?php
+          if (($a == 'subject')) {
+            echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="viewclassattedance.php" class="nav-link">
-          <i class='fa fa-clock'></i>
-          <span class="links_name d-sm-inline">Class Attedance</span>
+        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-address-book fs-5"></i>
+
+              <p class="ms-2 d-none d-sm-inline">Subject</p>
+            </div>
+
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
         </a>
-        <!-- <span class="tooltip">Attedance</span> -->
       </li>
-      <li <?php if (($a == 'viewstudentattedance')) {
-            echo "class='list active nav-item '";
+      <ul <?php
+          if (($a == 'subject')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu2">
+        <li class="p-0">
+          <a href="create-subject" class="nav-link text-light">Add Subject</a>
+        </li>
+        <li class="p-0">
+          <a href="subject-allocation" class="nav-link text-light">Allocate Subject</a>
+        </li>
+        <li class="p-0">
+          <a href="#" class="nav-link text-light">View Subject</a>
+        </li>
+
+      </ul>
+      <li <?php
+          if (($a == 'staff')) {
+            echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="viewstudentattedance.php" class="nav-link">
-          <i class='fa fa-clock'></i>
-          <span class="links_name d-sm-inline">Stud Attedance</span>
+        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-users fs-5"></i>
+
+              <p class="ms-2 d-none d-sm-inline">Staff</p>
+            </div>
+
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
         </a>
-        <!-- <span class="tooltip">Attedance</span> -->
       </li>
+      <ul <?php
+          if (($a == 'staff')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu3">
+        <li class="p-0">
+          <a href="staff-registration" class="nav-link text-light">Register Staff</a>
+        </li>
+        <li class="p-0">
+          <a href="manage-staff.php" class="nav-link text-light">Manage Staff</a>
+        </li>
+        <li class="p-0">
+          <a href="stafffilter.php" class="nav-link text-light">View Staff</a>
+        </li>
+
+      </ul>
+      <li <?php
+          if (($a == 'student')) {
+            echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-user-graduate fs-5"></i>
+
+              <p class="ms-2 d-none d-sm-inline">Student</p>
+            </div>
+
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
+        </a>
+      </li>
+      <ul <?php
+          if (($a == 'student')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu4">
+        <li class="p-0">
+          <a href="student-registration.php" class="nav-link text-light">Register Student</a>
+        </li>
+        <li class="p-0">
+          <a href="manage-student.php" class="nav-link text-light">Manage Student</a>
+        </li>
+        <li class="p-0">
+          <a href="studentfilter.php" class="nav-link text-light">View Student</a>
+        </li>
+      </ul>
+      <li <?php
+          if (($a == 'attendance')) {
+            echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="#submenu5" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-clock fs-5"></i>
+
+              <p class="ms-2 d-none d-sm-inline">Attendance</p>
+            </div>
+
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
+        </a>
+      </li>
+      <ul <?php
+          if (($a == 'attendance')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu5">
+        <li class="p-0">
+          <a href="viewclassattedance.php" class="nav-link text-light">Class Attendance</a>
+        </li>
+        <li class="p-0">
+          <a href="viewstudentattedance.php" class="nav-link text-light">Student Attedance</a>
+        </li>
+      </ul>
+
+
       <li <?php
           if (($a == 'fees')) {
             echo "class=' active nav-item '";
+          } else {
+            echo "class='nav-item'";
           } ?>>
         <b></b>
         <b></b>
-        <a href="fees.php " class="nav-link">
-          <i class='fa fa-check'></i>
-          <span class="links_name d-sm-inline">Fee details</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
-      <li <?php
-          if (($a == 'payments')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="payments.php " class="nav-link">
-          <i class='fa fa-check'></i>
-          <span class="links_name d-sm-inline">List of Payments</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
+        <a href="#submenu6" data-bs-toggle="collapse" class="nav-link  align-middle px-0">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i class="fas fa-receipt fs-5"></i>
 
-      <li <?php
-          if (($a == 'payment_rpt')) {
-            echo "class=' active nav-item '";
-          } ?>>
-        <b></b>
-        <b></b>
-        <a href="payment_rpt.php " class="nav-link">
-          <i class='fa fa-check'></i>
-          <span class="links_name d-sm-inline">Payment Report</span>
-        </a>
-        <!-- <span class="tooltip">Create</span> -->
-      </li>
+              <p class="ms-2 d-none d-sm-inline">Fees</p>
+            </div>
 
+            <i class="fa fa-caret-down mr-5" aria-hidden="true"></i>
+          </div>
+
+        </a>
+      </li>
+      <ul <?php
+          if (($a == 'fees')) {
+            echo 'class=" list-unstyled pl-5"';
+          } else {
+            echo 'class="collapse list-unstyled pl-5"';
+          } ?> id="submenu6">
+        <li class="p-0">
+          <a href="fees.php" class="nav-link text-light">Add Fees</a>
+        </li>
+
+        <li class="p-0">
+          <a href="payments.php" class="nav-link text-light">Add Student Fees</a>
+        </li>
+        <li class="p-0">
+          <a href="payment_rpt.php" class="nav-link text-light">Payement Reports</a>
+        </li>
+
+      </ul>
+      <li class='  nav-item '>
+        <a href="institute-logout.php" class="nav-link align-middle px-0">
+          <i class="fa fa-sign-out fs-5"></i>
+          <p class="ms-2 d-none d-sm-inline">Logout</p>
+        </a>
+      </li>
     </ul>
 
-  </div>
 
+  </div>
 
 </body>
 

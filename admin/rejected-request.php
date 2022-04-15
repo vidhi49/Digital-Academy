@@ -91,7 +91,6 @@
     $('#popup-img').attr('src', src);
   });
   </script>
-  <?php include("../guest/footer.php"); ?>
 </body>
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -3,7 +3,7 @@
 include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
 $inst_name = $_SESSION['name'];
-$a = "studentregister";
+$a = "student";
 ?>
 <html>
 

@@ -2,7 +2,7 @@
 
 // session_start();
 include("change-header.php");
-$a = 'staffregister';
+$a = 'staff';
 // include("../institute-admin/change-header.php");
 ?>
 <html>
@@ -498,13 +498,13 @@ if (isset($_POST['submit'])) {
         $row1 = mysqli_fetch_assoc($res1);
         $staff_id = $row1['Id'];
         $id_p = $inst_id . $staff_id . "." . $ext_id;
-        $qualification = $staff_id . "." . $ext_qcerti;
+        $qualification =$inst_id. $staff_id . "." . $ext_qcerti;
         move_uploaded_file($idproove_loc, "staff_ID/" . $id_p);
         move_uploaded_file($qcerti_loc, "staff_qualification/$qualification");
         if (!empty($ecerti)) {
             $ecerti_loc = $_FILES['ecerti']['tmp_name'];
             $ext_ecerti = pathinfo($ecerti, PATHINFO_EXTENSION);
-            $experience_certi = $staff_id . "." . $ext_ecerti;
+            $experience_certi = $inst_id.$staff_id . "." . $ext_ecerti;
             move_uploaded_file($ecerti_loc, "staff_experiance/" . $experience_certi);
         } else {
             $experience_certi = "-";
@@ -512,7 +512,7 @@ if (isset($_POST['submit'])) {
         if (!empty($profile)) {
             $profile_loc = $_FILES['profile']['tmp_name'];
             $ext_profile = pathinfo($profile, PATHINFO_EXTENSION);
-            $photo = $staff_id . "." . $ext_profile;
+            $photo =$inst_id. $staff_id . "." . $ext_profile;
             move_uploaded_file($profile_loc, "staff_profile/" . $photo);
         } else {
             $photo = "default.jpg";

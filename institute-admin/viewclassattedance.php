@@ -3,7 +3,7 @@
 // include("../admin/admin-header.php");
 include("../institute-admin/change-header.php");
 // include("../institute-admin/institute-header.php");
-$a = "viewclassattedance";
+$a = "attendance";
 $inst_id = $_SESSION['inst_id'];
 ?>
 
@@ -80,7 +80,7 @@ $inst_id = $_SESSION['inst_id'];
                         <!-- <div id="selectclass" style="display: none;"> -->
                         <div id="selectclass">
                             <div>
-                                <h1 class="fs-2 text-dark ">Select Class Attedance</h1>
+                                <h1 class="fs-2 text-dark ">Select Class Attendance</h1>
                                 <hr>
 
                             </div>
@@ -118,7 +118,7 @@ $inst_id = $_SESSION['inst_id'];
                                 </div>
                             </div>
                             <div class="pt-1 mb-4">
-                                <button class="btn bg-navy-blue text-white btn-lg " id="view" name="view" type="submit">View Attedance</button>
+                                <button class="btn bg-navy-blue text-white btn-lg " id="view" name="view" type="submit">View Attendance</button>
                             </div>
                         </div>
                                 

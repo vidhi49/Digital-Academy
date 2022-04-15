@@ -53,23 +53,23 @@ $a = 'changepwd';
         <span>Current Password</span>
         <div class="form-group">
             <div class="input-group">
-                <input name="currentpassword" id="currentpassword" class="form-control form-control-lg " placeholder="Current Password" type="password" required>
+                <input name="currentpassword" id="currentpassword" class="form-control  " placeholder="Current Password" type="password" required>
                 <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fa fa-eye" onclick="myFunction()"></i>
+                    <span class="input-group-text form-control form-control-lg">
+                        <i class="fa fa-eye " onclick="myFunction()"></i>
                     </span>
                 </div>
             </div>
             <span id="currentpwd"></span>
         </div>
 
-
+        <br>
         <span>New Password</span>
         <div class="form-group ">
             <div class="input-group">
-                <input name="newpassword" id="newpassword" class="form-control form-control-lg " placeholder="New Password" type="password" required>
+                <input name="newpassword" id="newpassword" class="form-control  " placeholder="New Password" type="password" required>
                 <div class="input-group-prepend">
-                    <span class="input-group-text">
+                    <span class="input-group-text form-control form-control-lg">
                         <i class="fa fa-eye" onclick="myFunction1()"></i>
                     </span>
                 </div>
@@ -77,13 +77,13 @@ $a = 'changepwd';
 
             <span id="newpwd"></span>
         </div>
-
+        <br>
         <span>Confirm New Password</span>
         <div class="form-group ">
             <div class="input-group">
-                <input name="confirmpassword" id="confirmpassword" class="form-control form-control-lg " placeholder="Confirm New Password" type="password" required>
+                <input name="confirmpassword" id="confirmpassword" class="form-control " placeholder="Confirm New Password" type="password" required>
                 <div class="input-group-prepend">
-                    <span class="input-group-text">
+                    <span class="input-group-text form-control form-control-lg">
                         <i class="fa fa-eye" onclick="myFunction2()"></i>
                     </span>
                 </div>
@@ -92,7 +92,7 @@ $a = 'changepwd';
 
 
         </div>
-
+        <br>
         <div class="pt-1 mb-4">
             <button class="btn bg-navy-blue text-white btn-lg " id="change" name="change" type="submit">Change Password</button>
         </div>
@@ -104,7 +104,6 @@ $a = 'changepwd';
 
   </div>
 
-  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>

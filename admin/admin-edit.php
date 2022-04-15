@@ -158,7 +158,6 @@ $r = mysqli_fetch_array($res);
 
   </div>
 
-  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>

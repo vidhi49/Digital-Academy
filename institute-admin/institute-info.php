@@ -74,7 +74,10 @@ if(isset($_POST['signin']))
     $f=$_FILES['logo']['name'];
 		$floc=$_FILES['logo']['tmp_name'];
     $extension=pathinfo($f,PATHINFO_EXTENSION);
-    $logo=$name.".".$extension;
+    $q1="select * from institute_tbl where Id='$id'";
+    $res1=mysqli_query($con,$q1);
+    $r=mysqli_fetch_array($res1);
+    $logo=$r[2].".".$extension;
     $_SESSION['logo']=$logo;
     move_uploaded_file($floc,"../Institute-logo/".$logo);
     $q="update institute_tbl set Address = '$add',City='$city',State='$state', Country='$country',Logo='$logo' where Id='$id'";

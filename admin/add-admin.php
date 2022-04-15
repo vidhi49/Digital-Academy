@@ -173,7 +173,6 @@ $a = 'addadmin';
 
   </div>
 
-  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>

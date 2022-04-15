@@ -2,7 +2,7 @@
 // session_start();
 include("change-header.php");
 $inst_id = $_SESSION['inst_id'];
-$a = 'managestaff';
+$a = 'staff';
 $indian_states = array(
     'AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CT' => 'Chhattisgarh',
     'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir',
@@ -196,10 +196,10 @@ $r = mysqli_fetch_array($res);
             <?php include("institute-sidebar.php"); ?>
             <div class="content p-5 text-muted h6">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h1 mb-0 text-muted">Edit Student </h1>
+                    <h1 class="h1 mb-0 text-muted">Edit Staff </h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="institute-home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Student Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Staff Details</li>
                     </ol>
                 </div>
 

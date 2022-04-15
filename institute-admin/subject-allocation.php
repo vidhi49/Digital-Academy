@@ -7,7 +7,7 @@ include("change-header.php");
 $Ins_id = $_SESSION['inst_id'];
 $statusMsg = "";
 $disabled = "";
-$a = "allocatesubject";
+$a = "subject";
 //------------------------SAVE--------------------------------------------------
 if (isset($_POST['save'])) {
     $className = $_POST['name'];

@@ -79,6 +79,5 @@
 
   </div>
   </div>
-  <?php include("../guest/footer.php"); ?>
 
 </html>

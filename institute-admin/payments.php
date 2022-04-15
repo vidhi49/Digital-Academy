@@ -2,7 +2,7 @@
 include("../connect.php");
 include("../institute-admin/change-header.php");
 $statusMsg="";
-$a = "payments";
+$a = "fees";
 //------------------------SAVE--------------------------------------------------
 
 if (isset($_POST['save'])) {
@@ -406,7 +406,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
                 </div>
             </div>
             <?php
-            require("../guest/footer.php");
+            // require("../guest/footer.php");
             ?>
             <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
             <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>

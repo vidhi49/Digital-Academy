@@ -1,7 +1,7 @@
 <?php
 include("../connect.php");
 include("../institute-admin/change-header.php");
-$a = 'payment_rpt';
+$a = 'fees';
 
 ?>
 <html>
@@ -116,9 +116,9 @@ $a = 'payment_rpt';
       </div>
       <!-- <div class="row" id="studtable" style="display: none;" > -->
       <br><br>
-      <div class="row" id="studtable">
-        <div class="col " >
-          <div class="table-responsive p-3" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;border-radius:10px 10px 10px 10px;background-color: white;'>
+      <div class="row m-5" id="studtable">
+        <div class="col" >
+          <div class="table-responsive p-3 " style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;border-radius:10px 10px 10px 10px;background-color: white;'>
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr class="text-primary">

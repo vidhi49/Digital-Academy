@@ -267,7 +267,6 @@ $a = 'admindashboard';
     </div>
 
 
-    <?php include("../guest/footer.php"); ?>
 </body>
 <?php
 //chart
@@ -285,7 +284,7 @@ if ($num > 0) {
             // echo $d;
             if($i!=$d)
             {
-                echo $d;
+                // echo $d;
             }
         }
     }

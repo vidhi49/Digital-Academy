@@ -3,7 +3,7 @@ include("change-header.php");
 $Ins_id = $_SESSION['inst_id'];
 $statusMsg = "";
 $readonly = "";
-$a = "allocateclass";
+$a = "class";
 //------------------------SAVE--------------------------------------------------
 if (isset($_POST['allocate'])) {
 
@@ -13,8 +13,8 @@ if (isset($_POST['allocate'])) {
   $temail = $_POST['temail'];
   $tid = $_POST['tid'];
 
-  echo "$className"; 
-  echo "$section"; 
+  // echo "$className"; 
+  // echo "$section"; 
   // echo "$tname"; 
   // echo "$temail"; 
   // echo "$tid";   
