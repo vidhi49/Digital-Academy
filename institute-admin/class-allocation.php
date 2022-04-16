@@ -208,7 +208,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class="institute-content container text-muted h6">
+    <div class="institute-content text-muted h6">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Class Allocation</h1>
         <ol class="breadcrumb">

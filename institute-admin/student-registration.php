@@ -213,7 +213,7 @@ $a = "student";
   <body>
     <div class="d-flex">
       <?php include("institute-sidebar.php"); ?>
-      <div class=" institute-content container text-muted h6">
+      <div class=" institute-content  text-muted h6">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h1 mb-0 text-muted">Student Enrolment</h1>
           <ol class="breadcrumb">

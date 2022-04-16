@@ -157,22 +157,23 @@ $indian_states = array(
     include("institute-sidebar.php");
     ?>
     <div class="institute-content text-muted d-flex justify-content-center align-items-center">
-      <div class="bg-white w-auto" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+      <div class="bg-white w-auto p-2" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <h1 class="fs-2 text-dark m-4">Edit School Profile
           <hr>
         </h1>
-        <form method="post" enctype="multipart/form-data" class="p-5 m-3">
+        <form method="post" enctype="multipart/form-data" class="p-3">
           <div class="form-group">
             <div class="row">
               <div class="col-sm-4">
-                <div class="upload text-center pb-4 pt-3">
-                  <img id="profileimg" src='../Institute-logo/<?php echo $r['Logo']; ?>'
-                    style="border:5px solid black;border-radius:10px" height="195" width="195" alt="image">
+                <div class="row upload d-flex justify-content-center">
+                  <img id="profileimg" class="img w-75 h-100 m-3" src='../Institute-logo/<?php echo $r['Logo']; ?>'
+                    style="border:2px solid black;border-radius:10px;" alt="image">
                 </div>
-
-                <input class="form-control form-control-lg m-1" name="logo" type="file" id="file"
-                  onchange="Filevalidation()">
-                <span id="filemessage"></span>
+                <div class="row p-5">
+                  <input class="form-control form-control-lg m-1" name="logo" type="file" id="file"
+                    onchange="Filevalidation()">
+                  <span id="filemessage"></span>
+                </div>
 
               </div>
               <div class="col-sm-8">

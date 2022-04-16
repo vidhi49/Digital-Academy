@@ -105,8 +105,8 @@ $inst_id = $_SESSION['inst_id'];
 <body>
   <div class="d-flex">
     <?php
-        include("institute-sidebar.php");
-        ?>
+    include("institute-sidebar.php");
+    ?>
     <div class="institute-content container text-muted">
       <div class=" bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
 
@@ -123,27 +123,27 @@ $inst_id = $_SESSION['inst_id'];
                 <div class="col-sm-6">
                   <label class="form-control-label ml-2 p-1">Select Class<span class="text-danger ml-2">*</span></label>
                   <?php
-                                    $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC ";
-                                    $result = $con->query($qry);
-                                    $num = $result->num_rows;
-                                    if ($num > 0) {
-                                        echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
-                                        echo '<option value="" selected hidden>--Select Class--</option>';
-                                        while ($rows = $result->fetch_assoc()) {
-                                            echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
-                                        }
-                                        echo '</select>';
-                                    }
-                                    ?>
+                  $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC ";
+                  $result = $con->query($qry);
+                  $num = $result->num_rows;
+                  if ($num > 0) {
+                    echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
+                    echo '<option value="" selected hidden>--Select Class--</option>';
+                    while ($rows = $result->fetch_assoc()) {
+                      echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
+                    }
+                    echo '</select>';
+                  }
+                  ?>
                 </div>
                 <div class="col-sm-6">
                   <label class="form-control-label ml-2 p-1">Class Section<span
                       class="text-danger ml-2">*</span></label>
                   <?php
-                                    echo ' <select    name="section" id="section" onchange="studentDropdown(this.value)"  class="form-control form-control-lg m-1" >';
-                                    echo "<option value='' >--Select Section--</option>";
-                                    echo "</select>";
-                                    ?>
+                  echo ' <select    name="section" id="section" onchange="studentDropdown(this.value)"  class="form-control form-control-lg m-1" >';
+                  echo "<option value='' >--Select Section--</option>";
+                  echo "</select>";
+                  ?>
 
                 </div>
               </div>
@@ -151,10 +151,10 @@ $inst_id = $_SESSION['inst_id'];
                 <div class="col-sm-6">
                   <label class="form-label ml-2 p-1">Select Student:<span class="text-danger">*</span></label>
                   <?php
-                                    echo ' <select    name="studname" id="studname" onchange="studentgrno(this.value)"  class="form-control form-control-lg m-1" >';
-                                    echo "<option value='' >--Select Student--</option>";
-                                    echo "</select>";
-                                    ?>
+                  echo ' <select    name="studname" id="studname" onchange="studentgrno(this.value)"  class="form-control form-control-lg m-1" >';
+                  echo "<option value='' >--Select Student--</option>";
+                  echo "</select>";
+                  ?>
 
                 </div>
                 <div class="col-sm-6">
@@ -173,15 +173,17 @@ $inst_id = $_SESSION['inst_id'];
 
                   </select>
                 </div>
-                <div class="col-sm-6" id="coldate">
+              </div>
+              <div class="row">
+                <div class="col-sm-4" id="coldate">
                   <label class="form-label ml-2 p-1">Select Date:<span class="text-danger">*</span></label>
                   <input class="form-control form-control-lg m-1" type="date" id="date" name="date">
                 </div>
-                <div class=" col-sm-6" id="colfrom">
+                <div class=" col-sm-4" id="colfrom">
                   <label class="form-label ml-2 p-1">Form:<span class="text-danger">*</span></label>
                   <input class="form-control form-control-lg m-1" type="date" id="from_date" name="from_date">
                 </div>
-                <div class=" col-sm-6 " id="colto">
+                <div class=" col-sm-4 " id="colto">
                   <label class="form-label ml-2 p-1">To:<span class="text-danger">*</span></label>
                   <input class="form-control form-control-lg m-1" type="date" id="to_date" name="to_date">
                 </div>
@@ -202,32 +204,28 @@ $inst_id = $_SESSION['inst_id'];
 
         <form method="post" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
-          <div>
-            <h1 class="fs-2 text-dark ">Todays Attendance(<?php echo date('d-F') ?>)</h1>
-            <hr>
-
-          </div>
-          <br>
-          <div class="table-responsive p-3">
+          <h1 class="fs-2 text-dark ">Todays Attendance(<?php echo date('d-F') ?>)</h1>
+          <hr>
+          <div class="table-responsive p-3 mt-3">
             <table class="table align-items-center table-flush table-hover" id="dataTableHover">
 
 
               <?php
-                            include("../connect.php");
-                            $section = $_REQUEST['section'];
-                            $grno = $_REQUEST['grno'];
-                            $todaydate = date('l');
-                            if ($todaydate != 'Sunday') {
-                                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
-                                $rs = $con->query($query);
-                                $num = $rs->num_rows;
-                                $sn = 0;
-                                if ($num > 0) {
-                                    $query1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id'  AND Date='" . date('Y-m-d') . "'";
-                                    $result1 = mysqli_query($con, $query1);
-                                    $num1 = mysqli_num_rows($result1);
-                                    if ($num1 > 0) {
-                                        echo '<thead class="thead-light">
+              include("../connect.php");
+              $section = $_REQUEST['section'];
+              $grno = $_REQUEST['grno'];
+              $todaydate = date('l');
+              if ($todaydate != 'Sunday') {
+                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+                $rs = $con->query($query);
+                $num = $rs->num_rows;
+                $sn = 0;
+                if ($num > 0) {
+                  $query1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id'  AND Date='" . date('Y-m-d') . "'";
+                  $result1 = mysqli_query($con, $query1);
+                  $num1 = mysqli_num_rows($result1);
+                  if ($num1 > 0) {
+                    echo '<thead class="thead-light">
                                             <tr>
                                                 <!-- <th>Roll No.</th> -->
     
@@ -239,285 +237,266 @@ $inst_id = $_SESSION['inst_id'];
                                         </thead>
     
                                         <tbody>';
-                                        while ($rows = $rs->fetch_assoc()) {
+                    while ($rows = $rs->fetch_assoc()) {
 
-                                            $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date='" . date('Y-m-d') . "'";
-                                            $res = mysqli_query($con, $q1);
-                                            $nor1 = mysqli_num_rows($res);
+                      $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date='" . date('Y-m-d') . "'";
+                      $res = mysqli_query($con, $q1);
+                      $nor1 = mysqli_num_rows($res);
 
 
-                                            echo "<tr>
+                      echo "<tr>
                                             <td>" . $rows['Stud_name'] . "</td>";
-                                            while ($r1 = mysqli_fetch_array($res)) {
-                                                if ($r1['Status'] == 1) {
-                                                    echo "<td><i class='fa fa-check-square' style='color:green;font-size:30px;'></i></td>";
-                                                } else {
-                                                    echo "<td><i class='fa fa-window-close' style='color:red;font-size:30px;'></i></td>";
-                                                }
-                                            }
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo
-                                        "<div class='alert alert-danger' role='alert'>
+                      while ($r1 = mysqli_fetch_array($res)) {
+                        if ($r1['Status'] == 1) {
+                          echo "<td><i class='fa fa-check-square' style='color:green;font-size:30px;'></i></td>";
+                        } else {
+                          echo "<td><i class='fa fa-window-close' style='color:red;font-size:30px;'></i></td>";
+                        }
+                      }
+                      echo "</tr>";
+                    }
+                  } else {
+                    echo
+                    "<div class='alert alert-danger' role='alert'>
                                             Attendance is Not Taken Yet!
                                             </div>";
-                                    }
-                                } else {
-                                    echo
-                                    "<div class='alert alert-danger' role='alert'>
+                  }
+                } else {
+                  echo
+                  "<div class='alert alert-danger' role='alert'>
                                 No Record Found!
                                 </div>";
-                                }
-                            } else {
-                                echo
-                                "<div class='alert alert-danger' role='alert'>
+                }
+              } else {
+                echo
+                "<div class='alert alert-danger' role='alert'>
                             Today is Sunday!!!
                             </div>";
-                            }
+              }
 
 
-                            ?>
+              ?>
               </tbody>
             </table>
           </div>
-
+        </form>
 
       </div>
 
 
-      </form>
-    </div>
 
-    <div class="mt-5 bg-white" id="datewiseatt"
-      style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
 
-      <form method="post" class="p-4 m-2">
-        <!-- <div id="selectclass" style="display: none;"> -->
-        <div>
+      <div class="mt-5 bg-white" id="datewiseatt"
+        style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
+
+        <form method="post" class="p-4 m-2">
+          <!-- <div id="selectclass" style="display: none;"> -->
           <h1 class="fs-2 text-dark ">Attendance (<?php echo $_REQUEST['date']; ?>)</h1>
           <hr>
 
-        </div>
-        <br>
-        <div class="table-responsive p-3">
-          <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-            <thead class="thead-light">
-              <tr>
-                <!-- <th>Roll No.</th> -->
-
-                <th>Name</th>
-
-                <th>Action</th>
-
-              </tr>
-            </thead>
-
-            <tbody>
-
-              <?php
-                            include("../connect.php");
-                            $date = $_REQUEST['date'];
-                            $section = $_REQUEST['section'];
-                            $grno = $_REQUEST['grno'];
-                            $unixTimestamp = strtotime($date);
-                            $weekday = date('l', $unixTimestamp);
-                            if ($weekday == 'Sunday') {
-                                echo
-                                "<div class='alert alert-danger' role='alert'>
-                                                $date is Sunday!
-                                                </div>";
-                            } else {
-
-                                $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$section' AND Date ='$date'";
-                                $res2 = mysqli_query($con, $q2);
-                                $nor = mysqli_num_rows($res2);
-                                if ($nor > 0) {
-                                    $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
-                                    $rs = $con->query($query);
-                                    $num = $rs->num_rows;
-                                    $sn = 0;
-                                    if ($num > 0) {
-                                        while ($rows = $rs->fetch_assoc()) {
-                                            echo "<tr>
-                                                         <td>" . $rows['Stud_name'] . "</td>";
-                                            $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date ='$date'";
-                                            $res = mysqli_query($con, $q1);
-                                            while ($r1 = mysqli_fetch_array($res)) {
-                                                if ($r1['Status'] == 1) {
-                                                    echo "<td><i class='fa fa-check-square' style='color:green;font-size:30px;'></i></td>";
-                                                } else {
-                                                    echo "<td><i class='fa fa-window-close' style='color:red;font-size:30px;'></i></td>";
-                                                }
-                                            }
-                                            echo "</tr>";
-                                        }
-                                    }
-                                } else {
-
-                                    echo
-                                    "<div class='alert alert-danger' role='alert'>
-                                                    No Attendace is taken on this day!
-                                                    </div>";
-                                }
-                            }
-
-
-
-
-
-                            ?>
-            </tbody>
-          </table>
-        </div>
-
-
-
-
-      </form>
-    </div>
-
-    <div class="mt-5 bg-white" id="rangewiseatt"
-      style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
-
-      <form method="post" class="p-4 m-2">
-        <!-- <div id="selectclass" style="display: none;"> -->
-        <div>
-          <div>
-            <div class="row">
-              <div class="col">
-                <h1 class="fs-2 text-dark ">Attendance From(
-                  <?php
-                                    $date = $_REQUEST['from_date'];
-                                    $unixTimestamp = strtotime($date);
-                                    $from_month = date('F-d', $unixTimestamp);
-                                    $todate = $_REQUEST['to_date'];
-                                    $unixTimestamp1 = strtotime($todate);
-                                    $to_month = date('F-d', $unixTimestamp1);
-                                    echo $from_month . ")  To(" . $to_month . ")";
-                                    ?></h1>
-              </div>
-              <div class="col d-flex justify-content-end">
-                <div class="row">
-                  <div class="col d-flex">
-                    <div class="p-2 d-flex">
-                      <i class="fa fa-square" style='color:grey;font-size:30px;'></i>
-                      <h5 class="p-2">Sunday</h5>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col d-flex">
-                    <div class="p-2 d-flex">
-                      <i class='fa fa-square text-success' style='font-size:30px;'></i>
-                      <h5 class="p-2">Present</h5>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col d-flex">
-                    <div class="p-2 d-flex">
-                      <i class="fa fa-square text-danger" style='font-size:30px;'> </i>
-                      <h5 class="p-2">Absent</h5>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col d-flex">
-                    <div class="p-2 d-flex">
-                      <i class="fa fa-square " style='color:#22a7f0;font-size:30px;'> </i>
-                      <h5 class="p-2">Holiday</h5>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col d-flex">
-                    <div class="p-2 d-flex">
-                      <i class="fa fa-square " style='color:#ffff9f;font-size:30px;'> </i>
-                      <h5 class="p-2">Not Taken</h5>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <hr>
-
-          </div>
           <br>
-          <div class="table-responsive p-3">
+          <div class="table-responsive p-3 mt-4">
             <table class="table align-items-center table-flush table-hover" id="dataTableHover">
               <thead class="thead-light">
                 <tr>
+                  <!-- <th>Roll No.</th> -->
+
                   <th>Name</th>
 
-                  <?php
-                                    for ($i = $date; $i <= $todate; $i++) {
+                  <th>Action</th>
 
-                                        $unixTimestamp2 = strtotime($i);
-                                        $d = date('M-d', $unixTimestamp2);
-                                        echo "<th>$d</th>";
-                                    }
-
-                                    ?>
                 </tr>
               </thead>
 
               <tbody>
 
                 <?php
-                                $section = $_REQUEST['section'];
-                                $grno = $_REQUEST['grno'];
-                                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
-                                $res = mysqli_query($con, $query);
-                                while ($r2 = mysqli_fetch_array($res)) {
-                                    echo "<tr>";
-                                    echo "<td>" . $r2['Stud_name'] . "</td>";
+                include("../connect.php");
+                $date = $_REQUEST['date'];
+                $section = $_REQUEST['section'];
+                $grno = $_REQUEST['grno'];
+                $unixTimestamp = strtotime($date);
+                $weekday = date('l', $unixTimestamp);
+                if ($weekday == 'Sunday') {
+                  echo
+                  "<div class='alert alert-danger' role='alert'>
+                                                $date is Sunday!
+                                                </div>";
+                } else {
 
-                                    for ($i = $date; $i <= $todate; $i++) {
+                  $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$section' AND Date ='$date'";
+                  $res2 = mysqli_query($con, $q2);
+                  $nor = mysqli_num_rows($res2);
+                  if ($nor > 0) {
+                    $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+                    $rs = $con->query($query);
+                    $num = $rs->num_rows;
+                    $sn = 0;
+                    if ($num > 0) {
+                      while ($rows = $rs->fetch_assoc()) {
+                        echo "<tr>
+                                                         <td>" . $rows['Stud_name'] . "</td>";
+                        $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date ='$date'";
+                        $res = mysqli_query($con, $q1);
+                        while ($r1 = mysqli_fetch_array($res)) {
+                          if ($r1['Status'] == 1) {
+                            echo "<td><i class='fa fa-check-square' style='color:green;font-size:30px;'></i></td>";
+                          } else {
+                            echo "<td><i class='fa fa-window-close' style='color:red;font-size:30px;'></i></td>";
+                          }
+                        }
+                        echo "</tr>";
+                      }
+                    }
+                  } else {
 
-                                        $unixTimestamp2 = strtotime($i);
-                                        $d = date('l', $unixTimestamp2);
-                                        if ($d == 'Sunday') {
-                                            echo "<td><i class='fa fa-square ' style='color:grey;font-size:30px;'> </i> </td>";
-                                        } else {
-                                            $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $r2['Grno'] . "' AND Date ='$i'";
-                                            $res1 = mysqli_query($con, $q1);
-                                            $nor = mysqli_num_rows($res1);
-                                            if ($nor == 0) {
-                                                echo "<td><i class='fa fa-square ' style='color:#ffff9f;font-size:30px;'> </i> </td>";
-                                            } else {
-                                                while ($r1 = mysqli_fetch_array($res1)) {
-                                                    if ($r1['Status'] == 1) {
-                                                        echo "<td><i class='fa fa-square text-success' style='font-size:30px;'></i></td>";
-                                                    } else {
-                                                        echo "<td><i class='fa fa-square text-danger' style='font-size:30px;'></i></td>";
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                    echo
+                    "<div class='alert alert-danger' role='alert'>
+                                                    No Attendace is taken on this day!
+                                                    </div>";
+                  }
+                }
 
 
 
-                                    echo "</tr>";
-                                }
 
-                                ?>
+
+                ?>
               </tbody>
             </table>
           </div>
 
 
-        </div>
 
 
+        </form>
+      </div>
+
+      <div class="mt-5 bg-white" id="rangewiseatt"
+        style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
+
+        <form method="post" class="p-4 m-2">
+          <!-- <div id="selectclass" style="display: none;"> -->
+          <div class="row">
+            <div class="col-sm-3">
+              <h1 class="fs-2 text-dark m-2 ">Attendance From(
+                <?php
+                $date = $_REQUEST['from_date'];
+                $unixTimestamp = strtotime($date);
+                $from_month = date('F-d', $unixTimestamp);
+                $todate = $_REQUEST['to_date'];
+                $unixTimestamp1 = strtotime($todate);
+                $to_month = date('F-d', $unixTimestamp1);
+                echo $from_month . ")  To(" . $to_month . ")";
+                ?></h1>
+            </div>
+            <div class="col-sm-9 d-flex justify-content-end">
+              <div class="row">
+                <div class="col d-flex">
+                  <div class="p-2 d-flex">
+                    <i class="fa fa-square" style='color:grey;font-size:30px;'></i>
+                    <h5 class="p-2">Sunday</h5>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="p-2 d-flex">
+                  <i class='fa fa-square text-success' style='font-size:30px;'></i>
+                  <h5 class="p-2">Present</h5>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="p-2 d-flex">
+                  <i class="fa fa-square text-danger" style='font-size:30px;'> </i>
+                  <h5 class="p-2">Absent</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="p-2 d-flex">
+                  <i class="fa fa-square " style='color:#22a7f0;font-size:30px;'> </i>
+                  <h5 class="p-2">Holiday</h5>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="p-2 d-flex">
+                  <i class="fa fa-square " style='color:#ffff9f;font-size:30px;'> </i>
+                  <h5 class="p-2">Not Taken</h5>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <hr>
+
+      </div>
+      <br>
+      <div class="table-responsive p-3">
+        <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+          <thead class="thead-light">
+            <tr>
+              <th>Name</th>
+
+              <?php
+              for ($i = $date; $i <= $todate; $i++) {
+
+                $unixTimestamp2 = strtotime($i);
+                $d = date('M-d', $unixTimestamp2);
+                echo "<th>$d</th>";
+              }
+
+              ?>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <?php
+            $section = $_REQUEST['section'];
+            $grno = $_REQUEST['grno'];
+            $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+            $res = mysqli_query($con, $query);
+            while ($r2 = mysqli_fetch_array($res)) {
+              echo "<tr>";
+              echo "<td>" . $r2['Stud_name'] . "</td>";
+
+              for ($i = $date; $i <= $todate; $i++) {
+
+                $unixTimestamp2 = strtotime($i);
+                $d = date('l', $unixTimestamp2);
+                if ($d == 'Sunday') {
+                  echo "<td><i class='fa fa-square ' style='color:grey;font-size:30px;'> </i> </td>";
+                } else {
+                  $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $r2['Grno'] . "' AND Date ='$i'";
+                  $res1 = mysqli_query($con, $q1);
+                  $nor = mysqli_num_rows($res1);
+                  if ($nor == 0) {
+                    echo "<td><i class='fa fa-square ' style='color:#ffff9f;font-size:30px;'> </i> </td>";
+                  } else {
+                    while ($r1 = mysqli_fetch_array($res1)) {
+                      if ($r1['Status'] == 1) {
+                        echo "<td><i class='fa fa-square text-success' style='font-size:30px;'></i></td>";
+                      } else {
+                        echo "<td><i class='fa fa-square text-danger' style='font-size:30px;'></i></td>";
+                      }
+                    }
+                  }
+                }
+              }
+
+
+
+              echo "</tr>";
+            }
+
+            ?>
+          </tbody>
+        </table>
+      </div>
       </form>
     </div>
   </div>
@@ -529,17 +508,17 @@ $inst_id = $_SESSION['inst_id'];
 
 if (isset($_POST['view'])) {
 
-    if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
-        echo "<script>$('#atttable').show();</script>";
-    }
-    if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] != "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
-        echo "<script>$('#datewiseatt').show();</script>";
-    }
-    if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] != "" && $_REQUEST['to_date'] != "") {
-        echo "<script>$('#rangewiseatt').show();</script>";
-    }
+  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
+    echo "<script>$('#atttable').show();</script>";
+  }
+  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] != "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
+    echo "<script>$('#datewiseatt').show();</script>";
+  }
+  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] != "" && $_REQUEST['to_date'] != "") {
+    echo "<script>$('#rangewiseatt').show();</script>";
+  }
 
-    // echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
+  // echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
 }
 
 ?>

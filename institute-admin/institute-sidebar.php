@@ -23,7 +23,7 @@ $insti_name = $abc['Name'];
 .institute-content {
   width: calc(100vw - 300px);
   /* display: inline-block; */
-  padding: 20px;
+  padding: 80px;
 }
 
 .institue-sidebar .nav .nav-item {
@@ -133,6 +133,7 @@ $insti_name = $abc['Name'];
   .institute-content {
     width: calc(100vw - 120px);
     /* display: inline-block; */
+    padding: 20px;
   }
 
   .cpwd-form {

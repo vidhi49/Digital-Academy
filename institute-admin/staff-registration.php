@@ -251,7 +251,7 @@ $a = 'staff';
 <body>
   <div class="d-flex">
     <?php include("institute-sidebar.php"); ?>
-    <div class="institute-content container text-muted h6">
+    <div class="institute-content text-muted h6">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h1 mb-0 text-muted">Staff Enrolment</h1>
         <ol class="breadcrumb">
@@ -452,83 +452,83 @@ $a = 'staff';
 </html>
 <?php
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $gender = $_POST['gender'];
-    $dob = $_POST['dob'];
-    $cno = $_POST['cno'];
-    $bloodgroup = $_POST['bloodgroup'];
-    $address = $_POST['address'];
-    $idproove = $_FILES['id_proof']['name'];
-    $idproove_loc = $_FILES['id_proof']['tmp_name'];
-    $qcerti = $_FILES['qcerti']['name'];
-    $qcerti_loc = $_FILES['qcerti']['tmp_name'];
-    $ecerti = $_FILES['ecerti']['name'];
-    $profile = $_FILES['profile']['name'];
-    $aca_year = $_POST['aca_year'];
-    $stype = $_POST['stype'];
-    $country = $_POST['country'];
-    $state = $_POST['s'];
-    $designation = $_POST['designation'];
-    $doj = $_POST['doj'];
-    $date = date("Y-m-d");
-    $inst_id = $_SESSION['inst_id'];
-    $ext_id = pathinfo($idproove, PATHINFO_EXTENSION);
-    $ext_qcerti = pathinfo($qcerti, PATHINFO_EXTENSION);
-    $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
-    $password = substr(str_shuffle($generator), 0, 8);
-    $pass_hash = password_hash($password, PASSWORD_DEFAULT);
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $gender = $_POST['gender'];
+  $dob = $_POST['dob'];
+  $cno = $_POST['cno'];
+  $bloodgroup = $_POST['bloodgroup'];
+  $address = $_POST['address'];
+  $idproove = $_FILES['id_proof']['name'];
+  $idproove_loc = $_FILES['id_proof']['tmp_name'];
+  $qcerti = $_FILES['qcerti']['name'];
+  $qcerti_loc = $_FILES['qcerti']['tmp_name'];
+  $ecerti = $_FILES['ecerti']['name'];
+  $profile = $_FILES['profile']['name'];
+  $aca_year = $_POST['aca_year'];
+  $stype = $_POST['stype'];
+  $country = $_POST['country'];
+  $state = $_POST['s'];
+  $designation = $_POST['designation'];
+  $doj = $_POST['doj'];
+  $date = date("Y-m-d");
+  $inst_id = $_SESSION['inst_id'];
+  $ext_id = pathinfo($idproove, PATHINFO_EXTENSION);
+  $ext_qcerti = pathinfo($qcerti, PATHINFO_EXTENSION);
+  $generator = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=,./;'[]\<>?:{}|";
+  $password = substr(str_shuffle($generator), 0, 8);
+  $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // $query = mysqli_query($con, "select * from institute_tbl where Id='$inst_id'");
-    // $res1 = mysqli_fetch_array($query);
-    //$certi_img=$sname.".".$extension;
-    if ($stype == 'Teaching') {
-        $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
+  // $query = mysqli_query($con, "select * from institute_tbl where Id='$inst_id'");
+  // $res1 = mysqli_fetch_array($query);
+  //$certi_img=$sname.".".$extension;
+  if ($stype == 'Teaching') {
+    $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
     '$dob','$doj','$stype','$designation','','','','','$bloodgroup','$aca_year','$pass_hash','$date')";
-        require 'sendstaffemail.php';
-    }
-    if ($stype == 'Non-Teaching') {
-        $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
+    require 'sendstaffemail.php';
+  }
+  if ($stype == 'Non-Teaching') {
+    $q = "insert into staff_tbl values(null ,'$inst_id','$name','$gender','$email','$cno','$address','$state','$country',
     '$dob','$doj','$stype','$designation','','','','','$bloodgroup','$aca_year','','$date')";
-        // require 'sendstaffemail.php';
+    // require 'sendstaffemail.php';
+  }
+
+  if (mysqli_query($con, $q)); {
+    $q1 = "select Id from staff_tbl where Email = '$email' AND Inst_id='$inst_id'";
+    $res1 = mysqli_query($con, $q1) or die("Query failed" . mysqli_error($con));
+
+    $row1 = mysqli_fetch_assoc($res1);
+    $staff_id = $row1['Id'];
+    $id_p = $inst_id . $staff_id . "." . $ext_id;
+    $qualification = $inst_id . $staff_id . "." . $ext_qcerti;
+    move_uploaded_file($idproove_loc, "staff_ID/" . $id_p);
+    move_uploaded_file($qcerti_loc, "staff_qualification/$qualification");
+    if (!empty($ecerti)) {
+      $ecerti_loc = $_FILES['ecerti']['tmp_name'];
+      $ext_ecerti = pathinfo($ecerti, PATHINFO_EXTENSION);
+      $experience_certi = $inst_id . $staff_id . "." . $ext_ecerti;
+      move_uploaded_file($ecerti_loc, "staff_experiance/" . $experience_certi);
+    } else {
+      $experience_certi = "-";
     }
-
-    if (mysqli_query($con, $q)); {
-        $q1 = "select Id from staff_tbl where Email = '$email' AND Inst_id='$inst_id'";
-        $res1 = mysqli_query($con, $q1) or die("Query failed" . mysqli_error($con));
-
-        $row1 = mysqli_fetch_assoc($res1);
-        $staff_id = $row1['Id'];
-        $id_p = $inst_id . $staff_id . "." . $ext_id;
-        $qualification = $inst_id . $staff_id . "." . $ext_qcerti;
-        move_uploaded_file($idproove_loc, "staff_ID/" . $id_p);
-        move_uploaded_file($qcerti_loc, "staff_qualification/$qualification");
-        if (!empty($ecerti)) {
-            $ecerti_loc = $_FILES['ecerti']['tmp_name'];
-            $ext_ecerti = pathinfo($ecerti, PATHINFO_EXTENSION);
-            $experience_certi = $inst_id . $staff_id . "." . $ext_ecerti;
-            move_uploaded_file($ecerti_loc, "staff_experiance/" . $experience_certi);
-        } else {
-            $experience_certi = "-";
-        }
-        if (!empty($profile)) {
-            $profile_loc = $_FILES['profile']['tmp_name'];
-            $ext_profile = pathinfo($profile, PATHINFO_EXTENSION);
-            $photo = $inst_id . $staff_id . "." . $ext_profile;
-            move_uploaded_file($profile_loc, "staff_profile/" . $photo);
-        } else {
-            $photo = "default.jpg";
-        }
-        $q2 = "update staff_tbl set Id_prove='$id_p',Exp_doc='$experience_certi',Quali_doc='$qualification',Profile='$photo' where Id='$staff_id' AND Inst_id='$inst_id'";
-        if (mysqli_query($con, $q2)) {
-            echo "<script> Swal.fire(
+    if (!empty($profile)) {
+      $profile_loc = $_FILES['profile']['tmp_name'];
+      $ext_profile = pathinfo($profile, PATHINFO_EXTENSION);
+      $photo = $inst_id . $staff_id . "." . $ext_profile;
+      move_uploaded_file($profile_loc, "staff_profile/" . $photo);
+    } else {
+      $photo = "default.jpg";
+    }
+    $q2 = "update staff_tbl set Id_prove='$id_p',Exp_doc='$experience_certi',Quali_doc='$qualification',Profile='$photo' where Id='$staff_id' AND Inst_id='$inst_id'";
+    if (mysqli_query($con, $q2)) {
+      echo "<script> Swal.fire(
                 'Registered',
                 'Enrolled Successfully',
                 'success'
               )</script>";
-        } else {
-            die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
-        }
+    } else {
+      die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
     }
+  }
 }
 ?>

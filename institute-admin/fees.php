@@ -4,12 +4,9 @@
 include("../institute-admin/change-header.php");
 // include("../institute-admin/institute-header.php");
 
-
 $inst_id = $_SESSION['inst_id'];
 $statusMsg = "";
 $a = 'fees';
-
-
 
 //------------------------SAVE--------------------------------------------------
 
@@ -149,35 +146,35 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
   <link href=" css/ruang-admin.min.css" rel="stylesheet"> -->
   <script>
-    function classDropdown(str) {
-      if (str == "") {
-        document.getElementById("section").innerHTML = "";
-        return;
+  function classDropdown(str) {
+    if (str == "") {
+      document.getElementById("section").innerHTML = "";
+      return;
+    } else {
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
       } else {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp = new XMLHttpRequest();
-        } else {
-          // code for IE6, IE5
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("section").innerHTML = this.responseText;
-          }
-        };
-        xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
-        xmlhttp.send();
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("section").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
+      xmlhttp.send();
     }
+  }
 
 
 
-    $(document).ready(function() {
-      // $(".container").fadeIn("slow");
-      $(".institute-content").fadeIn(1000);
-      // alert("hello");
-    });
+  $(document).ready(function() {
+    // $(".container").fadeIn("slow");
+    $(".institute-content").fadeIn(1000);
+    // alert("hello");
+  });
   </script>
 </head>
 <html>
@@ -189,14 +186,12 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     // include("SIDEBAR.php");
     ?>
     <div class="institute-content p-5  text-muted">
-      <div class="row">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-          <h4 class="text-muted">Fee details</h4>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./">Home</a></li>
-            <li class="breadcrumb-item active navy-blue m-0 pb-1" aria-current="page">Create Class</li>
-          </ol>
-        </div>
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h4 class="text-muted">Fee details</h4>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./">Home</a></li>
+          <li class="breadcrumb-item active navy-blue m-0 pb-1" aria-current="page">Create Class</li>
+        </ol>
       </div>
 
       <div class="card mb-4" style='box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;'>
@@ -208,45 +203,45 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
         <!-- </div> -->
         <div class="card-body">
           <form method="post">
-            <div class="row">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <label class="form-control-label p-2 float-left">Class Name <span class="text-danger ml-2">*</span></label>
-                  <?php
-                  $qry = "SELECT DISTINCT Name,Id FROM class_tbl Group by Name ORDER BY Name ASC";
-                  $result = $con->query($qry);
-                  $num = $result->num_rows;
-                  if ($num > 0) {
-                    echo ' <select required name="class" onchange="classDropdown(this.value)" class="form-control form-control m-1">';
-                    echo '<option value="">--Select Class--</option>';
-                    while ($rows = $result->fetch_assoc()) {
-                      echo '<option ' . (($row['Name'] == $rows['Name']) ? 'selected="selected"' : "") . ' value="' . $rows['Id'] . '" >' . $rows['Name'] . '</option>';
-                    }
-                    echo '</select>';
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <label class="form-control-label p-2 float-left">Class Name <span
+                    class="text-danger ml-2">*</span></label>
+                <?php
+                $qry = "SELECT DISTINCT Name,Id FROM class_tbl Group by Name ORDER BY Name ASC";
+                $result = $con->query($qry);
+                $num = $result->num_rows;
+                if ($num > 0) {
+                  echo ' <select required name="class" onchange="classDropdown(this.value)" class="form-control m-1">';
+                  echo '<option value="">--Select Class--</option>';
+                  while ($rows = $result->fetch_assoc()) {
+                    echo '<option ' . (($row['Name'] == $rows['Name']) ? 'selected="selected"' : "") . ' value="' . $rows['Id'] . '" >' . $rows['Name'] . '</option>';
                   }
-                  ?>
-                </div>
-                <!-- <div class="col">
+                  echo '</select>';
+                }
+                ?>
+              </div>
+              <!-- <div class="col">
                   <label class="form-control-label ml-2 p-2">Description <span class="text-danger ml-2">*</span></label>
                   <input type="text" class="form-control" name="Description" value="" required placeholder="Write description">
                 </div> -->
-                <div class="col">
-                  <label class="form-control-label ml-2 p-2">Amount <span class="text-danger ml-2">*</span></label>
-                  <input type="number" class="form-control" name="amount" value="<?php if (isset($row['Id'])) echo $row['Amount']; ?>" required placeholder="Amount">
-                </div>
-
+              <div class="col-sm-6">
+                <label class="form-label-label ml-2 p-2">Amount <span class="text-danger ml-2">*</span></label>
+                <input type="number" class="form-control" name="amount"
+                  value="<?php if (isset($row['Id'])) echo $row['Amount']; ?>" required placeholder="Amount">
               </div>
+
             </div>
             <?php
             if (isset($Id)) {
 
             ?>
-              <button type="submit" name="update" class="btn btn-warning">Update</button>
+            <button type="submit" name="update" class="btn btn-warning">Update</button>
             <?php
             } else {
 
             ?>
-              <button type="submit" name="save" class="btn btn-primary MT-2">Save</button>
+            <button type="submit" name="save" class="btn btn-primary MT-2">Save</button>
             <?php
             }
             ?>
@@ -320,10 +315,10 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
 
   <!-- Page level custom scripts -->
   <script>
-    $(document).ready(function() {
-      $('#dataTable').DataTable(); // ID From dataTable 
-      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-    });
+  $(document).ready(function() {
+    $('#dataTable').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
   </script>
 
 </body>

@@ -145,7 +145,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
         <div class="card-body">
           <form method="post">
             <div class="form-group row mb-3">
-              <div class="col">
+              <div class="col-sm-4">
                 <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
                 <?php
                 $qry = "SELECT DISTINCT Name FROM class_tbl where  Insti_id='$Ins_id' ORDER BY Name ASC";
@@ -161,12 +161,12 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
                 }
                 ?>
               </div>
-              <div class="col">
+              <div class="col-sm-4">
                 <label class="form-control-label ">Create Subject Code<span class="text-danger ml-2">*</span></label>
                 <input type="text" class="form-control form-control-lg" name="Sub_code"
                   value="<?php if (isset($row['Sub_code'])) echo $row['Sub_code']; ?>" placeholder="Enter Subject Code">
               </div>
-              <div class="col">
+              <div class="col-sm-4">
                 <label class="form-control-label ">Create Subject<span class="text-danger ml-2">*</span></label>
                 <input type="text" class="form-control form-control-lg" name="Sub_name"
                   value="<?php if (isset($row['Sub_name'])) echo $row['Sub_name']; ?>" placeholder="Enter Subject Name">

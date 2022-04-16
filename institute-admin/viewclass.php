@@ -21,17 +21,17 @@ $inst_id = $_SESSION['inst_id'];
 <body>
   <div class="d-flex">
     <?php
-        include("institute-sidebar.php");
-        ?>
+    include("institute-sidebar.php");
+    ?>
     <div class="institute-content container">
       <div class="row m-5">
         <div class="card shadow p-3 bg-white " style="border-radius: 20px;">
           <div class="card-body">
             <div class="row">
-              <div class="col-6">
+              <div class="col-sm-6">
                 <h2> All Class</h2>
               </div>
-              <div class="col-6 d-flex justify-content-end">
+              <div class="col-sm-6 d-flex justify-content-end">
                 <form action="total_inst_rpt.php" target="_blank">
                   <input type="submit" value="Print" class="btn btn-success fs-4" />
                 </form>
@@ -39,12 +39,12 @@ $inst_id = $_SESSION['inst_id'];
             </div>
             <!-- <div class="d-flex justify-content-center" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;background-color: white;"> -->
             <?php
-                        // include("admin-sidebar.php");
-                        $q = "select * from Class_tbl where Insti_id='$id' order by Name";
-                        $res = mysqli_query($con, $q) or die("Query Failed");
-                        $nor = mysqli_num_rows($res);
-                        if ($nor > 0) {
-                        ?>
+            // include("admin-sidebar.php");
+            $q = "select * from Class_tbl where Insti_id='$id' order by Name";
+            $res = mysqli_query($con, $q) or die("Query Failed");
+            $nor = mysqli_num_rows($res);
+            if ($nor > 0) {
+            ?>
 
             <div class="table-responsive-md mt-4 table-sm w-100">
 
@@ -63,25 +63,25 @@ $inst_id = $_SESSION['inst_id'];
                 <tbody>
                   <?php
 
-                                    while ($r = mysqli_fetch_array($res)) {
-                                        echo "<tr>";
-                                        echo "<th scope='row'>$r[2]</th>";
-                                        echo "<td>$r[7]</td>"; //name
-                                        echo "<td>$r[4]</td>"; //email
-                                        echo "<td>$r[8]</td>"; //cont
-                                        $sq = mysqli_query($con, "select * from student_tbl where Inst_id='$id' and Class_id='$r[0]'");
-                                        $nor = mysqli_num_rows($sq);
-                                        echo "<td>$nor</td>"; //date
-                                        $sq1 = mysqli_query($con, "select * from subject_tbl where Inst_id='$id' and Class_name='$r[2]'");
-                                        $nor1 = mysqli_num_rows($sq1);
-                                        echo "<td>$nor1</td>"; //date
+                  while ($r = mysqli_fetch_array($res)) {
+                    echo "<tr>";
+                    echo "<th scope='row'>$r[2]</th>";
+                    echo "<td>$r[7]</td>"; //name
+                    echo "<td>$r[4]</td>"; //email
+                    echo "<td>$r[8]</td>"; //cont
+                    $sq = mysqli_query($con, "select * from student_tbl where Inst_id='$id' and Class_id='$r[0]'");
+                    $nor = mysqli_num_rows($sq);
+                    echo "<td>$nor</td>"; //date
+                    $sq1 = mysqli_query($con, "select * from subject_tbl where Inst_id='$id' and Class_name='$r[2]'");
+                    $nor1 = mysqli_num_rows($sq1);
+                    echo "<td>$nor1</td>"; //date
 
-                                    }
-                                    echo "</tr>";
-                                } else {
-                                    echo "<center><h1>No Institute is Found</h1></center>";
-                                }
-                                    ?>
+                  }
+                  echo "</tr>";
+                } else {
+                  echo "<center><h1>No Institute is Found</h1></center>";
+                }
+                  ?>
                 </tbody>
               </table>
             </div>

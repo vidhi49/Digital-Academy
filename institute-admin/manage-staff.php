@@ -121,7 +121,7 @@ $a = 'staff';
             <div class="col">
               <div class="h2 font-weight-bold text-primary">Staff Details</div>
             </div>
-            <div class="col text-right mr-5">
+            <div class="col text-right  mr-5">
               <a class="btn btn-primary" href="stafffilter.php">Filter</a>
             </div>
           </div>

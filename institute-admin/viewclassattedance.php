@@ -70,8 +70,8 @@ $inst_id = $_SESSION['inst_id'];
 <body>
   <div class="d-flex">
     <?php
-        include("institute-sidebar.php");
-        ?>
+    include("institute-sidebar.php");
+    ?>
     <div class="institute-content  text-muted">
       <div class="bg-white container" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
 
@@ -85,30 +85,30 @@ $inst_id = $_SESSION['inst_id'];
               <div class="col-sm-6">
                 <label class="form-control-label ml-2 p-1">Select Class<span class="text-danger ml-2">*</span></label>
                 <?php
-                                $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC ";
-                                $result = $con->query($qry);
-                                $num = $result->num_rows;
-                                if ($num > 0) {
-                                    echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
-                                    echo '<option value="">--Select Class--</option>';
-                                    while ($rows = $result->fetch_assoc()) {
-                                        echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
-                                    }
-                                    echo '</select>';
-                                }
-                                ?>
+                $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC ";
+                $result = $con->query($qry);
+                $num = $result->num_rows;
+                if ($num > 0) {
+                  echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
+                  echo '<option value="">--Select Class--</option>';
+                  while ($rows = $result->fetch_assoc()) {
+                    echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
+                  }
+                  echo '</select>';
+                }
+                ?>
               </div>
               <div class="col-sm-6">
                 <label class="form-control-label ml-2 p-1">Class Section<span class="text-danger ml-2">*</span></label>
                 <?php
 
 
-                                echo ' <select    name="section" id="section"  class="form-control form-control-lg m-1" >';
-                                echo "<option value=''>--Select Section--</option>";
-                                echo "</select>";
+                echo ' <select    name="section" id="section"  class="form-control form-control-lg m-1" >';
+                echo "<option value=''>--Select Section--</option>";
+                echo "</select>";
 
 
-                                ?>
+                ?>
 
               </div>
             </div>
@@ -130,13 +130,13 @@ $inst_id = $_SESSION['inst_id'];
 <?php
 
 if (isset($_POST['view'])) {
-    $class = $_REQUEST['class'];
-    $section = $_REQUEST['section'];
-    $q = "select * from class_tbl where Id='$section'";
-    $res = mysqli_query($con, $q);
-    $result = mysqli_fetch_array($res);
-    $sec = $result['Section'];
-    echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
+  $class = $_REQUEST['class'];
+  $section = $_REQUEST['section'];
+  $q = "select * from class_tbl where Id='$section'";
+  $res = mysqli_query($con, $q);
+  $result = mysqli_fetch_array($res);
+  $sec = $result['Section'];
+  echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
 }
 
 ?>

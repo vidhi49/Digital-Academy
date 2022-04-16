@@ -160,7 +160,7 @@ $indian_states = array(
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class=" institute-content container">
+    <div class=" institute-content">
       <!-- <div class="d-flex justify-content-center float-center align-items-center"> -->
       <form method="post">
         <div class="row">
