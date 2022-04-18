@@ -5,6 +5,7 @@ include('../connect.php');
 $db = new PDO('mysql:host=localhost;dbname=dgskool', 'root', '');
 class myPDF extends FPDF
 {
+    function SetCellMargin($margin) { $this->cMargin = $margin; }
 
     function header()
     {
@@ -19,7 +20,7 @@ class myPDF extends FPDF
     }
     function headerTable()
     {
-        $this->SetFont('Arial', 'B', 14);
+        $this->SetFont('Arial', 'B', 16);
         $this->Cell(276, 5, 'PENDING REQUEST', 0, 0, 'C');
         $this->Ln();
         $this->SetFont('Times', '', 12);
@@ -30,7 +31,7 @@ class myPDF extends FPDF
         $this->Cell(40, 10, 'Certificate', 1, 0, 'C');
         $this->Cell(60, 10, 'Institute', 1, 0, 'C');
         $this->Cell(40, 10, 'Email', 1, 0, 'C');
-        $this->Cell(50, 10, 'Address', 1, 0, 'C');
+        $this->Cell(40, 10, 'Address', 1, 0, 'C');
         $this->Cell(30, 10, 'Contact', 1, 0, 'C');
         $this->Cell(30, 10, 'Date', 1, 0, 'C');
         $this->Cell(30, 10, 'Status', 1, 1, 'C');
@@ -47,21 +48,20 @@ class myPDF extends FPDF
         // while($r=mysqli_fetch_array($res))
         {
             $this->Cell(10, 10, $data->Id, 1, 0, 'C');
-            $this->Cell(40, 10, 'certificate', 1, 0, 'L');
-            // $this->Cell(40,10,$this->Image('../certi_img/'.$data->Certi_img,25,30,25,25),1,0,'L');
-            // $this->Image('../certi_img/'.$data->Certi_img,40,10,25,25);
-            // $this->CellFitSpace(50,10,$data->Name,1,0,'L');
+            $this->Cell(40,10,$this->Image('../certi_img/'.$data->Certi_img,$this->GetX()+15,$this->GetY(),10,10),1,0,'C');
             $this->Cell(60, 10, $data->Name, 1, 0, 'L');
             $this->Cell(40, 10, $data->Email, 1, 0, 'L');
-            $this->Cell(50, 10, $data->Address, 1, 0, 'L');
+            $this->Cell(40, 10, $data->Address, 1, 0, 'L');
             $this->Cell(30, 10, $data->Cno, 1, 0, 'L');
             $this->Cell(30, 10, $data->Date, 1, 0, 'L');
             $this->Cell(30, 10, $data->Status, 1, 0, 'L');
             $this->Ln();
+
         }
     }
 }
 $pdf = new myPDF();
+// $pdf->SetCellMargin(9);
 $pdf->AliasNbPages();
 $pdf->AddPage('L', 'A4', 0);
 $pdf->headerTable();

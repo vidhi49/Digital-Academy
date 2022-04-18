@@ -285,7 +285,7 @@ $insti_name = $abc['Name'];
           <a href="subject-allocation.php" class="nav-link text-light">Allocate Subject</a>
         </li>
         <li class="p-0">
-          <a href="#" class="nav-link text-light">View Subject</a>
+          <a href="viewsubject.php" class="nav-link text-light">View Subject</a>
         </li>
 
       </ul>

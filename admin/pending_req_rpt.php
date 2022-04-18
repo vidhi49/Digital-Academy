@@ -43,7 +43,8 @@
             // while($r=mysqli_fetch_array($res))
             {
                 $this->Cell(10,10,$data->Id,1,0,'C');
-                $this->Cell(40,10,'certificate',1,0,'L');
+            $this->Cell(40, 10, $this->Image('../certi_img/' . $data->Certi_img, $this->GetX() + 15, $this->GetY(), 10, 10), 1, 0, 'C');
+
                 // $this->Cell(40,10,$this->Image('../certi_img/'.$data->Certi_img,25,30,25,25),1,0,'L');
                 // $this->Image('../certi_img/'.$data->Certi_img,40,10,25,25);
                 $this->Cell(60,10,$data->Name,1,0,'L');
