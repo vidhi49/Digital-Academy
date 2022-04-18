@@ -87,6 +87,12 @@ include('../connect.php');
             class="fa fa-bell"></i><span class="ms-2 span">Exam</span>
         </a>
       </li>
+
+      <li class="nav-item"> <a href="subjectMaterial.php" class="nav-link  text-white p-2 m-2">
+          <i class="fa fa-sticky-note"></i><span class="ms-2 span"> Material </span>
+        </a>
+      </li>
+
     </ul>
     <hr>
     <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
