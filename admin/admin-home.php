@@ -108,21 +108,21 @@
 				if ($nor > 0) {
 				?>
 
-					<div class="table-responsive-md table-sm w-100 p-5">
+					<div class="table-responsive-md table-sm w-100 p-5" >
 						<div class="row">
 							<div class="col">
 							<h2> All Request</h2>
 							</div>
 							<div class="col d-flex justify-content-end">
 								<form action="total_req_rpt.php" target="_blank">
-									<input type="submit" value="Print" class="btn btn-success fs-4" />
+									<input type="submit" value="Print" id="print" class="btn btn-success fs-4" />
 								</form>
 
 							</div>
 						</div>
 						
 						<hr><br>
-						<table class="table table-flush table-hover" id="dataTableHover">
+						<table class="table table-flush table-hover" id="dataTableHover" style="border: 10px;">
 							<thead class="thead-light">
 								<tr>
 									<th scope="th-sm">ID</th>
@@ -133,7 +133,7 @@
 									<th scope="th-sm">Certificate</th>
 									<th scope="th-sm">Date</th>
 									<th scope="th-sm">Status</th>
-									<th scope="th-sm">Action</th>
+									<th scope="th-sm" id='link'>Action</th>
 
 								</tr>
 								</tr>
@@ -153,7 +153,7 @@
 						</td>";
 								echo "<td>$r[7]</td>";
 								echo "<td>$r[6]</td>";
-								echo "<td><form method='post'><input type='hidden' name='id' value='$r[0]'>";
+								echo "<td id='link1'><form method='post'><input type='hidden' name='id' value='$r[0]'>";
 								echo "<input type='submit' name='approved' id='approved' value='Approved' class='btn btn-success rounded-lg m-2'> &nbsp;";
 								echo "<input type='submit' value='Rejected' id='rejected' name='rejected' class='btn btn-danger rounded-lg m-2'></form></td>";
 							}
@@ -182,6 +182,22 @@
 			$('.modal').modal('show');
 			$('#popup-img').attr('src', src);
 		});
+// 		$('#print').click(function() {
+//     $('#link').hide();
+//     $('#link1').hide();
+//     $('#link2').hide();
+//     $('#link3').hide();
+//     var printme=document.getElementById('dataTableHover');
+//     var wme = window.open();
+//     wme.document.write('<html><body onload="window.print()">' + printme.outerHTML + '</html>');
+//     wme.document.close();
+//     wme.print();
+//     wme.close();
+//     $('#link').show();
+//     $('#link1').show();
+//     $('#link2').show();
+//     $('#link3').show();
+//   });
 	</script>
 </body>
 <script src="../vendor/jquery/jquery.min.js"></script>

@@ -45,17 +45,18 @@
             while($data=$stmt->fetch(PDO::FETCH_OBJ))
             // while($r=mysqli_fetch_array($res))
             {
-                $this->Cell(10,10,$data->Id,1,0,'C');
-                $this->Cell(40,10,'Logo',1,0,'L');
+                $this->Cell(10,20,$data->Id,1,0,'C');
+                $this->Cell(40, 20, $this->Image('../Institute-logo/' . $data->Logo, $this->GetX() + 10, $this->GetY(), 20, 20), 1, 0, 'C');
+
                 // $this->Cell(40,10,$this->Image('../certi_img/'.$data->Certi_img,25,30,25,25),1,0,'L');
                 // $this->Image('../certi_img/'.$data->Certi_img,40,10,25,25);
-                $this->Cell(70,10,$data->Name,1,0,'L');
-                $this->Cell(40,10,$data->Email,1,0,'L');
-                $this->Cell(40,10,$data->Address.',' .$data->City,1,0,'L');
+                $this->Cell(70,20,$data->Name,1,0,'L');
+                $this->Cell(40,20,$data->Email,1,0,'L');
+                $this->Cell(40,20,$data->Address.',' .$data->City,1,0,'L');
                 // $this->Cell(20,10,$data->City,1,0,'L');
-                $this->Cell(20,10,$data->State,1,0,'L');
-                $this->Cell(20,10,$data->Country,1,0,'L');
-                $this->Cell(30,10,$data->Cno,1,0,'L');
+                $this->Cell(20,20,$data->State,1,0,'L');
+                $this->Cell(20,20,$data->Country,1,0,'L');
+                $this->Cell(30,20,$data->Cno,1,0,'L');
                 // $this->Cell(40,10,$data->Date,1,0,'L');
                 $this->Ln();
            

@@ -17,14 +17,14 @@ $permission = $row[4];
     </div>
     <div class="col d-flex justify-content-end">
       <form action="alladmin_rpt.php" target="_blank">
-        <input type="submit" value="Print" class="btn btn-success fs-4" />
+        <input type="submit" id="print" value="Print" class="btn btn-success fs-4" />
       </form>
 
     </div>
   </div>
 
   <hr>
-  <table class="table table-flush table-hover" id="dataTableHover">
+  <table class="table table-flush table-hover"  id="dataTableHover">
     <thead class="thead-light">
       <tr>
         <th scope="th-sm">ID</th>
@@ -33,8 +33,8 @@ $permission = $row[4];
         <th scope="th-sm">Permission of Adding new Admin</th>
         <?php
         if ($permission == '1') {
-          echo '<th scope="th-sm">Edit</th>
-                      <th scope="th-sm">Delete</th>';
+          echo '<th scope="th-sm" id="link">Edit</th>
+                      <th scope="th-sm" id="link1">Delete</th>';
         }
         ?>
 
@@ -62,9 +62,9 @@ $permission = $row[4];
           }
 
           if ($permission == '1') {
-            echo "<td class='' >
+            echo "<td class='' id='link2' >
                   <a  class='btn btn-info' href='update-admin.php?Id=" . $r['Id'] . "' id='edit'  ></i>Edit</a> </td>";
-            echo "<td class='' ><a  class='btn btn-danger' id='delete' href='#' data-id='" . $r['Id'] . "' ></i>Delete</a>
+            echo "<td class='' id='link3' ><a  class='btn btn-danger' id='delete' href='#' data-id='" . $r['Id'] . "' ></i>Delete</a>
                 
                  ";
           }
@@ -91,6 +91,22 @@ $permission = $row[4];
     $('.modal').modal('show');
     $('#popup-img').attr('src', src);
   });
+  // $('#print').click(function() {
+  //   $('#link').hide();
+  //   $('#link1').hide();
+  //   $('#link2').hide();
+  //   $('#link3').hide();
+  //   var printme=document.getElementById('dataTableHover');
+  //   var wme = window.open();
+  //   wme.document.write(printme.outerHTML);
+  //   wme.document.close();
+  //   wme.print();
+  //   wme.close();
+  //   $('#link').show();
+  //   $('#link1').show();
+  //   $('#link2').show();
+  //   $('#link3').show();
+  // });
 </script>
 
 </body>

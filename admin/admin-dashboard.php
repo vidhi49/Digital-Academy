@@ -154,7 +154,7 @@ $a = 'admindashboard';
                 </div>
             </div>
             <div class="row mx-4 ">
-                <div class="col-md-8 mt-5 mr-5 " style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <div class="col-md-8 mt-5" style="margin-right:50px;border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <center>
                         <h4 class="pt-4">Request of Months</h4>
                     </center>
@@ -270,26 +270,25 @@ $a = 'admindashboard';
 </body>
 <?php
 //chart
-$p = "select * from inquiry_tbl";
+// $p = "select * from inquiry_tbl";
+$p="select (MONTH(Date)), COUNT(1) FROM inquiry_tbl GROUP BY MONTH(Date)";
+// SELECT MAX(DATENAME(MM,DATEOFJOIN)) AS JOININGMONTH, COUNT(1) AS "TOTALEMP. JOIN"
+// FROM NEWJOINEE GROUP BY MONTH(DATEOFJOIN);
 $res = mysqli_query($con, $p);
 $num = mysqli_num_rows($res);
-$all = array();
-$approved = array();
-$rej = array();
-if ($num > 0) {
-    for($i=01;$i<=12;$i++){
-        while ($r = mysqli_fetch_row($res)) {
-            $unixTimestamp = strtotime($r[7]);
-            $d = date('j', $unixTimestamp);
-            // echo $d;
-            if($i!=$d)
-            {
-                // echo $d;
-            }
-        }
+$a=array();
+if($num>0)
+{
+    while($r=mysqli_fetch_array($res))
+    {
+        array_push($a,$r[0]);
     }
+}
+// print_r($a);
+foreach($a as $va)
+{   
     
-} else
+}
 
 
 ?>
@@ -301,7 +300,7 @@ if ($num > 0) {
         labels: labels,
         datasets: [{
                 label: 'Total Request',
-                data: [6, 5, 1, 5, 1, 5, 9, 5, 6, 5, 9, 4],
+                data: [2, 2, 1, 1, 1, 3, 1, 2, 4, 5, 3, 4],
                 backgroundColor: [
                     'rgb(255, 99, 132)',//pink
                     'rgb(255, 159, 64)',//orange
