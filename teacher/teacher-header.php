@@ -31,26 +31,24 @@ $r = mysqli_fetch_array($result);
 </head>
 
 <body>
-  <div class="">
-    <!-- style='box-shadow: black 0px 3px 80px;' -->
-    <div class="row bg-white" style=" height:70px;box-shadow:  10px 10px 20px 0px grey;">
-      <div class="col pt-3">
-        <!-- <img class='logo ms-1' style="border-radius:50%;margin:10px" height="100" width="100" src='../Institute-admin/staff_profile/<?php echo 'Welcome'; ?>'/> -->
-        <h3><span class=" fs-3 px-4 justify-items-center text-dark"
-            id="email"><?php echo 'Welcome,  ' . $r['Name'] . '  !'; ?></span></h3>
-      </div>
-      <div class="col d-flex justify-content-end align-items-center">
-        <div class="d-block">
-
-          <span class="h-25 pe-3  text-dark" id="email"><?php echo $r['Email']; ?></span>
-        </div>
-        <img class='logo ms-1' style="border-radius:10%;margin:10px" height="50" width="50"
-          src='../Institute-admin/staff_profile/<?php echo $r['Profile']; ?>' />
-        <a href="../teacher/teacher-logout.php" class="btn btn-secondary" role="button">logout</a>
-      </div>
+  <!-- style='box-shadow: black 0px 3px 80px;' -->
+  <div class="row bg-navy-blue" style=" height:70px;box-shadow:  10px 10px 20px 0px grey;">
+    <div class="col-sm-6 pt-3">
+      <!-- <img class='logo ms-1' style="border-radius:50%;margin:10px" height="100" width="100" src='../Institute-admin/staff_profile/<?php echo 'Welcome'; ?>'/> -->
+      <h3><span class=" fs-3 px-4 justify-items-center text-dark"
+          id="email"><?php echo 'Welcome,  ' . $r['Name'] . '  !'; ?></span></h3>
     </div>
+    <div class="col-sm-6 d-flex justify-content-end align-items-center">
+      <div class="d-block">
 
+        <span class="h-25 pe-3  text-dark" id="email"><?php echo $r['Email']; ?></span>
+      </div>
+      <img class='logo ms-1' style="border-radius:10%;margin:10px" height="50" width="50"
+        src='../Institute-admin/staff_profile/<?php echo $r['Profile']; ?>' />
+      <a href="../teacher/teacher-logout.php" class="btn btn-secondary" role="button">logout</a>
+    </div>
   </div>
+
 </body>
 
 </html>

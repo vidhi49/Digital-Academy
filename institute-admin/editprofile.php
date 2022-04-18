@@ -165,9 +165,9 @@ $indian_states = array(
           <div class="form-group">
             <div class="row">
               <div class="col-sm-4">
-              <!-- <div class="row upload mb-2 d-flex align-items-center justify-content-center "> -->
+                <!-- <div class="row upload mb-2 d-flex align-items-center justify-content-center "> -->
                 <div class="row p-3 mb-2 d-flex justify-content-center">
-                  <img id="profileimg" class="img h-75 w-75"  src='../Institute-logo/<?php echo $r['Logo']; ?>'
+                  <img id="profileimg" class="img h-75 w-75" src='../Institute-logo/<?php echo $r['Logo']; ?>'
                     style="border:2px solid black;border-radius:10px;" alt="image">
                 </div>
                 <div class="row p-3">
@@ -180,15 +180,15 @@ $indian_states = array(
               <div class="col-sm-8">
                 <div class="row">
                   <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control form-control-lg m-1 mb-4" id="institutename" name="institutename"
-                    value="<?php echo  $r['Name'] ?>" placeholder="First Name/Surname" required>
+                  <input type="text" class="form-control form-control-lg m-1 mb-4" id="institutename"
+                    name="institutename" value="<?php echo  $r['Name'] ?>" placeholder="First Name/Surname" required>
                   <span id="nmsg"></span>
 
                 </div>
                 <div class="row">
                   <label class="form-control-label ml-2 p-1">Email:<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control form-control-lg m-1 mb-4" id="e" value="<?php echo  $r['Email'] ?>"
-                    name="email" placeholder="abc@xyz.com" required>
+                  <input type="text" class="form-control form-control-lg m-1 mb-4" id="e"
+                    value="<?php echo  $r['Email'] ?>" name="email" placeholder="abc@xyz.com" required>
                   <span id="emailmessage"></span>
                 </div>
                 <div class="row">

@@ -126,10 +126,7 @@ $a = 'managestudent';
               <a class="btn btn-primary" href="studentfilter.php">Filter</a>
             </div>
           </div>
-
-
         </div>
-
         <div id="load-table" class="p-3" style='border-radius:0px 0px 10px 10px;background-color: white;'>
 
         </div>
