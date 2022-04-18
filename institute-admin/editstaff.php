@@ -207,13 +207,13 @@ $r = mysqli_fetch_array($res);
               <div class="form-group">
                 <div class="row">
                   <div class="col-sm-4">
-                    <div class="row upload mb-2 d-flex align-items-center justify-content-center ">
+                    <div class="row upload  mt-5 d-flex align-items-center justify-content-center ">
                       <img id="profileimg" class="img w-50 h-75" src='staff_profile/<?php echo $r['Profile']; ?>'
                         style="border:5px solid black;border-radius:10px" alt="image">
                     </div>
                     <div class="row">
                       <div class="col">
-                        <input class="form-control form-control-lg m-1" type="file" id="file"
+                        <input class="form-control form-control-lg m-2 mt-4" type="file" id="file"
                           onchange="Filevalidation()" name="photo">
                         <span id="filemessage"></span>
                       </div>
@@ -221,12 +221,12 @@ $r = mysqli_fetch_array($res);
 
                   </div>
                   <div class="col-sm-8">
-                    <div class="row">
+                    <div class="row m-2">
                       <label class="form-control-label ml-2 p-1">Name:<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control form-control-lg m-1" id="name" name="name"
+                      <input type="text" class="form-control form-control-lg m-1 " id="name" name="name"
                         value="<?php echo  $r['Name'] ?>" placeholder="First Name/Surname" required>
                     </div>
-                    <div class="row">
+                    <div class="row m-2">
                       <label class="form-label ml-2 p-1" for="city"> Gender : <span class="text-danger">*</span></label>
                       <select class="form-control form-control-lg m-1" name="gender" required>
                         <option value="" disabled selected> Choose... </option>
@@ -236,7 +236,7 @@ $r = mysqli_fetch_array($res);
                         <option value="Other" <?php if ($r['Gender'] == 'Other') echo ' selected'; ?>> Other </option>
                       </select>
                     </div>
-                    <div class="row">
+                    <div class="row m-2">
                       <label class="form-label ml-2 p-1">DOB[Date of birth]:<span class="text-danger">*</span></label>
                       <input class="form-control form-control-lg m-1" type="date" id="dob"
                         value="<?php echo  $r['Dob'] ?>" name="dob" required>

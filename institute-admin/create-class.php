@@ -130,7 +130,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
     include("institute-sidebar.php");
     // include("SIDEBAR.php");
     ?>
-    <div class="institute-content container text-muted">
+    <div class="institute-content  text-muted">
       <div class="row">
         <div class="d-flex align-items-center justify-content-between mb-4">
           <h1 class="text-muted">Create Class</h1>

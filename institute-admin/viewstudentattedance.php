@@ -107,7 +107,7 @@ $inst_id = $_SESSION['inst_id'];
     <?php
     include("institute-sidebar.php");
     ?>
-    <div class="institute-content container text-muted">
+    <div class="institute-content  text-muted">
       <div class=" bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
 
         <form method="post" id="form" class="p-4 m-2">
@@ -413,13 +413,13 @@ $inst_id = $_SESSION['inst_id'];
                   <h5 class="p-2">Absent</h5>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="p-2 d-flex">
                   <i class="fa fa-square " style='color:#22a7f0;font-size:30px;'> </i>
                   <h5 class="p-2">Holiday</h5>
                 </div>
 
-              </div>
+              </div> -->
               <div class="row">
                 <div class="p-2 d-flex">
                   <i class="fa fa-square " style='color:#ffff9f;font-size:30px;'> </i>
@@ -432,10 +432,7 @@ $inst_id = $_SESSION['inst_id'];
           </div>
 
           <hr>
-
-      </div>
-      <br>
-      <div class="table-responsive p-3">
+          <div class="table-responsive p-3">
         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
           <thead class="thead-light">
             <tr>
@@ -497,6 +494,9 @@ $inst_id = $_SESSION['inst_id'];
           </tbody>
         </table>
       </div>
+      </div>
+      <br>
+     
       </form>
     </div>
   </div>

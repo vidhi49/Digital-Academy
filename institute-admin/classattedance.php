@@ -99,7 +99,7 @@ $classteacher = $r['Class_teacher'];
     <?php
         include("institute-sidebar.php");
         ?>
-    <div class="institute-content container text-muted">
+    <div class="institute-content text-muted">
       <div class="bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <form method="post" id="form" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
@@ -349,7 +349,7 @@ $classteacher = $r['Class_teacher'];
 
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col d-flex">
                     <div class="p-2 d-flex">
                       <i class="fa fa-square " style='color:#22a7f0;font-size:30px;'> </i>
@@ -357,7 +357,7 @@ $classteacher = $r['Class_teacher'];
                     </div>
 
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col d-flex">
                     <div class="p-2 d-flex">
