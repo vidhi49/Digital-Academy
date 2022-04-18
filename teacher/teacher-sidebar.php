@@ -20,7 +20,7 @@
   $(document).ready(function() {
 
     $('#sidebarCollapse').on('click', function() {
-      $('#sidebar').toggleClass('active');
+      $('#teacher-sidebar').toggleClass('active');
     });
 
   });
@@ -54,40 +54,40 @@ a:focus {
   transition: all 0.3s;
 }
 
-#sidebar {
+#teacher-sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   /* background-color: #041562; */
   color: #fff;
   transition: all 0.3s;
 }
 
-#sidebar .sidebar-header {
+#teacher-sidebar .teacher-sidebar-header {
   padding: 20px;
   /* background: #6d7fcc; */
 }
 
-#sidebar ul.components {
+#teacher-sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul p {
+#teacher-sidebar ul p {
   color: #fff;
   padding: 10px;
 }
 
-#sidebar ul li a {
+#teacher-sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
   display: block;
 }
 
-#sidebar ul li a:hover {
+#teacher-sidebar ul li a:hover {
   color: navy;
   background: #fff;
 }
 
-#sidebar ul li.active>a,
+#teacher-sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: navy;
@@ -105,7 +105,7 @@ ul ul a {
   align-items: stretch;
 }
 
-#sidebar {
+#teacher-sidebar {
   /* width: 250px; */
   /* max-width: 250px; */
   /* min-height: 100vh; */
@@ -125,13 +125,13 @@ a[data-toggle="collapse"] {
 }
 
 /* 
-#sidebar.active {
+#teacher-sidebar.active {
   margin-left: -250px;
 } */
 
 @media (max-width: 768px) {
   /* 
-  #sidebar {
+  #teacher-sidebar {
     margin-left: -250px;
   } */
 
@@ -147,7 +147,7 @@ a[data-toggle="collapse"] {
     padding-left: 2px !important;
   }
 
-  #sidebar.active {
+  #teacher-sidebar.active {
     margin-left: 0;
   }
 }
@@ -156,8 +156,8 @@ a[data-toggle="collapse"] {
 <body>
   <div class="wrapper" style="background-color: #041562;">
     <!-- Sidebar -->
-    <nav id="sidebar">
-      <div class="sidebar-header">
+    <nav id="teacher-sidebar">
+      <div class="teacher-sidebar-header">
         <!-- <h3>Bootstrap Sidebar</h3> -->
         <nav class="navbar navbar-expand-sm navbar-light float-right">
           <!-- <div class="container-fluid">
@@ -173,22 +173,34 @@ a[data-toggle="collapse"] {
         <!-- <p>Dummy Heading</p> -->
 
         <li class="m-2">
-          <a href="#"><i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
+          <a href="#">
+            <i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
         </li>
 
         <li class="m-2">
-          <a href="question-bank.php" data-toggle="tooltip" title="Question Bank"><i
-              class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
+          <a href="question-bank.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
               Bank</span></a>
         </li>
 
         <li class="m-2">
-          <a href="viewstudent.php"><i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
+          <a href="material.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name"> Upload Material </span></a>
+        </li>
+
+        <li class="m-2">
+          <a href="viewstudent.php">
+            <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
+        </li>
+
+        <li class="m-2">
+          <a href="viewclasses.php">
+            <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Class</span></a>
         </li>
 
         <li class="active m-2">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-              class="far fa-file-alt me-2 fs-5"></i> <span class="li-name">Exam </span></a>
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="far fa-file-alt me-2 fs-5"></i> <span class="li-name">Exam </span></a>
           <ul <?php
               if ($page == 'exam') {
                 echo 'class=" list-unstyled"';
