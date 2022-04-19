@@ -154,7 +154,7 @@ a[data-toggle="collapse"] {
 </style>
 
 <body>
-  <div class="wrapper" style="background-color: #041562;">
+  <div class="wrapper" style="background-color: #041562;box-shadow: inset 0 10px 35px -7px black;">
     <!-- Sidebar -->
     <nav id="teacher-sidebar">
       <div class="teacher-sidebar-header">
@@ -181,6 +181,10 @@ a[data-toggle="collapse"] {
           <a href="question-bank.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
               Bank</span></a>
+        </li>
+        <li class="m-2">
+          <a href="takeattedance.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name">Attendance </span></a>
         </li>
 
         <li class="m-2">

@@ -4,6 +4,7 @@ include('../teacher/teacher-header.php');
 $inst_id = $_SESSION['Inst_id'];
 $id = $_SESSION['Id'];
 $cid = $_GET['cid'];
+$page="";
 ?>
 <style>
 @media (max-width: 500px) {
@@ -29,7 +30,7 @@ $cid = $_GET['cid'];
 
         ?>
         <div class="col-sm-4">
-          <?php echo "<a href='materialList.php?cid=" . $cid . "&sid=" . $r[7] . "'>"; ?>
+          <?php echo "<a href='materialList.php?cid=" . $cid . "&sid=" . $r[5] . "'>"; ?>
           <div class="card shadow bg-white" style="border-radius: 20px;" onclick="showsubject();">
             <div class="card-body p-5">
               <div class="row">
