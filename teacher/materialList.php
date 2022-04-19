@@ -8,46 +8,46 @@ $sid = $_GET['sid'];
 $page = "";
 ?>
 <script>
-  $(document).ready(function() {
-    $("#uploadMaterial").click(function() {
-      if ($('#materialmessage').text() != "") {
-        alert($('#materialmessage').text());
-        $("#materialfile").focus();
-        return false;
-
-      }
-    });
-  });
-  validationMaterial = () => {
-    const fi = document.getElementById('materialfile');
-    var filePath = fi.value;
-    var allowedExtensions =
-      /(\.pdf)$/i;
-    if (!allowedExtensions.exec(filePath)) {
-      // alert('Invalid file type');
-      $("#materialmessage").html('File Must be in Pdf Format').css('color', 'red');
-      // fi.value = '';
+$(document).ready(function() {
+  $("#uploadMaterial").click(function() {
+    if ($('#materialmessage').text() != "") {
+      alert($('#materialmessage').text());
+      $("#materialfile").focus();
       return false;
-    } else {
-      $("#materialmessage").html('');
-      // if (fi.files.length > 0) {
-      //   for (const i = 0; i <= fi.files.length - 1; i++) {
 
-      //     const fsize = fi.files.item(i).size;
-      //     const file = Math.round((fsize / 1024));
-      //     if (file > 200) {
-      //       $("#materialmessage").html('File Must be less then 200kb').css('color', 'red');
-      //       return false;
-      //     } else {
-
-      //       $("#materialmessage").html('');
-
-      //       return false;
-      //     }
-      //   }
-      // }
     }
+  });
+});
+validationMaterial = () => {
+  const fi = document.getElementById('materialfile');
+  var filePath = fi.value;
+  var allowedExtensions =
+    /(\.pdf)$/i;
+  if (!allowedExtensions.exec(filePath)) {
+    // alert('Invalid file type');
+    $("#materialmessage").html('File Must be in Pdf Format').css('color', 'red');
+    // fi.value = '';
+    return false;
+  } else {
+    $("#materialmessage").html('');
+    // if (fi.files.length > 0) {
+    //   for (const i = 0; i <= fi.files.length - 1; i++) {
+
+    //     const fsize = fi.files.item(i).size;
+    //     const file = Math.round((fsize / 1024));
+    //     if (file > 200) {
+    //       $("#materialmessage").html('File Must be less then 200kb').css('color', 'red');
+    //       return false;
+    //     } else {
+
+    //       $("#materialmessage").html('');
+
+    //       return false;
+    //     }
+    //   }
+    // }
   }
+}
 </script>
 
 <body>
@@ -61,7 +61,8 @@ $page = "";
           </div>
           <div class="row">
             <div class="col-sm-6">
-              <input type='file' id="materialfile" required name="materialfile" onchange="validationMaterial()" class="form-control form-control-lg " />
+              <input type='file' id="materialfile" required name="materialfile" onchange="validationMaterial()"
+                class="form-control form-control-lg " />
               <span id="materialmessage"></span>
 
               <!-- <div class="input-group">
@@ -75,26 +76,25 @@ $page = "";
               </div> -->
             </div>
             <div class="col-sm-6">
-              <input type='submit' class="btn btn-lg bg-navy-blue text-white" value="Upload" id="uploadMaterial" name="uploadMaterial">
+              <input type='submit' class="btn btn-lg bg-navy-blue text-white" value="Upload" id="uploadMaterial"
+                name="uploadMaterial">
             </div>
           </div>
         </form>
       </div>
       <div class="row  m-5">
-      <?php
-                $q="select * from upload_tbl where Inst_id='$inst_id' and Class_id='$cid' and Subject_id='$sid'";
-                $res=mysqli_query($con,$q);
-                $num=mysqli_fetch_row($res);
-                if($num>0)
-                {
-                  while($row=mysqli_fetch_array($res))
-                  {
-                      $x= $inst_id . $cid . $sid . $row[0];
-                      $len=strlen($x);
-                      $name=rtrim($row[1], $x);
-                      exec("convert $row[1] sample.jpeg");
-                      
-                      echo '<div class="col-sm-4 m-2">
+        <?php
+        $q = "select * from upload_tbl where Inst_id='$inst_id' and Class_id='$cid' and Subject_id='$sid'";
+        $res = mysqli_query($con, $q);
+        $num = mysqli_fetch_row($res);
+        if ($num > 0) {
+          while ($row = mysqli_fetch_array($res)) {
+            // $x= $inst_id . $cid . $sid . $row[0];
+            // $len=strlen($x);
+            // $name=rtrim($row[1], $x);
+            // exec("convert $row[1] sample.jpeg");
+
+            echo '<div class="col-sm-4 m-2">
                       <div class="card shadow bg-white p-2" style="border-radius: 20px;" onclick="showsubject();">
                         <div class="card-body ">
                           <div class="row">
@@ -109,18 +109,16 @@ $page = "";
                         </div>
                         <div class="card-footer fs-3">
                         <i class="fa fa-file-pdf  text-danger" aria-hidden="true"></i>
-                        '.$name.'
+                        ' . $row[1] . '
                         </div>
                       </div>
                     </div>';
-                  }
-                }
-                else
-                {
-                  echo "no records";
-                }
-              ?>
-        
+          }
+        } else {
+          echo "no records";
+        }
+        ?>
+
       </div>
     </div>
     <?php
@@ -159,7 +157,6 @@ $page = "";
           allowOutsideClick: false
 
       })</script>";
-
     }
     ?>
 
