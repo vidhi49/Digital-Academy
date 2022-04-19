@@ -53,11 +53,11 @@ $a = 'admindashboard';
 
                                         <div class="col ">
                                             <div class="div">
-                                            <?php
-                                            $q=mysqli_query($con,"select * from institute_tbl ");
-                                            $num=mysqli_num_rows($q);
-                                            ?>
-                                            <h3 class="pt-3"><?php echo $num?></h3>
+                                                <?php
+                                                $q = mysqli_query($con, "select * from institute_tbl ");
+                                                $num = mysqli_num_rows($q);
+                                                ?>
+                                                <h3 class="pt-3"><?php echo $num ?></h3>
                                                 <p class="mb-2 fs-3">Total Institute</p>
                                             </div>
 
@@ -77,11 +77,11 @@ $a = 'admindashboard';
 
                                         <div class="col ">
                                             <div class="div">
-                                            <?php
-                                            $q=mysqli_query($con,"select * from inquiry_tbl where status='pending' ");
-                                            $num=mysqli_num_rows($q);
-                                            ?>
-                                            <h3 class="pt-3"><?php echo $num?></h3>
+                                                <?php
+                                                $q = mysqli_query($con, "select * from inquiry_tbl where status='pending' ");
+                                                $num = mysqli_num_rows($q);
+                                                ?>
+                                                <h3 class="pt-3"><?php echo $num ?></h3>
                                                 <p class="mb-2 fs-3">Pending Request</p>
                                             </div>
 
@@ -106,11 +106,11 @@ $a = 'admindashboard';
                                         <div class="col ">
                                             <!-- <div class="div"> -->
                                             <?php
-                                            $q=mysqli_query($con,"select * from inquiry_tbl where status='approved' ");
-                                            $num=mysqli_num_rows($q);
+                                            $q = mysqli_query($con, "select * from inquiry_tbl where status='approved' ");
+                                            $num = mysqli_num_rows($q);
                                             ?>
-                                            <h3 class="pt-3"><?php echo $num?></h3>
-                                                <p class="mb-2 fs-3">Approved Request</p>
+                                            <h3 class="pt-3"><?php echo $num ?></h3>
+                                            <p class="mb-2 fs-3">Approved Request</p>
                                             <!-- </div> -->
 
                                         </div>
@@ -130,11 +130,11 @@ $a = 'admindashboard';
 
                                         <div class="col ">
                                             <div class="div">
-                                            <?php
-                                            $q=mysqli_query($con,"select * from inquiry_tbl where status='rejected' ");
-                                            $num=mysqli_num_rows($q);
-                                            ?>
-                                            <h3 class="pt-3"><?php echo $num?></h3>
+                                                <?php
+                                                $q = mysqli_query($con, "select * from inquiry_tbl where status='rejected' ");
+                                                $num = mysqli_num_rows($q);
+                                                ?>
+                                                <h3 class="pt-3"><?php echo $num ?></h3>
                                                 <p class="mb-2 fs-3">Rejected Request</p>
                                             </div>
 
@@ -168,7 +168,7 @@ $a = 'admindashboard';
                     <h3 class="m-3 text-center">Total Admin</h3>
                     <hr>
                     <div>
-                        <table class="table table-flush table-hover responsive " >
+                        <table class="table table-flush table-hover responsive ">
                             <thead class="thead-light">
                                 <th>No.</th>
                                 <th>Photo</th>
@@ -271,24 +271,65 @@ $a = 'admindashboard';
 <?php
 //chart
 // $p = "select * from inquiry_tbl";
-$p="select (MONTH(Date)), COUNT(1) FROM inquiry_tbl GROUP BY MONTH(Date)";
+$p = "select (MONTH(Date)), COUNT(1) FROM inquiry_tbl GROUP BY MONTH(Date) HAVING COUNT(1)>0";
 // SELECT MAX(DATENAME(MM,DATEOFJOIN)) AS JOININGMONTH, COUNT(1) AS "TOTALEMP. JOIN"
 // FROM NEWJOINEE GROUP BY MONTH(DATEOFJOIN);
 $res = mysqli_query($con, $p);
 $num = mysqli_num_rows($res);
-$a=array();
-if($num>0)
-{
-    while($r=mysqli_fetch_array($res))
-    {
-        array_push($a,$r[0]);
+$a = array();
+$c = array();
+if ($num > 0) {
+    while ($r = mysqli_fetch_array($res)) {
+        array_push($a, $r[0]);
+        array_push($c, $r[1]);
     }
 }
 // print_r($a);
-foreach($a as $va)
-{   
-    
+// print_r($c);
+$b = array(0,0,0,0,0,0,0,0,0,0,0,0);
+foreach ($a as $va) {
+    $b[$va]=$c['1'];
+    // echo $c[$va];
 }
+print_r($b);
+
+
+
+// str_replace()
+// foreach ($a as $va) {
+//     for ($i = 0; $i <= 11; $i++) {
+//         echo $i==$va;
+//         if ($i == $va) {
+//             // array_push($b, [$i=>$va] );
+//             echo "hiiii";
+//             // array_push($b, $va);
+//              break;
+//         } else {
+//             echo "Hello";
+//             // array_push($b, '0');
+//             // continue 1;
+//             break;
+//         }
+//         // break;
+
+//     }
+// }
+// print_r($b);
+
+// foreach ($a as $va) {
+//     for ($i = 1; $i <= 12; $i++) {
+
+//         if ($va == $i) {
+//             echo $va;
+//             // continue;
+//             // continue;
+//         } else {
+//             echo "0";
+//             // break;
+//             // continue;
+//         }
+//     }
+// }
 
 
 ?>
@@ -302,17 +343,17 @@ foreach($a as $va)
                 label: 'Total Request',
                 data: [2, 2, 1, 1, 1, 3, 1, 2, 4, 5, 3, 4],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',//pink
-                    'rgb(255, 159, 64)',//orange
-                    'rgb(255, 205, 86)',//yellow
-                    'rgb(75, 192, 192)',//info
-                    'rgb(54, 162, 235)',//blue
-                    'rgb(153, 102, 255)',//vio
-                    'rgb(201, 203, 207)',//grey
-                    'rgb(255, 99, 132)',//pink
-                    'rgb(255, 159, 64)',//orange
-                    'rgb(255, 205, 86)',//yellow
-                    'rgb(75, 192, 192)',//info
+                    'rgb(255, 99, 132)', //pink
+                    'rgb(255, 159, 64)', //orange
+                    'rgb(255, 205, 86)', //yellow
+                    'rgb(75, 192, 192)', //info
+                    'rgb(54, 162, 235)', //blue
+                    'rgb(153, 102, 255)', //vio
+                    'rgb(201, 203, 207)', //grey
+                    'rgb(255, 99, 132)', //pink
+                    'rgb(255, 159, 64)', //orange
+                    'rgb(255, 205, 86)', //yellow
+                    'rgb(75, 192, 192)', //info
                     // 'rgb(54, 162, 235)',//blue
                     // 'rgb(153, 102, 255)',//vio
                     // 'rgb(201, 203, 207)',//grey
@@ -331,17 +372,17 @@ foreach($a as $va)
 
                 ],
                 borderColor: [
-                    'rgb(255, 99, 132)',//pink
-                    'rgb(255, 159, 64)',//orange
-                    'rgb(255, 205, 86)',//yellow
-                    'rgb(75, 192, 192)',//info
-                    'rgb(54, 162, 235)',//blue
-                    'rgb(153, 102, 255)',//vio
-                    'rgb(201, 203, 207)',//grey
-                    'rgb(255, 99, 132)',//pink
-                    'rgb(255, 159, 64)',//orange
-                    'rgb(255, 205, 86)',//yellow
-                    'rgb(75, 192, 192)',//info
+                    'rgb(255, 99, 132)', //pink
+                    'rgb(255, 159, 64)', //orange
+                    'rgb(255, 205, 86)', //yellow
+                    'rgb(75, 192, 192)', //info
+                    'rgb(54, 162, 235)', //blue
+                    'rgb(153, 102, 255)', //vio
+                    'rgb(201, 203, 207)', //grey
+                    'rgb(255, 99, 132)', //pink
+                    'rgb(255, 159, 64)', //orange
+                    'rgb(255, 205, 86)', //yellow
+                    'rgb(75, 192, 192)', //info
                     // 'rgb(255, 99, 132)',
                     // 'rgb(255, 99, 132)',
                     // 'rgb(255, 99, 132)',
