@@ -6,21 +6,6 @@ $inst_id = $_SESSION['Inst_id'];
 $page = "exam";
 ?>
 
-<?php
-
-if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delete") {
-  $queId = $_GET['QueId'];
-  // echo $Id;
-  $query = "delete from question_tbl where Id='$queId'and Inst_Id='$inst_id'";
-  // echo $query;
-  $res = mysqli_query($con, $query);
-  if ($res) {
-  } else {
-
-    $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
-  }
-}
-?>
 
 <head>
   <script src="html2pdf.bundle.min.js"></script>
@@ -211,7 +196,7 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
                     // echo json_encode($options);
                     echo "<td>
                     <a href='?action=delete&QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' >
-                    <i class='fa fa-trash mr-2'></i></a>
+                    <i class='fa fa-trash mr-2 text-primary'></i></a>
                     <a  href='?QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' data-dismiss='modal' data-id='$r[0]' question='$r[1]' data-options='$encodedOpt'
               data-toggle='modal' data-target='#editQuestion' >
               <i class='fa fa-edit text-primary'></i></a>
@@ -474,5 +459,36 @@ if (isset($_POST['editQue'])) {
 
 ?>
 
+
+<?php
+
+if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delete") {
+  $queId = $_GET['QueId'];
+  $sec = $_GET['section'];
+  $class = $_GET['class'];
+  $sub = $_GET['subject'];
+  $submit = $_GET['submit'];
+  // echo $Id;
+  $query = "delete from question_tbl where Id='$queId'and Inst_Id='$inst_id'";
+  // echo $query;
+  $res = mysqli_query($con, $query);
+  $q1 = "delete from answer_tbl where Question_Id='$queId' and Inst_Id='$inst_id'";
+  $res2 = mysqli_query($con, $q1);
+  if ($res) {
+    // $yourURL = 'http://localhost/dgskool/teacher/question-bank.php?class=' . $class . '&section=' . $sec . '&subject=' . $sub . '&submit=submit';
+    // /dgskool/teacher/question-bank.php?action=delete&QueId=9§ion=A&class=1st&subject=1&submit=Show%20Question
+    // http://localhost/dgskool/teacher/question-bank.php?class=1st&section=1&subject=1&submit=Show+Question
+    // echo $yourURL;
+    // echo ("<script>window.location.href='$yourURL'</script>");
+  } else {
+
+    $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
+  }
+  // $yourURL = $_SERVER['REQUEST_URI'];
+  // // echo $yourURL;
+  // $yourURL = "question-bank.php?class=1st&section=A&subject=5&submit=Show+Question";
+  // echo ("<script>location.href='$yourURL'</script>");
+}
+?>
 
 </html>
