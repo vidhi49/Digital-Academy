@@ -99,7 +99,7 @@ $(document).ready(function () {
 		}
 
 		if (e_Reg.test(email) == false) {
-			$('#emessage').html('Email Must be in abc@xyz Format').css('color', 'red');
+			$('#emessage').html('Email  be in abc@xyz Format').css('color', 'red');
 		}
 		else {
 			$.ajax({

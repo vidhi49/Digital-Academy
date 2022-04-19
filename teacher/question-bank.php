@@ -28,7 +28,7 @@ $page = "exam";
   <script>
   function sectionDropdown(str) {
     if (str == "") {
-      document.getElementById("section").innerHTML = "";
+      document.getElementById("sec").innerHTML = "";
       return;
     } else {
       if (window.XMLHttpRequest) {
@@ -40,7 +40,7 @@ $page = "exam";
       }
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("section").innerHTML = this.responseText;
+          document.getElementById("sec").innerHTML = this.responseText;
         }
       };
       xmlhttp.open("GET", "ajaxClass.php?Id=" + str, true);
@@ -78,7 +78,7 @@ $page = "exam";
             </div>
             <div class="col-md-3 col-xs-3">
               <div class="form-group d-flex justify-content-center">
-                <select required name="section" id='section' class="form-select  w-100" required>
+                <select required name="sec" id='sec' class="form-select  w-100" required>
                   <option value="">--Select Section--</option>
                 </select>
               </div>
@@ -111,7 +111,7 @@ $page = "exam";
           // echo $classId;
           $SubjectId = $_GET['subject'];
           // echo $SubjectId;
-          $section = $_GET['section'];
+          $section = $_GET['sec'];
 
           //----------------subject name----------
           $subName = "select * from subject_tbl where Id='$SubjectId'";
@@ -195,9 +195,9 @@ $page = "exam";
                     $encodedOpt = json_encode($options);
                     // echo json_encode($options);
                     echo "<td>
-                    <a href='?action=delete&QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Que' >
+                    <a href='?action=delete&QueId=" . $r[0] . "&sec=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' >
                     <i class='fa fa-trash mr-2 text-primary'></i></a>
-                    <a  href='?QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Ques' data-dismiss='modal' data-id='$r[0]' question='$r[1]' data-options='$encodedOpt'
+                    <a  href='?QueId=" . $r[0] . "&sec=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' data-dismiss='modal' data-id='$r[0]' question='$r[1]' data-options='$encodedOpt'
               data-toggle='modal' data-target='#editQuestion' >
               <i class='fa fa-edit text-primary'></i></a>
               </td>";
@@ -273,7 +273,7 @@ $page = "exam";
       </div>
     </div>
   </div>
-  <?php include("../guest/footer.php"); ?>
+  <!-- <?php include("../guest/footer.php"); ?> -->
 
 </body>
 
@@ -459,36 +459,40 @@ if (isset($_POST['editQue'])) {
 
 ?>
 
-
 <?php
 
-// if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delete") {
-//   $queId = $_GET['QueId'];
-//   $sec = $_GET['section'];
-//   $class = $_GET['class'];
-//   $sub = $_GET['subject'];
-//   $submit = $_GET['submit'];
-//   // echo $Id;
-//   $query = "delete from question_tbl where Id='$queId'and Inst_Id='$inst_id'";
-//   // echo $query;
-//   $res = mysqli_query($con, $query);
-//   $q1 = "delete from answer_tbl where Question_Id='$queId' and Inst_Id='$inst_id'";
-//   $res2 = mysqli_query($con, $q1);
-//   if ($res) {
-//     // $yourURL = 'http://localhost/dgskool/teacher/question-bank.php?class=' . $class . '&section=' . $sec . '&subject=' . $sub . '&submit=submit';
-//     // /dgskool/teacher/question-bank.php?action=delete&QueId=9§ion=A&class=1st&subject=1&submit=Show%20Question
-//     // http://localhost/dgskool/teacher/question-bank.php?class=1st&section=1&subject=1&submit=Show+Question
-//     // echo $yourURL;
-//     // echo ("<script>window.location.href='$yourURL'</script>");
-//   } else {
+if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delete") {
+  $queId = $_GET['QueId'];
+  $sec = $_GET['sec'];
+  $class = $_GET['class'];
+  $sub = $_GET['subject'];
+  echo $sec;
+  echo $sub;
+  $submit = $_GET['submit'];
+  // echo $Id;
+  $query = "delete from question_tbl where Id='$queId'and Inst_Id='$inst_id'";
+  // echo $query;
+  $res = mysqli_query($con, $query);
+  $q1 = "delete from answer_tbl where Question_Id='$queId' and Inst_Id='$inst_id'";
+  $res2 = mysqli_query($con, $q1);
+  if ($res) {
+    // $yourURL = 'http://localhost/dgskool/teacher/question-bank.php?class=' . $class . '&section=' . $sec . '&subject=' . $sub . '&submit=submit';
+    // /dgskool/teacher/question-bank.php?action=delete&QueId=9§ion=A&class=1st&subject=1&submit=Show%20Question
+    // http://localhost/dgskool/teacher/question-bank.php?class=1st&section=1&subject=1&submit=Show+Question
+    // echo $yourURL;
+    // echo ("<script>window.location.href='$yourURL'</script>");
+  } else {
 
-//     $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
-//   }
-//   // $yourURL = $_SERVER['REQUEST_URI'];
-//   // // echo $yourURL;
-//   // $yourURL = "question-bank.php?class=1st&section=A&subject=5&submit=Show+Question";
-//   // echo ("<script>location.href='$yourURL'</script>");
-// }
+    $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!" . mysqli_error($con) . "</div>";
+  }
+  $query = "select Id from class_tbl where Name='$class' and Section='$sec'";
+  $result = mysqli_query($con, $query);
+  $row = mysqli_fetch_array($result);
+  // $yourURL = $_SERVER['REQUEST_URI'];
+  // echo $yourURL;
+  $yourURL = "question-bank.php?class=$class&sec=$row[0]&subject=$sub&submit=Show+Question";
+  echo ("<script>location.href='$yourURL'</script>");
+}
 
 ?>
 

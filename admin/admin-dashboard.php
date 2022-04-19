@@ -281,55 +281,19 @@ $c = array();
 if ($num > 0) {
     while ($r = mysqli_fetch_array($res)) {
         array_push($a, $r[0]);
-        array_push($c, $r[1]);
+        // array_push($c, $r[1]);
+        $c[$r[0]]=$r[1];
     }
 }
 // print_r($a);
 // print_r($c);
 $b = array(0,0,0,0,0,0,0,0,0,0,0,0);
 foreach ($a as $va) {
-    $b[$va]=$c['1'];
+    $b[$va-1]=$c[$va];
     // echo $c[$va];
 }
-print_r($b);
-
-
-
-// str_replace()
-// foreach ($a as $va) {
-//     for ($i = 0; $i <= 11; $i++) {
-//         echo $i==$va;
-//         if ($i == $va) {
-//             // array_push($b, [$i=>$va] );
-//             echo "hiiii";
-//             // array_push($b, $va);
-//              break;
-//         } else {
-//             echo "Hello";
-//             // array_push($b, '0');
-//             // continue 1;
-//             break;
-//         }
-//         // break;
-
-//     }
-// }
 // print_r($b);
-
-// foreach ($a as $va) {
-//     for ($i = 1; $i <= 12; $i++) {
-
-//         if ($va == $i) {
-//             echo $va;
-//             // continue;
-//             // continue;
-//         } else {
-//             echo "0";
-//             // break;
-//             // continue;
-//         }
-//     }
-// }
+echo "<span id='req' style='display:none' class='fs-1'>[".implode("",$b)."]</span>";
 
 
 ?>
@@ -341,7 +305,8 @@ print_r($b);
         labels: labels,
         datasets: [{
                 label: 'Total Request',
-                data: [2, 2, 1, 1, 1, 3, 1, 2, 4, 5, 3, 4],
+                data:$('#req').text(),
+                // data: [0, 0, 1, 1, 1, 3, 1, 2, 4, 5, 3, 4],
                 backgroundColor: [
                     'rgb(255, 99, 132)', //pink
                     'rgb(255, 159, 64)', //orange
