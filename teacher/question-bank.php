@@ -195,9 +195,9 @@ $page = "exam";
                     $encodedOpt = json_encode($options);
                     // echo json_encode($options);
                     echo "<td>
-                    <a href='?action=delete&QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' >
+                    <a href='?action=delete&QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Que' >
                     <i class='fa fa-trash mr-2 text-primary'></i></a>
-                    <a  href='?QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Question' data-dismiss='modal' data-id='$r[0]' question='$r[1]' data-options='$encodedOpt'
+                    <a  href='?QueId=" . $r[0] . "&section=" . $r[3] . "&class=" . $className . "&subject=" . $SubjectId . "&submit=Show Ques' data-dismiss='modal' data-id='$r[0]' question='$r[1]' data-options='$encodedOpt'
               data-toggle='modal' data-target='#editQuestion' >
               <i class='fa fa-edit text-primary'></i></a>
               </td>";

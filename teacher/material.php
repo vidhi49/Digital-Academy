@@ -3,7 +3,7 @@ include('../connect.php');
 include('../teacher/teacher-header.php');
 $inst_id = $_SESSION['Inst_id'];
 $id = $_SESSION['Id'];
-$page="";
+$page = "";
 ?>
 <style>
 @media (max-width: 500px) {

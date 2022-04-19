@@ -89,11 +89,9 @@ validationMaterial = () => {
         $num = mysqli_fetch_row($res);
         if ($num > 0) {
           while ($row = mysqli_fetch_array($res)) {
-            // $x= $inst_id . $cid . $sid . $row[0];
-            // $len=strlen($x);
-            // $name=rtrim($row[1], $x);
-            // exec("convert $row[1] sample.jpeg");
-
+            $x = $inst_id . $cid . $sid . $row[0];
+            $len = strlen($x);
+            $name = substr($row[1], $len);
             echo '<div class="col-sm-4 m-2">
                       <div class="card shadow bg-white p-2" style="border-radius: 20px;" onclick="showsubject();">
                         <div class="card-body ">
@@ -109,7 +107,7 @@ validationMaterial = () => {
                         </div>
                         <div class="card-footer fs-3">
                         <i class="fa fa-file-pdf  text-danger" aria-hidden="true"></i>
-                        ' . $row[1] . '
+                        ' . $name . '
                         </div>
                       </div>
                     </div>';
@@ -128,7 +126,7 @@ validationMaterial = () => {
       $floc = $_FILES['materialfile']['tmp_name'];
       $fileExtension = explode('.', $f);
       $fileExtension = strtolower(end($fileExtension));
-      $newf = $inst_id . $cid . $sid;
+      $newf = $inst_id . $cid . $sid . $f;
 
       $q = "insert into upload_tbl values(null,'$newf','$inst_id','$cid','$sid')";
       $res = mysqli_query($con, $q);
@@ -136,7 +134,7 @@ validationMaterial = () => {
       // echo $q1;
       $res1 = mysqli_query($con, $q1);
       $row = mysqli_fetch_array($res1);
-      $newf .= $row[0];
+      $newf = $row[0] . $newf;
       // $newf .= "." . $fileExtension;
       $q2 = "update upload_tbl set FileName='$newf' where Id='$row[0]'";
       // echo $q2;

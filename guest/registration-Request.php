@@ -143,7 +143,7 @@ if (isset($_POST['submit'])) {
     move_uploaded_file($floc, "../certi_img/" . $certi_img);
     require 'email.php';
     echo "<script> alert('Thank You for Registration');</script>";
-    echo "<script>window.location.href='login.php';</script>";
+    echo "<script>window.location.href='home.php';</script>";
   } else {
     die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
   }
