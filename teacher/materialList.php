@@ -48,6 +48,8 @@ validationMaterial = () => {
     // }
   }
 }
+
+
 </script>
 
 <body>
@@ -86,19 +88,22 @@ validationMaterial = () => {
         <?php
         $q = "select * from upload_tbl where Inst_id='$inst_id' and Class_id='$cid' and Subject_id='$sid'";
         $res = mysqli_query($con, $q);
-        $num = mysqli_fetch_row($res);
+        $num = mysqli_num_rows($res);
         if ($num > 0) {
           while ($row = mysqli_fetch_array($res)) {
             $x = $inst_id . $cid . $sid . $row[0];
             $len = strlen($x);
             $name = substr($row[1], $len);
+  
             echo '<div class="col-sm-4 m-2">
-                      <div class="card shadow bg-white p-2" style="border-radius: 20px;" onclick="showsubject();">
+            <a href="material_upload/'.$row[1].'" target="_blank" >
+                      <div class="card shadow bg-white p-2 text-black" style="border-radius: 20px;"  >
+                     
                         <div class="card-body ">
                           <div class="row">
-                            <div class="col-6">
+                            <div class="col-6" >
                               <h2 class="text-black font-w700">
-                                <img src="material_upload/1225.pdf">
+                                
                                 
                               </h2>
                             </div>
@@ -106,10 +111,11 @@ validationMaterial = () => {
                           </div>
                         </div>
                         <div class="card-footer fs-3">
-                        <i class="fa fa-file-pdf  text-danger" aria-hidden="true"></i>
+                         <i class="fa fa-file-pdf  text-danger" aria-hidden="true"></i>
                         ' . $name . '
                         </div>
                       </div>
+                      </a>
                     </div>';
           }
         } else {
@@ -147,10 +153,8 @@ validationMaterial = () => {
         type: 'warning',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK',
-        preConfirm: function() {
-
-           
-
+        preConfirm: function() {         
+          window.location = (\"materialList.php?cid=$cid&sid=$sid\")
           },
           allowOutsideClick: false
 

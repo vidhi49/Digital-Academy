@@ -13,7 +13,7 @@ $mail = new PHPMailer();
 				$mail->SMTPSecure = "tls";
 				$mail->Port="587";
 				$mail->isHTML(true);
-				$mail->Body='<h3>Hi,<br> '.$r['Name'].'</h3><p>Click here to reset your password
+				$mail->Body='<h3>Hi,<br> '.$row['Name'].'</h3><p>Click here to reset your password
                 http://localhost/dgskool/guest/reset-password.php?id='.$row['Id'].'&email='.$row['Email'].'&user='.$user.'</p>
                 ';
 				$mail->Username="sem5b.01.tmtbca@gmail.com";

@@ -79,7 +79,7 @@ include("../connect.php");
  
   </div>
   </div>
-  <?php require("footer.php"); ?>
+ 
 </body>
 
 </html>
@@ -87,6 +87,7 @@ include("../connect.php");
 if (isset($_REQUEST['send'])) {
   $email = $_POST['email'];
   $user = $_POST['user'];
+  echo $email,$user;
 
   if ($user == 'Teacher') {
     $q = "select * from staff_tbl where Email = '$email'";

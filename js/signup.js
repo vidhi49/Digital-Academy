@@ -1,12 +1,11 @@
 
 $(document).ready(function () {
-	var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
 	var c_Reg = /^[0-9]+$/;
-
-
 	$("#submit").click(function () {
 		//var conlen = $('#cno').val();
-		if ($("#sname").val() == '' && $("#address").val() == '' && $("#email").val() == '' && $("#cno").val() == '') {
+        
+		if ($("#sname").val() == '' && $("#address").val() == '' && $("#eml").val() == '' && $("#cno").val() == '') {
 			alert('Please Fill All the fields...');
 			$("#sname").focus();
 			return false;
@@ -17,15 +16,16 @@ $(document).ready(function () {
 			return false;
 		}
 
-		if ($('#email').val() == '') {
+		if ($('#eml').val() == '') {
 			alert('Please Fill Email...');
-			$("#email").focus();
+			$("#eml").focus();
 			return false;
 		}
 		else {
-			if (e_Reg.test($("#email").val()) == false) {
+			if (e_Reg.test($("#eml").val()) == false) {
+                alert($("#eml").val());
 				alert('Please Fill Email in abc@xyz.com Format...');
-				$("#email").focus();
+				$("#eml").focus();
 				return false;
 			}
 		}
@@ -64,10 +64,10 @@ $(document).ready(function () {
 
 			}
 		}
-		if ($('#email').val() != '') {
+		if ($('#eml').val() != '') {
 			if ($('#emessage').text() != "") {
 				alert($('#emessage').text());
-				$("#email").focus();
+				$("#eml").focus();
 				return false;
 
 			}
@@ -82,9 +82,9 @@ $(document).ready(function () {
 	}
 
 	});
-	$('#email, #cno,#sname').on('keyup', function () {
+	$('#eml, #cno,#sname').on('keyup', function () {
 		//var clen = $('#cno').val();
-		var email = $('#email').val();
+		var eml = $('#eml').val();
 		if ($('#sname').val() != '') {
 			$.ajax({
 				type: 'POST',
@@ -98,14 +98,15 @@ $(document).ready(function () {
 
 		}
 
-		if (e_Reg.test(email) == false) {
-			$('#emessage').html('Email  be in abc@xyz Format').css('color', 'red');
+		if (e_Reg.test(eml) == false) {
+			$('#emessage').html('Email  be in abc@xyz.com').css('color', 'red');
 		}
 		else {
+            $('#emessage').html('Email').css('color', 'red');
 			$.ajax({
 				type: 'POST',
 				url: 'emailvalidate.php',
-				data: "email=" + $('#email').val(),
+				data: "email=" + $('#eml').val(),
 				success: function (response) {
 					$('#emessage').html(response).css('color', 'red');
 				}

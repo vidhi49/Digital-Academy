@@ -83,7 +83,7 @@
             </div>
             <div class="row m-1 form-group">
               <label class="form-label">Email :</label>
-              <input type='email' id="email" class="form-control form-control-lg" name="email"
+              <input type='email' id="eml" class="form-control form-control-lg" name="email"
                 placeholder="Enter Valid Email Id" />
               <span id='emessage'></span>
             </div>
@@ -95,7 +95,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label class="form-label">Contact No :</label>
-                  <input type='number' id="cno" maxlength="10" class="form-control form-control-lg" name="cno"
+                  <input type='text' id="cno" maxlength="10" class="form-control form-control-lg" name="cno"
                     placeholder="10 Digits Only" />
                   <span id='cmessage'></span>
                 </div>

@@ -269,212 +269,121 @@ $a = 'admindashboard';
 
 </body>
 <?php
-//chart
-// $p = "select * from inquiry_tbl";
-$p = "select (MONTH(Date)), COUNT(1) FROM inquiry_tbl GROUP BY MONTH(Date) HAVING COUNT(1)>0";
-// SELECT MAX(DATENAME(MM,DATEOFJOIN)) AS JOININGMONTH, COUNT(1) AS "TOTALEMP. JOIN"
-// FROM NEWJOINEE GROUP BY MONTH(DATEOFJOIN);
-$res = mysqli_query($con, $p);
-$num = mysqli_num_rows($res);
-$a = array();
-$c = array();
-if ($num > 0) {
-    while ($r = mysqli_fetch_array($res)) {
-        array_push($a, $r[0]);
-        // array_push($c, $r[1]);
-        $c[$r[0]]=$r[1];
-    }
-}
-// print_r($a);
-// print_r($c);
-$b = array(0,0,0,0,0,0,0,0,0,0,0,0);
-foreach ($a as $va) {
-    $b[$va-1]=$c[$va];
-    // echo $c[$va];
-}
+// //chart
+// // $p = "select * from inquiry_tbl";
+// $p = "select (MONTH(Date)), COUNT(1) FROM inquiry_tbl GROUP BY MONTH(Date) HAVING COUNT(1)>0";
+// // SELECT MAX(DATENAME(MM,DATEOFJOIN)) AS JOININGMONTH, COUNT(1) AS "TOTALEMP. JOIN"
+// // FROM NEWJOINEE GROUP BY MONTH(DATEOFJOIN);
+// $res = mysqli_query($con, $p);
+// $num = mysqli_num_rows($res);
+// $a = array();
+// $c = array();
+// if ($num > 0) {
+//     while ($r = mysqli_fetch_array($res)) {
+//         array_push($a, $r[0]);
+//         // array_push($c, $r[1]);
+//         $c[$r[0]] = $r[1];
+//     }
+// }
+// // print_r($a);
+// // print_r($c);
+// $b = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+// foreach ($a as $va) {
+//     $b[$va - 1] = $c[$va];
+//     // echo $c[$va];
+// }
 // print_r($b);
-echo "<span id='req' style='display:none' class='fs-1'>[".implode("",$b)."]</span>";
+// echo "<span id='req'  class='fs-1'>" . implode(",", $b) . "</span>";
 
 
 ?>
 
 </html>
 <script>
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-    const data = {
-        labels: labels,
-        datasets: [{
-                label: 'Total Request',
-                data:$('#req').text(),
-                // data: [0, 0, 1, 1, 1, 3, 1, 2, 4, 5, 3, 4],
-                backgroundColor: [
-                    'rgb(255, 99, 132)', //pink
-                    'rgb(255, 159, 64)', //orange
-                    'rgb(255, 205, 86)', //yellow
-                    'rgb(75, 192, 192)', //info
-                    'rgb(54, 162, 235)', //blue
-                    'rgb(153, 102, 255)', //vio
-                    'rgb(201, 203, 207)', //grey
-                    'rgb(255, 99, 132)', //pink
-                    'rgb(255, 159, 64)', //orange
-                    'rgb(255, 205, 86)', //yellow
-                    'rgb(75, 192, 192)', //info
-                    // 'rgb(54, 162, 235)',//blue
-                    // 'rgb(153, 102, 255)',//vio
-                    // 'rgb(201, 203, 207)',//grey
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)'
-
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)', //pink
-                    'rgb(255, 159, 64)', //orange
-                    'rgb(255, 205, 86)', //yellow
-                    'rgb(75, 192, 192)', //info
-                    'rgb(54, 162, 235)', //blue
-                    'rgb(153, 102, 255)', //vio
-                    'rgb(201, 203, 207)', //grey
-                    'rgb(255, 99, 132)', //pink
-                    'rgb(255, 159, 64)', //orange
-                    'rgb(255, 205, 86)', //yellow
-                    'rgb(75, 192, 192)', //info
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)',
-                    // 'rgb(255, 99, 132)'
-
-                ],
-                borderWidth: 1,
-            },
-            // {
-            //     label: 'Approved Request',
-            //     data: [5, 0, 8, 1, 0, 5, 6, 0, 3, 5, 2, 5],
-            //     backgroundColor: [
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)'
-            //     ],
-            //     borderColor: [
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)',
-            //         'rgb(153, 102, 255)'
-
-            //     ],
-            //     borderWidth: 1,
-            // },
-            // {
-            //     label: 'Rejected Request',
-            //     data: [6, 3, 1, 5, 0, 5, 0, 5, 8, 5, 9, 4],
-            //     backgroundColor: [
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)'
-            //     ],
-            //     borderColor: [
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)',
-            //         'rgb(255, 205, 86)'
-
-            //     ],
-            //     borderWidth: 1,
-            // }
-        ]
-    };
-    // const config = {
-    //     type: 'bar',
-    //     data: data,
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     },
-    // };
-    var options = {
-        responsive: true,
-        scales: {
-            x: {
-                title: {
-                    color: 'red',
-                    display: true,
-                    text: 'Month',
-                    fontSize: 25
+    $(document).ready(function() {
+        makechart();
+    })
+    function makechart() {
+        $.ajax({
+            url: "chartdata.php",
+            method: "post",
+            dataType: "json",
+            success: function(data) {
+                var total = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                for (var i = 0; i < 12; i++)
+                {
+                        total[i]=data[i];
                 }
-            },
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
+                var chart_data = {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                            label: 'Month',
+                            data: total,
+                            backgroundColor: [
+                                'rgb(255, 99, 132)', //pink
+                                'rgb(255, 159, 64)', //orange
+                                'rgb(255, 205, 86)', //yellow
+                                'rgb(75, 192, 192)', //info
+                                'rgb(54, 162, 235)', //blue
+                                'rgb(153, 102, 255)', //vio
+                                'rgb(201, 203, 207)', //grey
+                                'rgb(255, 99, 132)', //pink
+                                'rgb(255, 159, 64)', //orange
+                                'rgb(255, 205, 86)', //yellow
+                                'rgb(75, 192, 192)', //info
 
-    };
-    // var myChart = new Chart(
-    //     document.getElementById('barChart'),
-    //     config
-    // );
-    if ($("#barChart").length) {
-        var barChartCanvas = $("#barChart").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var myChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: data,
-            options: options
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)', //pink
+                                'rgb(255, 159, 64)', //orange
+                                'rgb(255, 205, 86)', //yellow
+                                'rgb(75, 192, 192)', //info
+                                'rgb(54, 162, 235)', //blue
+                                'rgb(153, 102, 255)', //vio
+                                'rgb(201, 203, 207)', //grey
+                                'rgb(255, 99, 132)', //pink
+                                'rgb(255, 159, 64)', //orange
+                                'rgb(255, 205, 86)', //yellow
+                                'rgb(75, 192, 192)', //info
+
+
+                            ],
+                            borderWidth: 1,
+                        }
+
+                    ],
+
+
+                };
+
+                var options = {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                color: 'red',
+                                display: true,
+                                text: 'Month',
+                                fontSize: 25
+                            }
+                        },
+                        yAxes: [{
+                            ticks: {
+                                min: true
+                            }
+                        }]
+                    },
+
+                };
+                var barChartCanvas = $("#barChart").get(0).getContext("2d");
+                var myChart = new Chart(barChartCanvas, {
+                    type: 'bar',
+                    data: chart_data,
+                    options: options
+                });
+            }
         });
+        alert(total[1]);
+
     }
 </script>

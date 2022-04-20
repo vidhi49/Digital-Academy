@@ -251,7 +251,7 @@ if (isset($_REQUEST['login'])) {
               echo "<script>window.location.href='../institute-admin/institute-info.php';</script>";
             }
           } else {
-            echo "<script>alert('Passwrod Does not match');</script>";
+            echo "<script>alert('Password does not match');</script>";
           }
         }
       }
