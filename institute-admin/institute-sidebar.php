@@ -198,6 +198,20 @@ $insti_name = $abc['Name'];
         </a>
       </li>
       <li <?php
+          if (($a == 'generateidcard')) {
+            echo "class=' active nav-item  '";
+          } else {
+            echo "class='nav-item'";
+          } ?>>
+        <b></b>
+        <b></b>
+        <a href="generateidcard.php" class="nav-link align-middle px-0">
+          <i class="fa fa-id-card fs-5 "></i>
+
+          <p class="ms-2 d-none d-sm-inline">Generate ID-Card</p>
+        </a>
+      </li>
+      <li <?php
           if (($a == 'changepassword')) {
             echo "class=' active nav-item '";
           } else {

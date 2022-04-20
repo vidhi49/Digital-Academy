@@ -18,22 +18,22 @@ $page = "";
       <div class="d-flex justify-content-center">
         <div class="row">
           <?php
-                    $q = "select * from class_tbl where Teacher_id='$teacher_id'";
-                    $result = mysqli_query($con, $q);
-                    $num = mysqli_num_rows($result);
-                    $r = mysqli_fetch_array($result);
-                    if ($num > 0) {
-                        echo ' <h2 class="navy-blue font-w700 mt-3 ">
+          $q = "select * from class_tbl where Teacher_id='$teacher_id'";
+          $result = mysqli_query($con, $q);
+          $num = mysqli_num_rows($result);
+          $r = mysqli_fetch_array($result);
+          if ($num > 0) {
+            echo ' <h2 class="navy-blue font-w700 mt-3 ">
                                      Students Of ' . $r['Name'] . '-' . $r['Section'] . '
                                                             </h2>
                                                         
                                            ';
-                        $q1 = "select * from student_tbl where Class_id='$r[0]'";
-                        $result1 = mysqli_query($con, $q1);
-                        $num1 = mysqli_num_rows($result1);
-                        if ($num1 > 0) {
-                            while ($r1 = mysqli_fetch_array($result1)) {
-                                echo '
+            $q1 = "select * from student_tbl where Class_id='$r[0]'";
+            $result1 = mysqli_query($con, $q1);
+            $num1 = mysqli_num_rows($result1);
+            if ($num1 > 0) {
+              while ($r1 = mysqli_fetch_array($result1)) {
+                echo '
                                             <div class=" col-sm-4 mt-3 bg-gradient-login">
                                             <div class="card shadow  bg-white " style="border-radius: 20px;">
                                                 <div class="card-body">
@@ -53,9 +53,9 @@ $page = "";
                                             </div>
                                             
                                            ';
-                            }
-                        } else {
-                            echo '
+              }
+            } else {
+              echo '
                                         
                                         <div class="col-sm-12">
                                         <div class="card shadow p-3 mb-5 bg-white " style="border-radius: 20px;">
@@ -77,9 +77,9 @@ $page = "";
                                         </div>
                                     </div>
                                         ';
-                        }
-                    } else {
-                    ?>
+            }
+          } else {
+          ?>
 
           <div class="col-xl-12 col-sm-12">
             <div class="card shadow p-3 mb-5 bg-white " style="border-radius: 20px;">
@@ -101,9 +101,9 @@ $page = "";
             </div>
           </div>
           <?php
-                    }
+          }
 
-                    ?>
+          ?>
 
         </div>
       </div>

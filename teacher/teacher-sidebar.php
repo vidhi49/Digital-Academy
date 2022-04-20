@@ -191,11 +191,23 @@ a[data-toggle="collapse"] {
           <a href="material.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name"> Upload Material </span></a>
         </li>
+        <?php
+        $id = $_SESSION['Id'];
 
+        $q = "select * from class_tbl where Insti_id='$inst_id' and Teacher_id='$id'";
+        $res = mysqli_query($con, $q);
+        $nor = mysqli_num_rows($res);
+        if ($nor > 0) {
+        ?>
         <li class="m-2">
           <a href="viewstudent.php">
             <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
         </li>
+
+        <?php
+        }
+        ?>
+
 
         <li class="m-2">
           <a href="viewclasses.php">
