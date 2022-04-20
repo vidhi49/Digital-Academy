@@ -41,6 +41,10 @@ include('../connect.php');
     background-color: #0d6efd;
   }
 
+  .student-content {
+    width: calc(100vw - 250px);
+    padding: 20px;
+  }
 
   @media only screen and (max-width: 500px) {
 
@@ -48,7 +52,7 @@ include('../connect.php');
       width: 50px;
       align-items: center;
       text-align: center;
-      display: block;
+      /* display: block; */
     }
 
     .student-content {
@@ -79,10 +83,24 @@ include('../connect.php');
           <i class="fa fa-tachometer fa-rotate-90	"></i>
           <span class="ms-1 span">Dashboard</span>
         </a> </li>
+
       <!-- <li> <a href="#" class="nav-link text-white p-2 m-2"> <i class="fa fa-cog"></i><span -->
       <!-- class="ms-2 span">Settings</span> -->
       <!-- </a> -->
       </li>
+      <li class="nav-item">
+
+        <a href="instituteInfo.php" class="nav-link  text-white p-2 m-2">
+          <i class="fa fa-university" aria-hidden="true"></i><span class="ms-2 span">Institute Info</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="viewAttendence.php" class="nav-link  text-white p-2 m-2">
+          <i class="fa fa-hand-point-up"></i><span class="ms-2 span"> View Attendence</span>
+        </a>
+      </li>
+
       <li class="nav-item"> <a href="studentExam.php" class="nav-link  text-white p-2 m-2"> <i
             class="fa fa-bell"></i><span class="ms-2 span">Exam</span>
         </a>
@@ -99,8 +117,7 @@ include('../connect.php');
         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt=""
           width="32" height="32" class="rounded-circle me-2"> <strong> John W </strong> </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item text-dark" href="#">New project</a></li>
-        <li><a class="dropdown-item text-dark" href="#">Settings</a></li>
+        <li><a class="dropdown-item text-dark" href="changePasswordStud.php">Change Password</a></li>
         <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
         <li>
           <hr class="dropdown-divider">

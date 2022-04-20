@@ -1,10 +1,12 @@
-<?php include("../connect.php");
-// session_start();
-// include("../admin/admin-header.php");
-include("../institute-admin/change-header.php");
-// include("../institute-admin/institute-header.php");
+<?php
+include('../connect.php');
+include('student-header.php');
+$inst_id = $_SESSION['Inst_id'];
+$Id = $_SESSION['Id'];
+$cid = $_GET['cid'];
+$subid = $_GET['sid'];
 $a = "attendance";
-$inst_id = $_SESSION['inst_id'];
+
 ?>
 
 <head>
@@ -105,11 +107,10 @@ $inst_id = $_SESSION['inst_id'];
 <body>
   <div class="d-flex">
     <?php
-    include("institute-sidebar.php");
+    include("student-sidebar.php");
     ?>
-    <div class="institute-content  text-muted">
+    <div class="student-content  text-muted">
       <div class=" bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-
         <form method="post" id="form" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
           <div id="selectclass">
@@ -484,8 +485,6 @@ $inst_id = $_SESSION['inst_id'];
                       }
                     }
                   }
-
-
 
                   echo "</tr>";
                 }

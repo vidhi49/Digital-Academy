@@ -184,7 +184,7 @@ a[data-toggle="collapse"] {
         </li>
         <li class="m-2">
           <a href="takeattedance.php" data-toggle="tooltip" title="Question Bank">
-            <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name">Attendance </span></a>
+            <i class="fas fa-hand-point-up me-2 fs-5"></i><span class="li-name"> Attendance </span></a>
         </li>
 
         <li class="m-2">
