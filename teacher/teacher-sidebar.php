@@ -20,7 +20,7 @@
   $(document).ready(function() {
 
     $('#sidebarCollapse').on('click', function() {
-      $('#teacher-sidebar').toggleClass('active');
+      $('.teacher-sidebar').toggleClass('active');
     });
 
   });
@@ -54,40 +54,40 @@ a:focus {
   transition: all 0.3s;
 }
 
-#teacher-sidebar {
+.teacher-sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   /* background-color: #041562; */
   color: #fff;
   transition: all 0.3s;
 }
 
-#teacher-sidebar .teacher-sidebar-header {
+.teacher-sidebar .teacher-sidebar-header {
   padding: 20px;
   /* background: #6d7fcc; */
 }
 
-#teacher-sidebar ul.components {
+.teacher-sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
 }
 
-#teacher-sidebar ul p {
+.teacher-sidebar ul p {
   color: #fff;
   padding: 10px;
 }
 
-#teacher-sidebar ul li a {
+.teacher-sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
   display: block;
 }
 
-#teacher-sidebar ul li a:hover {
+.teacher-sidebar ul li a:hover {
   color: navy;
   background: #fff;
 }
 
-#teacher-sidebar ul li.active>a,
+.teacher-sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: navy;
@@ -105,7 +105,7 @@ ul ul a {
   align-items: stretch;
 }
 
-#teacher-sidebar {
+.teacher-sidebar {
   /* width: 250px; */
   /* max-width: 250px; */
   /* min-height: 100vh; */
@@ -125,13 +125,13 @@ a[data-toggle="collapse"] {
 }
 
 /* 
-#teacher-sidebar.active {
+.teacher-sidebar.active {
   margin-left: -250px;
 } */
 
 @media (max-width: 768px) {
   /* 
-  #teacher-sidebar {
+  .teacher-sidebar {
     margin-left: -250px;
   } */
 
@@ -147,7 +147,7 @@ a[data-toggle="collapse"] {
     padding-left: 2px !important;
   }
 
-  #teacher-sidebar.active {
+  .teacher-sidebar.active {
     margin-left: 0;
   }
 }
@@ -156,20 +156,20 @@ a[data-toggle="collapse"] {
 <body>
   <div class="wrapper" style="background-color: #041562;box-shadow: inset 0 10px 35px -7px black;">
     <!-- Sidebar -->
-    <nav id="teacher-sidebar">
-      <div class="teacher-sidebar-header">
-        <!-- <h3>Bootstrap Sidebar</h3> -->
+    <nav id="teacher-sidebar" class="teacher-sidebar">
+      <!-- <div class="teacher-sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
         <nav class="navbar navbar-expand-sm navbar-light float-right">
-          <!-- <div class="container-fluid">
+        <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn text-secondary">
               <i class="fas fa-align-justify"></i>
                <span>Toggle Sidebar</span> -->
-          <!-- </button> -->
+      <!-- </button> -->
 
-          <!-- </div> -->
+      <!-- </div> 
         </nav>
-      </div>
-      <ul class="list-unstyled components">
+      </div> -->
+      <ul class="list-unstyled components mt-5">
         <!-- <p>Dummy Heading</p> -->
 
         <li class="m-2">
