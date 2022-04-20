@@ -3,6 +3,7 @@ include('../connect.php');
 include('student-header.php');
 $inst_id = $_SESSION['Inst_id'];
 $Id = $_SESSION['Id'];
+$page='material';
 
 
 ?>

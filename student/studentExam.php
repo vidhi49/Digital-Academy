@@ -7,6 +7,7 @@ include('student-header.php');
 $email = $_SESSION['email'];
 $Id = $_SESSION['Id'];
 $Inst_id = $_SESSION['Inst_id'];
+$page='exam';
 ?>
 <html>
 

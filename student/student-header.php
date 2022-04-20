@@ -31,7 +31,7 @@ $r = mysqli_fetch_array($result);
 </head>
 
 <body>
-  <div class="">
+  <div class="" >
     <!-- style='box-shadow: black 0px 3px 80px;' -->
     <div class="row bg-navy-blue" style=" height:70px;box-shadow:  10px 10px 20px 0px grey;">
       <!-- <div class="col-sm-6 d-flex">

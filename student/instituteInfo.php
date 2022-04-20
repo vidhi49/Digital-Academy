@@ -2,6 +2,7 @@
 include('../connect.php');
 include('student-header.php');
 $Inst_id = $_SESSION['Inst_id'];
+$page='instituteinfo';
 ?>
 <html>
 
