@@ -56,12 +56,11 @@ $result = mysqli_fetch_array($res);
 </head>
 
 <body>
-  <div class="container-fluid " >
+  <div class="container-fluid ">
     <!-- style='box-shadow: black 0px 3px 80px;' -->
     <div class="row bg-navy-blue" style="box-shadow:  0 10px 15px -6px black;">
       <div class="col-sm-6 d-flex">
         <img class='logo  navbar-brand ms-5 ' src='../img/logo1.png' ; ?>
-
       </div>
       <div class="col-sm-6 d-flex justify-content-end align-items-center">
         <div class="d-block">
@@ -83,7 +82,10 @@ $result = mysqli_fetch_array($res);
     </a>
     <form class="form-inline">
       <span style="height:30px;padding:0 20 0 0px;font-size:25;color:white"
-        id="email"><?php echo $_SESSION['email']; ?></span>
+        id="email"><?php
+
+                    // echo $_SESSION['email']; 
+                    ?></span>
       <img class='logo ms-1' src='../img/p1.jpg' style=" height:80px;width:80px;border-radius:50px;padding:20" />
       <a href="admin-logout.php" class="btn btn-secondary btn-lg" role="button">Logout</a>
     </form>
@@ -101,7 +103,9 @@ $result = mysqli_fetch_array($res);
           <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             <img class='logo ms-1' src='../img/p1.jpg' style=" height:80px;width:80px;border-radius:50px;padding:20" />
-            <?php echo $_SESSION['email']; ?>
+            <?php
+            // echo $_SESSION['email']; 
+            ?>
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">

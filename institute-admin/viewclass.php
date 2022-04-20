@@ -24,20 +24,18 @@ $inst_id = $_SESSION['inst_id'];
     include("institute-sidebar.php");
     ?>
     <div class="institute-content">
-      <div class="row m-5">
-        <div class="card shadow p-3 bg-white " style="border-radius: 20px;">
+      <div class="row mt-5">
+        <div class="card shadow p-2 bg-white " style="border-radius: 20px;">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
                 <h2> All Class</h2>
-                
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
                 <form action="class_rpt.php" target="_blank">
                   <input type="submit" value="Print" class="btn btn-success fs-4" />
                 </form>
               </div>
-              
             </div>
             <hr>
             <!-- <div class="d-flex justify-content-center" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;background-color: white;"> -->
@@ -49,7 +47,7 @@ $inst_id = $_SESSION['inst_id'];
             if ($nor > 0) {
             ?>
 
-            <div class="table-responsive-md mt-4 table-sm w-100 fs-3">
+            <div class="table-responsive-md mt-4 table-sm w-auto fs-3">
 
               <table class="table table-flush table-hover" id="dataTableHover">
                 <thead class="thead-light">
@@ -99,12 +97,12 @@ $inst_id = $_SESSION['inst_id'];
 </html>
 
 <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script>
-  $(document).ready(function() {
-    $('#dataTable').DataTable(); // ID From dataTable 
-    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-  });
-  </script>
+<!-- Page level custom scripts -->
+<script>
+$(document).ready(function() {
+  $('#dataTable').DataTable(); // ID From dataTable 
+  $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+});
+</script>

@@ -34,6 +34,7 @@ $email = $_SESSION['email'];
       <a href="admin-logout.php" class="btn btn-secondary btn-lg" role="button">Logout</a>
     </form>
   </nav> -->
+
   <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark py-1">
     <div class="container-fluid">
       <img class='logo navbar-brand ms-5' src='../img/logo1.png' />

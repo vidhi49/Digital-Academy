@@ -47,8 +47,6 @@ validationMaterial = () => {
     // }
   }
 }
-
-
 </script>
 
 <body>
@@ -92,29 +90,16 @@ validationMaterial = () => {
             $x = $inst_id . $cid . $sid . $row[0];
             $len = strlen($x);
             $name = substr($row[1], $len);
-  
             echo '<div class="col-sm-4 m-2">
-            <a href="material_upload/'.$row[1].'" target="_blank" >
-                      <div class="card shadow bg-white p-2 text-black" style="border-radius: 20px;"  >
-                     
-                        <div class="card-body ">
-                          <div class="row">
-                            <div class="col-6" >
-                              <h2 class="text-black font-w700">
-                                
-                                
-                              </h2>
-                            </div>
-                           
-                          </div>
-                        </div>
-                        <div class="card-footer fs-3">
-                         <i class="fa fa-file-pdf  text-danger" aria-hidden="true"></i>
-                        ' . $name . '
+                    <a href="material_upload/' . $row[1] . '" target="_blank" >
+                      <div class="d-flex align-items-center bg-white  text-black" style="border-radius: 20px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"  >
+                        <i class="fa fa-file-pdf  text-danger fs-2 m-3" aria-hidden="true"></i>
+                        <div class="text-wrap fs-5 " >
+                          <p class=" m-2 p-3 text-black"> ' . $name .  '</p>
                         </div>
                       </div>
-                      </a>
-                    </div>';
+                    </a>
+                  </div>';
           }
         } else {
           echo "no records";
