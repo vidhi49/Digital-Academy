@@ -14,7 +14,6 @@ $(document).ready(function() {
       alert($('#materialmessage').text());
       $("#materialfile").focus();
       return false;
-
     }
   });
 });
@@ -66,7 +65,6 @@ validationMaterial = () => {
               <input type='file' id="materialfile" required name="materialfile" onchange="validationMaterial()"
                 class="form-control form-control-lg " />
               <span id="materialmessage"></span>
-
               <!-- <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload Material</span>
@@ -84,7 +82,7 @@ validationMaterial = () => {
           </div>
         </form>
       </div>
-      <div class="row  m-5">
+      <div class="row  mt-5">
         <?php
         $q = "select * from upload_tbl where Inst_id='$inst_id' and Class_id='$cid' and Subject_id='$sid'";
         $res = mysqli_query($con, $q);
@@ -125,28 +123,29 @@ validationMaterial = () => {
 
       </div>
     </div>
-    <?php
-    if (isset($_POST['uploadMaterial'])) {
-      // echo "hi";
-      $f = $_FILES['materialfile']['name'];
-      $floc = $_FILES['materialfile']['tmp_name'];
-      $fileExtension = explode('.', $f);
-      $fileExtension = strtolower(end($fileExtension));
-      $newf = $inst_id . $cid . $sid . $f;
+  </div>
+  <?php
+  if (isset($_POST['uploadMaterial'])) {
+    // echo "hi";
+    $f = $_FILES['materialfile']['name'];
+    $floc = $_FILES['materialfile']['tmp_name'];
+    $fileExtension = explode('.', $f);
+    $fileExtension = strtolower(end($fileExtension));
+    $newf = $inst_id . $cid . $sid . $f;
 
-      $q = "insert into upload_tbl values(null,'$newf','$inst_id','$cid','$sid')";
-      $res = mysqli_query($con, $q);
-      $q1 = "select * from upload_tbl where FileName='$newf'";
-      // echo $q1;
-      $res1 = mysqli_query($con, $q1);
-      $row = mysqli_fetch_array($res1);
-      $newf = $row[0] . $newf;
-      // $newf .= "." . $fileExtension;
-      $q2 = "update upload_tbl set FileName='$newf' where Id='$row[0]'";
-      // echo $q2;
-      $res2 = mysqli_query($con, $q2);
-      move_uploaded_file($floc, "material_upload/" . $newf);
-      echo "<script>Swal.fire({
+    $q = "insert into upload_tbl values(null,'$newf','$inst_id','$cid','$sid')";
+    $res = mysqli_query($con, $q);
+    $q1 = "select * from upload_tbl where FileName='$newf'";
+    // echo $q1;
+    $res1 = mysqli_query($con, $q1);
+    $row = mysqli_fetch_array($res1);
+    $newf = $row[0] . $newf;
+    // $newf .= "." . $fileExtension;
+    $q2 = "update upload_tbl set FileName='$newf' where Id='$row[0]'";
+    // echo $q2;
+    $res2 = mysqli_query($con, $q2);
+    move_uploaded_file($floc, "material_upload/" . $newf);
+    echo "<script>Swal.fire({
 
         title: 'Updated',
         text: 'Your File is Uploaded Succesfully',
@@ -159,7 +158,7 @@ validationMaterial = () => {
           allowOutsideClick: false
 
       })</script>";
-    }
-    ?>
+  }
+  ?>
 
 </body>

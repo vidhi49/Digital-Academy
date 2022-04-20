@@ -33,7 +33,7 @@ $page = "";
 
         <div class="col-sm-4">
           <?php echo "<a href='classwiseSub.php?cid=$rs[0]'>"; ?>
-          <div class="card shadow bg-white p-2" style="border-radius: 20px;" onclick="showsubject();">
+          <div class="card shadow bg-white p-2" style="border-radius: 20px;">
             <div class="card-body p-5">
               <div class="row">
                 <div class="col-6">

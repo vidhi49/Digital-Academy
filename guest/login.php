@@ -22,39 +22,39 @@ include("../connect.php");
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    function myFunction() {
-      var x = document.getElementById("pwd");
-      if (x.type === "password") {
-        x.type = "text";
+  function myFunction() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+
+  }
+  $(document).ready(function() {
+    var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    $("#login").click(function() {
+      if ($('#email').val() != '') {
+        if ($('#emsg').text() != "") {
+          alert($('#emsg').text());
+          $("#email").focus();
+          return false;
+
+        }
+      }
+    });
+    $('#email').on('keyup', function() {
+      //var clen = $('#cno').val();
+      var email = $('#email').val();
+      if (e_Reg.test(email) == false) {
+        $('#emsg').html('Email Must be in abc@xyz Format').css('color', 'red');
       } else {
-        x.type = "password";
+        $('#emsg').html('').css('color', 'red');
+
       }
 
-    }
-    $(document).ready(function() {
-      var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-      $("#login").click(function() {
-        if ($('#email').val() != '') {
-          if ($('#emsg').text() != "") {
-            alert($('#emsg').text());
-            $("#email").focus();
-            return false;
-
-          }
-        }
-      });
-      $('#email').on('keyup', function() {
-        //var clen = $('#cno').val();
-        var email = $('#email').val();
-        if (e_Reg.test(email) == false) {
-          $('#emsg').html('Email Must be in abc@xyz Format').css('color', 'red');
-        } else {
-          $('#emsg').html('').css('color', 'red');
-
-        }
-
-      });
     });
+  });
   </script>
 
 </head>
@@ -65,7 +65,8 @@ include("../connect.php");
       <div class="modal-content m-1 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <!-- <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-        <div class="d-flex justify-content-end m-2"><button type="button" class="btn-close flex-end text-muted" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="d-flex justify-content-end m-2"><button type="button" class="btn-close flex-end text-muted"
+            data-bs-dismiss="modal" aria-label="Close"></button></div>
         <!-- </div> -->
         <div class="modal-body" style="background: linear-gradient(to bottom, #ffffff 0%, #ffff00 140%);">
           <div class="nopadding d-flex justify-content-center">
@@ -100,13 +101,17 @@ include("../connect.php");
               </div>
               <div class="form-outline mb-2">
                 <label class="form-label p-1 navy-blue">Email address</label>
-                <input type="email" id="email" name="email" value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>" class="form-control form-control-lg m-1 text-muted fs-6 " required />
+                <input type="email" id="email" name="email"
+                  value="<?php if (isset($_COOKIE['emailcookie'])) echo $_COOKIE['emailcookie']; ?>"
+                  class="form-control form-control-lg m-1 text-muted fs-6 " required />
                 <span id="emsg"></span>
               </div>
               <div class="form-outline mb-2">
                 <label class="form-label p-1 navy-blue">Password</label>
                 <div class="input-group">
-                  <input type="password" name="pwd" id="pwd" value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>" class="form-control form-control-lg text-muted fs-6" required />
+                  <input type="password" name="pwd" id="pwd"
+                    value="<?php if (isset($_COOKIE['passwordcookie'])) echo $_COOKIE['passwordcookie']; ?>"
+                    class="form-control form-control-lg text-muted fs-6" required />
                   <!-- <div class="input-group-prepend"> -->
                   <button class="input-group-text">
                     <i class="fa fa-eye" onclick="myFunction()"></i>
@@ -118,11 +123,16 @@ include("../connect.php");
                 <input type="checkbox" name="rem" class="m-1 mb-3" /> Remember Me
               </div>
               <div class="pt-1 mb-4 ">
-                <button class="btn bg-navy-blue text-white btn-lg w-25 " id="login" name="login" type="submit">Login</button>
+                <button class="btn bg-navy-blue text-white btn-lg w-25 " id="login" name="login"
+                  type="submit">Login</button>
               </div>
               <div class="row mt-3">
                 <a class="small text-dark" href="forgotpassword.php">Forgot password?</a>
-                <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#" style="color: #393f81;">Register here</a></p>
+                <p class="mb-4 pb-lg-2" style="color: #393f81;">Don't have an account?
+                  <a href="#" style="color: #393f81;" data-bs-toggle="modal"
+                    data-bs-target="#registerRequestModal">Register
+                    here</a>
+                </p>
               </div>
               <div class="align-self-baseline">
                 <a href="#!" class="small text-dark">Terms of use.</a>
@@ -150,7 +160,7 @@ if (isset($_REQUEST['login'])) {
   }
 
   if ($user == 'Teacher') {
-    
+
     $q = "select * from staff_tbl where Email = '$email'";
     $res = mysqli_query($con, $q) or die("Qiery failed q");
     $nor = mysqli_num_rows($res) or die("<script> Swal.fire({
