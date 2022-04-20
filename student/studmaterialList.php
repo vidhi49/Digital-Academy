@@ -5,6 +5,7 @@ $inst_id = $_SESSION['Inst_id'];
 $Id = $_SESSION['Id'];
 $cid = $_GET['cid'];
 $subid = $_GET['sid'];
+$page='material';
 ?>
 
 <body>

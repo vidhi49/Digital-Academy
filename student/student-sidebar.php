@@ -9,7 +9,7 @@ include('../connect.php');
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
   .nav-link:hover {
-    background-color: #525252 !important;
+    background-color: #FFD124 !important;
   }
 
   .nav-link .fa {
@@ -79,7 +79,16 @@ include('../connect.php');
       <!-- <li class="nav-item"> <a href="#" class="nav-link active p-2 m-2" aria-current="page"> <i -->
       <!-- class="fa fa-home"></i><span class="ms-2 span">Home</span> </a> </li> -->
       <li class="nav-item"> <a href="student-dashboard.php" aria-current="page"
-          class="nav-link active text-white p-2 m-2">
+      <?php
+        if($page=='dashboard')
+        {
+          echo 'class="nav-link active text-white p-2 m-2"';
+        }else
+        {
+          echo 'class="nav-link text-white p-2 m-2"';
+        }
+      ?>
+          >
           <i class="fa fa-tachometer fa-rotate-90	"></i>
           <span class="ms-1 span">Dashboard</span>
         </a> </li>
@@ -90,23 +99,55 @@ include('../connect.php');
       </li>
       <li class="nav-item">
 
-        <a href="instituteInfo.php" class="nav-link  text-white p-2 m-2">
+        <a href="instituteInfo.php" <?php
+        if($page=='instituteinfo')
+        {
+          echo 'class="nav-link active text-white p-2 m-2"';
+        }else
+        {
+          echo 'class="nav-link text-white p-2 m-2"';
+        }
+      ?>>
           <i class="fa fa-university" aria-hidden="true"></i><span class="ms-2 span">Institute Info</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a href="viewAttendence.php" class="nav-link  text-white p-2 m-2">
+        <a href="viewAttendence.php" <?php
+        if($page=='attendence')
+        {
+          echo 'class="nav-link active text-white p-2 m-2"';
+        }else
+        {
+          echo 'class="nav-link text-white p-2 m-2"';
+        }
+      ?>>
           <i class="fa fa-hand-point-up"></i><span class="ms-2 span"> View Attendence</span>
         </a>
       </li>
 
-      <li class="nav-item"> <a href="studentExam.php" class="nav-link  text-white p-2 m-2"> <i
+      <li class="nav-item"> <a href="studentExam.php" <?php
+        if($page=='exam')
+        {
+          echo 'class="nav-link active text-white p-2 m-2"';
+        }else
+        {
+          echo 'class="nav-link text-white p-2 m-2"';
+        }
+      ?>> <i
             class="fa fa-bell"></i><span class="ms-2 span">Exam</span>
         </a>
       </li>
 
-      <li class="nav-item"> <a href="subjectMaterial.php" class="nav-link  text-white p-2 m-2">
+      <li class="nav-item"> <a href="subjectMaterial.php" <?php
+        if($page=='material')
+        {
+          echo 'class="nav-link active text-white p-2 m-2"';
+        }else
+        {
+          echo 'class="nav-link text-white p-2 m-2"';
+        }
+      ?>>
           <i class="fa fa-sticky-note"></i><span class="ms-2 span"> Material </span>
         </a>
       </li>
