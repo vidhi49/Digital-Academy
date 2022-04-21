@@ -165,25 +165,25 @@ $inst_id = $_SESSION['inst_id'];
 
       </div>
       <div class="row mt-5 ">
-        <div class="col-sm-6"
-          style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-          <center>
-            <h4 class="pt-4">Total Staff</h4>
-          </center>
-          <div>
-            <canvas id="barChart"></canvas>
+        <div class="col-sm-6">
+          <div style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <center>
+              <h4 class="pt-4">Total Staff</h4>
+            </center>
+            <div>
+              <canvas id="barChart"></canvas>
+            </div>
           </div>
-
 
         </div>
-        <div class="col-sm-6"
-          style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-          <h3 class="text-center mt-4">Student Attendance</h3>
-          <div>
-            <canvas id="barChart1"></canvas>
+        <div class="col-sm-6">
+          <div style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <h3 class="text-center pt-4">Student Attendance</h3>
+            <div>
+              <canvas id="barChart1"></canvas>
+            </div>
+
           </div>
-
-
         </div>
       </div>
       <div class="row mt-5 mb-5"

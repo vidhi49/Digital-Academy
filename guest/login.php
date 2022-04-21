@@ -167,8 +167,9 @@ if (isset($_REQUEST['login'])) {
       icon: 'error',
       title: 'Oops...',
       text: 'Not a Valid User!'
-      
-    })</script>");
+    });
+    </script>");
+
     if ($nor == 1) {
       while ($row = mysqli_fetch_array($res)) {
         if (password_verify($pwd, $row[19])) {
