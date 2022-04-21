@@ -1,6 +1,13 @@
 <?php
+// session_start();
 include('../connect.php');
-// include('../institute-admin/institute-header.php');
+session_start();
+$email = $_SESSION['email'];
+$id = $_SESSION['Id'];
+$insti_id = $_SESSION['Inst_id'];
+$q = "select * from student_tbl where Id='$id' AND Inst_id='$insti_id'";
+$result = mysqli_query($con, $q);
+$r = mysqli_fetch_array($result);
 ?>
 <html>
 
@@ -142,9 +149,11 @@ include('../connect.php');
 
     </ul>
     <hr>
+
     <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt=""
-          width="32" height="32" class="rounded-circle me-2"> <strong> John W </strong> </a>
+        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src='../Institute-admin/student_profile/<?php echo $r['Profile']; ?>' alt="" width="32" height="32"
+          class="rounded-circle me-2"> <strong> <?php echo $r[3]; ?> </strong> </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
         <li><a class="dropdown-item text-dark" href="changePasswordStud.php">Change Password</a></li>
         <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
