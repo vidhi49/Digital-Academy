@@ -40,6 +40,7 @@ $insti_id = $_SESSION['inst_id'];
         if ($n > 0) {
           while ($r = mysqli_fetch_array($res)) {
 
+
         ?>
         <div style="width: 40%;margin:5%;">
           <div class="bg-white " style="padding:10px;border: 1px dashed;">

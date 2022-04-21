@@ -16,98 +16,83 @@ $row = mysqli_fetch_array($r);
 
 <html>
 <script>
-  $(document).ready(function() {
-    makechart1();
+$(document).ready(function() {
+  makechart1();
 
-  });
+});
 </script>
 
 <body>
   <div class="d-flex">
     <?php include("student-sidebar.php"); ?>
-    <div class="student-content mt-2 p-3">
-      <div class="">
-        <div class="row shadow mx-5" style="border-radius: 20px;background-color:#fffdd0">
-          <div class="col-sm-8 d-flex align-items-center">
-            <div class="m-5 " style="line-height: 50px;">
-              <p class="" style="font-size: 50px;">Welcome Back!!!</p>
-              <h3><?php echo $row['Name'] ?></h3>
-              <p class="py-2" style="line-height: 25px;">Education is one of the most powerful aspects of life.
-                Education and learning allow us to make sense of the world around us and where we fit within the world.</p>
-            </div>
+    <div class="student-content mt-2 ">
+      <div class="row shadow mx-5" style="border-radius: 20px;background-color:#fffdd0">
+        <div class="col-sm-8 d-flex align-items-center">
+          <div class="m-5 " style="line-height: 50px;">
+            <p class="navy-blue" style="font-size: 50px;">Welcome Back !!!</p>
+            <h3><?php echo $row['Name'] ?></h3>
+            <p class="py-2" style="line-height: 25px;">Education is one of the most powerful aspects of life.
+              Education and learning allow us to make sense of the world around us and where we fit within the world.
+            </p>
+          </div>
 
-          </div>
-          <div class="col-sm-4 ">
-            <img class="card-img-bottom" src="../img/student-dashboard.png">
-          </div>
         </div>
-        <div class="row mx-4 mt-4">
-          <div>
-            <h3 class="my-2 p-3">Your Class Details</h3>
-          </div>
-          <div class="col mb-2">
-            <div class="card-body shadow" style="border-radius: 20px;background-color:#ff9999">
-              <div class="row">
-                <div class="col-sm-3 d-flex align-items-center">
-                  <div class="p-3 bg-light" style="border-radius: 50px;">
-                    <?php
-                    $que = mysqli_query($con, "select count(*) from teacher_wise_subject_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
-                    $result2 = mysqli_fetch_array($que);
-                    echo "<b class='p-3 fs-1'>$result2[0]</b>";
-                    ?>
-                  </div>
-                </div>
-                <div class="col px-4 d-flex align-items-center">
-                  <h2> Subject Teachers</h2>
-                  <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-2">
-            <div class="card-body shadow" style="border-radius: 20px;background-color:#ff9999">
-              <div class="row">
-                <div class="col-sm-3 d-flex align-items-center">
-                  <div class="p-3 bg-light" style="border-radius: 50px;">
-                    <?php
-                    $que = mysqli_query($con, "select count(*) from student_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
-                    $result2 = mysqli_fetch_array($que);
-                    echo "<b class='p-3 fs-1'>$result2[0]</b>";
-                    ?>
-                  </div>
-                </div>
-                <div class="col px-4 d-flex align-items-center">
-                  <h2> Total Student</h2>
-                  <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-2">
-            <div class="card-body shadow" style="border-radius: 20px;background-color:#ff9999">
-              <div class="row">
-                <div class="col-sm-3 d-flex align-items-center">
-                  <div class="p-3 bg-light" style="border-radius: 50px;">
-                    <?php
-                    $que = mysqli_query($con, "select count(*) from subject_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
-                    $result2 = mysqli_fetch_array($que);
-                    echo "<b class='p-3 fs-1'>$result2[0]</b>";
-                    ?>
-                  </div>
-                </div>
-                <div class="col px-4 d-flex align-items-center">
-                  <h2> Subjects</h2>
-                  <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-sm-4 ">
+          <img class="card-img-bottom" src="../img/student-dashboard.png">
         </div>
-
-
-
       </div>
-      <div class="row  mt-5 mx-2">
+      <h3 class="m-4 p-3 navy-blue">Your Class Details</h3>
+      <div class="row mt-4">
+        <div class="col-sm-4 ">
+          <div class="card-body " style="border-radius: 20px;background-color:#ff9999">
+            <div class="d-flex">
+              <div class="p-3 bg-light  " style="border-radius: 50px;">
+                <?php
+                $que = mysqli_query($con, "select count(*) from teacher_wise_subject_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
+                $result2 = mysqli_fetch_array($que);
+                echo "<b class='p-3 fs-1'>$result2[0]</b>";
+                ?>
+              </div>
+              <h2 class="p-2"> Subject Teachers</h2>
+              <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card-body " style="border-radius: 20px;background-color:#ff9999">
+            <div class="d-flex">
+              <div class="p-3 bg-light  " style="border-radius: 50px;">
+                <?php
+                $que = mysqli_query($con, "select count(*) from student_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
+                $result2 = mysqli_fetch_array($que);
+                echo "<b class='p-3 fs-1'>$result2[0]</b>";
+                ?>
+              </div>
+              <h2 class="p-2"> Total Student</h2>
+              <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 ">
+          <div class="card-body " style="border-radius: 20px;background-color:#ff9999">
+            <div class="d-flex">
+              <div class="p-3 bg-light  " style="border-radius: 50px;">
+                <?php
+                $que = mysqli_query($con, "select count(*) from subject_tbl where Class_id='$row[15]' and Inst_id='$inst_id' group by Class_id");
+                $result2 = mysqli_fetch_array($que);
+                echo "<b class='p-3 fs-1'>$result2[0]</b>";
+                ?>
+              </div>
+              <h2 class="p-2">Total Subjects</h2>
+              <!-- <h6>[<?php echo $row[13] . "-" . $row[14] ?>]</h6> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row  mt-5 ">
         <?php
         // include("admin-sidebar.php");
         $date = date('Y-m-d');
@@ -117,15 +102,15 @@ $row = mysqli_fetch_array($r);
         if ($nor > 0) {
         ?>
 
-          <div class="col">
-            <div class="row mx-2 fs-4">
-              <div class="col ">
-                <p class="">Exams</p>
-              </div>
-              <div class="col d-flex justify-content-end">
-                <a href="studentExam.php">View All</a>
-              </div>
+        <div class="col">
+          <div class="row mx-2 fs-4">
+            <div class="col ">
+              <p class="">Exams</p>
             </div>
+            <div class="col d-flex justify-content-end">
+              <a href="studentExam.php">View All</a>
+            </div>
+          </div>
           <?php
 
           while ($r = mysqli_fetch_array($res)) {
@@ -158,13 +143,13 @@ $row = mysqli_fetch_array($r);
         }
           ?>
 
+        </div>
+        <div class="col-sm-4 p-4 mx-2 shadow" style="border-radius: 20px;background-color:#f0ffff">
+          <h3>Students of <?php echo $row[13] . '-' . $row[14] ?></h3>
+          <div>
+            <canvas id="barChart"></canvas>
           </div>
-          <div class="col-sm-4 p-4 mx-2 shadow" style="border-radius: 20px;background-color:#f0ffff">
-            <h3>Students of <?php echo $row[13] . '-' . $row[14] ?></h3>
-            <div>
-              <canvas id="barChart"></canvas>
-            </div>
-          </div>
+        </div>
 
       </div>
       <div class="row " style="padding-top: 10px;">
@@ -235,34 +220,34 @@ $row = mysqli_fetch_array($r);
                 while ($rs = mysqli_fetch_array($res1)) {
               ?>
 
-                  <div class="row">
-                    <div class="col">
-                      <?php echo $rs[3]; ?>
-                    </div>
-                    <!-- <div class="col d-flex justify-content-end"> -->
-                      <!-- <li class="fa fa-bookmark fs-1 ms-5 text-dark"></li>-->
-                    <div class="col d-flex justify-content-end p-3 bg-light" style="border-radius: 50px;">
-                    <!-- <?php
-                    
-                    // $que = mysqli_query($con, "select count(*) from studentMaterialList_tbl where Class_id='$row[15]' and Inst_id='$inst_id' and  Subject_Id='$subid'group by Subject_id");
-                    // $result2 = mysqli_fetch_array($que);
-                    // echo "<b class='p-3 fs-1'>$result2[0]</b>";
-                    ?> -->
-                  </div>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col">
+                  <?php echo $rs[3]; ?>
+                </div>
+                <!-- <div class="col d-flex justify-content-end"> -->
+                <!-- <li class="fa fa-bookmark fs-1 ms-5 text-dark"></li>-->
+                <div class="col d-flex justify-content-end p-3 bg-light" style="border-radius: 50px;">
+                  <!-- <?php
+
+                            // $que = mysqli_query($con, "select count(*) from studentMaterialList_tbl where Class_id='$row[15]' and Inst_id='$inst_id' and  Subject_Id='$subid'group by Subject_id");
+                            // $result2 = mysqli_fetch_array($que);
+                            // echo "<b class='p-3 fs-1'>$result2[0]</b>";
+                            ?> -->
+                </div>
+              </div>
         </div>
       </div>
     </div>
-    </a>
+  </div>
+  </a>
 
-<?php
+  <?php
                 }
               }
               // echo $q; 
 ?>
-</tbody>
-</table>
+  </tbody>
+  </table>
   </div>
   </div>
   </div>
@@ -273,80 +258,80 @@ $row = mysqli_fetch_array($r);
 
 </html>
 <script>
-  function makechart1() {
-    $.ajax({
+function makechart1() {
+  $.ajax({
 
-      url: "studentcharts.php",
-      method: "post",
-      dataType: "json",
-      success: function(data) {
-        var total = [0, 0];
-        total[0] = data[0];
-        total[1] = data[1];
-
-
-        var chart_data = {
-          labels: ['Girls', 'Boys'],
-          datasets: [{
-              label: 'Month',
-              data: total,
-              backgroundColor: [
-                'rgb(0,0,255)', //pink
-                'rgb(255,0,0)', //orange
+    url: "studentcharts.php",
+    method: "post",
+    dataType: "json",
+    success: function(data) {
+      var total = [0, 0];
+      total[0] = data[0];
+      total[1] = data[1];
 
 
-              ],
-              borderColor: [
-                'rgb(0,0,255)', //pink
-                'rgb(255,0,0)', //orange
+      var chart_data = {
+        labels: ['Girls', 'Boys'],
+        datasets: [{
+            label: 'Month',
+            data: total,
+            backgroundColor: [
+              'rgb(0,0,255)', //pink
+              'rgb(255,0,0)', //orange
+
+
+            ],
+            borderColor: [
+              'rgb(0,0,255)', //pink
+              'rgb(255,0,0)', //orange
 
 
 
-              ],
-              borderWidth: 1,
+            ],
+            borderWidth: 1,
+          }
+
+        ],
+
+
+      };
+
+      var options = {
+        responsive: true,
+        cutout: 100,
+        scales: {
+          x: {
+            title: {
+              color: 'black',
+              display: true,
+              text: 'Students',
+              fontSize: 25
             }
-
-          ],
-
-
-        };
-
-        var options = {
-          responsive: true,
-          cutout: 100,
-          scales: {
-            x: {
-              title: {
-                color: 'black',
-                display: true,
-                text: 'Students',
-                fontSize: 25
-              }
-            },
-            yAxes: [{
-              ticks: {
-                min: true
-              }
-            }]
           },
+          yAxes: [{
+            ticks: {
+              min: true
+            }
+          }]
+        },
 
-        };
-        var barChartCanvas = $("#barChart").get(0).getContext("2d");
-        var myChart = new Chart(barChartCanvas, {
-          type: 'doughnut',
-          data: chart_data,
+      };
+      var barChartCanvas = $("#barChart").get(0).getContext("2d");
+      var myChart = new Chart(barChartCanvas, {
+        type: 'doughnut',
+        data: chart_data,
 
-          options: options
-        });
-        //   var barChartCanvas = $("#barChart1").get(0).getContext("2d");
-        //  var myChart = new Chart(barChartCanvas, {
-        //    type: 'bar',
-        //    data: chart_data,
-        //    options: options,
-        //  });
+        options: options
+      });
+      //   var barChartCanvas = $("#barChart1").get(0).getContext("2d");
+      //  var myChart = new Chart(barChartCanvas, {
+      //    type: 'bar',
+      //    data: chart_data,
+      //    options: options,
+      //  });
 
-      }
-    });
+    }
+  });
 
-  }
+}
 </script>

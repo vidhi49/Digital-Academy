@@ -191,7 +191,7 @@ $inst_id = $_SESSION['inst_id'];
         </div>
       </div>
       <!-- 4 -->
-<div class="row mt-5 mb-5"
+      <div class="row mt-5 mb-5"
         style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <?php
 

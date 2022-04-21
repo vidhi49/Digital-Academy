@@ -2,7 +2,7 @@
 include('../connect.php');
 include('student-header.php');
 $Inst_id = $_SESSION['Inst_id'];
-$page='instituteinfo';
+$page = 'instituteinfo';
 ?>
 <html>
 
@@ -10,15 +10,13 @@ $page='instituteinfo';
   <div class="d-flex">
     <?php include("student-sidebar.php"); ?>
     <div class="student-content mt-5 ">
-      <div class="row mt-5 p-2">
+      <div class="d-flex">
         <?php $q = "select * from institute_tbl where Id='$Inst_id'";
         $res = mysqli_query($con, $q);
         while ($r = mysqli_fetch_array($res)) {
         ?>
-        <div class="col-sm-6 d-flex justify-content-center">
-          <img src="../img/1.jpg" class="img h-50 w-50" />
-        </div>
-        <div class="col-sm-6 ">
+        <img src="../img/1.jpg" class="img" style="height:500px;width:500px" />
+        <div class="">
           <div>
             <h6 class="navy-blue fw-bold fs-5"> Institute Name : </h6>
             <p><?php echo $r[2]; ?></p>
