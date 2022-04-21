@@ -1,3 +1,13 @@
+<?php
+$Id = $_SESSION['Id'];
+$inst_id = $_SESSION['Inst_id'];
+$que = "select * from class_tbl where Teacher_id='$Id' and Insti_id='$inst_id'";
+$r = mysqli_query($con, $que);
+$num = mysqli_num_rows($r);
+
+
+?>
+
 <html>
 
 <head>
@@ -33,124 +43,124 @@
   </script>
 </head>
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fafafa;
-}
-
-p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-a,
-a:hover,
-a:focus {
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.teacher-sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
-  /* background-color: #041562; */
-  color: #fff;
-  transition: all 0.3s;
-}
-
-.teacher-sidebar .teacher-sidebar-header {
-  padding: 20px;
-  /* background: #6d7fcc; */
-}
-
-.teacher-sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
-}
-
-.teacher-sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-.teacher-sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-.teacher-sidebar ul li a:hover {
-  color: navy;
-  background: #fff;
-}
-
-.teacher-sidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: navy;
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  /* background: #6d7fcc; */
-}
-
-.wrapper {
-  display: flex;
-  width: 230px;
-  align-items: stretch;
-}
-
-.teacher-sidebar {
-  /* width: 250px; */
-  /* max-width: 250px; */
-  /* min-height: 100vh; */
-  height: 100vh;
-}
-
-a[data-toggle="collapse"] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-/* 
-.teacher-sidebar.active {
-  margin-left: -250px;
-} */
-
-@media (max-width: 768px) {
-  /* 
-  .teacher-sidebar {
-    margin-left: -250px;
-  } */
-
-  .wrapper {
-    width: calc(100vw - 230px);
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
   }
 
-  .li-name {
-    display: none;
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .teacher-sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    /* background-color: #041562; */
+    color: #fff;
+    transition: all 0.3s;
+  }
+
+  .teacher-sidebar .teacher-sidebar-header {
+    padding: 20px;
+    /* background: #6d7fcc; */
+  }
+
+  .teacher-sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+  }
+
+  .teacher-sidebar ul p {
+    color: #fff;
+    padding: 10px;
+  }
+
+  .teacher-sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+  }
+
+  .teacher-sidebar ul li a:hover {
+    color: navy;
+    background: #fff;
+  }
+
+  .teacher-sidebar ul li.active>a,
+  a[aria-expanded="true"] {
+    color: #fff;
+    background: navy;
   }
 
   ul ul a {
-    padding-left: 2px !important;
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    /* background: #6d7fcc; */
   }
 
-  .teacher-sidebar.active {
-    margin-left: 0;
+  .wrapper {
+    display: flex;
+    width: 230px;
+    align-items: stretch;
   }
-}
+
+  .teacher-sidebar {
+    /* width: 250px; */
+    /* max-width: 250px; */
+    /* min-height: 100vh; */
+    height: 100vh;
+  }
+
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+
+  .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
+  /* 
+  .teacher-sidebar.active {
+    margin-left: -250px;
+  } */
+
+  @media (max-width: 768px) {
+    /* 
+    .teacher-sidebar {
+      margin-left: -250px;
+    } */
+
+    .wrapper {
+      width: calc(100vw - 230px);
+    }
+
+    .li-name {
+      display: none;
+    }
+
+    ul ul a {
+      padding-left: 2px !important;
+    }
+
+    .teacher-sidebar.active {
+      margin-left: 0;
+    }
+  }
 </style>
 
 <body>
@@ -173,7 +183,7 @@ a[data-toggle="collapse"] {
         <!-- <p>Dummy Heading</p> -->
 
         <li class="m-2">
-          <a href="teacher-dashboard.php"  data-toggle="tooltip" title="Dashboard">
+          <a href="teacher-home.php"  data-toggle="tooltip" title="Dashboard">
             <i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
         </li>
 
@@ -182,31 +192,33 @@ a[data-toggle="collapse"] {
             <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
               Bank</span></a>
         </li>
-        <li class="m-2">
-          <a href="takeattedance.php" data-toggle="tooltip" title="Question Bank">
-            <i class="fas fa-hand-point-up me-2 fs-5"></i><span class="li-name"> Attendance </span></a>
-        </li>
+
+
+        <?php
+          if($num>0)
+          {
+            echo '<li class="m-2">
+            <a href="takeattedance.php" data-toggle="tooltip" title="Question Bank">
+              <i class="fas fa-hand-point-up me-2 fs-5"></i><span class="li-name"> Attendance </span></a>
+          </li>';
+          }
+        
+        ?>
+
+
+        
 
         <li class="m-2">
           <a href="material.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name"> Upload Material </span></a>
         </li>
-        <?php
-        $id = $_SESSION['Id'];
-
-        $q = "select * from class_tbl where Insti_id='$inst_id' and Teacher_id='$id'";
-        $res = mysqli_query($con, $q);
-        $nor = mysqli_num_rows($res);
-        if ($nor > 0) {
-        ?>
+        
         <li class="m-2">
           <a href="viewstudent.php">
             <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
         </li>
 
-        <?php
-        }
-        ?>
+        
 
 
         <li class="m-2">
