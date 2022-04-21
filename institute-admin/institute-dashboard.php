@@ -341,6 +341,7 @@ function makechart2() {
       var total = [0, 0];
       total[0] = data[0];
       total[1] = data[1];
+    alert(data);
       var chart_data = {
         labels: ['Present', 'Absent'],
         datasets: [{
