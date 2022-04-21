@@ -5,35 +5,20 @@ $Inst_id = $_SESSION['Inst_id'];
 $page = 'instituteinfo';
 ?>
 <html>
-<style>
-.inst-card {
-  width: 800px;
-}
-
-@media only screen and (max-width: 500px) {
-  .inst-card {
-    width: auto;
-  }
-}
-</style>
 
 <body>
   <div class="d-flex">
     <?php include("student-sidebar.php"); ?>
     <div class="student-content mt-5 ">
-      <h2 class="navy-blue text-center">Institute Info</h2>
-
       <div class="d-flex justify-content-center align-items-center">
-        <div class="card inst-card shadow p-5 " style="border-radius:20px;">
-          <div class="row">
+        <div class="card shadow p-5 w-50" style="border-radius:20px;">
+          <div class="d-flex">
             <?php $q = "select * from institute_tbl where Id='$Inst_id'";
             $res = mysqli_query($con, $q);
             while ($r = mysqli_fetch_array($res)) {
             ?>
-            <div class="col-sm-6">
-              <img src="../Institute-logo/<?php echo $r['Logo'] ?>" class="img m-4" style="height:300px;width:300px" />
-            </div>
-            <div class="col-sm-6 p-2 d-block">
+            <img src="../img/1.jpg" class="img m-4" style="height:300px;width:300px" />
+            <div class="p-2 d-block">
               <div>
                 <h6 class="navy-blue fw-bold fs-5"> Institute Name : </h6>
                 <p><?php echo $r[2]; ?></p>
@@ -63,4 +48,4 @@ $page = 'instituteinfo';
       </div>
     </div>
   </div>
-</body
+</body>

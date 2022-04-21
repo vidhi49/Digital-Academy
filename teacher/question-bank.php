@@ -3,6 +3,7 @@ include('../connect.php');
 include('../teacher/teacher-header.php');
 require('../teacher/addQuestion.php');
 $inst_id = $_SESSION['Inst_id'];
+$id=$_SESSION['Id'];
 $page = "exam";
 ?>
 
@@ -63,13 +64,18 @@ $page = "exam";
                 <select required class="form-select w-100" aria-label="Default select example"
                   onchange="sectionDropdown(this.value);subjectDropdown(this.value)" name="class" required>
                   <?php
-                  $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
+                  $qry = "select Class_id ,count(*) from teacher_wise_subject_tbl where Teacher_id='$Id' and Inst_id='$inst_id' group by Class_id";
+                  // $result = mysqli_query($con, $p);
+                  // $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
                   $result = $con->query($qry);
                   $num = $result->num_rows;
                   if ($num > 0) {
                     echo '<option value="">---- -Select Class -----</option>';
                     while ($rows = $result->fetch_assoc()) {
-                      echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
+                      $q="select * from class_tbl where Id='".$rows['Class_id']."'";
+                      $result=mysqli_query($con,$q);
+                      $row1=mysqli_fetch_array($result);
+                      echo '<option  value="' . $row1['Name'] . '" >' . $row1['Name'] . '</option>';
                     }
                     echo '</select>';
                   }
@@ -141,7 +147,7 @@ $page = "exam";
           <button onclick="generatePDF()">Download as PDF</button>
 
           <hr><br>
-          <table class="table table-hover">
+          <table class="table table-hover" id="dataTable">
             <thead>
               <tr class="navy-blue">
                 <!-- <th scope="th-md" style="width: 1%;"></th> -->
@@ -497,3 +503,14 @@ if (isset($_GET['QueId']) && isset($_GET['action']) && $_GET['action'] == "delet
 ?>
 
 </html>
+
+<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script>
+  $(document).ready(function() {
+    $('#dataTable').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
+  </script>

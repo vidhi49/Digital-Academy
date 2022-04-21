@@ -183,7 +183,7 @@ if (isset($_REQUEST['login'])) {
           echo "<script>Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Passward Does Not Match!'
+            text: 'Password Does Not Match!'
             
           })</script>";
         }
@@ -211,7 +211,7 @@ if (isset($_REQUEST['login'])) {
           echo "<script>Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Passward Does Not Match!'
+            text: 'Password Does Not Match!'
             
           })</script>";
         }

@@ -1,105 +1,88 @@
-<?php
-include('../connect.php');
+<?php include("../connect.php");
 include('student-header.php');
 $inst_id = $_SESSION['Inst_id'];
-$Id = $_SESSION['Id'];
-$cid = $_GET['cid'];
-$subid = $_GET['sid'];
-$page='attendance';
+$page = 'instituteinfo';
+$id = $_SESSION['Id'];
+
+
+
+
 
 ?>
 
 <head>
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script>
-  function classDropdown(str) {
-    if (str == "") {
-      document.getElementById("section").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
+    function classDropdown(str) {
+      if (str == "") {
+        document.getElementById("section").innerHTML = "";
+        return;
       } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("section").innerHTML = this.responseText;
+        if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-      };
-      xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
-      xmlhttp.send();
-    }
-  }
-
-  function studentDropdown(str) {
-    if (str == "") {
-      document.getElementById("studname").innerHTML = "";
-      return;
-    } else {
-      if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("section").innerHTML = this.responseText;
+          }
+        };
+        xmlhttp.open("GET", "ajaxSection.php?name=" + str, true);
+        xmlhttp.send();
       }
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("studname").innerHTML = this.responseText;
+    }
+    $(document).ready(function() {
+      $("#colfrom").hide();
+      $("#colto").hide();
+      $("#coldate").hide();
+      $("#type").on('change', function() {
+        if ($("#type").val() == 'singledate') {
+          $("#coldate").show();
+          $("#colfrom").hide();
+          $("#colto").hide();
         }
-      };
-      xmlhttp.open("GET", "ajaxStudentname.php?classid=" + str, true);
-      xmlhttp.send();
-    }
-  }
+        if ($("#type").val() == 'range') {
+          $("#colfrom").show();
+          $("#colto").show();
+          $("#coldate").hide();
+        }
+      });
+      $("#show").click(function() {
+        if ($("#type").val() == 'singledate') {
+          if ($("#date").val() == "") {
+            alert("Please Select Date");
+            $("#date").focus();
+            return false;
+          }
+        }
+        if ($("#type").val() == 'range') {
+          if ($("#from_date").val() == "") {
+            alert("Please Select From Date");
+            $("#from_date").focus();
+            return false;
+          }
+          if ($("#to_date").val() == "") {
+            alert("Please Select To Date");
+            $("#to_date").focus();
+            return false;
+          }
+          if ($("#from_date").val() != "" && $("#to").val() != "") {
+            if ($("#from_date").val() > $("#to_date").val()) {
+              alert("To Date must be Greater then From Date");
+              $("#to_date").focus();
+              return false;
+            }
+          }
+        }
 
-  function studentgrno(str) {
-    $('#grno').attr('value', str);
-  }
-  $(document).ready(function() {
-    $("#coldate").hide();
-    // $("#atttable").hide();
-    $("#colfrom").hide();
-    $("#colto").hide();
-    $("#type").on('change', function() {
-      if ($("#type").val() == 'singledate') {
-        $("#coldate").show();
-        $("#colfrom").hide();
-        $("#colto").hide();
-      }
-      if ($("#type").val() == 'range') {
-        $("#colfrom").show();
-        $("#colto").show();
-        $("#coldate").hide();
-      }
-    });
+      });
 
-    $("#view").click(function() {
 
-      if ($("#class").val() == '') {
-        alert("Please Select Class");
-        $("#class").focus();
-        return false;
-
-      }
-      if ($("#section").val() == '') {
-        alert("Please Select Section");
-        $("#section").focus();
-        return false;
-      }
-      if ($("#studname").val() == '') {
-        alert("Please Select Section");
-        $("#studname").focus();
-        return false;
-      }
-      // $("#atttable").show();   
-      // return false;
 
     });
-  });
   </script>
 </head>
 <html>
@@ -108,91 +91,41 @@ $page='attendance';
   <div class="d-flex">
     <?php
     include("student-sidebar.php");
+
     ?>
-    <div class="student-content  text-muted">
-      <div class=" bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+    <div class="student-content text-muted">
+      <div class="bg-white" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <form method="post" id="form" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
-          <div id="selectclass">
-            <div>
-              <h1 class="fs-2 text-dark ">Student Attendance</h1>
-              <hr>
-            </div>
+          <div id="selectdate">
+            <h1 class="fs-2 text-dark ">Select Date</h1>
+            <hr>
             <br>
-            <div class="form-group ">
-              <div class="row">
-                <div class="col-sm-6">
-                  <label class="form-control-label ml-2 p-1">Select Class<span class="text-danger ml-2">*</span></label>
-                  <?php
-                  $qry = "SELECT DISTINCT Name FROM class_tbl Where Insti_id='$inst_id' ORDER BY Name ASC ";
-                  $result = $con->query($qry);
-                  $num = $result->num_rows;
-                  if ($num > 0) {
-                    echo ' <select   name="class" id="class" onchange="classDropdown(this.value)" class="form-control form-control-lg m-1" required >';
-                    echo '<option value="" selected hidden>--Select Class--</option>';
-                    while ($rows = $result->fetch_assoc()) {
-                      echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
-                    }
-                    echo '</select>';
-                  }
-                  ?>
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-control-label ml-2 p-1">Class Section<span
-                      class="text-danger ml-2">*</span></label>
-                  <?php
-                  echo ' <select    name="section" id="section" onchange="studentDropdown(this.value)"  class="form-control form-control-lg m-1" >';
-                  echo "<option value='' >--Select Section--</option>";
-                  echo "</select>";
-                  ?>
+            <div class="form-group row">
+              <div id="coltype">
+                <label class="form-label ml-2 p-1"> Type : <span class="text-danger">*</span></label>
+                <select id='type' class="form-control form-control-lg m-1">
+                  <option value="">--Select Type--</option>
+                  <option value="singledate"> Single Date </option>
+                  <option value="range"> Range </option>
 
-                </div>
+                </select>
               </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <label class="form-label ml-2 p-1">Select Student:<span class="text-danger">*</span></label>
-                  <?php
-                  echo ' <select    name="studname" id="studname" onchange="studentgrno(this.value)"  class="form-control form-control-lg m-1" >';
-                  echo "<option value='' >--Select Student--</option>";
-                  echo "</select>";
-                  ?>
-
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label ml-2 p-1">Student Grno:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="text" id="grno" name="grno" readonly>
-
-                </div>
+              <div class="col-sm-6" id="coldate">
+                <label class="form-label ml-2 p-1">Select Date:<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg m-1" type="date" id="date" name="date">
               </div>
-              <div class="row">
-                <div class=" col-sm-12" id="coltype">
-                  <label class="form-label ml-2 p-1"> Type : <span class="text-danger">*</span></label>
-                  <select id='type' class="form-control form-control-lg m-1">
-                    <option value="">--Select Type--</option>
-                    <option value="singledate"> Single Date </option>
-                    <option value="range"> Range </option>
-
-                  </select>
-                </div>
+              <div class="col-sm-6 " id="colfrom">
+                <label class="form-label ml-2 p-1">Form:<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg m-1" type="date" id="from_date" name="from_date">
               </div>
-              <div class="row">
-                <div class="col-sm-4" id="coldate">
-                  <label class="form-label ml-2 p-1">Select Date:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="date" id="date" name="date">
-                </div>
-                <div class=" col-sm-4" id="colfrom">
-                  <label class="form-label ml-2 p-1">Form:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="date" id="from_date" name="from_date">
-                </div>
-                <div class=" col-sm-4 " id="colto">
-                  <label class="form-label ml-2 p-1">To:<span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg m-1" type="date" id="to_date" name="to_date">
-                </div>
+              <div class=" col-sm-6 " id="colto">
+                <label class="form-label ml-2 p-1">To:<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg m-1" type="date" id="to_date" name="to_date">
               </div>
-
             </div>
             <div class="pt-1 mb-4">
-              <button class="btn bg-navy-blue text-white btn-lg " id="view" name="view" type="submit">View
+              <button class="btn bg-navy-blue text-white btn-lg " id="show" name="show" type="submit">Show
                 Attendance</button>
             </div>
           </div>
@@ -200,8 +133,7 @@ $page='attendance';
         </form>
       </div>
 
-      <div class="mt-5 bg-white" id="atttable"
-        style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+      <div class="mt-5 bg-white" id="atttable" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
 
         <form method="post" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
@@ -213,16 +145,19 @@ $page='attendance';
 
               <?php
               include("../connect.php");
-              $section = $_REQUEST['section'];
-              $grno = $_REQUEST['grno'];
+              $stud="select * from student_tbl where Id='$id'";
+              $q=mysqli_query($con,$stud);
+              $r=mysqli_fetch_array($q);
+              // $section = $_REQUEST['section'];
+              // $grno = $_REQUEST['grno'];
               $todaydate = date('l');
               if ($todaydate != 'Sunday') {
-                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$r[15]' AND Grno='$r[1]'";
                 $rs = $con->query($query);
                 $num = $rs->num_rows;
                 $sn = 0;
                 if ($num > 0) {
-                  $query1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id'  AND Date='" . date('Y-m-d') . "'";
+                  $query1 = "select * from attendance_tbl where Class_id='$r[15]' AND Inst_id ='$inst_id'  AND Date='" . date('Y-m-d') . "'";
                   $result1 = mysqli_query($con, $query1);
                   $num1 = mysqli_num_rows($result1);
                   if ($num1 > 0) {
@@ -240,7 +175,7 @@ $page='attendance';
                                         <tbody>';
                     while ($rows = $rs->fetch_assoc()) {
 
-                      $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date='" . date('Y-m-d') . "'";
+                      $q1 = "select * from attendance_tbl where Class_id='$r[15]' AND Inst_id ='$inst_id' AND Grno='" . $r[1] . "' AND Date='" . date('Y-m-d') . "'";
                       $res = mysqli_query($con, $q1);
                       $nor1 = mysqli_num_rows($res);
 
@@ -287,8 +222,7 @@ $page='attendance';
 
 
 
-      <div class="mt-5 bg-white" id="datewiseatt"
-        style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
+      <div class="mt-5 bg-white" id="datewiseatt" style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
 
         <form method="post" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
@@ -313,9 +247,10 @@ $page='attendance';
 
                 <?php
                 include("../connect.php");
+                $stud="select * from student_tbl where Id='$id'";
+              $q=mysqli_query($con,$stud);
+              $r=mysqli_fetch_array($q);
                 $date = $_REQUEST['date'];
-                $section = $_REQUEST['section'];
-                $grno = $_REQUEST['grno'];
                 $unixTimestamp = strtotime($date);
                 $weekday = date('l', $unixTimestamp);
                 if ($weekday == 'Sunday') {
@@ -325,11 +260,11 @@ $page='attendance';
                                                 </div>";
                 } else {
 
-                  $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$section' AND Date ='$date'";
+                  $q2 = "select * from attendance_tbl where Inst_id='$inst_id' AND Class_id='$r[15]' AND Date ='$date'";
                   $res2 = mysqli_query($con, $q2);
                   $nor = mysqli_num_rows($res2);
                   if ($nor > 0) {
-                    $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+                    $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$r[15]' AND Grno='$r[1]'";
                     $rs = $con->query($query);
                     $num = $rs->num_rows;
                     $sn = 0;
@@ -337,7 +272,7 @@ $page='attendance';
                       while ($rows = $rs->fetch_assoc()) {
                         echo "<tr>
                                                          <td>" . $rows['Stud_name'] . "</td>";
-                        $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $rows['Grno'] . "' AND Date ='$date'";
+                        $q1 = "select * from attendance_tbl where Class_id='$r[15]' AND Inst_id ='$inst_id' AND Grno='" . $r[1] . "' AND Date ='$date'";
                         $res = mysqli_query($con, $q1);
                         while ($r1 = mysqli_fetch_array($res)) {
                           if ($r1['Status'] == 1) {
@@ -373,8 +308,7 @@ $page='attendance';
         </form>
       </div>
 
-      <div class="mt-5 bg-white" id="rangewiseatt"
-        style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
+      <div class="mt-5 bg-white" id="rangewiseatt" style="display:none;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ">
 
         <form method="post" class="p-4 m-2">
           <!-- <div id="selectclass" style="display: none;"> -->
@@ -454,9 +388,10 @@ $page='attendance';
               <tbody>
 
                 <?php
-                $section = $_REQUEST['section'];
-                $grno = $_REQUEST['grno'];
-                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$section' AND Grno='$grno'";
+                $stud="select * from student_tbl where Id='$id'";
+                $q=mysqli_query($con,$stud);
+                $r=mysqli_fetch_array($q);
+                $query = "SELECT * FROM class_wise_student where Inst_id='$inst_id' AND Class_id='$r[15]' AND Grno='$r[1]'";
                 $res = mysqli_query($con, $query);
                 while ($r2 = mysqli_fetch_array($res)) {
                   echo "<tr>";
@@ -469,7 +404,7 @@ $page='attendance';
                     if ($d == 'Sunday') {
                       echo "<td><i class='fa fa-square ' style='color:grey;font-size:30px;'> </i> </td>";
                     } else {
-                      $q1 = "select * from attendance_tbl where Class_id='$section' AND Inst_id ='$inst_id' AND Grno='" . $r2['Grno'] . "' AND Date ='$i'";
+                      $q1 = "select * from attendance_tbl where Class_id='$r[15]' AND Inst_id ='$inst_id' AND Grno='" . $r[1] . "' AND Date ='$i'";
                       $res1 = mysqli_query($con, $q1);
                       $nor = mysqli_num_rows($res1);
                       if ($nor == 0) {
@@ -486,6 +421,8 @@ $page='attendance';
                     }
                   }
 
+
+
                   echo "</tr>";
                 }
 
@@ -497,26 +434,22 @@ $page='attendance';
 
         </form>
       </div>
+
+
+      </form>
     </div>
   </div>
 </body>
 
 </html>
+
 <?php
-
-if (isset($_POST['view'])) {
-
-  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
-    echo "<script>$('#atttable').show();</script>";
+if (isset($_REQUEST['show'])) {
+  if ($_REQUEST['date'] != "") {
+    echo "<script>$('#atttable').hide();$('#datewiseatt').show();$('#rangewiseatt').hide();</script>";
+  } else if ($_REQUEST['from_date'] != "" && $_REQUEST['to_date'] != "") {
+    echo "<script>$('#atttable').hide();$('#datewiseatt').hide();$('#rangewiseatt').show();</script>";
   }
-  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] != "" && $_REQUEST['from_date'] == "" && $_REQUEST['to_date'] == "") {
-    echo "<script>$('#datewiseatt').show();</script>";
-  }
-  if ($_REQUEST['section'] != "" && $_REQUEST['studname'] != "" && $_REQUEST['date'] == "" && $_REQUEST['from_date'] != "" && $_REQUEST['to_date'] != "") {
-    echo "<script>$('#rangewiseatt').show();</script>";
-  }
-
-  // echo "<script>window.location.href='classattedance.php?class=$class&section=$section';</script>";
 }
 
 ?>

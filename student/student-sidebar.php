@@ -1,6 +1,7 @@
 <?php
 // session_start();
 include('../connect.php');
+// include('../institute-admin/institute-header.php');
 session_start();
 $email = $_SESSION['email'];
 $id = $_SESSION['Id'];
@@ -37,7 +38,7 @@ $r = mysqli_fetch_array($result);
     /* left: 0; */
     /* height: 100%; */
     width: 250px;
-    /* min-height: 100vh; */
+    min-height: 100vh;
     background-color: #041562;
     /* padding: 50px 0px 16px 0px; */
     /* padding: 6px 14px; */
@@ -52,12 +53,9 @@ $r = mysqli_fetch_array($result);
   .student-content {
     width: calc(100vw - 250px);
     padding: 30px;
-    max-height: 100vh;
-    overflow-y: scroll;
   }
 
   @media only screen and (max-width: 500px) {
-
     .student-sidebar {
       width: 50px;
       align-items: center;
@@ -76,11 +74,10 @@ $r = mysqli_fetch_array($result);
     }
   }
   </style>
-
 </head>
 
 <body>
-  <div class="d-flex flex-column student-sidebar vh-100 flex-shrink-0 p-3 text-white" id='student-sidebar'
+  <div class="d-flex flex-column student-sidebar flex-shrink-0 p-3 text-white" id='student-sidebar'
     style="box-shadow: inset 0 10px 15px -6px black;"> <a href="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> <svg class="bi me-2"
         width="40" height="32"> </svg> <span class="fs-5 span">Welcome </span> </a>
@@ -98,13 +95,11 @@ $r = mysqli_fetch_array($result);
           <i class="fa fa-tachometer fa-rotate-90	"></i>
           <span class="ms-1 span">Dashboard</span>
         </a> </li>
-
       <!-- <li> <a href="#" class="nav-link text-white p-2 m-2"> <i class="fa fa-cog"></i><span -->
       <!-- class="ms-2 span">Settings</span> -->
       <!-- </a> -->
       </li>
       <li class="nav-item">
-
         <a href="instituteInfo.php" <?php
                                     if ($page == 'instituteinfo') {
                                       echo 'class="nav-link active text-white p-2 m-2"';
@@ -115,7 +110,6 @@ $r = mysqli_fetch_array($result);
           <i class="fa fa-university" aria-hidden="true"></i><span class="ms-2 span">Institute Info</span>
         </a>
       </li>
-
       <li class="nav-item">
         <a href="viewAttendence.php" <?php
                                       if ($page == 'attendence') {
@@ -127,7 +121,6 @@ $r = mysqli_fetch_array($result);
           <i class="fa fa-hand-point-up"></i><span class="ms-2 span"> View Attendence</span>
         </a>
       </li>
-
       <li class="nav-item"> <a href="studentExam.php" <?php
                                                       if ($page == 'exam') {
                                                         echo 'class="nav-link active text-white p-2 m-2"';
@@ -137,7 +130,6 @@ $r = mysqli_fetch_array($result);
                                                       ?>> <i class="fa fa-bell"></i><span class="ms-2 span">Exam</span>
         </a>
       </li>
-
       <li class="nav-item"> <a href="subjectMaterial.php" <?php
                                                           if ($page == 'material') {
                                                             echo 'class="nav-link active text-white p-2 m-2"';
@@ -155,7 +147,8 @@ $r = mysqli_fetch_array($result);
     <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <img src='../Institute-admin/student_profile/<?php echo $r['Profile']; ?>' alt="" width="32" height="32"
-          class="rounded-circle me-2"> <strong> <?php echo $r[3]; ?> </strong> </a>
+          class="rounded-circle me-2">
+        <strong> <?php echo $r[3]; ?> </strong> </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
         <li><a class="dropdown-item text-dark" href="changePasswordStud.php">Change Password</a></li>
         <li><a class="dropdown-item text-dark" href="#">Profile</a></li>

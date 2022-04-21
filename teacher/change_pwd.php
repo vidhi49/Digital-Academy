@@ -1,13 +1,18 @@
 <?php
+// session_start();
+// include("../admin/admin-header.php");
+// include("../institute-admin/change-header.php");
+// include("../institute-admin/institute-header.php");
 include('../connect.php');
-include('student-header.php');
-$inst_id = $_SESSION['Inst_id'];
-$Id = $_SESSION['Id'];
-$page = "changepassword";
+// $Inst_id = $_SESSION['Inst_id'];
+include('teacher-header.php');
+$a = "changepassword";
+$page = 'instituteinfo';
 ?>
 
 <head>
-<script src="../js/jquery-3.1.1.min.js"></script>
+  <!-- <script src="../js/changepwd.js"></script> -->
+  <script src="../js/jquery-3.1.1.min.js"></script>
   <script>
     $(document).ready(function() {
       var e_Reg = /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
@@ -42,7 +47,7 @@ $page = "changepassword";
           $.ajax({
 
             type: 'POST',
-            url: 'studentpwdvalidate.php',
+            url: 'teacherpwdvalidate.php',
             data: "currentpassword=" + $('#currentpassword').val(),
             success: function(response) {
               $('#currentpwd').html(response).css('color', 'red');
@@ -106,12 +111,12 @@ $page = "changepassword";
 <body>
   <div class="d-flex">
     <?php
-    include("student-sidebar.php");
+    include("teacher-sidebar.php");
     // include("SIDEBAR.php");
     ?>
-    <div class="student-content d-flex justify-content-center align-items-center text-muted">
-      <div class="bg-white p-4 w-75" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-        <form method="post" class="cpwd-form">
+    <div class="content d-flex justify-content-center align-items-center text-muted">
+      <div class="bg-white p-4 w-auto" style="border-radius:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+        <form method="post" class="p-4 cpwd-form">
           <h1 class="fs-2 text-dark "><i class="fa fa-lock"></i> Change Password</h1>
           <hr>
           <p class="m-3">Create a New Password For your Account</p>
@@ -119,21 +124,22 @@ $page = "changepassword";
           <p class="mb-2">Current Password</p>
           <div class="form-group">
             <div class="input-group">
-              <input name="currentpassword" id="currentpassword" class="form-control form-control-lg "
-                placeholder="Current Password" type="password" required>
+              <input name="currentpassword" id="currentpassword" class="form-control form-control-lg " placeholder="Current Password" type="password" required>
               <div class="input-group-prepend">
                 <span class="input-group-text">
                   <i class="fa fa-eye" onclick="myFunction()"></i>
                 </span>
               </div>
             </div>
+
             <span id="currentpwd"></span>
           </div>
+
+
           <p class="mb-2">New Password</p>
           <div class="form-group ">
             <div class="input-group">
-              <input name="newpassword" id="newpassword" class="form-control form-control-lg "
-                placeholder="New Password" type="password" required>
+              <input name="newpassword" id="newpassword" class="form-control form-control-lg " placeholder="New Password" type="password" required>
               <div class="input-group-prepend">
                 <span class="input-group-text">
                   <i class="fa fa-eye" onclick="myFunction1()"></i>
@@ -147,8 +153,7 @@ $page = "changepassword";
           <p class="mb-2">Confirm New Password</p>
           <div class="form-group ">
             <div class="input-group">
-              <input name="confirmpassword" id="confirmpassword" class="form-control form-control-lg "
-                placeholder="Confirm New Password" type="password" required>
+              <input name="confirmpassword" id="confirmpassword" class="form-control form-control-lg " placeholder="Confirm New Password" type="password" required>
               <div class="input-group-prepend">
                 <span class="input-group-text">
                   <i class="fa fa-eye" onclick="myFunction2()"></i>
@@ -174,7 +179,7 @@ if (isset($_REQUEST['change'])) {
   $pass_hash = password_hash($newpwd, PASSWORD_DEFAULT);
   $inst_id = $_SESSION['Inst_id'];
   $id=$_SESSION['Id'];
-  $q = "update student_tbl set Pwd='$pass_hash' where Inst_id='$inst_id' and Id='$id'";
+  $q = "update staff_tbl set Pwd='$pass_hash' where Inst_id='$inst_id' and Id='$id'";
   $res = mysqli_query($con, $q);
   if ($res) {
     echo "<script>Swal.fire({

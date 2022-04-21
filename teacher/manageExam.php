@@ -254,7 +254,7 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
   <!-------------- Select Question Modal ---------------->
   <div class="modal fade" id="QueListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content" style="height: fit-content;">
         <div class="modal-header">
           <h2 class="modal-title navy-blue" id="exampleModalScrollableTitle">
@@ -317,7 +317,6 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
     </div>
   </div>
   <?php
-  include("../guest/footer.php");
   ?>
   <!----------- Add exam ------------->
   <?php
@@ -632,7 +631,16 @@ if (isset($_GET['ExamId']) && isset($_GET['action']) && $_GET['action'] == "dele
 
   });
   </script>
+<script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+  <!-- Page level custom scripts -->
+  <script>
+  $(document).ready(function() {
+    $('#ExamInfoTbl').DataTable(); // ID From dataTable 
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
+  </script>
 </body>
 
 </html>
