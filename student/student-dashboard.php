@@ -104,9 +104,7 @@ $(document).ready(function() {
 
         <div class="col">
           <div class="row mx-2 fs-4">
-            <div class="col ">
-              <p class="">Exams</p>
-            </div>
+            <p class="">Exams</p>
             <div class="col d-flex justify-content-end">
               <a href="studentExam.php">View All</a>
             </div>
@@ -139,7 +137,6 @@ $(document).ready(function() {
                         ';
           }
         } else {
-          echo "<center><h1>No Institute is Found</h1></center>";
         }
           ?>
 
