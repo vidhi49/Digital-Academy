@@ -164,7 +164,7 @@ $inst_id = $_SESSION['inst_id'];
         </div>
         <?php
         } else {
-          echo "<center><h1>No Institute is Found</h1></center>";
+          echo "<center><h1>No Recent Exams</h1></center>";
         } ?>
       </div>
       <!-- 3 -->
@@ -238,7 +238,7 @@ $inst_id = $_SESSION['inst_id'];
               }
               echo "</tr>";
             } else {
-              echo "<center><h1>No Institute is Found</h1></center>";
+              echo "<center><h1>No Fees is Pending</h1></center>";
             }
               ?>
             </tbody>
@@ -341,7 +341,6 @@ function makechart2() {
       var total = [0, 0];
       total[0] = data[0];
       total[1] = data[1];
-    alert(data);
       var chart_data = {
         labels: ['Present', 'Absent'],
         datasets: [{

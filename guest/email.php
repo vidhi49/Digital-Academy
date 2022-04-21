@@ -16,7 +16,7 @@ $mail = new PHPMailer();
 				$mail->addAttachment("../certi_img/$f");
 				$mail->Body="<h2>Request for approval...</h2>
 				<p>$sname has been requested authorization to use DGskool web app.
-The information provided by [user] is:</p><p>User Name:$uname <br>Email Id : $email<br>Phone No.:$cno</p>
+The information provided by [user] is:</p><p>User Name:$sname <br>Email Id : $email<br>Phone No.:$cno</p>
 				";
 				$mail->Username="sem5b.01.tmtbca@gmail.com";
 				$mail->Password = "optical1030";
@@ -24,7 +24,6 @@ The information provided by [user] is:</p><p>User Name:$uname <br>Email Id : $em
 				$mail->setFrom("sem5b.01.tmtbca@gmail.com");
 				$mail->addAddress("sem5b.02.tmtbca@gmail.com");
 				if ($mail->send()){
-				echo "Email sent";	
 				}
 				else{
 					echo "Error";

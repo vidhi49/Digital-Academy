@@ -24,7 +24,7 @@ class myPDF extends FPDF
         $this->Cell(276, 5, 'PENDING REQUEST', 0, 0, 'C');
         $this->Ln();
         $this->SetFont('Times', '', 12);
-        $this->Cell(276, 10, 'List of Pending Request', 0, 0, 'C');
+        $this->Cell(276, 10, 'List of All Request', 0, 0, 'C');
         $this->Ln(20);
         $this->SetFont('Times', 'B', 12);
         $this->Cell(10, 10, 'ID', 1, 0, 'C');

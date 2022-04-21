@@ -138,12 +138,16 @@ if (isset($_POST['submit'])) {
   $certi_img = $sname . "." . $extension;
   include("../connect.php");
   $q = "insert into inquiry_tbl values( null,'$sname','$email','$address','$cno','$certi_img','Pending','$date')";
-  echo $q;
   if (mysqli_query($con, $q)) {
     move_uploaded_file($floc, "../certi_img/" . $certi_img);
     require 'email.php';
-    echo "<script> alert('Thank You for Registration');</script>";
-    echo "<script>window.location.href='home.php';</script>";
+   
+    // echo "<script>window.location.href='home.php';</script>";
+    echo "<script>Swal.fire(
+      'Registered',
+      'Enrolled Successfully',
+      'success'
+    )</script>";
   } else {
     die("<center><h1>Query Failed" . mysqli_error($con) . "</h1></center>");
   }

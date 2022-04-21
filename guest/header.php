@@ -53,7 +53,7 @@
           <div class="justify-content-end collapse navbar-collapse " id="collapsibleNavbar">
             <ul class="navbar-nav fs-6">
               <li class="nav-item">
-                <a class="nav-link  " href="">Home</a>
+                <a class="nav-link  " href="home.php">Home</a>
               </li>
               <li class="nav-item ">
                 <a class="nav-link " href="">Inquiry</a>

@@ -63,7 +63,6 @@ $id=$_SESSION['inst_id'];
     </div>
   </div>
 </div>
-<?php require("../guest/footer.php");?>
 <?php
 if(isset($_POST['signin']))
 {
