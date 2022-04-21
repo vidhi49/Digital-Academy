@@ -22,7 +22,8 @@ $(document).ready(function() {
 });
 </script>
 
-<body>
+  <!-- overflow: hidden !important; -->
+<body >
   <div class="d-flex">
     <?php include("student-sidebar.php"); ?>
     <div class="student-content">

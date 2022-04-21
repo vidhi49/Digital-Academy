@@ -2,7 +2,7 @@
 // session_start();
 include('../connect.php');
 // include('../institute-admin/institute-header.php');
-session_start();
+// session_start();
 $email = $_SESSION['email'];
 $id = $_SESSION['Id'];
 $insti_id = $_SESSION['Inst_id'];
