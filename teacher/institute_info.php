@@ -1,6 +1,6 @@
 <?php
 include('../connect.php');
-include('student-header.php');
+include('teacher-header.php');
 $Inst_id = $_SESSION['Inst_id'];
 $page = 'instituteinfo';
 ?>
@@ -8,8 +8,8 @@ $page = 'instituteinfo';
 
 <body>
   <div class="d-flex">
-    <?php include("student-sidebar.php"); ?>
-    <div class="student-content mt-5 ">
+    <?php include("teacher-sidebar.php"); ?>
+    <div class="content mt-5 ">
       <div class="d-flex justify-content-center align-items-center">
         <div class="card shadow p-5 w-50" style="border-radius:20px;">
           <div class="d-flex">
@@ -18,7 +18,6 @@ $page = 'instituteinfo';
             while ($r = mysqli_fetch_array($res)) {
             ?>
             <img src="../Institute-logo/<?php echo $r['Logo']?>" class="img m-4" style="height:300px;width:300px" />
-
             <div class="p-2 d-block">
               <div>
                 <h6 class="navy-blue fw-bold fs-5"> Institute Name : </h6>

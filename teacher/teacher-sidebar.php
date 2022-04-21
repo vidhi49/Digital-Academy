@@ -187,11 +187,23 @@ $num = mysqli_num_rows($r);
             <i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
         </li>
 
+        
         <li class="m-2">
-          <a href="question-bank.php" data-toggle="tooltip" title="Question Bank">
-            <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
-              Bank</span></a>
+          <a href="institute_info.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-university me-2 fs-5"></i><span class="li-name"> Institute Information
+              </span></a>
         </li>
+        <li class="m-2">
+          <a href="view_profile.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-users me-2 fs-5"></i><span class="li-name"> View Profile
+              </span></a>
+        </li>
+        <li class="m-2">
+          <a href="change_pwd.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Change Password
+              </span></a>
+        </li>
+
 
 
         <?php
@@ -225,7 +237,11 @@ $num = mysqli_num_rows($r);
           <a href="viewclasses.php">
             <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Class</span></a>
         </li>
-
+        <li class="m-2">
+          <a href="question-bank.php" data-toggle="tooltip" title="Question Bank">
+            <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Question
+              Bank</span></a>
+        </li>
         <li class="active m-2">
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <i class="far fa-file-alt me-2 fs-5"></i> <span class="li-name">Exam </span></a>

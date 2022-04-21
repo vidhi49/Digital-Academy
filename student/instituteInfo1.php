@@ -17,8 +17,7 @@ $page = 'instituteinfo';
             $res = mysqli_query($con, $q);
             while ($r = mysqli_fetch_array($res)) {
             ?>
-            <img src="../Institute-logo/<?php echo $r['Logo']?>" class="img m-4" style="height:300px;width:300px" />
-
+            <img src="../img/1.jpg" class="img m-4" style="height:300px;width:300px" />
             <div class="p-2 d-block">
               <div>
                 <h6 class="navy-blue fw-bold fs-5"> Institute Name : </h6>
@@ -49,4 +48,4 @@ $page = 'instituteinfo';
       </div>
     </div>
   </div>
-</body
+</body>

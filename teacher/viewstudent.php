@@ -63,15 +63,11 @@ $page = "";
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <h2 class="text-black font-w700">
-                                                            Your Are not a Class Teacher
+                                                           No Student in Your Class
                                                         </h2>
                                                         <!-- <p class="mb-0 text-black font-w600">Total Students</p> -->
                                                     </div>
-                                                    <div class="col-6 d-flex justify-content-end d-inline-block">
-                                                        <a class="text-dark">
-                                                            <li class="fa fa-bookmark fs-1"></li>
-                                                        </a>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -81,25 +77,25 @@ $page = "";
           } else {
           ?>
 
-          <div class="col-xl-12 col-sm-12">
-            <div class="card shadow p-3 mb-5 bg-white " style="border-radius: 20px;">
-              <div class="card-body">
-                <div class="media align-items-center">
-                  <div class="media-body mr-3">
-                    <h2 class="text-black font-w700">
-                      Your Are not a Class Teacher
-                    </h2>
-                    <!-- <p class="mb-0 text-black font-w600">Total Students</p> -->
-                  </div>
-                  <div class="d-inline-block">
-                    <a class="text-dark">
-                      <li class='fa fa-bookmark fs-1'></li>
-                    </a>
+            <div class="col-xl-12 col-sm-12">
+              <div class="card shadow p-3 mb-5 bg-white " style="border-radius: 20px;">
+                <div class="card-body">
+                  <div class="media align-items-center">
+                    <div class="media-body mr-3">
+                      <h2 class="text-black font-w700">
+                        Your Are not a Class Teacher
+                      </h2>
+                      <!-- <p class="mb-0 text-black font-w600">Total Students</p> -->
+                    </div>
+                    <div class="d-inline-block">
+                      <a class="text-dark">
+                        <li class='fa fa-bookmark fs-1'></li>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           <?php
           }
 
@@ -111,7 +107,6 @@ $page = "";
   </div>
 
 
-  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>

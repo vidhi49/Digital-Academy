@@ -109,7 +109,6 @@ $page = "";
 
 
   </div>
-  <?php include("../guest/footer.php"); ?>
 </body>
 
 </html>
