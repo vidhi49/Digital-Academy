@@ -7,7 +7,7 @@ include('student-header.php');
 $email = $_SESSION['email'];
 $Id = $_SESSION['Id'];
 $Inst_id = $_SESSION['Inst_id'];
-$page='exam';
+$page = 'exam';
 ?>
 <html>
 
@@ -32,8 +32,6 @@ $page='exam';
           $q = "select * from exam_tbl as t1 left join studentExamResult_tbl as t2 on t1.Id=t2.Exam_Id and t2.Student_Id='$Id' where t1.Inst_id='$Inst_id' and t1.Class_id='$result[15]' and t1.Section='$result[14]' and t1.Status In('Created','Published','Completed')";
           // echo $q;
           $res1 = mysqli_query($con, $q);
-
-
           $nor = mysqli_num_rows($res1);
 
           if ($nor == 0) {

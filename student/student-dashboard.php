@@ -25,8 +25,7 @@ $(document).ready(function() {
 <body>
   <div class="d-flex">
     <?php include("student-sidebar.php"); ?>
-    <div class="student-content mt-2 ">
-
+    <div class="student-content">
       <div class="row shadow mx-5" style="border-radius: 20px;background-color:#fffdd0">
         <div class="col-sm-8 d-flex align-items-center">
           <div class="m-5 " style="line-height: 50px;">

@@ -3,6 +3,8 @@ body
 {
   background:  linear-gradient(180deg, #f2f6fa 0%, #fff 100%) !important;
   font-family: 'Open Sans', sans-serif;
+
+  overflow: hidden !important;
 }
 .logo
 {

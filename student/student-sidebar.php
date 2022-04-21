@@ -37,7 +37,7 @@ $r = mysqli_fetch_array($result);
     /* left: 0; */
     /* height: 100%; */
     width: 250px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background-color: #041562;
     /* padding: 50px 0px 16px 0px; */
     /* padding: 6px 14px; */
@@ -52,6 +52,8 @@ $r = mysqli_fetch_array($result);
   .student-content {
     width: calc(100vw - 250px);
     padding: 30px;
+    max-height: 100vh;
+    overflow-y: scroll;
   }
 
   @media only screen and (max-width: 500px) {
@@ -78,7 +80,7 @@ $r = mysqli_fetch_array($result);
 </head>
 
 <body>
-  <div class="d-flex flex-column student-sidebar flex-shrink-0 p-3 text-white" id='student-sidebar'
+  <div class="d-flex flex-column student-sidebar vh-100 flex-shrink-0 p-3 text-white" id='student-sidebar'
     style="box-shadow: inset 0 10px 15px -6px black;"> <a href="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> <svg class="bi me-2"
         width="40" height="32"> </svg> <span class="fs-5 span">Welcome </span> </a>
