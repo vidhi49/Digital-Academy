@@ -5,7 +5,7 @@ $inst_id = $_SESSION['Inst_id'];
 $Id = $_SESSION['Id'];
 $cid = $_GET['cid'];
 $subid = $_GET['sid'];
-$page='material';
+$page = 'material';
 ?>
 
 <body>
@@ -34,7 +34,7 @@ $page='material';
                   </div>';
           }
         } else {
-          echo "no records";
+          echo "<h3 class='navy-blue'>No Material Uploaded</h3>";
         }
         ?>
 

@@ -184,6 +184,7 @@ $insti_name = $abc['Name'];
           <p class="ms-2 d-none d-sm-inline">Dashboard</p>
         </a>
       </li>
+
       <li <?php
           if (($a == 'editprofile')) {
             echo "class=' active nav-item  '";
@@ -300,6 +301,9 @@ $insti_name = $abc['Name'];
         </li>
         <li class="p-0">
           <a href="viewsubject.php" class="nav-link text-light">View Subject</a>
+        </li>
+        <li class="p-0">
+          <a href="subjectTeacher.php" class="nav-link text-light">Subject Teachers</a>
         </li>
 
       </ul>
