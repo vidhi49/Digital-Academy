@@ -43,124 +43,137 @@ $num = mysqli_num_rows($r);
   </script>
 </head>
 <style>
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+}
 
-  p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-  }
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
 
-  a,
-  a:hover,
-  a:focus {
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
+a,
+a:hover,
+a:focus {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
 
-  .teacher-sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    /* background-color: #041562; */
-    color: #fff;
-    transition: all 0.3s;
-  }
+.teacher-sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  /* background-color: #041562; */
+  color: #fff;
+  transition: all 0.3s;
+}
 
-  .teacher-sidebar .teacher-sidebar-header {
-    padding: 20px;
-    /* background: #6d7fcc; */
-  }
+.teacher-sidebar .teacher-sidebar-header {
+  padding: 20px;
+  /* background: #6d7fcc; */
+}
 
-  .teacher-sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-  }
+.teacher-sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+}
 
-  .teacher-sidebar ul p {
-    color: #fff;
-    padding: 10px;
-  }
+.teacher-sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
 
-  .teacher-sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-  }
+.teacher-sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
 
-  .teacher-sidebar ul li a:hover {
-    color: navy;
-    background: #fff;
-  }
+.teacher-sidebar ul li a:hover {
+  color: navy;
+  background: #fff;
+}
 
-  .teacher-sidebar ul li.active>a,
-  a[aria-expanded="true"] {
-    color: #fff;
-    background: navy;
-  }
+.teacher-sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: navy;
+}
 
-  ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    /* background: #6d7fcc; */
-  }
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  /* background: #6d7fcc; */
+}
 
-  .wrapper {
-    display: flex;
-    width: 230px;
-    align-items: stretch;
-  }
+.wrapper {
+  display: flex;
+  width: 280px;
+  align-items: stretch;
+  padding: 20px;
+}
 
-  .teacher-sidebar {
-    /* width: 250px; */
-    /* max-width: 250px; */
-    /* min-height: 100vh; */
-    height: 100vh;
-  }
+.teacher-sidebar {
+  /* width: 250px; */
+  /* max-width: 250px; */
+  /* min-height: 100vh; */
+  height: 100vh;
+}
 
-  a[data-toggle="collapse"] {
-    position: relative;
-  }
+.teacher-content {
+  width: calc(100vw - 280px);
+  padding: 50px;
+}
 
-  .dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-  }
+a[data-toggle="collapse"] {
+  position: relative;
+}
 
-  /* 
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+/* 
   .teacher-sidebar.active {
     margin-left: -250px;
   } */
 
-  @media (max-width: 768px) {
-    /* 
+@media (max-width: 768px) {
+  /* 
     .teacher-sidebar {
       margin-left: -250px;
     } */
 
-    .wrapper {
-      width: calc(100vw - 230px);
-    }
-
-    .li-name {
-      display: none;
-    }
-
-    ul ul a {
-      padding-left: 2px !important;
-    }
-
-    .teacher-sidebar.active {
-      margin-left: 0;
-    }
+  .wrapper {
+    width: 80px;
+    padding: 0px;
   }
+
+  .teacher-content {
+
+    width: calc(100vw - 50px);
+    padding: 5px;
+  }
+
+  .li-name {
+    display: none;
+  }
+
+  ul ul a {
+    padding-left: 2px !important;
+  }
+
+  .teacher-sidebar.active {
+    margin-left: 0;
+  }
+}
 </style>
 
 <body>
@@ -183,54 +196,58 @@ $num = mysqli_num_rows($r);
         <!-- <p>Dummy Heading</p> -->
 
         <li class="m-2">
-          <a href="teacher-home.php"  data-toggle="tooltip" title="Dashboard">
+          <a href="teacher-home.php" data-toggle="tooltip" title="Dashboard">
             <i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
         </li>
 
-        
+
         <li class="m-2">
           <a href="institute_info.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-university me-2 fs-5"></i><span class="li-name"> Institute Information
-              </span></a>
+            </span></a>
         </li>
         <li class="m-2">
           <a href="view_profile.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-users me-2 fs-5"></i><span class="li-name"> View Profile
-              </span></a>
+            </span></a>
         </li>
         <li class="m-2">
           <a href="change_pwd.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-question me-2 fs-5"></i><span class="li-name"> Change Password
-              </span></a>
+            </span></a>
         </li>
 
 
 
         <?php
-          if($num>0)
-          {
-            echo '<li class="m-2">
+        if ($num > 0) {
+          echo '<li class="m-2">
             <a href="takeattedance.php" data-toggle="tooltip" title="Question Bank">
               <i class="fas fa-hand-point-up me-2 fs-5"></i><span class="li-name"> Attendance </span></a>
           </li>';
-          }
-        
+        }
+
         ?>
 
 
-        
+
 
         <li class="m-2">
           <a href="material.php" data-toggle="tooltip" title="Question Bank">
             <i class="fas fa-sticky-note me-2 fs-5"></i><span class="li-name"> Upload Material </span></a>
         </li>
-        
+
+        <?php
+        if ($num > 0) {
+          echo '
         <li class="m-2">
           <a href="viewstudent.php">
             <i class="fas fa-users me-2 fs-5"></i> <span class="li-name">View Student</span></a>
-        </li>
+        </li>';
+        }
+        ?>
 
-        
+
 
 
         <li class="m-2">

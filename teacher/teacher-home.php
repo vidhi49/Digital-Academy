@@ -23,7 +23,7 @@ $(document).ready(function() {
 <body>
   <div class="d-flex">
     <?php include("teacher-sidebar.php"); ?>
-    <div class="content mt-5 ">
+    <div class="teacher-content ">
       <div class="row shadow ml-2" style="border-radius: 20px;background-color:#a6e7ff">
 
         <div class="col-sm-8 d-flex align-items-center">
@@ -31,7 +31,8 @@ $(document).ready(function() {
             <p class="text-black" style="font-size: 50px;">Welcome Back!!!</p>
             <h3><?php echo $row['Name'] ?></h3>
             <p class="py-2 text-black" style="line-height: 25px;">
-              A Teacher's Purpose is not to create students in his Image, but to develop students who can create their Image.
+              A Teacher's Purpose is not to create students in his Image, but to develop students who can create their
+              Image.
             </p>
           </div>
 
@@ -42,7 +43,7 @@ $(document).ready(function() {
       </div>
       <div class="row  mx-1 my-5">
         <div class="col mx-3 shadow" style="border-radius: 20px;background-color:white">
-        <div class="row mx-2 mt-2 fs-4 ">
+          <div class="row mx-2 mt-2 fs-4 ">
             <div class="col ">
               <p class="text-dark">My Classes</p>
             </div>
@@ -183,11 +184,11 @@ $(document).ready(function() {
           $res = mysqli_query($con, $q) or die("Query Failed");
           $nor = mysqli_num_rows($res);
           if ($nor > 0) {
-                    while ($r = mysqli_fetch_array($res)) {
+            while ($r = mysqli_fetch_array($res)) {
               $q1 = "select * from subject_tbl where Id='$r[5]'";
               $result1 = mysqli_query($con, $q1);
               $re1 = mysqli_fetch_array($result1);
-              $q2="select * from class_tbl where Id='$r[3]'";
+              $q2 = "select * from class_tbl where Id='$r[3]'";
               $result2 = mysqli_query($con, $q2);
               $re2 = mysqli_fetch_array($result2);
               echo '
@@ -207,7 +208,7 @@ $(document).ready(function() {
                         <div class="col-sm-4 d-flex align-items-center">
                           <div class=" d-flex align-items-center">
                             
-                            <h4> ' . $re2[2].'-'.$re2[7] . '</h4>
+                            <h4> ' . $re2[2] . '-' . $re2[7] . '</h4>
                           </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
@@ -222,14 +223,14 @@ $(document).ready(function() {
           ?>
         </div>
         <div class="col ml-5 shadow" style="border-radius: 20px;background-color:white">
-        <h3 class="my-3">Students</h3>
-        <div>
+          <h3 class="my-3">Students</h3>
+          <div>
             <canvas id="barChart"></canvas>
           </div>
         </div>
 
       </div>
-      
+
     </div>
   </div>
 
@@ -247,9 +248,8 @@ function makechart1() {
     success: function(data) {
       var classname = [];
       var count = [];
-      var color=[];
-      for(var i=0;i<data.length;i++)
-      {
+      var color = [];
+      for (var i = 0; i < data.length; i++) {
         classname.push(data[i].classname);
         count.push(data[i].count);
         color.push(data[i].color);
@@ -259,8 +259,8 @@ function makechart1() {
         datasets: [{
             label: 'Total Students',
             data: count,
-            backgroundColor:color,
-            borderColor:color,
+            backgroundColor: color,
+            borderColor: color,
             borderWidth: 1,
           }
 
@@ -296,7 +296,7 @@ function makechart1() {
 
         options: options
       });
-     
+
     }
   });
 
