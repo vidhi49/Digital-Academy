@@ -173,7 +173,7 @@ a[data-toggle="collapse"] {
         <!-- <p>Dummy Heading</p> -->
 
         <li class="m-2">
-          <a href="#">
+          <a href="teacher-dashboard.php"  data-toggle="tooltip" title="Dashboard">
             <i class="fas fa-home me-2 fs-5"></i><span class="li-name">Dashboard</span></a>
         </li>
 

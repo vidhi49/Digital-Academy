@@ -205,7 +205,7 @@ if (isset($_REQUEST['login'])) {
           $_SESSION['Id'] = $row['Id'];
           $_SESSION['Inst_id'] = $row['Inst_id'];
           echo "s";
-          echo "<script>window.location.href='../student/student-home.php';</script>";
+          echo "<script>window.location.href='../student/student-dashboard.php';</script>";
         } else {
           echo "<script>Swal.fire({
             icon: 'error',

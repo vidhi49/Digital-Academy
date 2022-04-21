@@ -117,8 +117,8 @@ validationMaterial = () => {
     $fileExtension = explode('.', $f);
     $fileExtension = strtolower(end($fileExtension));
     $newf = $inst_id . $cid . $sid . $f;
-
-    $q = "insert into upload_tbl values(null,'$newf','$inst_id','$cid','$sid')";
+    $date=date('Y-m-d');
+    $q = "insert into upload_tbl values(null,'$newf','$inst_id','$cid','$sid','$date')";
     $res = mysqli_query($con, $q);
     $q1 = "select * from upload_tbl where FileName='$newf'";
     // echo $q1;

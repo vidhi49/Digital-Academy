@@ -33,7 +33,7 @@ $r = mysqli_fetch_array($result);
 <body>
   <div class="" >
     <!-- style='box-shadow: black 0px 3px 80px;' -->
-    <div class="row bg-navy-blue" style=" height:70px;box-shadow:  10px 10px 20px 0px grey;">
+    <div class="row bg-navy-blue" style="display:none; height:70px;box-shadow:  10px 10px 20px 0px grey;">
       <!-- <div class="col-sm-6 d-flex">
         <img class='logo ms-1' style="border-radius:50%;margin:10px" height="100" width="100" src='../Institute-admin/staff_profile/<?php echo $_SESSION['logo']; ?>'/>
         <span class="h-25 fs-2 text-light" style="padding: 35px;" id="email"><?php echo $r['Inst_id']; ?></span>
