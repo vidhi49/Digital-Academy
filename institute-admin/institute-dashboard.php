@@ -42,6 +42,7 @@ $inst_id = $_SESSION['inst_id'];
       <div class="mb-5">
         <h1>Admin Dashboard</h1>
       </div>
+      <!-- 1 -->
       <div class="row">
         <div class="col-sm-6">
           <div class="card shadow bg-white " style="border-radius: 20px;">
@@ -105,6 +106,7 @@ $inst_id = $_SESSION['inst_id'];
           </div>
         </div>
       </div>
+      <!-- 2 -->
       <div class="row  mt-5 mb-5"
         style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <?php
@@ -135,35 +137,37 @@ $inst_id = $_SESSION['inst_id'];
             <tbody>
               <?php
 
-              while ($r = mysqli_fetch_array($res)) {
-                echo "<tr>";
+                while ($r = mysqli_fetch_array($res)) {
+                  echo "<tr>";
 
-                echo "<td>$r[2]</td>"; //name
-                $q = "select * from class_tbl where Id='$r[3]'";
-                $result = mysqli_query($con, $q);
-                $re = mysqli_fetch_array($result);
-                echo "<td>$re[2]</td>"; //email
-                $q1 = "select * from subject_tbl where Id='$r[5]'";
-                $result1 = mysqli_query($con, $q1);
-                $re1 = mysqli_fetch_array($result1);
-                echo "<td>$r[4]</td>"; //add
-                echo "<td>$re1[3]</td>"; //add
+                  echo "<td>$r[2]</td>"; //name
+                  $q = "select * from class_tbl where Id='$r[3]'";
+                  $result = mysqli_query($con, $q);
+                  $re = mysqli_fetch_array($result);
+                  echo "<td>$re[2]</td>"; //email
+                  $q1 = "select * from subject_tbl where Id='$r[5]'";
+                  $result1 = mysqli_query($con, $q1);
+                  $re1 = mysqli_fetch_array($result1);
+                  echo "<td>$r[4]</td>"; //add
+                  echo "<td>$re1[3]</td>"; //add
 
 
-                echo "<td>$r[6]</td>"; //cont
+                  echo "<td>$r[6]</td>"; //cont
 
-              }
-              echo "</tr>";
-            } else {
-              echo "<center><h1>No Institute is Found</h1></center>";
-            }
-              ?>
+                }
+                echo "</tr>";
+
+                ?>
             </tbody>
           </table>
           <center><a href="payment_rpt.php" class="text-dark fs-5">View All</a></center>
         </div>
-
+        <?php
+        } else {
+          echo "<center><h1>No Institute is Found</h1></center>";
+        } ?>
       </div>
+      <!-- 3 -->
       <div class="row mt-5 ">
         <div class="col-sm-6">
           <div style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
@@ -186,7 +190,8 @@ $inst_id = $_SESSION['inst_id'];
           </div>
         </div>
       </div>
-      <div class="row mt-5 mb-5"
+      <!-- 4 -->
+<div class="row mt-5 mb-5"
         style="border-radius: 20px;background-color:white;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
         <?php
 
@@ -242,6 +247,7 @@ $inst_id = $_SESSION['inst_id'];
         </div>
 
       </div>
+      <!-- e -->
 
     </div>
   </div>
