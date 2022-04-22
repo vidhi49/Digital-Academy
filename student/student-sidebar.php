@@ -173,7 +173,7 @@ $r = mysqli_fetch_array($result);
           <span class="stud-name"> <?php echo $r[3]; ?> </span> </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow bg-secondary" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item text-dark" href="changePasswordStud.php">Change Password</a></li>
-          <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
+          <li><a class="dropdown-item text-dark" href="viewProfile">Profile</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>

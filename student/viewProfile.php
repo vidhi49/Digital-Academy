@@ -2,6 +2,7 @@
 include('../connect.php');
 include('student-header.php');
 $inst_id = $_SESSION['Inst_id'];
+$id=$_SESSION['Id'];
 $page = 'viewProfile';
 ?>
 <html>
@@ -15,10 +16,10 @@ $page = 'viewProfile';
           <div class="d-flex pt-5">
             <?php 
             
-            $q1 = mysqli_query($con, "select * from student_tbl where Inst_id='$inst_id'");
-            $res = mysqli_fetch_array($q1);    
+            // $q1 = mysqli_query($con, "select * from student_tbl where Inst_id='$inst_id'");
+            // $res = mysqli_fetch_array($q1);    
             // echo $res['Id'];
-            $q = "select * from student_tbl where Inst_id='$inst_id' and Id='$res[0]'";
+            $q = "select * from student_tbl where Inst_id='$inst_id' and Id='$id'";
             $res = mysqli_query($con, $q);
             while ($r = mysqli_fetch_array($res)) {
             ?>
