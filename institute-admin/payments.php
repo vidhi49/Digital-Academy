@@ -18,7 +18,7 @@ if (isset($_POST['save'])) {
     $res1 = mysqli_query($con, $query);
     $r = mysqli_fetch_array($res1);
 
-    $query = mysqli_query($con, "select * from payments where studid ='$studid'");
+    $query = mysqli_query($con, "select * from payments where studid ='$studid' AND Insti_id='$inst_id'");
     $ret = mysqli_fetch_array($query);
 
     if ($ret > 0) {
@@ -44,7 +44,7 @@ if (isset($_POST['save'])) {
 if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete") {
     $Id = $_GET['Id'];
 
-    $query = mysqli_query($con, "DELETE FROM payments WHERE Id='$Id'");
+    $query = mysqli_query($con, "DELETE FROM payments WHERE Id='$Id' AND Insti_id='$inst_id'");
 
     if ($query == TRUE) {
 
@@ -62,7 +62,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
     $Id = $_GET['Id'];
 
 
-    $query = mysqli_query($con, "select * from payments where Id ='$Id'");
+    $query = mysqli_query($con, "select * from payments where Id ='$Id' AND Insti_id='$inst_id'");
     $row = mysqli_fetch_array($query);
     echo $row[6];
 
@@ -79,7 +79,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
         $row = mysqli_fetch_array($res);
         // echo $row['Id'];
 
-        $query1 = mysqli_query($con, "select * from payments where Class_id ='$Class_id'");
+        $query1 = mysqli_query($con, "select * from payments where Class_id ='$Class_id' AND Insti_id='$inst_id'");
         $ret = mysqli_fetch_array($query1);
 
 
@@ -97,7 +97,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
 
             if ($Id == $ret['Id']) {
 
-                $query = mysqli_query($con, "update payments set Paid_amount='$paid_amount' where Id='$Id'");
+                $query = mysqli_query($con, "update payments set Paid_amount='$paid_amount' where Id='$Id' AND Insti_id='$inst_id'");
 
                 // $query =  "insert into fees values(null,'$Class_id','$r[2]','$Amount')";
                 if ($query) {

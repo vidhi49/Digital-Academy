@@ -42,7 +42,7 @@
 </style>
 
 <body>
-  <div class="row bg-navy-blue">
+  <div class="row bg-navy-blue" style="display: none;">
     <div class="container">
       <nav class="navbar navbar-expand-sm bg-navy-blue navbar-dark">
         <div class="container-fluid">

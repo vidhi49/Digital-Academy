@@ -23,7 +23,7 @@ $page = "";
                     if ($num > 0) {
                         while ($r = mysqli_fetch_array($result)) {
                             echo '
-                                        <div class="col-sm-6">
+                                        <div class="col">
                                         
                                         <div class="card shadow bg-white m-5" style="border-radius: 20px;">
                                             <div class="card-body p-5">
@@ -42,7 +42,8 @@ $page = "";
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
+                                       </div>
+                                       </div>
                                         
                                         ';
                         }

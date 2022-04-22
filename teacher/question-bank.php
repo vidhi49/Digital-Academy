@@ -64,18 +64,18 @@ $page = "exam";
                 <select required class="form-select w-100" aria-label="Default select example"
                   onchange="sectionDropdown(this.value);subjectDropdown(this.value)" name="class" required>
                   <?php
-                  $qry = "select Class_id ,count(*) from teacher_wise_subject_tbl where Teacher_id='$Id' and Inst_id='$inst_id' group by Class_id";
+                  // $qry = "select Class_id ,count(*) from teacher_wise_subject_tbl where Teacher_id='$Id' and Inst_id='$inst_id' group by Class_id";
                   // $result = mysqli_query($con, $p);
-                  // $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
+                  $qry = "SELECT DISTINCT Name FROM class_tbl ORDER BY Name ASC";
                   $result = $con->query($qry);
                   $num = $result->num_rows;
                   if ($num > 0) {
                     echo '<option value="">---- -Select Class -----</option>';
                     while ($rows = $result->fetch_assoc()) {
-                      $q="select * from class_tbl where Id='".$rows['Class_id']."'";
-                      $result=mysqli_query($con,$q);
-                      $row1=mysqli_fetch_array($result);
-                      echo '<option  value="' . $row1['Name'] . '" >' . $row1['Name'] . '</option>';
+                      // $q="select * from class_tbl where Id='".$rows['Class_id']."'";
+                      // $result=mysqli_query($con,$q);
+                      // $row1=mysqli_fetch_array($result);
+                      echo '<option  value="' . $rows['Name'] . '" >' . $rows['Name'] . '</option>';
                     }
                     echo '</select>';
                   }
@@ -144,7 +144,7 @@ $page = "exam";
         <div class="table-responsive-md table-md w-100 p-5" id="tblQue">
           <br>
           <h2 class="navy-blue">Question Bank</h2>
-          <button onclick="generatePDF()">Download as PDF</button>
+          <!-- <button onclick="generatePDF()">Download as PDF</button> -->
 
           <hr><br>
           <table class="table table-hover" id="dataTable">

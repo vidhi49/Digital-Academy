@@ -25,7 +25,7 @@ if (isset($_POST['save'])) {
   $r = mysqli_fetch_array($res);
 
 
-  $query = mysqli_query($con, "select * from fees where Class_id ='$Class_id'");
+  $query = mysqli_query($con, "select * from fees where Class_id ='$Class_id' AND Inst_id='$inst_id'");
   $ret = mysqli_fetch_array($query);
 
   if ($ret > 0) {
@@ -33,7 +33,7 @@ if (isset($_POST['save'])) {
     $statusMsg = "<div class='alert alert-danger'>This Class Already Exists!</div>";
   } else {
 
-    $query =  "insert into fees values(null,'$Class_id','$r[2]','$Amount')";
+    $query =  "insert into fees values(null,'$Class_id','$r[2]','$Amount','$inst_id')";
     // echo "$query";
     $result = mysqli_query($con, $query);
 
@@ -53,7 +53,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
   $Id = $_GET['Id'];
 
 
-  $query = mysqli_query($con, "select * from fees where Id ='$Id'");
+  $query = mysqli_query($con, "select * from fees where Id ='$Id' AND Inst_id='$inst_id'");
   $row = mysqli_fetch_array($query);
 
   //------------UPDATE-----------------------------
@@ -69,7 +69,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
     $row = mysqli_fetch_array($res);
     // echo $row['Id'];
 
-    $query1 = mysqli_query($con, "select * from fees where Class_id ='$Class_id'");
+    $query1 = mysqli_query($con, "select * from fees where Class_id ='$Class_id' AND Inst_id='$inst_id'");
     $ret = mysqli_fetch_array($query1);
 
 
@@ -87,7 +87,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
 
       if ($Id == $ret['Id']) {
 
-        $query = mysqli_query($con, "update fees set Amount='$Amount' where Id='$Id'");
+        $query = mysqli_query($con, "update fees set Amount='$Amount' where Id='$Id' AND Inst_id='$inst_id'");
 
         // $query =  "insert into fees values(null,'$Class_id','$r[2]','$Amount')";
         if ($query) {
@@ -102,7 +102,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
         $statusMsg = "<div class='alert alert-danger'>This Class Already Exists!</div>";
       }
     } else {
-      $query = mysqli_query($con, "update fees set Name='$Class_id' ,Amount='$Amount' where Id='$Id'");
+      $query = mysqli_query($con, "update fees set Name='$Class_id' ,Amount='$Amount' where Id='$Id' AND Inst_id='$inst_id'");
 
       if ($query) {
 
@@ -122,7 +122,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit") {
 if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete") {
   $Id = $_GET['Id'];
 
-  $query = mysqli_query($con, "DELETE FROM fees WHERE Id='$Id'");
+  $query = mysqli_query($con, "DELETE FROM fees WHERE Id='$Id' AND Inst_id='$inst_id'");
 
   if ($query == TRUE) {
 
@@ -266,7 +266,7 @@ if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "delete")
             </thead>
             <tbody>
               <?php
-              $query = "SELECT * FROM fees";
+              $query = "SELECT * FROM fees Where Inst_id='$inst_id'";
               $rs = $con->query($query);
               $num = $rs->num_rows;
               $sn = 0;

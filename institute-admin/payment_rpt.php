@@ -159,7 +159,7 @@ $a = 'fees';
                             <td>" . $rows['Paid_amount'] . "</td>
                             <td>" . $rows['Amount'] . "</td>
                             <td>" . $rows['Date'] . "</td>
-                            <td><a href='receipt.php?Id=" . $rows['Gr_no'] . "'>Click here</a></td>
+                            <td><a href='receipt.php?Id=" . $rows['Gr_no'] . " ' target='_blank'>Click here</a></td>
                           </tr>";
                       // }
                     }
@@ -196,7 +196,7 @@ $a = 'fees';
                             <td>" . $rows['Paid_amount'] . "</td>
                             <td>" . $rows['Amount'] . "</td>
                             <td>" . $rows['Date'] . "</td>
-                            <td><a href='receipt.php?Id=" . $rows['Gr_no'] . "'>Click here</a></td>
+                            <td><a href='receipt.php?Id=" . $rows['Gr_no'] . " ' target='_blank'>Click here</a></td>
                           </tr>";
                         }
                       }
@@ -229,7 +229,7 @@ $a = 'fees';
                               <td>" . $rows['Paid_amount'] . "</td>
                               <td>" . $rows['Amount'] . "</td>
                               <td>" . $rows['Date'] . "</td>
-                              <td><a href='receipt.php?Id=" . $rows['Gr_no'] . "'>Click here</a></td>
+                              <td><a href='receipt.php?Id=" . $rows['Gr_no'] . " ' target='_blank'>Click here</a></td>
                             </tr>
                           ";
                       }
@@ -268,7 +268,7 @@ $a = 'fees';
                         <td>" . $rows['Paid_amount'] . "</td>
                         <td>" . $rows['Amount'] . "</td>
                         <td>" . $rows['Date'] . "</td>
-                        <td><a href='receipt.php?Id=" . $rows['Gr_no'] . "'>Click here</a></td>
+                        <td><a href='receipt.php?Id=" . $rows['Gr_no'] . "' target='_blank'>Click here</a></td>
                       </tr>";
                   }
                 } else {

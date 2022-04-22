@@ -40,6 +40,14 @@ $inst_id = $_SESSION['inst_id'];
             $q1 = "select * from teacher_wise_subject_tbl where Inst_id='$inst_id' and Class_id='$cid' and Sub_id='$r[0]'";
             $result1 = mysqli_query($con, $q1);
             $r1 = mysqli_fetch_array($result1);
+            if($r1[2]!="")
+            {
+              $name=$r1[2];
+            }
+            else
+            {
+              $name='';
+            }
 
             echo '
                 <div class="col-sm-6">
@@ -48,7 +56,7 @@ $inst_id = $_SESSION['inst_id'];
                       <div class="media align-items-center">
                         <div class="media-body mr-3">
                           <h2 class=" font-w700 text-white">
-                                  ' . $r[3] . ' -  <span class=fs-5>' . $r1[2] . '</span>
+                                  ' . $r[3] . ' -  <span class=fs-5>' . $name . '</span>
                           </h2>
                                   
                         </div>
