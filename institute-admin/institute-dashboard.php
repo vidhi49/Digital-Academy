@@ -204,7 +204,7 @@ $inst_id = $_SESSION['inst_id'];
 
         <div class="table-responsive-md table-sm w-100 p-5">
           <div class="text-center">
-            <h2> Total Institute</h2>
+            <h2> Pending Fees</h2>
           </div>
 
           <hr><br>

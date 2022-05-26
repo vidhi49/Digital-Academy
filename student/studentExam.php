@@ -35,7 +35,7 @@ $page = 'exam';
           $nor = mysqli_num_rows($res1);
 
           if ($nor == 0) {
-            echo "No Exam...";
+            echo "No Exam!!";
           } else {
           ?>
 
